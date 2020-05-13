@@ -1,0 +1,25 @@
+{
+    "menu": {
+        "annuaire": "Annuaire",
+        "sponsorship":"Parrainage"
+    },
+    "user": {
+        "profile": "Profile",
+        "logout": "Déconnecter"
+    },
+    "searchAgent": {
+        "title":"RECHERCHER UN CONSEILLER",
+        "title-detail":"Fiche d'un Conseiller",
+        "form":{
+            "firstname":"Prénom",
+            "lastname":"Nom",
+            "mail":"Email",
+            "tel":"Numéro de Téléphone",
+            "subsidiary":"Secteur d'activité",
+            "reset":"Réinitialiser",
+            "search":"Rechercher",
+            "email.error":"entrer un email valide",
+            "tel.error":"entrer un numéro de téléphone valide Exemple: 123-456-7890"
+        }
+    }
+}

@@ -1,0 +1,112 @@
+<page-header></page-header>
+
+<mat-card >
+  <div class="card-header card-header-danger" style="margin-top: -40px;">
+    <h4 class="card-title">{{ 'searchAgent.title' | translate }}</h4>
+  </div>
+  
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" style="text-align:center;">
+    <mat-card-content style="text-align:center ;" >
+       
+         <div fxLayout="column" fxLayoutAlign="space-between center">
+           <mat-form-field class="full-width" appearance="outline" >
+              <mat-label>{{'searchAgent.form.firstname'|translate}}</mat-label> 
+              <input matInput name="firstname"  formControlName="firstname">
+            </mat-form-field>
+         </div>
+       
+
+      
+         <div fxLayout="column" fxLayoutAlign="space-between center">
+           <mat-form-field class="full-width" appearance="outline" >
+              <mat-label>{{'searchAgent.form.lastname'|translate}}</mat-label>
+              <input matInput name="lastname"  formControlName="lastname">
+           </mat-form-field>
+         </div>
+     
+    
+
+      
+         <div fxLayout="column" fxLayoutAlign="space-between center">
+          <mat-form-field class="full-width" appearance="outline">
+             <mat-label>{{'searchAgent.form.mail'|translate}}</mat-label>
+             <mat-icon matSuffix>email</mat-icon>
+             <input matInput name="email" formControlName="email">
+             <mat-error *ngIf="form.get('email').invalid">
+               {{getErrorMessage(form)}}
+             </mat-error>
+          </mat-form-field>
+         </div>
+      
+
+      
+         <div fxLayout="column" fxLayoutAlign="space-between center">
+           <mat-form-field class="full-width" appearance="outline">
+              <mat-label>{{'searchAgent.form.tel'|translate}}</mat-label>
+              <mat-icon matSuffix>phone</mat-icon>
+              <input matInput name="tel" formControlName="tel" type="tel"  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+              <mat-error *ngIf="form.get('tel').invalid">
+               {{'searchAgent.form.tel.error'|translate}}
+               </mat-error>
+           </mat-form-field>
+         </div>
+     
+
+   
+     
+         <div class="col">
+            <mat-form-field class="full-width" appearance="outline">
+               <mat-label>{{'searchAgent.form.subsidiary'|translate}}</mat-label>
+               <mat-icon matSuffix> flag</mat-icon>
+               <mat-select formControlName="subsidiary">
+                   <mat-option *ngFor="let lC of subsidiary$|async"  [value]="lC.id">
+                      {{lC.name}}
+                   </mat-option>
+               </mat-select>
+            </mat-form-field>
+         </div>
+       
+    
+    </mat-card-content>
+    <mat-card-actions >
+       <div class="btns">
+          <button mat-raised-button class="btn-warning" type="reset">{{'searchAgent.form.reset'|translate}}  <mat-icon>refresh</mat-icon>  </button>
+          <button mat-raised-button class="btn-submit" type="submit" [disabled]="form.invalid">{{'searchAgent.form.search'|translate}}     <mat-icon>search</mat-icon> </button>
+       </div>
+    </mat-card-actions>
+  </form>
+
+</mat-card>
+
+<mat-card *ngIf="isSearsh">
+<mat-card-header class="header" >
+  <div class="title-card">{{(agents$|async).length}} CONSEILLERS TROUVÉS</div>
+</mat-card-header>
+  <div fxLayout="row wrap">
+     <div class="hiit-col" *ngFor="let agent of agents$|async">
+        <mat-card class="list-card">
+            <img mat-card-image src="./assets/images/profile.png">
+            <mat-card-content>
+              <div class="name">
+                 {{agent.firstname }}{{agent.lastname |uppercase}}
+                </div>
+                <div class="role">{{agent.role}}</div>
+            </mat-card-content>
+            <mat-card-actions style="text-align: center;" >
+                <a mat-button [routerLink]="agent.id"><i class="far fa-lg fa-eye" ></i></a>
+            </mat-card-actions>
+          </mat-card>
+      </div>
+  </div>
+</mat-card>
+
+
+
+
+
+
+ 
+  
+
+
+   

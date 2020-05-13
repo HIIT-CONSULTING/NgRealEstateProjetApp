@@ -1,0 +1,81 @@
+<page-header></page-header>
+<mat-card >
+  <div class="card-header card-header-danger" style="margin-top: -40px;">
+    <h4 class="card-title">{{ 'searchAgent.title-detail' | translate }}</h4>
+  </div>
+<mat-card-content >
+  <div fxLayout="row" fxLayoutAlign="space-evenly ">
+  <aside fxFlex="15">
+  <img mat-card-image src="./assets/images/profile.png" >
+  </aside>
+  <section fxFlex="60">
+    <div fxLayout="row" fxLayoutAlign="space-evenly none" >
+      <div fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
+        CIVILITÉ :
+      </div>
+     
+      <div fxLayout="column" fxFlex="40"  *ngIf="isMen" style="color:blue;" >
+        <i class="fas fa-lg fa-male"></i>
+      </div>
+      <div fxLayout="column" fxFlex="40"  *ngIf="!isMen" >
+          <i class="fas fa-lg fa-female"  style="color: palevioletred;"></i>
+       
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+      <div   fxLayout="column" fxFlex="40" >
+        RÔLE :
+      </div>
+      <div fxLayout="column"fxFlex="40" fxLayoutAlign="space-around none" >
+
+     {{(agent$|async).role}}
+      </div>
+    </div>
+    <div fxLayout="row"  fxLayoutAlign="space-evenly center" >
+      <div  fxLayout="column" fxFlex="40" >
+
+        NOM COMPLET :
+      </div>
+      <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
+
+       {{(agent$|async).firstname}}  {{((agent$|async).lastname)|uppercase}}
+      </div>
+    </div>
+   
+    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+      <div  fxLayout="column" fxFlex="40">
+        EMAIL :
+      </div>
+      <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
+        {{(agent$|async).email}}
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+      <div  fxLayout="column" fxFlex="40"  >
+        TÉLÉPHONE :
+      </div>
+      <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
+        {{(agent$|async).telephone}}
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+      <div  fxLayout="column" fxFlex="40"  >
+       ADRESSE :
+      </div>
+      <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
+        {{(agent$|async).adresse}}
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+      <div  fxLayout="column" fxFlex="40" >
+       SECTEUR D'ACTIVITÉ :
+      </div>
+      <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
+        {{(agent$|async).subsidiary}}
+      </div>
+    </div>
+  </section>
+  </div>
+
+</mat-card-content>
+</mat-card>

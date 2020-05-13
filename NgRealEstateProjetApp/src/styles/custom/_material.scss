@@ -1,0 +1,189 @@
+// Material components style fix
+
+.mat-card {
+  margin-bottom: $gutter;
+  color: #737b8e;
+}
+
+.mat-accordion {
+  display: block;
+  margin-bottom: $gutter;
+}
+
+.mat-list-base {
+  position: relative;
+}
+
+.form-field-full {
+  .mat-form-field {
+    width: 100%;
+  }
+}
+.full-width {
+  width: 50%;
+}
+
+.shipping-card {
+  min-width: 120px;
+  margin: 20px auto;
+}
+
+.mat-radio-button {
+  display: block;
+  margin: 5px 0;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -8px;
+
+}
+
+.col {
+  flex: 1;
+ 
+}
+.col1 {
+ 
+  margin-right: 120px;
+  width: 2px;
+  font-size: large;
+ 
+}
+.col2 {
+ 
+  margin-right: 120px;
+  width: 30%;
+ 
+ 
+}
+ 
+
+
+.col:last-child {
+  margin-right: 0;
+}
+
+.btn-warning {
+  background-color: #4d97c4;
+  color: white;
+  width: 20%;
+}
+
+.btn-submit {
+  background-color: #1ba0a7;
+    color: white;
+    width: 20%;
+}
+
+.demo-card button {
+  text-transform: uppercase;
+}
+
+.demo-card {
+  max-width: 150px;
+}
+/*.title{
+  color: #52a2ca;
+  font-size: 14px;
+  font-family: Roboto Condensed,Helvetica Neue,Helvetica,Arial,sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+}*/
+.btns{
+text-align: center;
+}
+.card-header{
+ 
+  border-radius: 3px;
+  padding: 15px;
+  margin-left: 15px;
+  margin-right: 15px;
+  color: #fff;
+  text-align: center;
+  
+}
+.card-header-danger{
+  
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(54, 218, 244, 0.4);
+  background: linear-gradient(60deg, #52a2ca, #191970);
+  margin-bottom: 30px;
+}
+.card-title{
+  font-size: 1.125rem;
+    line-height: 1.4em;
+    font-weight: 300;
+    font-family: Roboto,Helvetica,Arial,sans-serif;
+    font-weight: 300;
+    line-height: 1.5em;
+    margin-bottom: 3px;
+    margin-top: 3px;
+}
+.role{
+  font-size: 14px;
+    color: #808080a3;
+}
+.name{
+  height: 40px;
+  margin-top: 10px;
+  font-weight: 600;
+  color:#454b58;
+  
+
+}
+.list-card{
+  border-bottom: 1px solid grey;
+  width:200px;
+}
+.title-card{
+  color: #5eadd5;
+  height: 30px;
+  font-size: medium;
+}
+.header{
+  border-bottom: 1px solid #e2dbdb;
+    margin-top: -2px;
+    margin-bottom: 30px;
+    margin-right: -14px;
+    margin-left: -14px;
+}
+
+.example-box {
+  width: 200px;
+  height: 200px;
+  border: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  cursor: move;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #fff;
+  border-radius: 4px;
+  position: relative;
+  z-index: 1;
+  transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+              0 2px 2px 0 rgba(0, 0, 0, 0.14),
+              0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.example-box:active {
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+.mat-tab-label, .mat-tab-link {
+  color: #fafafa;
+}
+.mat-tab-labels {
+  background: linear-gradient(60deg, #52a2ca, #191970);
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: rgba(138, 128, 129, 0.12);
+}
+.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  color: rgb(188, 209, 222);
+}

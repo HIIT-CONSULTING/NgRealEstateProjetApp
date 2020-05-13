@@ -1,0 +1,25 @@
+{
+    "menu": {
+        "annuaire": "Phone book",
+        "sponsorship":"Sponsorship"
+    },
+    "user": {
+        "profile": "profile",
+        "logout": "logout"
+    },
+    "searchAgent": {
+        "title":"FIND AN ADVISOR",
+        "form":{
+            "firstname":"Firstname",
+            "lastname":"Lastname",
+            "mail":"Email",
+            "tel":"Mobile",
+            "subsidiary":"Activity area ",
+            "reset":"Reset",
+            "search":"Search",
+            "email.error":"You must enter a value",
+            "tel.error":"Minimum 8 charactors needed Example: 123-456-7890"
+        }
+        
+    }
+}

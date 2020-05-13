@@ -1,0 +1,17 @@
+{
+  "menu": [
+    {
+      "route": "annuaire",
+      "name": "annuaire",
+      "type": "link",
+      "icon": "book"
+    },
+    {
+      "route": "sponsorship",
+      "name": "sponsorship",
+      "type": "link",
+      "icon": "supervised_user_circle"
+    }
+
+  ]
+}

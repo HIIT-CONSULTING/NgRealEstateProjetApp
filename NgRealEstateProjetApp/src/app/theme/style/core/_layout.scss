@@ -1,0 +1,77 @@
+// ==================================================
+// LAYOUT
+// ==================================================
+
+.hiit-container-wrap,
+.hiit-container {
+  height: 100%;
+}
+
+.hiit-content {
+  position: relative;
+  padding: $gutter;
+
+    background-color: #ebedef;
+}
+
+// TODO: Grid row
+.hiit-row {
+  margin-right: -$gutter/2;
+  margin-left: -$gutter/2;
+}
+
+// TODO: Grid col
+.hiit-col {
+  padding-right: $gutter/2;
+  padding-left: $gutter/2;
+}
+
+// Layout control
+.hiit-header-above {
+  .hiit-container {
+    height: calc(100% - #{$toolbar-height-desktop}) !important;
+  }
+
+  .hiit-sidebar-main {
+    height: 100% !important;
+  }
+}
+
+// Fix the init content width
+.hiit-content-width-fix {
+  .hiit-content-wrap {
+    margin-left: $sidenav-width !important;
+
+    [dir='rtl'] & {
+      margin-left: auto !important;
+      margin-right: $sidenav-width !important;
+    }
+  }
+}
+
+//
+// Auth
+//
+.hiit-auth-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #212121;
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, .05) 25%,
+    transparent 25%,
+    transparent 75%,
+    rgba(255, 255, 255, .05) 75%,
+    rgba(255, 255, 255, .05)
+  ),
+    linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, .05) 25%,
+    transparent 25%,
+    transparent 75%,
+    rgba(255, 255, 255, .05) 75%,
+    rgba(255, 255, 255, .05)
+  );
+  background-size: 60px 60px;
+}
