@@ -7,11 +7,10 @@
       "icon": "book"
     },
     {
-      "route": "sponsorship",
+      "route": "sponsor-admin",
       "name": "sponsorship",
       "type": "link",
-      "icon": "supervised_user_circle"
+      "icon": "verified_user"
     }
-
   ]
 }

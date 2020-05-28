@@ -3,11 +3,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import {FindAgentService } from '../find-agent.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import{Agent} from '@shared/Model/Agent.model';
-import{Subsidiary} from '@shared/Model/Subsidiary.model';
+import{Agent} from '@shared/models/Agent.model';
+import{Subsidiary} from '@shared/models/Subsidiary.model';
 
 
 @Component({
@@ -25,35 +25,37 @@ export class FindAgentFormComponent implements OnInit {
             ){}
 
   
-  subsidiary$: Observable<Subsidiary[]>;
-  subsidiary:Subsidiary[]=[];
+
   agents$:Observable<Agent[]>;
   agents:Agent[]=[];
   isSearsh=false;
-
+  subsidiary$: Observable<any>;
+  subsidiary:Subsidiary[]=[];
 
   form = this.fb.group({
     firstname: null,
     lastname: null,
-    tel: [null,Validators.minLength(10)],
+    telephone: [null,Validators.minLength(10)],
     email: [null, Validators.email],
     subsidiary: null
   });
 
   onSubmit() {
-    
+    debugger;
     this.isSearsh=true;
-   /* this.findAgentService.searchAgent(this.form.value).subscribe((response: any)=> {
-      console.log(response);  
-    });*/
-    this.agents$=this.findAgentService.getAgents();
-    this.findAgentService.getAgents().subscribe(items => (this.agents = items));
+    console.log(this.form.value);
+ 
+    debugger;
+    this.agents$=this.findAgentService.getAgents(this.form.value);
+    this.agents$.subscribe(items => {(this.agents = items); console.log(items)});
   
   }
   ngOnInit(){
- 
+ debugger;
     this.subsidiary$ = this.findAgentService.getSubsidiary();
-    this.findAgentService.getSubsidiary().subscribe(items => (this.subsidiary = items));
+    this.subsidiary$.subscribe(items => console.log(items));
+    console.log(this.subsidiary$);
+    
     
   }
 

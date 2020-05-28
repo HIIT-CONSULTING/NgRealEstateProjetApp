@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { LoginService } from '@core/login.service';
+import { Agent } from '@shared/models/Agent.model';
 
 @Component({
   selector: 'app-user-panel',
@@ -10,10 +12,19 @@ import { Component } from '@angular/core';
         alt="avatar"
         width="64"
       />
-      <h4 class="hiit-user-panel-name">Sara ELKHOULTA</h4>
+      <h4 class="hiit-user-panel-name">{{User.firstname}}&nbsp;{{(User.lastname)|uppercase}}</h4>
      
       
     </div>
   `,
 })
-export class UserPanelComponent {}
+export class UserPanelComponent implements OnInit {
+  User:Agent;
+
+  ngOnInit(): void {
+   this.User= this.loginService.getCurentUser();
+   console.log(this.User);
+  }
+  constructor(private loginService:LoginService){}
+
+}

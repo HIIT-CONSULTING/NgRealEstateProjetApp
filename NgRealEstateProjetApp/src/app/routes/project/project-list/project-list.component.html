@@ -1,0 +1,54 @@
+<mat-card >
+  <mat-card-header class="header"  fxLayout="row" fxLayoutAlign="space-between center">
+    <div  class="title-card1"  ></div>
+   
+      <a  style="color: #1ba0a7; "   matTooltip="Ajouter un contact" (click)="onClick()" >
+        <i class="fas fa-2x fa-user-plus"></i>
+      </a>
+    
+    
+</mat-card-header>
+      <div fxLayout="row wrap">
+         <div class="hiit-col" *ngFor="let project of (this.project$|async)?.items">
+            <mat-card class="list-cardProject" >
+              <div  style=" margin-left: 20%;
+              width: 50%;
+              " >
+                <img mat-card-image src="./assets/images/home.png">
+              </div>
+                <mat-card-content style="margin-bottom: 80px; text-align: center;">
+                  <div class="name" style="font-size: large;">
+                     {{project.contact.firstname }}{{project.contact.lastname |uppercase}}
+                    </div>
+                    <div class="role">{{project.project_type}} /{{project.project_state}}/{{project.project_kind}}/{{project.property.property_type.name}}</div>
+                    <div style="    margin-top: 15%;
+                    margin-bottom: 3%;
+                    font-family: initial;
+                    
+                    color: darkblue; background-color: aliceblue;">ADRESSE :</div>
+                    <div style="font-family: initial;
+                    font-size: unset;text-align: center;" > {{project.property.address.description}}, {{project.property.address.city.name}},{{project.property.address.country.name}}</div>
+                    
+
+                    <div style="    margin-top: 15%;
+                    margin-bottom: 3%;
+                    font-family: initial;
+                    
+                    color: darkblue;background-color: aliceblue;">INFORMATIONS COMPLÉMENTAIRES :</div>
+                    <div style="font-family: initial;
+                    font-size: unset; text-align: center;" >$ BUDGET : {{project.property.minimal_price}}$
+                   
+                  </div>
+                </mat-card-content>
+
+
+                
+                <mat-card-actions fxLayout="row" fxLayoutAlign="space-around center"  >
+                    <a mat-button style="color: #52a0c9;"(click)="details(project.id_project)">Consulter</a>
+                    <a mat-button style="color: #e7d71a;"(click)="Update(project.id_project)">Modifier</a>
+                    <a mat-button style="color: red;"  (click)="Delete(project.id_project)">Supprimer</a>
+                </mat-card-actions>
+              </mat-card>
+          </div>
+      </div>
+    </mat-card>

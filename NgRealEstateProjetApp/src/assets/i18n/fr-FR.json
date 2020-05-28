@@ -1,7 +1,10 @@
 {
     "menu": {
         "annuaire": "Annuaire",
-        "sponsorship":"Parrainage"
+        "sponsorship":"Parrainage",
+        "sponsorship-admin":"Parrainage",
+        "project":"Gestions des projets ",
+        "contact":"Gestion des contacts"
     },
     "user": {
         "profile": "Profile",

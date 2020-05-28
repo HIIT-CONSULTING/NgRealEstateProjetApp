@@ -13,4 +13,9 @@ export class SponsorComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  navLinks = [
+    { path: 'form', label: 'Faire une demande de parrainage',icon:'list_alt' },
+    { path: 'list', label: 'Liste des candidatures',icon:'' },
+  ];
+
 }

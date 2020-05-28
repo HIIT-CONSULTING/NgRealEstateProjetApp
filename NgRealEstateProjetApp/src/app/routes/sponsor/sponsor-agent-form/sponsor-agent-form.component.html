@@ -1,86 +1,103 @@
-
 <mat-card>
-    <mat-card-header class="header" >
-        <div class="title-card">CRÉER UNE NOUVELLE DEMANDE D'AGRÉMENT</div>
-      </mat-card-header> 
-    <form [formGroup]="form" (ngSubmit)="onSubmit()" style="text-align:center;">
-      <mat-card-content style="text-align:center ;" >
+   <mat-card-header class="header">
+      <div class="title-card">CRÉER UNE NOUVELLE DEMANDE D'AGRÉMENT</div>
+   </mat-card-header>
+   <form [formGroup]="form" (ngSubmit)="onSubmit()" style="text-align: center;">
+      <mat-card-content>
+         <div fxLayout="column" fxLayoutAlign="space-between center">
+            <mat-form-field class="full-width" appearance="outline">
+               <mat-label>Civilité</mat-label>
+               <mat-select formControlName="gender">
+                  <mat-option *ngFor="let gender of gender$|async " [value]="gender.id">{{gender.name}} </mat-option>
+               </mat-select>
+            </mat-form-field>
+         </div>
 
-      
+         <div fxLayout="column" fxLayoutAlign="space-between center">
+            <mat-form-field class="full-width" appearance="outline">
+               <mat-label> Prénom </mat-label>
+               <input matInput name="firstname" formControlName="firstname" />
+            </mat-form-field>
+         </div>
+
+         <div fxLayout="column" fxLayoutAlign="space-between center">
+            <mat-form-field class="full-width" appearance="outline">
+               <mat-label> Nom </mat-label>
+               <input matInput name="lastname" formControlName="lastname" />
+            </mat-form-field>
+         </div>
+
+         <div fxLayout="column" fxLayoutAlign="space-between center">
+            <mat-form-field class="full-width" appearance="outline">
+               <mat-label> Email </mat-label>
+               <mat-icon matSuffix>email</mat-icon>
+               <input matInput name="email" formControlName="email"/>
+               <mat-error *ngIf="form.get('email').invalid">
+                  {{ getErrorMessage(form) }}
+               </mat-error>
+            </mat-form-field>
+         </div>
+
+         <div fxLayout="column" fxLayoutAlign="space-between center">
+            <mat-form-field class="full-width" appearance="outline">
+               <mat-label> Téléphone </mat-label>
+               <mat-icon matSuffix>phone</mat-icon>
+               <input matInput name="telephone" formControlName="telephone" type="tel"
+                  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" />
+               <mat-error *ngIf="form.get('telephone').invalid">
+                  {{ "searchAgent.form.tel.error" | translate }}
+               </mat-error>
+            </mat-form-field>
+         </div>
+
+         <div fxLayout="column" fxLayoutAlign="space-between center">
+            <mat-form-field class="full-width" appearance="outline">
+               <mat-label>Date de naissance</mat-label>
+               <input matInput [matDatepicker]="picker" formControlName="birthDay"  >
+               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+               <mat-datepicker #picker></mat-datepicker>
+             </mat-form-field>             
+         </div>
+
+
+         <div formGroupName="address">
+            <div fxLayoutAlign="center">
+               <div fxLayoutAlign="space-between center" class="full-width">
+                  <mat-form-field appearance="outline" fxFlex="45">
+                     <mat-label> Ville </mat-label>
+                     <mat-select formControlName="city">
+                        <mat-option *ngFor="let city of city$|async " [value]="city.id">{{city.name}} </mat-option>
+                     </mat-select>
+                  </mat-form-field>
+                  <mat-form-field appearance="outline" fxFlex="45">
+                     <mat-label> Pays </mat-label>
+                     <mat-select formControlName="country">
+                        <mat-option  *ngFor="let country of country$|async " [value]="country.id">{{country.name}} </mat-option>
+                     </mat-select>
+                  </mat-form-field>
+               </div>
+            </div>
             <div fxLayout="column" fxLayoutAlign="space-between center">
                <mat-form-field class="full-width" appearance="outline">
-                  <mat-label>Civilité</mat-label>
-                  <mat-select formControlName="gender">
-                      <mat-option > Monsieur </mat-option>
-                      <mat-option > Madame</mat-option>
-                  </mat-select>
+                  <mat-label> Adresse </mat-label>
+                  <i matSuffix class="fas fa-lg fa-address-card"></i>
+                  <input matInput name="address" formControlName="description" />
                </mat-form-field>
             </div>
-         
-
-        
-           <div fxLayout="column" fxLayoutAlign="space-between center">
-             <mat-form-field class="full-width" appearance="outline" >
-                <mat-label>Prénom</mat-label> 
-                <input matInput name="firstname"  formControlName="firstname">
-              </mat-form-field>
-           </div>
-    
-  
-        
-           <div fxLayout="column" fxLayoutAlign="space-between center">
-             <mat-form-field class="full-width" appearance="outline" >
-                <mat-label>Nom</mat-label>
-                <input matInput name="lastname"  formControlName="lastname">
-             </mat-form-field>
-           </div>
-        
-      
-  
-        
-           <div fxLayout="column" fxLayoutAlign="space-between center">
-            <mat-form-field class="full-width" appearance="outline">
-               <mat-label>Email</mat-label>
-               <mat-icon matSuffix>email</mat-icon>
-               <input matInput name="email" formControlName="email">
-               <mat-error *ngIf="form.get('email').invalid">
-                {{getErrorMessage(form)}}
-              </mat-error>
-            </mat-form-field>
-           </div>
-        
-  
-         
-           <div fxLayout="column" fxLayoutAlign="space-between center">
-             <mat-form-field class="full-width" appearance="outline" >
-                <mat-label>Téléphone</mat-label>
-                <mat-icon matSuffix>phone</mat-icon>
-                <input matInput name="telephone" formControlName="telephone" type="tel"  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
-                <mat-error *ngIf="form.get('telephone').invalid">
-                  {{'searchAgent.form.tel.error'|translate}}
-                  </mat-error>
-              </mat-form-field>
-           </div>
-        
-        
-     
-        
-           <div fxLayout="column" fxLayoutAlign="space-between center">
-              <mat-form-field class="full-width" appearance="outline">
-                 <mat-label>Adresse</mat-label>
-                 <i matSuffix class="fas fa-lg fa-address-card"></i>
-                 <input matInput name="address" formControlName="address" >
-              </mat-form-field>
-           </div>
-        
-      
+         </div>
       </mat-card-content>
-      <mat-card-actions >
+      <mat-card-actions>
          <div class="btns">
-            <button mat-raised-button class="btn-warning" type="reset">Annuler <mat-icon>refresh</mat-icon>  </button>
-            <button mat-raised-button class="btn-submit" type="submit" [disabled]="form.invalid" >Valider  <mat-icon>check</mat-icon> </button>
+            <button mat-raised-button class="btn-warning" type="reset">
+               Annuler <mat-icon>refresh</mat-icon>
+            </button>
+            <button mat-raised-button class="btn-submit" type="submit" >
+               Valider <mat-icon>check </mat-icon>
+            </button>
          </div>
       </mat-card-actions>
-    </form>
- <p> *Votre candidat sera pris en charge par le siège administratif de la société</p>
-  </mat-card>
+   </form>
+   <p>
+      *Votre candidat sera pris en charge par le siège administratif de la société
+   </p>
+</mat-card>

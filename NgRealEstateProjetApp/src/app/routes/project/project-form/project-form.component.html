@@ -1,0 +1,294 @@
+
+<mat-card>
+ 
+  <form [formGroup]="form">
+   
+    <mat-horizontal-stepper linear #stepper>
+      <mat-step>
+        <ng-template matStepLabel> Transaction </ng-template>
+        <mat-card>
+          <mat-card-content>
+            <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px"
+              style="margin-top: 8%;margin-bottom: 5%;">
+              <button class="full-widt" mat-stroked-button matStepperNext (click)="OnClickTransaction('Achat')">
+                ACHAT
+              </button>
+              <button class="full-widt" mat-stroked-button matStepperNext (click)="OnClickTransaction('Vente')">
+                VENTE
+              </button>
+            </div>
+
+          </mat-card-content>
+        </mat-card>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel> Domaine </ng-template>
+        <mat-card>
+          <mat-card-content>
+            <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px"
+              style="margin-top: 8%;margin-bottom: 5%;">
+              <button class="full-widt" mat-stroked-button matStepperNext (click)="OnClickDomain('Neuf')">
+                NEUF
+              </button>
+
+              <button class="full-widt" mat-stroked-button matStepperNext (click)="OnClickDomain('Traditionnel')">
+                TRADITIONNEL
+              </button>
+            </div>
+            <button mat-button matStepperPrevious mat-stroked-button class="full">
+              <i class="fas fa-arrow-left"> </i>&nbsp;&nbsp;&nbsp;ÉTAPE PÉCÉDENTE
+            </button>
+          </mat-card-content>
+        </mat-card>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel> Destination </ng-template>
+        <mat-card>
+          <mat-card-content>
+            <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px"
+              style="margin-top: 8%;margin-bottom: 5%;">
+              <button class="full-widt" matStepperNext mat-stroked-button (click)="OnClickDestination('Entreprise et Commerce')">
+                ENTREPRISE & COMMERCE
+              </button>
+
+              <button class="full-widt" mat-stroked-button matStepperNext (click)="OnClickDestination('Habitation')">
+                HABITATION
+              </button>
+            </div>
+            <button mat-button matStepperPrevious mat-stroked-button class="full">
+              <i class="fas fa-arrow-left"> </i>&nbsp;&nbsp;&nbsp;ÉTAPE PÉCÉDENTE
+            </button>
+          </mat-card-content>
+        </mat-card>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel> Bien </ng-template>
+        <mat-card *ngIf="!choose">
+          <mat-card-content>
+            <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px"
+              style="margin-top: 8%;margin-bottom: 5%;">
+              <button class="full-widt" mat-stroked-button matStepperNext (click)="OnClickProperty(3)">
+                APPARTEMENT
+              </button>
+
+              <button class="full-widt" mat-stroked-button matStepperNext (click)="OnClickProperty(1)">
+                IMMEUBLE
+              </button>
+
+              <button class="full-widt" mat-stroked-button matStepperNext (click)="OnClickProperty(5)">
+                MAISON
+              </button>
+
+              <button class="full-widt" mat-stroked-button matStepperNext (click)="OnClickProperty(4)">
+                TERRAIN
+              </button>
+            </div>
+            <button mat-button matStepperPrevious mat-stroked-button class="full">
+              <i class="fas fa-arrow-left"> </i>&nbsp;&nbsp;&nbsp;ÉTAPE PÉCÉDENTE
+            </button>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card *ngIf="choose">
+          <mat-card-content>
+            <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px"
+              style="margin-top: 8%; margin-bottom: 5%;">
+              <button class="full-widt" mat-stroked-button matStepperNext (click)="OnClickProperty(6)">
+                MURS
+              </button>
+
+              <button class="full-widt" mat-stroked-button matStepperNext (click)="OnClickProperty(7)">
+                FOND DE COMMERCE
+              </button>
+            </div>
+            <button mat-button matStepperPrevious mat-stroked-button class="full">
+              <i class="fas fa-arrow-left"> </i>&nbsp;&nbsp;&nbsp;ÉTAPE PÉCÉDENTE
+            </button>
+          </mat-card-content>
+        </mat-card>
+      </mat-step>
+
+      <mat-step>
+        <form formGroupName="property">
+          <ng-template matStepLabel> Informations sur le projet </ng-template>
+          <mat-card>
+            <div style="margin-top: 8%;margin-bottom: 5%;">
+              <mat-accordion fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
+                <mat-expansion-panel #panel1 style="width: 100%;">
+                  <mat-expansion-panel-header id="disable_ripple" [collapsedHeight]="'70px'"
+                    [expandedHeight]="'70px'">
+                    <mat-panel-title>
+                      <div class="title-cardd">
+                        LIEU DU BIEN
+                      </div>
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <div formGroupName="address">
+
+                    <div fxLayout="column" fxLayoutAlign="space-between center "style="margin-top: 30px;">
+                      <mat-form-field appearance="outline" class="full-width">
+                        <mat-label> Ville </mat-label>
+                        <mat-select formControlName="city">
+                          <mat-option *ngFor="let city of city$|async " [value]="city.id">{{city.name}} </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+
+                    <div fxLayout="column" fxLayoutAlign="space-between center ">
+
+                      <mat-form-field appearance="outline" class="full-width">
+                        <mat-label> Pays </mat-label>
+                        <mat-select formControlName="country">
+                          <mat-option *ngFor="let country of country$|async " [value]="country.id">{{country.name}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="space-between center ">
+                      <mat-form-field class="full-width" appearance="outline">
+                        <mat-label> Secteur </mat-label>
+                        <i matSuffix class="fas fa-lg fa-address-card"></i>
+                        <input matInput name="address" formControlName="description" />
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                </mat-expansion-panel>
+                <mat-expansion-panel #panel2 style="width: 100%;">
+                  <mat-expansion-panel-header id="disable_ripple" [collapsedHeight]="'70px'"
+                    [expandedHeight]="'70px'">
+                    <div class="title-cardd">
+                      SURFACES
+                    </div>
+                  </mat-expansion-panel-header>
+                  <div fxLayout="column" fxLayoutAlign="space-between center " style="margin-top: 30px;">
+                    <mat-form-field class="full-width" appearance="outline">
+                      <mat-label> Surface</mat-label>
+                      <i matSuffix class="fas fa-lg fa-chart-area"></i>
+                      <input matInput name="area" formControlName="area" />
+                    </mat-form-field>
+                  </div>
+                </mat-expansion-panel>
+                <mat-expansion-panel #panel3 style="width: 100%;">
+                  <mat-expansion-panel-header class="disable_ripple" [collapsedHeight]="'70px'"
+                    [expandedHeight]="'70px'">
+                    <div class="title-cardd">
+                      PRIX
+                    </div>
+                  </mat-expansion-panel-header>
+                  <div fxLayout="column" fxLayoutAlign="space-between center " style="margin-top: 30px;">
+                    <mat-form-field class="full-width" appearance="outline">
+                      <mat-label> Minimum </mat-label>
+                      <mat-icon matSuffix aria-hidden="false" aria-label="Example home icon">attach_money</mat-icon>
+                      <input matInput name="minimalPrice" formControlName="minimalPrice" />
+                    </mat-form-field>
+                  </div>
+                  <div fxLayout="column" fxLayoutAlign="space-between center ">
+                    <mat-form-field class="full-width" appearance="outline">
+                      <mat-label> Maximum </mat-label>
+                      <mat-icon matSuffix aria-hidden="false" aria-label="Example home icon">attach_money</mat-icon>
+                      <input matInput name="maximumPrice" formControlName="maximumPrice" />
+                    </mat-form-field>
+                  </div>
+                </mat-expansion-panel>
+                <mat-expansion-panel #panel4 style="width: 100%;">
+                  <mat-expansion-panel-header id="disable_ripple" [collapsedHeight]="'70px'"
+                    [expandedHeight]="'70px'">
+                    <div class="title-cardd">
+                      NOMBRE DE PIÈCES
+                    </div>
+                  </mat-expansion-panel-header>
+                  <div fxLayout="column" fxLayoutAlign="space-between center " >
+                    <mat-form-field class="full-width" appearance="outline">
+                      <mat-label> Nombre de pièces</mat-label>
+                      <input matInput name="room" formControlName="room" />
+                    </mat-form-field>
+                  </div>
+                </mat-expansion-panel>
+              </mat-accordion>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-around end">
+              <button mat-button matStepperPrevious mat-stroked-button class="full" style=" margin-left: -30%;">
+                <i class="fas fa-arrow-left"> </i>&nbsp;&nbsp;&nbsp;ÉTAPE PÉCÉDENTE
+              </button>
+              <button class="full" mat-button matStepperNext mat-stroked-button style="margin-right: -30%;">
+                ÉTAPE SUIVANTE &nbsp;&nbsp;&nbsp;<i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </mat-card>
+        </form>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel> Contact lié au projet </ng-template>
+        <mat-card>
+          
+            <div style="margin-top: 8%;">
+              <mat-card-content>
+              <div fxLayout="row" fxLayoutAlign="space-between center" style="margin-top: 7%;">
+                <ng-select [items]="(contacts$| async)?.items" bindLabel="firstname" bindValue="id" autofocus class="full-width"
+                  appearance="outline" [(ngModel)]="selectedPersonId" placeholder="Séléctionner un contact"
+                  formControlName="contact"(click)="OnClick()">
+                </ng-select>
+
+                <span>Ou</span>
+                <a>
+                  <span>
+                    <i class="fa fa-2x fa-user-plus" aria-hidden="true"></i>
+                  </span>
+                  <span> Nouveau contact</span>
+                </a>
+
+              </div>
+              <div style="margin-top: 5%;
+              font-size: medium;
+              font-family: serif;" >LE CONTACTS LIÉ :</div>
+              <div *ngIf="!show" style="font-size: medium;
+              font-family: serif;
+              margin-top: 1%;
+              margin-left: 3%;">Aucune donnée renseignée</div>
+
+              <mat-card *ngIf="show"style="margin-top: 2%; width: 70%;">
+                <div fxLayout="row" fxLayoutAlign="space-evenly ">
+                  
+                  <img mat-card-image fxFlex="15"  fxLayoutAlign="start none" src="./assets/images/profile.png" >
+                  
+                  <section fxFlex="60">
+                <div class="name1" style="font-size: large;">
+                  {{(contact|async).firstname }}&nbsp;{{(contact|async).lastname |uppercase}}
+                 </div>
+                 <div class="role">Acheteur</div>
+  
+                <div style="    margin-top:2%;
+                margin-bottom:0.5%;
+                font-family: initial;
+                color: darkblue;">ADRESSE :</div>
+                <div style="font-family: initial;
+                font-size: large;" > {{(contact|async).address.description}},&nbsp;{{(contact|async).address.city.name}},&nbsp;{{(contact|async).address.country.name}}</div>
+                  </section>
+                  </div>
+              </mat-card>
+            
+
+
+           
+          </mat-card-content>
+          <mat-card-actions>
+            <div fxLayout="row" fxLayoutAlign="space-around end" style=" margin-top: 6%;">
+              <button mat-button matStepperPrevious mat-stroked-button class="full" style=" margin-left: -30%;">
+                <i class="fas fa-arrow-left"> </i>&nbsp;&nbsp;&nbsp;ÉTAPE PÉCÉDENTE
+              </button>
+              <button class="full" mat-button mat-stroked-button style="margin-right: -30%;"(click)="save()">
+                ENREGISTRER &nbsp;&nbsp;&nbsp;<i class="fas fa-save"></i>
+              </button>
+            </div>
+          </mat-card-actions>
+        </div>
+        </mat-card>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </form>
+</mat-card>

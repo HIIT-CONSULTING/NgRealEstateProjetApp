@@ -1,7 +1,10 @@
 {
     "menu": {
         "annuaire": "Phone book",
-        "sponsorship":"Sponsorship"
+        "sponsorship":"Sponsorship",
+        "sponsorship-admin":"Sponsorship",
+        "project":"Projects",
+        "contact":"Contacts"
     },
     "user": {
         "profile": "profile",

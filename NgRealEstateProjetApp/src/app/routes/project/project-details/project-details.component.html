@@ -1,0 +1,157 @@
+<page-header></page-header>
+<mat-card>
+  <div class="card-header card-header-danger" style="margin-top: -40px;">
+    <h4 class="card-title">Projet {{(project$|async).contact.firstname}} {{(project$|async).contact.lastname}} </h4>
+  </div>
+  <div fxLayoutAlign="center center" style="color: rgb(34, 55, 120);"><i class="fa fa-5x fa-home"
+      aria-hidden="true"></i></div>
+  <div fxLayoutAlign="center center"
+    style="color:#1ba0a7;font-size: large; margin-top: 1.2%;    font-family: monospace;">
+    {{(project$|async).project_type}}
+    /{{(project$|async).project_state}}/{{(project$|async).project_kind}}/{{(project$|async).property.property_type.name}}
+  </div>
+  <div fxLayoutAlign="center center">
+    <mat-card style="width: 40%;
+  margin-top: 3%;">
+      <mat-card-header class="header">
+        <div class="title-card">RÉCAPITULATIF DU BIEN
+        </div>
+      </mat-card-header>
+      <mat-card-content style="    font-size: 90%;
+  font-family: sans-serif;">
+        <div fxLayout="row" fxLayoutAlign="space-evenly center">
+          <div fxLayout="row" fxFlex="40">
+            <i class="fas fa-lg fa-chart-area"></i>&nbsp;&nbsp;&nbsp;
+            SURFACE:
+          </div>
+          <div fxLayout="column" fxFlex="40">
+            {{(project$|async).property.area}}
+          </div>
+
+        </div>
+        <br>
+
+        <div fxLayout="row" fxLayoutAlign="space-evenly center">
+          <div fxLayout="row" fxFlex="40">
+            <i class="fas fa-lg fa-dollar-sign"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PRIX MINIMUM:
+          </div>
+          <div fxLayout="column" fxFlex="40">
+            {{(project$|async).property.minimal_price}}
+          </div>
+
+        </div>
+        <br>
+
+
+        <div fxLayout="row" fxLayoutAlign="space-evenly center">
+          <div fxLayout="row" fxFlex="40">
+            <i class="fas fa-lg fa-dollar-sign"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PRIX MAXIMUM
+          </div>
+          <div fxLayout="column" fxFlex="40">
+            {{(project$|async).property.maximum_price}}
+          </div>
+
+        </div>
+        <br>
+
+        <div fxLayout="row" fxLayoutAlign="space-evenly center">
+          <div fxLayout="row" fxFlex="40">
+            <i class="fas fa-lg fa-dungeon"></i>&nbsp;&nbsp;&nbsp;&nbsp;NOMBRE DE PIÉCES:
+          </div>
+          <div fxLayout="column" fxFlex="40">
+            {{(project$|async).property.room}}
+          </div>
+
+        </div>
+        <br>
+
+        <div fxLayout="row" fxLayoutAlign="space-evenly center">
+          <div fxLayout="row" fxFlex="40">
+            <i class="fas fa-lg fa-address-card"></i>&nbsp;&nbsp;&nbsp;&nbsp;ADRESSE
+          </div>
+          <div fxLayout="column" fxFlex="40">
+            {{(project$|async).property.address.description}} {{(project$|async).property.address.city.name}}
+          </div>
+
+        </div>
+        <br>
+
+        <div fxLayout="row" fxLayoutAlign="space-evenly center">
+          <div fxLayout="row" fxFlex="40">
+            <i class="fas fa-lg fa-flag"></i>&nbsp;&nbsp;&nbsp;&nbsp;PAYS
+          </div>
+          <div fxLayout="column" fxFlex="40">
+            {{(project$|async).property.address.country.name}}
+          </div>
+
+        </div>
+
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+
+
+  <div fxLayoutAlign="center center">
+
+    <mat-card style="width: 40%;
+">
+      <mat-card-header class="header">
+        <div class="title-card">CONTACT PRINCIPAL
+        </div>
+      </mat-card-header>
+      <mat-card-content style="    font-size: 90%;
+font-family: sans-serif;">
+        <div fxLayout="row" fxLayoutAlign="space-evenly ">
+          <aside fxFlex="15" style="margin-top: 4%;">
+            <img mat-card-image src="./assets/images/profile.png" style="border-radius: 100px;">
+          </aside>
+          <section fxFlex="60">
+
+            <div fxLayout="row" fxLayoutAlign="space-evenly center">
+              <div fxLayout="column" fxFlex="40">
+
+                NOM COMPLET :
+              </div>
+              <div fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none">
+
+                {{(project$|async).contact.firstname}}&nbsp;{{((project$|async).contact.lastname)|uppercase}}
+              </div>
+            </div>
+            <br>
+            <div fxLayout="row" fxLayoutAlign="space-evenly center">
+              <div fxLayout="column" fxFlex="40">
+                EMAIL :
+              </div>
+              <div fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none">
+                {{(project$|async).contact.email}}
+              </div>
+
+            </div>
+
+            <br>
+            <div fxLayout="row" fxLayoutAlign="space-evenly center">
+              <div fxLayout="column" fxFlex="40">
+                TÉLÉPHONE :
+              </div>
+              <div fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none">
+                {{(project$|async).contact.telephone}}
+              </div>
+            </div>
+            <br>
+            <div fxLayout="row" fxLayoutAlign="space-evenly center">
+              <div fxLayout="column" fxFlex="40">
+                ADRESSE :
+              </div>
+              <div fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none">
+                {{(project$|async).contact.address.description}},{{(project$|async).contact.address.city.name}},{{(project$|async).contact.address.country.name}}
+              </div>
+            </div>
+
+          </section>
+        </div>
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+</mat-card>

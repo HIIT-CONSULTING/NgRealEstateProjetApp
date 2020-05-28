@@ -1,0 +1,88 @@
+<page-header></page-header>
+<mat-card> 
+    <div class="card-header card-header-danger" style="margin-top: -40px;">
+      <h4 class="card-title">CANDIDATURES EN COURS</h4>
+    </div>
+    <mat-card-content >
+
+    <section>
+        <mat-table [dataSource]="paginatedDataSource.items"
+                   aria-readonly="true"
+                  >
+                  <ng-container cdkColumnDef="Date De Création">
+                    <mat-header-cell   *cdkHeaderCellDef>Date de Création</mat-header-cell>
+                    <mat-cell *cdkCellDef="let row;">{{row.created_at| date: 'dd/MM/yyyy'}}</mat-cell>
+                  </ng-container>
+          <ng-container cdkColumnDef="Prénom Parrain">
+            <mat-header-cell  *cdkHeaderCellDef>Prénom Parrain</mat-header-cell>
+            <mat-cell *cdkCellDef="let row;">{{row.sponsor.firstname}}</mat-cell>
+          </ng-container>
+          <ng-container cdkColumnDef="Nom Parrain">
+            <mat-header-cell  *cdkHeaderCellDef>Nom Parrain</mat-header-cell>
+            <mat-cell *cdkCellDef="let row;">{{row.sponsor.lastname}}</mat-cell>
+          </ng-container>
+          <ng-container cdkColumnDef="Prénom Candidat">
+            <mat-header-cell *cdkHeaderCellDef>Prénom Candidat</mat-header-cell>
+            <mat-cell  *cdkCellDef="let row;">{{row.firstname}}</mat-cell>
+          </ng-container>
+          <ng-container cdkColumnDef="Nom Candidat">
+            <mat-header-cell   *cdkHeaderCellDef>Nom Candidat</mat-header-cell>
+            <mat-cell *cdkCellDef="let row;">{{row.lastname}}</mat-cell>
+          </ng-container>
+          <ng-container cdkColumnDef="Status">
+            <mat-header-cell *cdkHeaderCellDef>Status</mat-header-cell>
+            
+            <mat-cell *cdkCellDef="let row;" >
+              <div *ngIf="row.status=='in_progress'">
+                <i style="color: #fba914; " class="fas fa-lg fa-hourglass"  matTooltipClass="tooltip"[matTooltipPosition]="'right'" matTooltip="En attente"></i>
+              </div>
+              <div *ngIf="row.status=='accepted'">
+                <i style="color: green;"  class="fas fa-lg fa-check" [matTooltipPosition]="'right'" matTooltipClass="tooltip" matTooltip="Accepté"></i>
+              </div>
+              <div *ngIf="row.status=='refused'">
+                <i style="color: red;"  class="fa fa-lg fa-ban" [matTooltipPosition]="'right'" matTooltipClass="tooltip" matTooltip="Reffusé"></i>
+              </div>
+                      
+            </mat-cell>
+            </ng-container>
+       
+           
+          <ng-container cdkColumnDef="Menu" >
+            <mat-header-cell *cdkHeaderCellDef></mat-header-cell>
+            <mat-cell *cdkCellDef="let row;">
+               <button mat-icon-button [matMenuTriggerFor]="menu">
+                 <mat-icon>more_vert</mat-icon>
+               </button>
+               <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="Accept(row.id)"> 
+                    <i style="color: green;" class="fa fa-check-circle"></i>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span  >Accepté</span>
+                  </button>
+                  <button mat-menu-item (click)="Reffus(row.id)">
+                    <i  style="color: red;" class="fa fa-ban" aria-hidden="true"></i>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span >Reffusé</span>
+                  </button>
+                  <button mat-menu-item (click)="details(row.id)">
+                    <mat-icon>remove_red_eye</mat-icon>
+                    <span>Voir le profil</span>
+                  </button>
+               </mat-menu>
+            </mat-cell>
+          </ng-container>
+
+
+          <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *cdkRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      </section> 
+      
+     </mat-card-content>
+     <mat-card-actions>
+      <div fxLayoutAlign="end end">
+       <button (click)="Onpage()">PAGE SUIVANTE</button>
+      
+     </div>
+    </mat-card-actions>
+</mat-card>

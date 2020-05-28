@@ -1,0 +1,38 @@
+<mat-card >
+  <mat-card-header class="header"  fxLayout="row" fxLayoutAlign="space-between center">
+    <div  class="title-card1"  ></div>
+   
+      <a  style="color: #1ba0a7; "   matTooltip="Ajouter un candidat" (click)="onClick()" >
+        <i class="fas fa-2x fa-user-plus"></i>
+      </a>
+    
+    
+</mat-card-header>
+      <div fxLayout="row wrap">
+         <div class="hiit-col" *ngFor="let contact of (contacts$|async)?.items">
+            <mat-card class="list-cardCantact " >
+                <img mat-card-image src="./assets/images/profile.png">
+                <mat-card-content>
+                  <div class="name" style="font-size: large;">
+                     {{contact.firstname }}&nbsp;{{contact.lastname |uppercase}}
+                    </div>
+                    <div class="role">Acheteur</div>
+                    <div style="    margin-top: 15%;
+                    margin-bottom: 3%;
+                    font-family: initial;
+                    
+                    color: darkblue;">ADRESSE :</div>
+                    <div style="font-family: initial;
+                    font-size: unset;" > {{contact.address.description}}, {{contact.address.city.name}},{{contact.address.country.name}}</div>
+                    <mat-divider class="m-y-16" inset></mat-divider>
+                </mat-card-content>
+                
+                <mat-card-actions fxLayout="row" fxLayoutAlign="space-around center"  >
+                    <a mat-button style="color: #52a0c9;"(click)="details(contact.id)">Consulter</a>
+                    <a mat-button style="color: #e7d71a;"(click)="Update(contact.id)">Modifier</a>
+                    <a mat-button style="color: red;"  (click)="Delete(contact.id)">Supprimer</a>
+                </mat-card-actions>
+              </mat-card>
+          </div>
+      </div>
+    </mat-card>

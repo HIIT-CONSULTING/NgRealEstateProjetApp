@@ -1,87 +1,98 @@
 <mat-card> 
-    <mat-card-header class="header" >
-        <div class="title-card">CANDIDATURES EN COURS</div>
+    <mat-card-header class="header"  fxLayout="row" fxLayoutAlign="space-between center">
+        <div  class="title-card1"  >CANDIDATURES EN COURS</div>
+       
+          <a  style="color: #1ba0a7; "   matTooltip="Ajouter un candidat" (click)="onClick()" >
+            <i class="fas fa-2x fa-user-plus"></i>
+          </a>
+        
+        
     </mat-card-header> 
     <mat-card-content >
+
     <section>
-        <mat-table [dataSource]="paginatedDataSource"
+        <mat-table [dataSource]="paginatedDataSource.items"
                    aria-readonly="true"
                   >
+                  <ng-container cdkColumnDef="Date De Création">
+                    <mat-header-cell   *cdkHeaderCellDef>Date de Création</mat-header-cell>
+                    <mat-cell *cdkCellDef="let row;">{{row.created_at| date: 'dd/MM/yyyy'}}</mat-cell>
+                  </ng-container>
           <ng-container cdkColumnDef="Prénom Parrain">
-            <mat-header-cell *cdkHeaderCellDef>Prénom Parrain</mat-header-cell>
-            <mat-cell *cdkCellDef="let row;">{{row.firstnameParrain}}</mat-cell>
+            <mat-header-cell  *cdkHeaderCellDef>Prénom Parrain</mat-header-cell>
+            <mat-cell *cdkCellDef="let row;">{{row.sponsor.firstname}}</mat-cell>
           </ng-container>
           <ng-container cdkColumnDef="Nom Parrain">
-            <mat-header-cell *cdkHeaderCellDef>Nom Parrain</mat-header-cell>
-            <mat-cell *cdkCellDef="let row;">{{row.lastnameParrain}}</mat-cell>
+            <mat-header-cell  *cdkHeaderCellDef>Nom Parrain</mat-header-cell>
+            <mat-cell *cdkCellDef="let row;">{{row.sponsor.lastname}}</mat-cell>
           </ng-container>
           <ng-container cdkColumnDef="Prénom Candidat">
             <mat-header-cell *cdkHeaderCellDef>Prénom Candidat</mat-header-cell>
-            <mat-cell *cdkCellDef="let row;">{{row.firstnameCandidate}}</mat-cell>
+            <mat-cell  *cdkCellDef="let row;">{{row.firstname}}</mat-cell>
           </ng-container>
           <ng-container cdkColumnDef="Nom Candidat">
-            <mat-header-cell *cdkHeaderCellDef>Nom Candidat</mat-header-cell>
-            <mat-cell *cdkCellDef="let row;">{{row.lastnameCandidate}}</mat-cell>
+            <mat-header-cell   *cdkHeaderCellDef>Nom Candidat</mat-header-cell>
+            <mat-cell *cdkCellDef="let row;">{{row.lastname}}</mat-cell>
           </ng-container>
+         
           <ng-container cdkColumnDef="Status">
             <mat-header-cell *cdkHeaderCellDef>Status</mat-header-cell>
-            <mat-cell *cdkCellDef="let row;">{{row.status}}</mat-cell>
+            
+              <mat-cell *cdkCellDef="let row;" >
+                <div *ngIf="row.status=='in_progress'">
+                  <i style="color: #fba914; " class="fas fa-lg fa-hourglass"  matTooltipClass="tooltip"[matTooltipPosition]="'right'" matTooltip="En attente"></i>
+                </div>
+                <div *ngIf="row.status=='accepted'">
+                  <i style="color: green;"  class="fas fa-lg fa-check" [matTooltipPosition]="'right'" matTooltipClass="tooltip" matTooltip="Accepté"></i>
+                </div>
+                <div *ngIf="row.status=='refused'">
+                  <i style="color: red;"  class="fa fa-lg fa-ban" [matTooltipPosition]="'right'" matTooltipClass="tooltip" matTooltip="Reffusé"></i>
+                </div>
+                        
+              </mat-cell>
+            </ng-container>
+       
+           
+          <ng-container cdkColumnDef="Menu" >
+            <mat-header-cell *cdkHeaderCellDef></mat-header-cell>
+            <mat-cell *cdkCellDef="let row;">
+               <button mat-icon-button [matMenuTriggerFor]="menu">
+                 <mat-icon>more_vert</mat-icon>
+               </button>
+               <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="Update(row.id)"> 
+                    <i class="fas fa-pen"></i>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span >Modifier</span>
+                  </button>
+                  <button mat-menu-item (click)="Delete(row.id)">
+                    <mat-icon>delete</mat-icon>
+                    <span>Supprimer</span>
+                  </button>
+                  <button mat-menu-item (click)="details(row.id)">
+                    <mat-icon>remove_red_eye</mat-icon>
+                    <span>Consulter le profil</span>
+                  </button>
+               </mat-menu>
+            </mat-cell>
           </ng-container>
+
 
           <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
           <mat-row *cdkRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>
-        <mat-paginator #paginator
-           [length]="6"
-           [pageIndex]="0"
-           [pageSize]="3"
-           [pageSizeOptions]="[1, 3, 5]">
-        </mat-paginator>
+
+
+       
+        
       </section> 
       
      </mat-card-content>
+     <mat-card-actions>
+       <div fxLayoutAlign="end end">
+        <button (click)="Onpage()">PAGE SUIVANTE</button>
+       
+      </div>
+     </mat-card-actions>
 </mat-card>
-<!--<mat-card>
-    <mat-card-header class="header" >
-        <div class="title-card">HISTORIQUE DES CANDIDATURES</div>
-    </mat-card-header> 
-    <mat-card-content >
-        <section>
-            <mat-table [dataSource]="paginatedDataSource"
-                       aria-readonly="true"
-                       aria-label="Users favorite colors and age">
-              <ng-container cdkColumnDef="Prénom Parrain">
-                <mat-header-cell *cdkHeaderCellDef>Prénom Parrain</mat-header-cell>
-                <mat-cell *cdkCellDef="let row;">{{row.firstnameParrain}}</mat-cell>
-              </ng-container>
-              <ng-container cdkColumnDef="Nom Parrain">
-                <mat-header-cell *cdkHeaderCellDef>Nom Parrain</mat-header-cell>
-                <mat-cell *cdkCellDef="let row;">{{row.lastnameParrain}}</mat-cell>
-              </ng-container>
-              <ng-container cdkColumnDef="Prénom Candidat">
-                <mat-header-cell *cdkHeaderCellDef>Prénom Candidat</mat-header-cell>
-                <mat-cell *cdkCellDef="let row;">{{row.firstnameCandidate}}</mat-cell>
-              </ng-container>
-              <ng-container cdkColumnDef="Nom Candidat">
-                <mat-header-cell *cdkHeaderCellDef>Nom Candidat</mat-header-cell>
-                <mat-cell *cdkCellDef="let row;">{{row.lastnameCandidate}}</mat-cell>
-              </ng-container>
-              <ng-container cdkColumnDef="Status">
-                <mat-header-cell *cdkHeaderCellDef>Status</mat-header-cell>
-                <mat-cell *cdkCellDef="let row;">{{row.status}}</mat-cell>
-              </ng-container>
-    
-              <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
-              <mat-row *cdkRowDef="let row; columns: displayedColumns;"></mat-row>
-            </mat-table>
-            <mat-paginator #paginator
-               [length]="6"
-               [pageIndex]="0"
-               [pageSize]="3"
-               [pageSizeOptions]="[1, 3, 5]">
-            </mat-paginator>
-          </section> 
-          
-         </mat-card-content>
-</mat-card>-->
 

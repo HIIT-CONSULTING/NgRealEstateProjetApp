@@ -1,12 +1,15 @@
 <page-header></page-header>
+
 <mat-card >
   <div class="card-header card-header-danger" style="margin-top: -40px;">
     <h4 class="card-title">{{ 'searchAgent.title-detail' | translate }}</h4>
   </div>
-<mat-card-content >
+<mat-card-content style="margin-bottom: 5%;" >
   <div fxLayout="row" fxLayoutAlign="space-evenly ">
   <aside fxFlex="15">
-  <img mat-card-image src="./assets/images/profile.png" >
+  <img mat-card-image src="./assets/images/profile.png" style="border-radius: 100%;
+  margin-top: 3%;
+" >
   </aside>
   <section fxFlex="60">
     <div fxLayout="row" fxLayoutAlign="space-evenly none" >
@@ -22,15 +25,7 @@
        
       </div>
     </div>
-    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
-      <div   fxLayout="column" fxFlex="40" >
-        RÔLE :
-      </div>
-      <div fxLayout="column"fxFlex="40" fxLayoutAlign="space-around none" >
-
-     {{(agent$|async).role}}
-      </div>
-    </div>
+   <br>
     <div fxLayout="row"  fxLayoutAlign="space-evenly center" >
       <div  fxLayout="column" fxFlex="40" >
 
@@ -41,7 +36,16 @@
        {{(agent$|async).firstname}}  {{((agent$|async).lastname)|uppercase}}
       </div>
     </div>
-   
+    <br>
+    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+      <div  fxLayout="column" fxFlex="40">
+        DATE DE NAISSANCE:
+      </div>
+      <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
+        {{((agent$|async).birth_day) | date: 'dd/MM/yyyy'}}
+      </div>
+    </div>
+    <br>
     <div fxLayout="row" fxLayoutAlign="space-evenly center" >
       <div  fxLayout="column" fxFlex="40">
         EMAIL :
@@ -50,6 +54,7 @@
         {{(agent$|async).email}}
       </div>
     </div>
+    <br>
     <div fxLayout="row" fxLayoutAlign="space-evenly center" >
       <div  fxLayout="column" fxFlex="40"  >
         TÉLÉPHONE :
@@ -58,20 +63,22 @@
         {{(agent$|async).telephone}}
       </div>
     </div>
+    <br>
     <div fxLayout="row" fxLayoutAlign="space-evenly center" >
       <div  fxLayout="column" fxFlex="40"  >
        ADRESSE :
       </div>
       <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
-        {{(agent$|async).adresse}}
+        {{(agent$|async).address.description}},&nbsp;{{(agent$|async).address.city.name}},&nbsp;{{(agent$|async).address.country.name}}
       </div>
     </div>
+    <br>
     <div fxLayout="row" fxLayoutAlign="space-evenly center" >
       <div  fxLayout="column" fxFlex="40" >
        SECTEUR D'ACTIVITÉ :
       </div>
       <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
-        {{(agent$|async).subsidiary}}
+        {{(agent$|async).subsidiary.country.name}}
       </div>
     </div>
   </section>

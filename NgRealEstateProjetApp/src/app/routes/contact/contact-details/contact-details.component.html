@@ -1,0 +1,102 @@
+
+<page-header></page-header>
+<mat-card >
+  <div class="card-header card-header-danger" style="margin-top: -40px;">
+    <h4 class="card-title">FICHE D'UN CONTACT</h4>
+  </div>
+<mat-card-content style="margin-bottom: 5%;" >
+  <div fxLayout="row" fxLayoutAlign="space-evenly ">
+  <aside fxFlex="15">
+  <img mat-card-image src="./assets/images/profile.png" style="border-radius: 100%;
+  margin-top: 3%;
+" >
+  </aside>
+  <section fxFlex="60">
+    <div fxLayout="row" fxLayoutAlign="space-evenly none" >
+      <div fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
+        CIVILITÉ :
+      </div>
+     
+      <div fxLayout="column" fxFlex="40"  *ngIf="isMen" style="color:blue;" >
+        <i class="fas fa-lg fa-male"></i>
+      </div>
+      <div fxLayout="column" fxFlex="40"  *ngIf="!isMen" >
+          <i class="fas fa-lg fa-female"  style="color: palevioletred;"></i>
+       
+      </div>
+    </div>
+   <br>
+    <div fxLayout="row"  fxLayoutAlign="space-evenly center" >
+      <div  fxLayout="column" fxFlex="40" >
+
+        NOM COMPLET :
+      </div>
+      <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
+
+       {{(contact$|async).firstname}}  {{((contact$|async).lastname)|uppercase}}
+      </div>
+    </div>
+    <br>
+    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+      <div  fxLayout="column" fxFlex="40">
+        DATE DE NAISSANCE:
+      </div>
+      <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
+        {{((contact$|async).birth_day) | date: 'dd/MM/yyyy'}}
+      </div>
+    </div>
+    <br>
+    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+      <div  fxLayout="column" fxFlex="40">
+        EMAIL :
+      </div>
+      <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
+        {{(contact$|async).email}}
+      </div>
+    </div>
+    <br>
+    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+      <div  fxLayout="column" fxFlex="40"  >
+        TÉLÉPHONE :
+      </div>
+      <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
+        {{(contact$|async).telephone}}
+      </div>
+    </div>
+    <br>
+    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+      <div  fxLayout="column" fxFlex="40"  >
+       ADRESSE :
+      </div>
+      <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
+        {{(contact$|async).address.description}}
+      </div>
+    </div>
+    <br>
+    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+        <div  fxLayout="column" fxFlex="40" >
+        Ville :
+        </div>
+        <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
+          {{(contact$|async).address.city.name}}
+        </div>
+      </div>
+      <br>
+    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+      <div  fxLayout="column" fxFlex="40" >
+      Pays :
+      </div>
+      <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
+        {{(contact$|async).address.country.name}}
+      </div>
+    </div>
+
+  </section>
+  
+  </div>
+
+</mat-card-content>
+<div fxLayoutAlign="end end">
+    <a><i (click)="Onclick()"  class="fa  fa-4x fa-angle-right" style="color: #4e99c5;" aria-hidden="true"></i></a>
+</div>
+</mat-card>

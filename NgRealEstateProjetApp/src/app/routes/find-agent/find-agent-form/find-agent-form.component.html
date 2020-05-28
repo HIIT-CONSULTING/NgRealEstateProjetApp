@@ -44,8 +44,8 @@
            <mat-form-field class="full-width" appearance="outline">
               <mat-label>{{'searchAgent.form.tel'|translate}}</mat-label>
               <mat-icon matSuffix>phone</mat-icon>
-              <input matInput name="tel" formControlName="tel" type="tel"  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
-              <mat-error *ngIf="form.get('tel').invalid">
+              <input matInput name="telephone" formControlName="telephone" type="tel" >
+              <mat-error *ngIf="form.get('telephone').invalid">
                {{'searchAgent.form.tel.error'|translate}}
                </mat-error>
            </mat-form-field>
@@ -59,8 +59,8 @@
                <mat-label>{{'searchAgent.form.subsidiary'|translate}}</mat-label>
                <mat-icon matSuffix> flag</mat-icon>
                <mat-select formControlName="subsidiary">
-                   <mat-option *ngFor="let lC of subsidiary$|async"  [value]="lC.id">
-                      {{lC.name}}
+                   <mat-option *ngFor="let lC of subsidiary$|async ;index as i " [value]="lC.id">
+                      {{lC.country.name}}
                    </mat-option>
                </mat-select>
             </mat-form-field>
@@ -88,12 +88,12 @@
             <img mat-card-image src="./assets/images/profile.png">
             <mat-card-content>
               <div class="name">
-                 {{agent.firstname }}{{agent.lastname |uppercase}}
+                 {{agent.firstname }}&nbsp;{{agent.lastname |uppercase}}
                 </div>
-                <div class="role">{{agent.role}}</div>
+                <div class="role">Agent</div>
             </mat-card-content>
             <mat-card-actions style="text-align: center;" >
-                <a mat-button [routerLink]="agent.id"><i class="far fa-lg fa-eye" ></i></a>
+                <a mat-button [routerLink]="agent.id"><i style="color: #a1aeae;"  class="fas fa-lg fa-eye"></i></a>
             </mat-card-actions>
           </mat-card>
       </div>

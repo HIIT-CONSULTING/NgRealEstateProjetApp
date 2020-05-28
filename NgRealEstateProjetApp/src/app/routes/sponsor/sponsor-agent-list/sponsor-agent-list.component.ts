@@ -1,21 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
 import { DataSource } from '@angular/cdk/table';
 import { BehaviorSubject, Observable, merge } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { RealEstateAgent } from '@shared/Model/Agent.model';
+import {  Candidate} from '@shared/models/Agent.model';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SponsorService } from '../sponsor.service';
 
-
-const exampleData = [
-  { id: 112365481,firstnameParrain: 'SaraA1 ',lastnameParrain:'ELKHOULTA1', firstnameCandidate: 'OUmaima1',lastnameCandidate:'Moustafid1',status:"en attente"},
-  { id: 112365482,firstnameParrain: 'SaraA2 ',lastnameParrain:'ELKHOULTA2', firstnameCandidate: 'OUmaima2',lastnameCandidate:'Moustafid2',status:"en attente"},
-  { id: 112365483,firstnameParrain: 'SaraA3 ',lastnameParrain:'ELKHOULTA3', firstnameCandidate: 'OUmaima3',lastnameCandidate:'Moustafid3',status:"en attente"},
-  { id: 112365484,firstnameParrain: 'SaraA4 ',lastnameParrain:'ELKHOULTA4', firstnameCandidate: 'OUmaima1',lastnameCandidate:'Moustafid1',status:"en attente"},
-  { id: 112365485,firstnameParrain: 'SaraA5 ',lastnameParrain:'ELKHOULTA5', firstnameCandidate: 'OUmaima2',lastnameCandidate:'Moustafid2',status:"en attente"},
-  { id: 112365486,firstnameParrain: 'SaraA6 ',lastnameParrain:'ELKHOULTA6', firstnameCandidate: 'OUmaima3',lastnameCandidate:'Moustafid3',status:"en attente"},
-
-];
 
 @Component({
   selector: 'app-sponsor-agent-list',
@@ -23,37 +14,71 @@ const exampleData = [
   styleUrls: ['./sponsor-agent-list.component.scss']
 })
 export class SponsorAgentListComponent implements OnInit {
+constructor(private route:ActivatedRoute,private router:Router,private sponsorService:SponsorService){}
 
+page=1;
+limit=5;
+paginatedDataSource:any
   @ViewChild(MatPaginator, { static: true }) pager: MatPaginator;
+  candidates$:Observable<Candidate[]>
+  candidates:Candidate[];
 
-  displayedColumns = ['Prénom Parrain','Nom Parrain', 'Prénom Candidat','Nom Candidat','Status'];
-  paginatedDataSource: PaginatedDataSource;
+  displayedColumns = ['Date De Création','Prénom Parrain','Nom Parrain', 'Prénom Candidat','Nom Candidat','Status',"Menu"];
+
   
   ngOnInit(): void {
-  
-    this.paginatedDataSource = new PaginatedDataSource(this.pager);
+    debugger;
+    this.candidates$=this.sponsorService.getCandidates(this.page,this.limit);
+    debugger;
+    this.candidates$.subscribe(candidate=>{this.candidates=candidate;
+    console.log('cc',this.candidates);
+    this.paginatedDataSource = this.candidates; 
+    
+  })
+    
+
     
   }
-}
-export class PaginatedDataSource extends DataSource<RealEstateAgent> {
-  dataChange: BehaviorSubject<RealEstateAgent[]> = new BehaviorSubject<RealEstateAgent[]>([]);
 
-  constructor(private paginator: MatPaginator) {
-    super();
-    this.dataChange.next(exampleData);
+
+  Onpage(){
+    this.page=this.page+1;
+
+    this.candidates$=this.sponsorService.getCandidates(this.page,this.limit);
+    debugger;
+    this.candidates$.subscribe(candidate=>{this.candidates=candidate;
+    console.log('cc',this.candidates);
+    this.paginatedDataSource = this.candidates; 
+  })
+    
+    }
+      
+  Update(id:number){
+    
+    //this.router.navigate(['/sponsorship/list',id,'update'])
+    //this.router.navigate([`${id}/update`], { relativeTo: this.route });
+    this.router.navigate(['/sponsorship',id,'update']);
+  }
+  Delete(id:number){
+    this.sponsorService.deleteCandidate(id).subscribe((data)=>{
+      console.log("success");})
+      this.candidates$=this.sponsorService.getCandidates(this.page,this.limit);
+      debugger;
+      this.candidates$.subscribe(candidate=>{this.candidates=candidate;
+      console.log('cc',this.candidates);
+      this.paginatedDataSource = this.candidates; 
+    })
   }
 
-  connect(): Observable<RealEstateAgent[]> {
-    const displayDataChanges = [this.dataChange, this.paginator.page];
-
-    return merge(...displayDataChanges).pipe(
-      map(() => {
-        const data = [...exampleData];
-        const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
-        return data.splice(startIndex, this.paginator.pageSize);
-      })
-    );
+  onClick(){
+    this.router.navigate(['/sponsorship/form'])
   }
 
-  disconnect() {}
+  details(id: number) {
+
+    this.router.navigate(['/sponsorship',id,'details']);
+  }
+
 }
+
+

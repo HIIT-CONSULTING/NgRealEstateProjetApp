@@ -8,14 +8,16 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import { SponsorComponent } from './sponsor.component';
 import { SponsorAgentFormComponent } from './sponsor-agent-form/sponsor-agent-form.component';
 import { SponsorAgentListComponent } from './sponsor-agent-list/sponsor-agent-list.component';
+import { UpdateCandidateComponent } from './sponsor-agent-list/update-candidate/update-candidate.component';
+import { CandidateDetailsComponent } from './sponsor-agent-list/candidate-details/candidate-details.component';
 
 
-const COMPONENTS = [SponsorComponent, SponsorAgentFormComponent, SponsorAgentListComponent];
+const COMPONENTS = [SponsorComponent, SponsorAgentFormComponent, SponsorAgentListComponent,UpdateCandidateComponent];
 const COMPONENTS_DYNAMIC = [];
 
 @NgModule({
   imports: [SharedModule, SponsorRoutingModule, MaterialModule, SharedModule,DragDropModule,CommonModule],
-  declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC],
+  declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC, CandidateDetailsComponent],
   entryComponents: COMPONENTS_DYNAMIC
 })
 export class SponsorModule { }
