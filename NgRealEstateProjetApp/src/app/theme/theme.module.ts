@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '@shared/shared.module';
 
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
-import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
 
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { UserPanelComponent } from './sidebar/user-panel.component';
@@ -23,7 +22,6 @@ import { UserComponent } from './header/user.component';
 @NgModule({
   declarations: [
     AdminLayoutComponent,
-    AuthLayoutComponent,
     SidebarComponent,
     UserPanelComponent,
     SidemenuComponent,

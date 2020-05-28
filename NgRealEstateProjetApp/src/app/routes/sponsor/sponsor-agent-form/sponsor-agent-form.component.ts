@@ -5,8 +5,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import{Agent} from '@shared/Model/Agent.model';
-import{Subsidiary} from '@shared/Model/Subsidiary.model';
+import{Agent} from '@shared/models/Agent.model';
+import { SponsorService } from '../sponsor.service';
 
 
 @Component({
@@ -20,7 +20,8 @@ export class SponsorAgentFormComponent implements OnInit {
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
     private translate: TranslateService,
-    private route:ActivatedRoute,private router:Router
+    private route:ActivatedRoute,private router:Router,
+    private sponsorService:SponsorService
             ){}
 
   
@@ -42,9 +43,9 @@ export class SponsorAgentFormComponent implements OnInit {
   onSubmit() {
     
    
-   /* this.findAgentService.searchAgent(this.form.value).subscribe((response: any)=> {
+    this.sponsorService.sponsorAgent(this.form.value).subscribe((response: any)=> {
       console.log(response);  
-    });*/
+    });
     
   }
   ngOnInit(){

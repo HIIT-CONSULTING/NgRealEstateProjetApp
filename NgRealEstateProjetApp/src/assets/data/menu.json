@@ -11,6 +11,12 @@
       "name": "sponsorship",
       "type": "link",
       "icon": "supervised_user_circle"
+    },
+    {
+      "route": "sponsor-admin",
+      "name": "sponsorship",
+      "type": "link",
+      "icon": "verified_user"
     }
 
   ]

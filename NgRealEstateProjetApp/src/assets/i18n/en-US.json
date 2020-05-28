@@ -1,7 +1,8 @@
 {
     "menu": {
         "annuaire": "Phone book",
-        "sponsorship":"Sponsorship"
+        "sponsorship":"Sponsorship",
+        "sponsorship-admin":"Sponsorship"
     },
     "user": {
         "profile": "profile",

@@ -6,8 +6,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import {FindAgentService } from '../find-agent.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import{Agent} from '@shared/Model/Agent.model';
-import{Subsidiary} from '@shared/Model/Subsidiary.model';
+import{Agent} from '@shared/models/Agent.model';
+import{Subsidiary} from '@shared/models/Subsidiary.model';
 
 
 @Component({
@@ -25,12 +25,12 @@ export class FindAgentFormComponent implements OnInit {
             ){}
 
   
-  subsidiary$: Observable<Subsidiary[]>;
-  subsidiary:Subsidiary[]=[];
+
   agents$:Observable<Agent[]>;
   agents:Agent[]=[];
   isSearsh=false;
-
+  subsidiary$: Observable<any>;
+  subsidiary:Subsidiary[]=[];
 
   form = this.fb.group({
     firstname: null,
@@ -53,7 +53,7 @@ export class FindAgentFormComponent implements OnInit {
   ngOnInit(){
  
     this.subsidiary$ = this.findAgentService.getSubsidiary();
-    this.findAgentService.getSubsidiary().subscribe(items => (this.subsidiary = items));
+    this.findAgentService.getSubsidiary().subscribe(items => console.log(items));
     
   }
 

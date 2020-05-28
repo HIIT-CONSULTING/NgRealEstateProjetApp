@@ -19,7 +19,7 @@ import { Component } from '@angular/core';
         <span>{{ 'user.profile' | translate }}</span>
       </a>
 
-      <a routerLink="/auth/login" mat-menu-item>
+      <a routerLink="/login" mat-menu-item>
         <mat-icon>exit_to_app</mat-icon>
         <span>{{ 'user.logout' | translate }}</span>
       </a>

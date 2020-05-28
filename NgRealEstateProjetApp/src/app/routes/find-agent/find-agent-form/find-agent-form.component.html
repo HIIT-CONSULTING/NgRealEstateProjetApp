@@ -88,12 +88,12 @@
             <img mat-card-image src="./assets/images/profile.png">
             <mat-card-content>
               <div class="name">
-                 {{agent.firstname }}{{agent.lastname |uppercase}}
+                 {{agent.first_name }}{{agent.last_name |uppercase}}
                 </div>
                 <div class="role">{{agent.role}}</div>
             </mat-card-content>
             <mat-card-actions style="text-align: center;" >
-                <a mat-button [routerLink]="agent.id"><i class="far fa-lg fa-eye" ></i></a>
+                <a mat-button [routerLink]="agent.id"><i style="color: #a1aeae;"  class="fas fa-lg fa-eye"></i></a>
             </mat-card-actions>
           </mat-card>
       </div>

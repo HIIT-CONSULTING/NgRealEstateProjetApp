@@ -2,11 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import{Agent} from '@shared/Model/Agent.model';
-import{Subsidiary} from '@shared/Model/Subsidiary.model';
-
-
-
+import{Agent} from '@shared/models/Agent.model';
+import{Subsidiary} from '@shared/models/Subsidiary.model';
+import { Role } from '@shared/models/role.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +12,11 @@ import{Subsidiary} from '@shared/Model/Subsidiary.model';
 export class FindAgentService {
 
   constructor(private http: HttpClient) {}
-  getSubsidiary(): Observable<Subsidiary[]> {
-    let items = getMockSubsidiary();
+  getSubsidiary(): Observable<any> {
+    /*let items = getMockSubsidiary();
    
-    return of(items).pipe(delay(500));
+    return of(items).pipe(delay(500));*/
+    return this.http.get(`https://stage.hiitconsulting.com/subsidiary`);
   }
 
   getAgents():Observable<Agent[]>{
@@ -34,9 +33,9 @@ export class FindAgentService {
     }} 
   }
 
-  /*searchAgent(formData:any){
+  searchAgent(formData:any){
    return this.http.post('https://api.monsite.com/auth', formData);
-  }*/
+  }
 }
 
 function getMockSubsidiary() {
@@ -64,51 +63,59 @@ function getMockAgents() {
   return [
     {
       id: 112365489,
-      firstname: 'Sara ',
-      lastname:'ELKHOULTA',
+      first_name: 'Sara ',
+      last_name:'ELKHOULTA',
       email: 'saraelkhoulta@gmail.com',       
       telephone: '0696174563',
       subsidiary: 'Maroc',
-      role:'Gestionnaire',
+      role:Role.Admin,
       gender:'Women',
-      adresse:"Mouhammedia",
+      address:"Mouhammedia",
       age:24,
+      username:"Sara",
+      password:"1459"
     },
     {
       id: 112399489,
-      firstname: 'Oumaima ',
-      lastname:'Moustafid',
+      first_name: 'Oumaima ',
+      last_name:'Moustafid',
       email: 'oumaima@gmail.com',
       telephone: '0667692006',
       subsidiary: 'France',
-      role:'Conseiller',
+      role:Role.User,
       gender:'Women',
-      adresse:"Agadir",
+      address:"Agadir",
       age:24,
+      username:"oumaima",
+      password:"1459"
     },
     {
       id: 992365489,
-      firstname: 'Asmâa ',
-      lastname:'ElOuerkhaou',
+      first_name: 'Asmâa ',
+      last_name:'ElOuerkhaou',
       email: 'asmaa@gmail.com',
       telephone: '0696174563',
       subsidiary: 'Espagne',
-      role:'Gestionnaire',
+      role:Role.Admin,
       gender:'Women',
-      adresse:"Rabat",
+      address:"Rabat",
       age:24,
+      username:"asmaa",
+      password:"1459"
     },
     {
       id: 112365455,
-      firstname: 'Mouad ',
-      lastname:'ennaciri',
+      first_name: 'Mouad ',
+      last_name:'ennaciri',
       email: 'mouad@gmail.com',
       telephone: '0667692006',
       subsidiary: 'Maroc',
-      role:'Conseiller',
+      role:Role.User,
       gender:'Men',
-      adresse:"Casa Blanca",
+      address:"Casa Blanca",
       age:24,
+      username:"Mouad32",
+      password:"1459"
 
     },
    

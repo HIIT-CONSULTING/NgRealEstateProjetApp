@@ -1,32 +1,77 @@
 <mat-card> 
-    <mat-card-header class="header" >
-        <div class="title-card">CANDIDATURES EN COURS</div>
+    <mat-card-header class="header"  fxLayout="row" fxLayoutAlign="space-between center">
+        <div  class="title-card1"  >CANDIDATURES EN COURS</div>
+        <div >
+          <a  style="color: #1ba0a7; "   matTooltip="Ajouter un candidat" (click)="onClick()" >
+            <i class="fas fa-2x fa-user-plus"></i>
+          </a>
+        </div>
+        
     </mat-card-header> 
     <mat-card-content >
+
     <section>
         <mat-table [dataSource]="paginatedDataSource"
                    aria-readonly="true"
                   >
           <ng-container cdkColumnDef="Prénom Parrain">
-            <mat-header-cell *cdkHeaderCellDef>Prénom Parrain</mat-header-cell>
-            <mat-cell *cdkCellDef="let row;">{{row.firstnameParrain}}</mat-cell>
+            <mat-header-cell  *cdkHeaderCellDef>Prénom Parrain</mat-header-cell>
+            <mat-cell *cdkCellDef="let row;">{{row.firstname}}</mat-cell>
           </ng-container>
           <ng-container cdkColumnDef="Nom Parrain">
-            <mat-header-cell *cdkHeaderCellDef>Nom Parrain</mat-header-cell>
-            <mat-cell *cdkCellDef="let row;">{{row.lastnameParrain}}</mat-cell>
+            <mat-header-cell  *cdkHeaderCellDef>Nom Parrain</mat-header-cell>
+            <mat-cell *cdkCellDef="let row;">{{row.lastname}}</mat-cell>
           </ng-container>
           <ng-container cdkColumnDef="Prénom Candidat">
             <mat-header-cell *cdkHeaderCellDef>Prénom Candidat</mat-header-cell>
-            <mat-cell *cdkCellDef="let row;">{{row.firstnameCandidate}}</mat-cell>
+            <mat-cell  *cdkCellDef="let row;">{{row.firstnameC}}</mat-cell>
           </ng-container>
           <ng-container cdkColumnDef="Nom Candidat">
-            <mat-header-cell *cdkHeaderCellDef>Nom Candidat</mat-header-cell>
-            <mat-cell *cdkCellDef="let row;">{{row.lastnameCandidate}}</mat-cell>
+            <mat-header-cell   *cdkHeaderCellDef>Nom Candidat</mat-header-cell>
+            <mat-cell *cdkCellDef="let row;">{{row.lastnameC}}</mat-cell>
           </ng-container>
           <ng-container cdkColumnDef="Status">
             <mat-header-cell *cdkHeaderCellDef>Status</mat-header-cell>
-            <mat-cell *cdkCellDef="let row;">{{row.status}}</mat-cell>
+            
+              <mat-cell *cdkCellDef="let row;" >
+                <div *ngIf="row.status=='en attente'">
+                  <i style="color: #fba914; " class="fas fa-lg fa-hourglass"  matTooltipClass="tooltip"[matTooltipPosition]="'right'" matTooltip="En attente"></i>
+                </div>
+                <div *ngIf="row.status=='Accepté'">
+                  <i style="color: green;"  class="fas fa-lg fa-check" [matTooltipPosition]="'right'" matTooltipClass="tooltip" matTooltip="Accepté"></i>
+                </div>
+                <div *ngIf="row.status=='Refusé'">
+                  <i style="color: red;"  class="fa fa-lg fa-ban" [matTooltipPosition]="'right'" matTooltipClass="tooltip" matTooltip="Reffusé"></i>
+                </div>
+                        
+              </mat-cell>
+            </ng-container>
+       
+           
+          <ng-container cdkColumnDef="Menu" >
+            <mat-header-cell *cdkHeaderCellDef></mat-header-cell>
+            <mat-cell *cdkCellDef="let row;">
+               <button mat-icon-button [matMenuTriggerFor]="menu">
+                 <mat-icon>more_vert</mat-icon>
+               </button>
+               <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="Update(row.idC)"> 
+                    <i class="fas fa-pen"></i>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span >Modifier</span>
+                  </button>
+                  <button mat-menu-item (click)="Delete(row.idC)">
+                    <mat-icon>delete</mat-icon>
+                    <span>Supprimer</span>
+                  </button>
+                  <button mat-menu-item>
+                    <mat-icon>remove_red_eye</mat-icon>
+                    <span>Consulter le profil</span>
+                  </button>
+               </mat-menu>
+            </mat-cell>
           </ng-container>
+
 
           <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
           <mat-row *cdkRowDef="let row; columns: displayedColumns;"></mat-row>

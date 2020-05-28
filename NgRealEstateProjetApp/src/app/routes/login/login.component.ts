@@ -4,6 +4,8 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { particlesConfig } from '../../../assets/data/particles';
+import { LoginService } from '@core/login.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +14,10 @@ import { particlesConfig } from '../../../assets/data/particles';
 })
 export class LoginComponent implements OnInit {
   reactiveForm: FormGroup;
-
-  constructor(private fb: FormBuilder, private router: Router) {
+  returnUrl: string;
+  error = '';
+  constructor(private fb: FormBuilder, private router: Router,private loginService:LoginService) {
+  
     this.reactiveForm = this.fb.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
@@ -25,8 +29,22 @@ export class LoginComponent implements OnInit {
       console.log('callback - particles.js config loaded');
     });
   }
+  // getter pratique pour un accès facile aux champs de formulaire
+  
+  get f() { return this.reactiveForm.controls; }
 
   login() {
-    this.router.navigateByUrl('/');
+    debugger;
+    this.loginService.login(
+      {
+        username: this.f.username.value,
+        password: this.f.password.value
+      }
+    )
+    .subscribe(response => {
+       console.log(response)
+       this.router.navigate(['/annuaire']);
+    });
   }
+
 }

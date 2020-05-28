@@ -1,0 +1,76 @@
+<mat-card> 
+    <mat-card-header class="header" >
+        <div  class="title-card"  >CANDIDATURES EN COURS</div>
+
+        
+    </mat-card-header> 
+    <mat-card-content >
+
+    <section>
+        <mat-table [dataSource]="paginatedDataSource"
+                   aria-readonly="true"
+                  >
+          <ng-container cdkColumnDef="Prénom Parrain">
+            <mat-header-cell  *cdkHeaderCellDef>Prénom Parrain</mat-header-cell>
+            <mat-cell *cdkCellDef="let row;">{{row.firstname}}</mat-cell>
+          </ng-container>
+          <ng-container cdkColumnDef="Nom Parrain">
+            <mat-header-cell  *cdkHeaderCellDef>Nom Parrain</mat-header-cell>
+            <mat-cell *cdkCellDef="let row;">{{row.lastname}}</mat-cell>
+          </ng-container>
+          <ng-container cdkColumnDef="Prénom Candidat">
+            <mat-header-cell *cdkHeaderCellDef>Prénom Candidat</mat-header-cell>
+            <mat-cell  *cdkCellDef="let row;">{{row.firstnameC}}</mat-cell>
+          </ng-container>
+          <ng-container cdkColumnDef="Nom Candidat">
+            <mat-header-cell   *cdkHeaderCellDef>Nom Candidat</mat-header-cell>
+            <mat-cell *cdkCellDef="let row;">{{row.lastnameC}}</mat-cell>
+          </ng-container>
+          <ng-container cdkColumnDef="Status">
+            <mat-header-cell *cdkHeaderCellDef>Status</mat-header-cell>
+            
+              <mat-cell *cdkCellDef="let row;" >
+                  <i style="color: #fba914; " class="fas fa-lg fa-hourglass"  matTooltipClass="tooltip"[matTooltipPosition]="'right'" matTooltip="En attente"></i>
+              </mat-cell>
+            </ng-container>
+       
+           
+          <ng-container cdkColumnDef="Menu" >
+            <mat-header-cell *cdkHeaderCellDef></mat-header-cell>
+            <mat-cell *cdkCellDef="let row;">
+               <button mat-icon-button [matMenuTriggerFor]="menu">
+                 <mat-icon>more_vert</mat-icon>
+               </button>
+               <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="Accept(row.idC)"> 
+                    <i style="color: green;" class="fa fa-check-circle"></i>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span  >Accepté</span>
+                  </button>
+                  <button mat-menu-item (click)="Reffus(row.idC)">
+                    <i  style="color: red;" class="fa fa-ban" aria-hidden="true"></i>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span >Reffusé</span>
+                  </button>
+                  <button mat-menu-item (click)="details(row.idC)">
+                    <mat-icon>remove_red_eye</mat-icon>
+                    <span>Voir le profil</span>
+                  </button>
+               </mat-menu>
+            </mat-cell>
+          </ng-container>
+
+
+          <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *cdkRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <mat-paginator #paginator
+           [length]="6"
+           [pageIndex]="0"
+           [pageSize]="3"
+           [pageSizeOptions]="[1, 3, 5]">
+        </mat-paginator>
+      </section> 
+      
+     </mat-card-content>
+</mat-card>

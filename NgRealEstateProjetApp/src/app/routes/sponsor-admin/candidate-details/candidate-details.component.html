@@ -1,0 +1,76 @@
+<page-header></page-header>
+
+<mat-card >
+  <div class="card-header card-header-danger" style="margin-top: -40px;">
+    <h4 class="card-title">Fiche d'un Candidat</h4>
+  </div>
+<mat-card-content >
+  <div fxLayout="row" fxLayoutAlign="space-evenly ">
+  <aside fxFlex="15">
+  <img mat-card-image src="./assets/images/profile.png" >
+  </aside>
+  <section fxFlex="60">
+    <div fxLayout="row" fxLayoutAlign="space-evenly none" >
+      <div fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
+        CIVILITÉ :
+      </div>
+     
+      <div fxLayout="column" fxFlex="40"  *ngIf="isMen" style="color:blue;" >
+        <i class="fas fa-lg fa-male"></i>
+      </div>
+      <div fxLayout="column" fxFlex="40"  *ngIf="!isMen" >
+          <i class="fas fa-lg fa-female"  style="color: palevioletred;"></i>
+       
+      </div>
+    </div>
+
+    <div fxLayout="row"  fxLayoutAlign="space-evenly center" >
+      <div  fxLayout="column" fxFlex="40" >
+
+        NOM COMPLET :
+      </div>
+      <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
+
+       {{(candidate$|async).firstname}}  {{((candidate$|async).lastname)|uppercase}}
+      </div>
+    </div>
+   
+    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+      <div  fxLayout="column" fxFlex="40">
+        EMAIL :
+      </div>
+      <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
+        {{(candidate$|async).email}}
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+      <div  fxLayout="column" fxFlex="40"  >
+        TÉLÉPHONE :
+      </div>
+      <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
+        {{(candidate$|async).telephone}}
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+      <div  fxLayout="column" fxFlex="40"  >
+       ADRESSE :
+      </div>
+      <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
+        {{(candidate$|async).address}}
+      </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+      <div  fxLayout="column" fxFlex="40"  >
+       ÉTAT DU CANDIDAT:
+      </div>
+    
+      <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
+        {{(candidate$|async).status|uppercase}}
+      </div>
+    </div>
+  </section>
+  </div>
+
+</mat-card-content>
+</mat-card>

@@ -1,7 +1,8 @@
 {
     "menu": {
         "annuaire": "Annuaire",
-        "sponsorship":"Parrainage"
+        "sponsorship":"Parrainage",
+        "sponsorship-admin":"Parrainage"
     },
     "user": {
         "profile": "Profile",

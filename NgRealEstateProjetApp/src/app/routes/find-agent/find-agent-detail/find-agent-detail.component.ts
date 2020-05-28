@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { FindAgentService } from '../find-agent.service';
-import{Agent} from '@shared/Model/Agent.model';
-import{Subsidiary} from '@shared/Model/Subsidiary.model';
-
+import{Agent} from '@shared/models/Agent.model';
 
 @Component({
   selector: 'app-find-agent-detail',

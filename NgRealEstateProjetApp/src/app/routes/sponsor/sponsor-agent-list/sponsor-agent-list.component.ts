@@ -4,17 +4,76 @@ import { MatSort } from '@angular/material/sort';
 import { DataSource } from '@angular/cdk/table';
 import { BehaviorSubject, Observable, merge } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { RealEstateAgent } from '@shared/Model/Agent.model';
+import { RealEstateAgent ,Agent,Candidate} from '@shared/models/Agent.model';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SponsorService } from '../sponsor.service';
+import { Role } from '@shared/models/role.model';
 
 
-const exampleData = [
-  { id: 112365481,firstnameParrain: 'SaraA1 ',lastnameParrain:'ELKHOULTA1', firstnameCandidate: 'OUmaima1',lastnameCandidate:'Moustafid1',status:"en attente"},
-  { id: 112365482,firstnameParrain: 'SaraA2 ',lastnameParrain:'ELKHOULTA2', firstnameCandidate: 'OUmaima2',lastnameCandidate:'Moustafid2',status:"en attente"},
-  { id: 112365483,firstnameParrain: 'SaraA3 ',lastnameParrain:'ELKHOULTA3', firstnameCandidate: 'OUmaima3',lastnameCandidate:'Moustafid3',status:"en attente"},
-  { id: 112365484,firstnameParrain: 'SaraA4 ',lastnameParrain:'ELKHOULTA4', firstnameCandidate: 'OUmaima1',lastnameCandidate:'Moustafid1',status:"en attente"},
-  { id: 112365485,firstnameParrain: 'SaraA5 ',lastnameParrain:'ELKHOULTA5', firstnameCandidate: 'OUmaima2',lastnameCandidate:'Moustafid2',status:"en attente"},
-  { id: 112365486,firstnameParrain: 'SaraA6 ',lastnameParrain:'ELKHOULTA6', firstnameCandidate: 'OUmaima3',lastnameCandidate:'Moustafid3',status:"en attente"},
-
+const exampleData:RealEstateAgent[]= [
+  {
+    id: 112365489,
+    firstname: 'Sara ',
+    lastname:'ELKHOULTA',
+    email: 'saraelkhoulta@gmail.com',       
+    telephone: '0696174563',
+    subsidiary: 'Maroc',
+    role:Role.Admin,
+    gender:'Women',
+    adresse:"Mouhammedia",
+    age:24,
+    idC: 112399489,
+    firstnameC: 'Oumaima ',
+    lastnameC:'Moustafid',
+    emailC: 'oumaima@gmail.com',
+    telephoneC: '0667692006',
+    genderC:'Women',
+    adresseC:"Agadir",
+    ageC:24,
+    status:"Accepté"
+  },
+  {
+    id: 112365455,
+    firstname: 'Sara ',
+    lastname:'ELKHOULTA',
+    email: 'saraelkhoulta@gmail.com',       
+    telephone: '0696174563',
+    subsidiary: 'Maroc',
+    role:Role.User,
+    gender:'Women',
+    adresse:"Mouhammedia",
+    age:24,
+    idC: 112399664,
+    firstnameC: 'Oumaima ',
+    lastnameC:'Moustafid',
+    emailC: 'oumaima@gmail.com',
+    telephoneC: '0667692006',
+    genderC:'Women',
+    adresseC:"Agadir",
+    ageC:24,
+    status:"en attente"
+  },
+  {
+    id: 112365455,
+    firstname: 'Sara ',
+    lastname:'ELKHOULTA',
+    email: 'saraelkhoulta@gmail.com',       
+    telephone: '0696174563',
+    subsidiary: 'Maroc',
+    role:Role.Admin,
+    gender:'Women',
+    adresse:"Mouhammedia",
+    age:24,
+    idC: 112399774,
+    firstnameC: 'Oumaima ',
+    lastnameC:'Moustafid',
+    emailC: 'oumaima@gmail.com',
+    telephoneC: '0667692006',
+    genderC:'Women',
+    adresseC:"Agadir",
+    ageC:24,
+    status:"en attente"
+  }
 ];
 
 @Component({
@@ -23,10 +82,13 @@ const exampleData = [
   styleUrls: ['./sponsor-agent-list.component.scss']
 })
 export class SponsorAgentListComponent implements OnInit {
+constructor(private route:ActivatedRoute,private router:Router,private sponsorService:SponsorService){}
+
+
 
   @ViewChild(MatPaginator, { static: true }) pager: MatPaginator;
 
-  displayedColumns = ['Prénom Parrain','Nom Parrain', 'Prénom Candidat','Nom Candidat','Status'];
+  displayedColumns = ['Prénom Parrain','Nom Parrain', 'Prénom Candidat','Nom Candidat','Status',"Menu"];
   paginatedDataSource: PaginatedDataSource;
   
   ngOnInit(): void {
@@ -34,7 +96,39 @@ export class SponsorAgentListComponent implements OnInit {
     this.paginatedDataSource = new PaginatedDataSource(this.pager);
     
   }
+  Update(id:number){
+    
+    //this.router.navigate(['/sponsorship/list',id,'update'])
+    //this.router.navigate([`${id}/update`], { relativeTo: this.route });
+    this.router.navigate(['./',id, 'update'], { relativeTo: this.route });
+  }
+  Delete(id:number){
+    this.sponsorService.deleteCandidate(id).subscribe((data)=>{
+      console.log("success");})
+  }
+
+  onClick(){
+    this.router.navigate(['/sponsorship/form'])
+  }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export class PaginatedDataSource extends DataSource<RealEstateAgent> {
   dataChange: BehaviorSubject<RealEstateAgent[]> = new BehaviorSubject<RealEstateAgent[]>([]);
 
@@ -56,4 +150,8 @@ export class PaginatedDataSource extends DataSource<RealEstateAgent> {
   }
 
   disconnect() {}
+  
+
+
+
 }

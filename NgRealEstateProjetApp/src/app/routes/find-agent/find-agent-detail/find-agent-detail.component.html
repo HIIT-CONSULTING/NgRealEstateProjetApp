@@ -38,7 +38,7 @@
       </div>
       <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
 
-       {{(agent$|async).firstname}}  {{((agent$|async).lastname)|uppercase}}
+       {{(agent$|async).first_name}}  {{((agent$|async).last_name)|uppercase}}
       </div>
     </div>
    
@@ -63,7 +63,7 @@
        ADRESSE :
       </div>
       <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
-        {{(agent$|async).adresse}}
+        {{(agent$|async).address}}
       </div>
     </div>
     <div fxLayout="row" fxLayoutAlign="space-evenly center" >
