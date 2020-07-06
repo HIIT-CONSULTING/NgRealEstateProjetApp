@@ -65,18 +65,20 @@
           <div formGroupName="address">
              <div fxLayoutAlign="center">
                 <div fxLayoutAlign="space-between center" class="full-width">
+
+                  <mat-form-field appearance="outline" fxFlex="45">
+                     <mat-label> Pays </mat-label>
+                     <mat-select formControlName="country">
+                        <mat-option  *ngFor="let country of country$|async " [value]="country.id" (click)="OnCountry(country.id)">{{country.name}} </mat-option>
+                     </mat-select>
+                  </mat-form-field>
                    <mat-form-field appearance="outline" fxFlex="45">
                       <mat-label> Ville </mat-label>
                       <mat-select formControlName="city">
                          <mat-option *ngFor="let city of city$|async " [value]="city.id">{{city.name}} </mat-option>
                       </mat-select>
                    </mat-form-field>
-                   <mat-form-field appearance="outline" fxFlex="45">
-                      <mat-label> Pays </mat-label>
-                      <mat-select formControlName="country">
-                         <mat-option  *ngFor="let country of country$|async " [value]="country.id">{{country.name}} </mat-option>
-                      </mat-select>
-                   </mat-form-field>
+
                 </div>
              </div>
              <div fxLayout="column" fxLayoutAlign="space-between center">

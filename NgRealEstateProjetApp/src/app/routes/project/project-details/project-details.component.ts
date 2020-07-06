@@ -21,18 +21,26 @@ export class ProjectDetailsComponent implements OnInit {
     private contactService: ContactService,
     private projectService: ProjectService
   ) {}
-
+  showSpinner=true;
   id: number;
   project$: Observable<any>;
+  project:any;
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.id = +params["id"];
     });
 
-    debugger;
+
     this.project$ = this.projectService.getProject(this.id);
-    this.projectService.getProject(this.id).subscribe();
+    this.projectService.getProject(this.id).subscribe((project) => {
+      this.project = project;
+      if(project!={})
+      {
+        this.showSpinner=false;
+      }
+  
+  })
   }
 
   Onclick() {

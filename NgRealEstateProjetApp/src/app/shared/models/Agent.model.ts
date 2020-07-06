@@ -81,16 +81,16 @@ export interface Agent{
    }
 
    export interface Project{
-    id_project:number,
+    id:number,
     projectType: string,
     projectState: string,
     projectKind: string,
     contact:Contact,
     property:{
-      id_property:number,
+      id:number,
       propertyType:{
-        id_realestate:number,
-        title:String,
+        id:number,
+        name:String,
       },
       area:string,
       minimalPrice: string,

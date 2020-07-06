@@ -35,6 +35,10 @@ export class SponsorService {
     let url='https://stage.hiitconsulting.com/api/v1/getApllicantUser';
     return this.http.get<Candidate[]>(url,{params:params});
   };
+  getCitys(id:number){
+    return this.http.get<City[]>(`https://stage.hiitconsulting.com/api/v1/city/${id}`);
+
+  }
   
 
   getCity(): Observable<City[]>{

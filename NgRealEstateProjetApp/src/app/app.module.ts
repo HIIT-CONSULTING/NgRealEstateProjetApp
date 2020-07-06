@@ -10,6 +10,7 @@ import { ThemeModule } from './theme/theme.module';
 import { RoutesModule } from './routes/routes.module';
 import { AppComponent } from './app.component';
 import { StartupService } from '@core';
+
 export function StartupServiceFactory(startupService: StartupService) {
   return () => startupService.load();
 }

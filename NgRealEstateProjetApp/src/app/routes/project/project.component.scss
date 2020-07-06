@@ -3,15 +3,18 @@ button:hover {
     color:white;
   }
   .disable_ripple:hover{
-    background: #203574 !important;
-    color:white;
+    background-color: #203574 !important;
+  
+    .title-cardd{
+        color:white  !important;
+    } 
   }
 .pos{
   margin-top: 8%;
   margin-bottom: 5%;
 }
 
-
+/*
 
 .mat-expansion-panel-header.mat-expanded,
 .mat-expansion-panel-header.mat-expanded:hover {

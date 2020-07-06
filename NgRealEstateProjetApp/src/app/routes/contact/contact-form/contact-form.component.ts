@@ -21,7 +21,8 @@ export class ContactFormComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private sponsorService: SponsorService,
-    private contactService:ContactService
+    private contactService:ContactService,
+    private snackBar: MatSnackBar,
   ) {}
 
   agents$: Observable<Agent[]>;
@@ -52,20 +53,34 @@ export class ContactFormComponent implements OnInit {
     console.log("response",this.form.value);
     this.contactService
       .addContact(this.form.value)
-      .subscribe((response: any) => {
-        console.log("response",response);
-        this.router.navigate(['/contact/contactlist'])
-        
-      });
+      .subscribe(
+        (data) => {
+          console.log("data", data);
+          this.snackBar.open('le contact est ajouté avec succès!', '', { duration: 1000 ,panelClass: ['blue-snackbar'] ,  verticalPosition: 'top', horizontalPosition:'end' });
+          setTimeout(()=>{  
+            this.router.navigate(['/contact/contactlist'])
+       }, 2000);
+         
+        },
+  
+        (error) => {
+          console.log('error',error);
+          this.snackBar.open("l'email ou le numéro de téléphone déjà existent ", '', { duration: 2000, panelClass: ['blue-snackbar'], verticalPosition: 'top', horizontalPosition:'end'});
+  
+        }
+      );
+  }
 
+  OnCountry(id:number){
+    
+    this.city$ = this.sponsorService.getCitys(id);
+    this.city$.subscribe((city) => console.log(city));
   }
   ngOnInit() {
     this.gender$ = this.sponsorService.getGender();
     this.sponsorService.getGender().subscribe((gender) => console.log(gender));
 
-    this.city$ = this.sponsorService.getCity();
-    this.sponsorService.getCity().subscribe((city) => console.log(city));
-
+   
     this.country$ = this.sponsorService.getCountry();
     this.sponsorService.getCity().subscribe((country) => console.log(country));
 

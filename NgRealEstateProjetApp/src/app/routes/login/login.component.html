@@ -18,9 +18,8 @@
               <mat-error *ngIf="reactiveForm.get('password').invalid">Entrer votre mot de passe</mat-error>
             </mat-form-field>
     
-            <div class="m-y-16" fxLayout="row" fxLayoutAlign="space-between center">
-              <mat-checkbox>Se souvenir </mat-checkbox>
-              <a href="">Mot de passe oublié?</a>
+            <div class="m-y-16" style="color: red;" fxLayout="row" fxLayoutAlign=" center">
+              {{loginError}}
             </div>
     
             <button class="w-full" mat-raised-button color="primary" (click)="login()"

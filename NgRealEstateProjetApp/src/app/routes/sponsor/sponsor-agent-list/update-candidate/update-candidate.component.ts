@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { TranslateService } from '@ngx-translate/core';
+import {  FormBuilder, Validators } from '@angular/forms';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import{Agent, Candidate, Gender, City, Country} from '@shared/models/Agent.model';
 import { SponsorService } from '../../sponsor.service';
-import { first } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-update-candidate',
@@ -20,6 +18,7 @@ export class UpdateCandidateComponent implements OnInit {
     private fb: FormBuilder,
     private route:ActivatedRoute,private router:Router,
     private sponsorService:SponsorService,
+    private snackBar: MatSnackBar,
     
             ){}
 
@@ -98,8 +97,7 @@ debugger;
   
 
   onSubmit() { 
-    
-   debugger;
+
     this.candidat['firstname']= this.form.get('firstname').value; 
     this.candidat['lastname']= this.form.get('lastname').value; 
     this.candidat['email']= this.form.get('email').value; 
@@ -107,17 +105,23 @@ debugger;
     this.candidat['birth_day']=this.form.get('birthDay').value;
     this.candidat['address']= this.form.get('address').value; 
     this.candidat['gender']= this.form.get('gender').value; 
-debugger;
-    this.sponsorService.update(this.candidat,this.id).subscribe(user => { 
-      debugger;
-     user = user; 
 
-     this.router.navigate(['/sponsorship/list'])
-     }); 
+    this.sponsorService.update(this.candidat,this.id).subscribe(
+      (data) => {
+        console.log("data", data);
+        this.snackBar.open('le candidat est modifié avec succès!', '', { duration: 1000 ,panelClass: ['blue-snackbar'] ,  verticalPosition: 'top', horizontalPosition:'end' });
+        setTimeout(()=>{  
+          this.router.navigate(["/sponsorship/list"]);
+     }, 2000);
+       
+      },
 
+      (error) => {
+        console.log('error',error);
+        this.snackBar.open("veuillez vérifier vos informations!", '', { duration: 1000, panelClass: ['blue-snackbar'], verticalPosition: 'top', horizontalPosition:'end'});
 
-
- 
+      }
+    );
    }
 
   

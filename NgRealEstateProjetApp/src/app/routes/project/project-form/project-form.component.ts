@@ -49,7 +49,7 @@ export class ProjectFormComponent implements OnInit {
 
   form = this.fb.group({
     projectType: "",
-    projectSate: "",
+    projectState: "",
     projectKind: "",
     contact: "",
     property: this.fb.group({
@@ -87,7 +87,7 @@ export class ProjectFormComponent implements OnInit {
 
 
   OnClickDomain(id: string) {
-    this.form.get("projectSate").setValue(id);
+    this.form.get("projectState").setValue(id);
   }
 
   OnClickDestination(key: string) {
@@ -105,7 +105,11 @@ export class ProjectFormComponent implements OnInit {
   }
   save() {
     console.log(this.form.value);
-    this.projectService.save(this.form.value);
+    this.projectService.save(this.form.value).subscribe(response=>{console.log(response)
+      this.router.navigate(['/project/projectlist'])
+    }
+
+    );
   }
   OnClick() {
    

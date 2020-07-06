@@ -1,5 +1,7 @@
 <page-header></page-header>
-<mat-card>
+
+
+<mat-card *ngIf="!showSpinner">
   <div class="card-header card-header-danger" style="margin-top: -40px;">
     <h4 class="card-title">Projet {{(project$|async).contact.firstname}} {{(project$|async).contact.lastname}} </h4>
   </div>
@@ -11,14 +13,14 @@
     /{{(project$|async).project_state}}/{{(project$|async).project_kind}}/{{(project$|async).property.property_type.name}}
   </div>
   <div fxLayoutAlign="center center">
-    <mat-card style="width: 40%;
+    <mat-card style="width: 60%;
   margin-top: 3%;">
       <mat-card-header class="header">
         <div class="title-card">RÉCAPITULATIF DU BIEN
         </div>
       </mat-card-header>
-      <mat-card-content style="    font-size: 90%;
-  font-family: sans-serif;">
+      <mat-card-content style="font-size: 100%;
+      font-family: none;">
         <div fxLayout="row" fxLayoutAlign="space-evenly center">
           <div fxLayout="row" fxFlex="40">
             <i class="fas fa-lg fa-chart-area"></i>&nbsp;&nbsp;&nbsp;
@@ -59,7 +61,7 @@
             <i class="fas fa-lg fa-dungeon"></i>&nbsp;&nbsp;&nbsp;&nbsp;NOMBRE DE PIÉCES:
           </div>
           <div fxLayout="column" fxFlex="40">
-            {{(project$|async).property.room}}
+           6
           </div>
 
         </div>
@@ -94,14 +96,14 @@
 
   <div fxLayoutAlign="center center">
 
-    <mat-card style="width: 40%;
+    <mat-card style="width: 60%;
 ">
       <mat-card-header class="header">
         <div class="title-card">CONTACT PRINCIPAL
         </div>
       </mat-card-header>
-      <mat-card-content style="    font-size: 90%;
-font-family: sans-serif;">
+      <mat-card-content style="font-size: 100%;
+      font-family: none;">
         <div fxLayout="row" fxLayoutAlign="space-evenly ">
           <aside fxFlex="15" style="margin-top: 4%;">
             <img mat-card-image src="./assets/images/profile.png" style="border-radius: 100px;">
@@ -144,9 +146,20 @@ font-family: sans-serif;">
                 ADRESSE :
               </div>
               <div fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none">
-                {{(project$|async).contact.address.description}},{{(project$|async).contact.address.city.name}},{{(project$|async).contact.address.country.name}}
+                {{(project$|async).contact.address.description}},{{(project$|async).contact.address.city.name}}
               </div>
             </div>
+
+            <br>
+            <div fxLayout="row" fxLayoutAlign="space-evenly center">
+              <div fxLayout="column" fxFlex="40">
+                PAYS :
+              </div>
+              <div fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none">
+                {{(project$|async).contact.address.country.name}}
+              </div>
+            </div>
+
 
           </section>
         </div>

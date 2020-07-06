@@ -14,7 +14,7 @@ import { takeUntil } from "rxjs/operators";
   styleUrls: ["./sponsor-agent-form.component.scss"],
 })
 export class SponsorAgentFormComponent implements OnInit {
-  form:any
+  form: any;
   constructor(
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
@@ -22,7 +22,9 @@ export class SponsorAgentFormComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private sponsorService: SponsorService
-  ) { this.unsubscribe$ = new Subject<void>();}
+  ) {
+    this.unsubscribe$ = new Subject<void>();
+  }
 
   agents$: Observable<Agent[]>;
   agents: Agent[] = [];
@@ -31,38 +33,54 @@ export class SponsorAgentFormComponent implements OnInit {
   country$: Observable<Country[]>;
   unsubscribe$: Subject<void>;
 
-  createForm(){
-  this.form = this.fb.group({
-    firstname: null,
-    lastname: null,
-    email: [null, Validators.email],
-    telephone: [null, Validators.minLength(10)],
-    birthDay: null,
-    address: this.fb.group({
-      description: null,
-      city: null,
-      country: null,
-    }),
-    gender: null,
-  });
- 
-}
+  createForm() {
+    this.form = this.fb.group({
+      firstname: null,
+      lastname: null,
+      email: [null, Validators.email],
+      telephone: [null, Validators.minLength(10)],
+      birthDay: null,
+      address: this.fb.group({
+        description: null,
+        city: null,
+        country: null,
+      }),
+      gender: null,
+    });
+  }
+
+  OnCountry(id:number){
+    
+    this.city$ = this.sponsorService.getCitys(id);
+    this.city$.subscribe((city) => console.log(city));
+  }
 
   onSubmit() {
     console.log("response", this.form);
-    this.sponsorService.sponsorAgent(this.form).subscribe((response: any) => {
-      console.log("response", response);
-      this.router.navigate(['/sponsorship/list'])
-    });
-  
+    this.sponsorService.sponsorAgent(this.form).subscribe(
+      (data) => {
+        console.log("data", data);
+        this.snackBar.open('Un email a été envoyé pour confirmer votre demande', '', { duration: 3000 ,panelClass: ['blue-snackbar'] ,  verticalPosition: 'top', horizontalPosition:'end' });
+
+        setTimeout(()=>{  
+          this.router.navigate(["/sponsorship/list"]);
+     }, 3000);
+       
+      },
+
+      (error) => {
+        console.log('error',error);
+        this.snackBar.open("l'email ou le numéro de téléphone déjà existent ", '', { duration: 2000, panelClass: ['blue-snackbar'], verticalPosition: 'top', horizontalPosition:'end'});
+
+      }
+    );
   }
   ngOnInit() {
     this.createForm();
     this.gender$ = this.sponsorService.getGender();
     this.gender$.subscribe((gender) => console.log(gender));
 
-    this.city$ = this.sponsorService.getCity();
-    this.city$.subscribe((city) => console.log(city));
+    
 
     this.country$ = this.sponsorService.getCountry();
     this.country$.subscribe((country) => console.log(country));

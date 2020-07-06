@@ -9,21 +9,16 @@ export class StartupService {
   constructor(private menuService: MenuService, private http: HttpClient, private loginService: LoginService) {}
 
   load(): Promise<any> {
-    return new Promise((resolve, reject) => {
-      debugger
+      debugger;
       const role = this.loginService.getRole() === Role.Admin ? 'admin' : 'user'
-      this.http
+      return this.http
         .get(`assets/data/menu-${role}.json?_t=` + Date.now())
-        .subscribe(
+        .toPromise()
+        .then(
           (res: any) => {
             this.menuService.recursMenuForTranslation(res.menu, 'menu');
             this.menuService.set(res.menu);
-          },
-          () => {},
-          () => {
-            resolve();
           }
         );
-    });
   }
 }

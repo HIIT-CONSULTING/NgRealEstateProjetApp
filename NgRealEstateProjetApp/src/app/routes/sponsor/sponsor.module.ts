@@ -12,6 +12,7 @@ import { UpdateCandidateComponent } from './sponsor-agent-list/update-candidate/
 import { CandidateDetailsComponent } from './sponsor-agent-list/candidate-details/candidate-details.component';
 
 
+
 const COMPONENTS = [SponsorComponent, SponsorAgentFormComponent, SponsorAgentListComponent,UpdateCandidateComponent];
 const COMPONENTS_DYNAMIC = [];
 

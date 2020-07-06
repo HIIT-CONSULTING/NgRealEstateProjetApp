@@ -3,6 +3,7 @@ import { Observable } from "rxjs";
 import { Contact } from "@shared/models/Agent.model";
 import { ContactService } from "../contact.service";
 import { ActivatedRoute, Router } from "@angular/router";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: "app-contact-list",
@@ -15,7 +16,8 @@ export class ContactListComponent implements OnInit {
   constructor(
     private contactService: ContactService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -32,21 +34,30 @@ export class ContactListComponent implements OnInit {
   Delete(id: number) {
     this.contactService
       .deleteContact(id)
-      .subscribe((Response) => console.log(Response));
+      .subscribe(
+        (data) => {
+          console.log("success");
+          debugger;
+          this.snackBar.open('le candidat est supprimé avec succès!', '', { duration: 1000 ,panelClass: ['blue-snackbar'] ,  verticalPosition: 'top', horizontalPosition:'end' });
+
+        },
+        (error) => {
+          this.snackBar.open("veuillez vérifier vos informations!", '', { duration: 1000, panelClass: ['blue-snackbar'], verticalPosition: 'top', horizontalPosition:'end'});
+    
+        });
       this.contacts$ = this.contactService.getContacts();
-      this.contactService.getContacts().subscribe((contacts) => {
+      this.contactService.getContacts().subscribe(
+        (contacts) => {
         this.contacts = contacts;
         console.log("contacts", this.contacts);
       });
   }
 
   Update(id: number) {
-    debugger;
 
     this.router.navigate(["/contact", id, "update"]);
   }
   details(id: number) {
-    debugger;
     this.router.navigate(["/contact", id, "details"]);
   }
 }

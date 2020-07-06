@@ -41,9 +41,7 @@ export class SponsorAdminComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    debugger;
     this.candidates$ = this.sponsorService.getCandidates(this.page, this.limit);
-    debugger;
     this.candidates$.subscribe((candidate) => {
       this.candidates = candidate;
       this.paginatedDataSource = this.candidates;
@@ -67,28 +65,30 @@ export class SponsorAdminComponent implements OnInit {
  
     this.sponsorService.valide(id).subscribe((user) => {
         user = user;
+        this.candidates$ = this.sponsorService.getCandidates(this.page, this.limit);
+        debugger;
+        this.candidates$.subscribe((candidate) => {
+          this.candidates = candidate;
+          this.paginatedDataSource = this.candidates;
+          console.log("cc", this.candidates);
+        });
       });
-      this.candidates$ = this.sponsorService.getCandidates(this.page, this.limit);
-      debugger;
-      this.candidates$.subscribe((candidate) => {
-        this.candidates = candidate;
-        this.paginatedDataSource = this.candidates;
-        console.log("cc", this.candidates);
-      });
+
     
   }
   Reffus(id: number) {
    
       this.sponsorService.reffus(id).subscribe((user) => {
         user = user;
+        this.candidates$ = this.sponsorService.getCandidates(this.page, this.limit);
+        debugger;
+        this.candidates$.subscribe((candidate) => {
+          this.candidates = candidate;
+          this.paginatedDataSource = this.candidates;
+          console.log("cc", this.candidates);
+        });
       });
-      this.candidates$ = this.sponsorService.getCandidates(this.page, this.limit);
-      debugger;
-      this.candidates$.subscribe((candidate) => {
-        this.candidates = candidate;
-        this.paginatedDataSource = this.candidates;
-        console.log("cc", this.candidates);
-      });
+
    
   }
 
