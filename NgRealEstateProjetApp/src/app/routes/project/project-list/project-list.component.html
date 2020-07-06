@@ -18,7 +18,7 @@
               </div>
                 <mat-card-content style="margin-bottom: 80px; text-align: center;">
                   <div class="name" style="font-size: large;">
-                     {{project.contact.firstname }}{{project.contact.lastname |uppercase}}
+                     {{project.contact.firstname }}&nbsp;&nbsp;{{project.contact.lastname |uppercase}}
                     </div>
                     <div class="role">{{project.project_type}} /{{project.project_state}}/{{project.project_kind}}/{{project.property.property_type.name}}</div>
                     <div style="    margin-top: 15%;
@@ -43,10 +43,11 @@
 
 
                 
+                
                 <mat-card-actions fxLayout="row" fxLayoutAlign="space-around center"  >
-                    <a mat-button style="color: #52a0c9;"(click)="details(project.id_project)">Consulter</a>
-                    <a mat-button style="color: #e7d71a;"(click)="Update(project.id_project)">Modifier</a>
-                    <a mat-button style="color: red;"  (click)="Delete(project.id_project)">Supprimer</a>
+                    <a mat-button style="color: #52a0c9;"(click)="details(project.id)">Consulter</a>
+                    <a mat-button style="color: #e7d71a;"(click)="Update(project.id)">Modifier</a>
+                    <a mat-button style="color: red;"  (click)="Delete(project.id)">Supprimer</a>
                 </mat-card-actions>
               </mat-card>
           </div>

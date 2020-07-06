@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Project } from '@shared/models/Agent.model';
 import { Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { delay, tap } from 'rxjs/operators';
 import { url } from 'inspector';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class ProjectService {
 
   save(formData:any){
     debugger;
-      this.http.post('https://￼stage.hiitconsulting.com/api/v1/addProject',formData);
+      return this.http.post(`https://stage.hiitconsulting.com/api/v1/addProject`,formData);
   }
   getProjects():Observable<any[]>{
     debugger;
@@ -31,7 +31,8 @@ export class ProjectService {
   }
 
   deleteProject(id:number){
-    return this.http.delete(`https://￼stage.hiitconsulting.com/api/v1/deleteProject/${id}`);
+    debugger;
+    return this.http.delete(`https://stage.hiitconsulting.com/api/v1/deleteProject/${id}`);
   }
   
 
@@ -39,19 +40,22 @@ export class ProjectService {
  
 
   getProject(id:number): Observable<any>{
-  return this.http.get<any>(`https://￼stage.hiitconsulting.com/api/v1/getprojectDetails/${id}`);
+    debugger;
+  return this.http.get<any>(`https://stage.hiitconsulting.com/api/v1/getprojectDetails/${id}`).pipe(
+    tap(x=>console.log(x))
+  );
   
 
   }
 
 
-  updateProject(project:Project,id:number): Observable<any>{
+  updateProject(project:any,id:number): Observable<any>{
     debugger;
     
     const formatedProject={
-      projectType:project.projectType,
-      projectState:project.projectState,
-      projectKind:project.projectKind,
+      projectType:project.project_type,
+      projectState:project.project_state,
+      projectKind:project.project_kind,
      contact:project.contact.id,
       property:{
         address:{
@@ -60,15 +64,15 @@ export class ProjectService {
         country:project.property.address.country.id
       },
       area:project.property.area,
-      propertyType:project.property.propertyType.id_realestate,
-      mimimalPrice:project.property.minimalPrice,
+      propertyType:project.property.propertyType.id,
+      minimalPrice:project.property.minimalPrice,
       maximumPrice:project.property.maximumPrice,
       room:project.property.room,
     }
   }
   console.log(formatedProject);
 
-    return this.http.put(`https://￼stage.hiitconsulting.com/api/v1/updateProject/${id}`, formatedProject);
+    return this.http.put(`https://stage.hiitconsulting.com/api/v1/updateProject/${id}`, formatedProject);
  
    }
  

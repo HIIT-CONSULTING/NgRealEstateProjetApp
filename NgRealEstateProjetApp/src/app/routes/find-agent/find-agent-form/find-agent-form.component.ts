@@ -41,17 +41,14 @@ export class FindAgentFormComponent implements OnInit {
   });
 
   onSubmit() {
-    debugger;
     this.isSearsh=true;
     console.log(this.form.value);
  
-    debugger;
     this.agents$=this.findAgentService.getAgents(this.form.value);
     this.agents$.subscribe(items => {(this.agents = items); console.log(items)});
   
   }
   ngOnInit(){
- debugger;
     this.subsidiary$ = this.findAgentService.getSubsidiary();
     this.subsidiary$.subscribe(items => console.log(items));
     console.log(this.subsidiary$);

@@ -17,6 +17,8 @@ export class CandidateDetailsComponent implements OnInit {
   men:"Men";
   isMen=false;
   inProgress=false;
+  accepted=false;
+ refused=false;
   constructor(private route:ActivatedRoute, private router:Router, private sponsorService:SponsorService) { 
     
       this.route.params.subscribe((params)=>{
@@ -33,7 +35,15 @@ export class CandidateDetailsComponent implements OnInit {
             console.log('cc',res.status)
             this.inProgress=true;
           }
-          
+          if(res.status==="accepted"){
+            console.log('cc',res.status)
+            this.accepted=true;
+          }
+
+          if(res.status==="refused"){
+            console.log('cc',res.status)
+            this.refused=true;
+          }
        
       })}) 
       

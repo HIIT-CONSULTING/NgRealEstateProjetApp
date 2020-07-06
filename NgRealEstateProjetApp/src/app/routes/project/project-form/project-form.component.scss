@@ -4,14 +4,28 @@ button:hover{
 }
 
 
-#disable_ripple{
-    background: #203574  ; 
-    color:white ;                             
-  }
+.disable_ripple:hover{
+  background-color: #203574 !important;
+
+  .title-cardd{
+      color:white  !important;
+  } 
+}
+
+
+
 
   .ng-select .ng-select-container.ng-appearance-outline:hover:after {
     /* border-color: rgba(0,0,0,0.87); */
     border-width: 2px;
   }
+
+  .mat-expansion-panel-header.mat-expanded,
+.mat-expansion-panel-header.mat-expanded:hover {
+  background: #203574;
+  .title-cardd{
+    color:white  !important;
+} 
+}
 
 

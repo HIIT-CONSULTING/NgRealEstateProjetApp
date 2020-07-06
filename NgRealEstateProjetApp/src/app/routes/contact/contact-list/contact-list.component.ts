@@ -41,12 +41,10 @@ export class ContactListComponent implements OnInit {
   }
 
   Update(id: number) {
-    debugger;
 
     this.router.navigate(["/contact", id, "update"]);
   }
   details(id: number) {
-    debugger;
     this.router.navigate(["/contact", id, "details"]);
   }
 }

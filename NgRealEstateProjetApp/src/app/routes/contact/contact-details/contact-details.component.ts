@@ -28,8 +28,8 @@ export class ContactDetailsComponent implements OnInit {
   contact$:Observable<Contact>;
   contact:Contact;
   isMen=false;
- 
-
+ showSpinner=true;
+ShowContact:any;
 
   ngOnInit(){
 
@@ -39,15 +39,21 @@ export class ContactDetailsComponent implements OnInit {
     }
     )
 
-debugger;
     this.contact$=this.contactService.getContact(this.id);
     this.contactService.getContact(this.id).pipe(first()).subscribe(res=>
       {console.log(res.address.city.name);
+       this.ShowContact=res;
+       setTimeout(()=>{    
+        this.showSpinner=false;
+   }, 100);
+      
+        
         if(res.gender.name=="Homme"){ this.isMen=true}
         else{ 
           console.log("women111")}
        
       });
+     
 
 
     }

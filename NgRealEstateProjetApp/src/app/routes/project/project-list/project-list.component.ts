@@ -17,7 +17,7 @@ export class ProjectListComponent implements OnInit {
   ngOnInit(): void {
     debugger;
   this.project$=this.projectService.getProjects();
-  this.projectService.getProjects().subscribe(data=>console.log(data))
+  this.project$.subscribe(data=>console.log(data))
   
   }
 
@@ -29,6 +29,8 @@ export class ProjectListComponent implements OnInit {
   Delete(id:number){
       this.projectService.deleteProject(id).subscribe((data)=>{
         console.log("success");})
+        this.project$=this.projectService.getProjects();
+        this.project$.subscribe(data=>console.log(data))
     }
 
     Update(id:number){

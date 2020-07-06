@@ -7,8 +7,19 @@
     <form formGroupName="property">
 <section class="demo-expansion" style="margin-bottom: 2%;" >
   <div fxLayoutAlign="center center" style="color: rgb(34, 55, 120);" ><i class="fa fa-5x fa-home" aria-hidden="true"></i></div>
-  <div fxLayoutAlign="center center"  style="color:#1ba0a7;font-size: large; margin-top: 1.2%;    font-family: monospace;">{{(project$|async).project_type}} /{{(project$|async).project_sate}}/{{(project$|async).project_kind}}/{{(project$|async).property.type_of_property.title}}</div>
+  <div fxLayoutAlign="center center"  style="color:#1ba0a7;font-size: large; margin-top: 1.2%;    font-family: monospace;">{{(project$|async).project_type}} /{{(project$|async).project_state}}/{{(project$|async).project_kind}}/{{(project$|async).property.property_type.name}}</div>
+<div *ngIf="showSpinner" fxLayoutAlign="center end" >
+  <mat-spinner></mat-spinner>
 
+</div>
+
+
+
+
+
+
+
+<div *ngIf="!showSpinner">
   <div style="margin-top: 8%;margin-bottom: 5%;">
     <mat-accordion fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
       <mat-expansion-panel #panel1 style="width: 100%;">
@@ -77,14 +88,14 @@
           <mat-form-field class="full-width" appearance="outline">
             <mat-label> Minimum </mat-label>
             <mat-icon matSuffix aria-hidden="false" aria-label="Example home icon">attach_money</mat-icon>
-            <input matInput name="maximum_price" formControlName="maximum_price" />
+            <input matInput name="maximum_price" formControlName="minimalPrice" />
           </mat-form-field>
         </div>
         <div fxLayout="column" fxLayoutAlign="space-between center ">
           <mat-form-field class="full-width" appearance="outline">
             <mat-label> Maximum </mat-label>
             <mat-icon matSuffix aria-hidden="false" aria-label="Example home icon">attach_money</mat-icon>
-            <input matInput name="minimum_price" formControlName="minimum_price" />
+            <input matInput name="minimum_price" formControlName="maximumPrice" />
           </mat-form-field>
         </div>
       </mat-expansion-panel>
@@ -108,6 +119,7 @@
     <button class="full" mat-button  mat-stroked-button (click)="onSubmit() " >
       ENREGISTRER ET QUITTER &nbsp;&nbsp;&nbsp;<i class="fas fa-arrow-right"></i>
     </button>
+  </div>
   </div>
 </section>
 </form>

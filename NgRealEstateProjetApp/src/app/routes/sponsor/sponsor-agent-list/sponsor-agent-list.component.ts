@@ -61,13 +61,17 @@ paginatedDataSource:any
   }
   Delete(id:number){
     this.sponsorService.deleteCandidate(id).subscribe((data)=>{
-      console.log("success");})
+      console.log("success");
+    
       this.candidates$=this.sponsorService.getCandidates(this.page,this.limit);
       debugger;
       this.candidates$.subscribe(candidate=>{this.candidates=candidate;
       console.log('cc',this.candidates);
       this.paginatedDataSource = this.candidates; 
-    })
+    })})
+
+    
+
   }
 
   onClick(){

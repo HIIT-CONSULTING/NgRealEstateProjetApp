@@ -118,7 +118,7 @@
             <div style="margin-top: 8%;margin-bottom: 5%;">
               <mat-accordion fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
                 <mat-expansion-panel #panel1 style="width: 100%;">
-                  <mat-expansion-panel-header id="disable_ripple" [collapsedHeight]="'70px'"
+                  <mat-expansion-panel-header class="disable_ripple" [collapsedHeight]="'70px'"
                     [expandedHeight]="'70px'">
                     <mat-panel-title>
                       <div class="title-cardd">
@@ -158,7 +158,7 @@
 
                 </mat-expansion-panel>
                 <mat-expansion-panel #panel2 style="width: 100%;">
-                  <mat-expansion-panel-header id="disable_ripple" [collapsedHeight]="'70px'"
+                  <mat-expansion-panel-header class="disable_ripple" [collapsedHeight]="'70px'"
                     [expandedHeight]="'70px'">
                     <div class="title-cardd">
                       SURFACES
@@ -195,13 +195,13 @@
                   </div>
                 </mat-expansion-panel>
                 <mat-expansion-panel #panel4 style="width: 100%;">
-                  <mat-expansion-panel-header id="disable_ripple" [collapsedHeight]="'70px'"
+                  <mat-expansion-panel-header class="disable_ripple" [collapsedHeight]="'70px'"
                     [expandedHeight]="'70px'">
                     <div class="title-cardd">
                       NOMBRE DE PIÈCES
                     </div>
                   </mat-expansion-panel-header>
-                  <div fxLayout="column" fxLayoutAlign="space-between center " >
+                  <div fxLayout="column" fxLayoutAlign="space-between center " style="margin-top: 3%;" >
                     <mat-form-field class="full-width" appearance="outline">
                       <mat-label> Nombre de pièces</mat-label>
                       <input matInput name="room" formControlName="room" />

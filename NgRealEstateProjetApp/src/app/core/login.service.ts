@@ -4,6 +4,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Agent } from '@shared/models/Agent.model';
 import { Role } from '@shared/models/role.model';
+import { MenuService } from './bootstrap/menu.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +15,9 @@ export class LoginService {
 
   private loggedUser: string;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private menuService: MenuService) {}
 /*
   login(user: { username: string, password: string }): Observable<any> {
-    debugger;
      return this.http.get('https://jsonplaceholder.typicode.com/posts/1').pipe(switchMap((response: any) => { 
      localStorage.setItem(this.JWT_TOKEN, response.id);
        return this.http.get('https://jsonplaceholder.typicode.com/users/1').pipe((map((user: any) => {
@@ -30,14 +30,24 @@ export class LoginService {
 */
 
   login(user:any): Observable<any> {
-    debugger;
      return this.http.post<any>('https://stage.hiitconsulting.com/api/login_check',user).pipe(switchMap((response: any) => { 
-       debugger;
        console.log(response);
      localStorage.setItem(this.JWT_TOKEN, response.token);
-     debugger;
        return this.http.get('https://stage.hiitconsulting.com/api/v1/authenticateMe').pipe((map((user: any) => {
          localStorage.setItem(this.CURRENT_USER, JSON.stringify(user));
+
+         //
+         const role = this.getRole() === Role.Admin ? 'admin' : 'user'
+         return this.http
+           .get(`assets/data/menu-${role}.json?_t=` + Date.now())
+           .toPromise()
+           .then(
+             (res: any) => {
+               this.menuService.recursMenuForTranslation(res.menu, 'menu');
+               this.menuService.set(res.menu);
+             }
+           );
+         //
          return user;
        })))
      }))
