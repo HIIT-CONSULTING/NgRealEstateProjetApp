@@ -1,0 +1,19 @@
+// Configuration
+@import 'functions';
+@import 'variables';
+@import 'mixins';
+
+// Core styles of layout
+@import 'core';
+
+// Material color helpers
+@import 'colors';
+
+// Decorative widgets
+@import 'widgets';
+
+// Create admin theme
+@mixin hiit-admin-theme($theme) {
+  @include hiit-sidenav-theme($theme);
+  @include hiit-toolbar-button-theme($theme);
+}

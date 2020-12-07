@@ -1,0 +1,88 @@
+// ==================================================
+// HEADER
+// ==================================================
+
+.hiit-header {
+  position: relative;
+  z-index: 201;
+  display: block;
+
+  .hiit-toolbar {
+    padding: 0 8px;
+  }
+
+  // Layout control
+  .hiit-header-fixed & {
+    position: sticky;
+    top: 0;
+  }
+}
+
+.hiit-toolbar {
+  border-bottom: 1px solid rgba(0, 0, 0, .12);
+
+  .hiit-navbar-side-side.hiit-header-fixed & {
+    border-bottom: unset;
+
+    @include mat-elevation(2);
+  }
+
+  .badge {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    font-size: 12px;
+    border-radius: 10px;
+  }
+}
+
+// Colorful
+.hiit-header-white {
+  .hiit-toolbar,
+  .hiit-topmenu {
+    background-color: white;
+  }
+}
+
+// Customize toolbar button
+.hiit-toolbar-button {
+  &.mat-button,
+  &.mat-icon-button {
+    margin: 0 4px;
+  }
+
+  &.mat-button {
+    min-width: unset;
+    line-height: 40px;
+    border-radius: 999px;
+  }
+
+  &.hiit-avatar-button {
+    display: block;
+    padding: 0 4px;
+    font-size: 0;
+
+    .hiit-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+    }
+
+    .hiit-username {
+      margin: 0 8px;
+      font-size: 14px;
+    }
+  }
+}
+
+@mixin hiit-toolbar-button-theme($theme) {
+  $background: mat-color($theme, 'background');
+
+  .hiit-toolbar-button {
+    &.mat-icon-button {
+      &:hover {
+        background-color: mat-color($background, hover);
+      }
+    }
+  }
+}

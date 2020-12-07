@@ -1,0 +1,16 @@
+{
+  "menu": [
+    {
+      "route": "annuaire",
+      "name": "annuaire",
+      "type": "link",
+      "icon": "book"
+    },
+    {
+      "route": "sponsor-admin",
+      "name": "sponsorship",
+      "type": "link",
+      "icon": "verified_user"
+    }
+  ]
+}
