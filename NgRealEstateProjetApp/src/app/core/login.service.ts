@@ -5,6 +5,7 @@ import { map, switchMap, catchError } from 'rxjs/operators';
 import { Agent } from '@shared/models/Agent.model';
 import { Role } from '@shared/models/role.model';
 import { MenuService } from './bootstrap/menu.service';
+import { environment } from '../../environments/environment';
 
 
 @Injectable({
@@ -20,10 +21,10 @@ export class LoginService {
 
 
   login(user:any): Observable<any> {
-     return this.http.post<any>('https://stage.hiitconsulting.com/api/login_check',user).pipe(switchMap((response: any) => { 
+     return this.http.post<any>(environment.SERVER_URL + '/api/login_check',user).pipe(switchMap((response: any) => {
        console.log(response);
      localStorage.setItem(this.JWT_TOKEN, response.token);
-       return this.http.get('https://stage.hiitconsulting.com/api/v1/authenticateMe').pipe((map((user: any) => {
+       return this.http.get(environment.SERVER_URL + '/api/v1/authenticateMe').pipe((map((user: any) => {
          localStorage.setItem(this.CURRENT_USER, JSON.stringify(user));
 
          //
