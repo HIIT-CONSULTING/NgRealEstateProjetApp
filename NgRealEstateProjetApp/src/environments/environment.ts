@@ -6,6 +6,8 @@ export const environment = {
   SERVER_URL: '',
   production: false,
   hmr: false,
+  //hostURL : 'https://stage.hiitconsulting.com/'
+  hostURL : 'https://api.realestate.hiitconsulting.com/'
 };
 
 /*
@@ -14,5 +16,6 @@ export const environment = {
  *
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown.
- */
+*/
+
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.

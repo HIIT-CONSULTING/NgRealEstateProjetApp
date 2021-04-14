@@ -20,13 +20,14 @@ import { ToastrModule } from 'ngx-toastr';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TokenInterceptor } from '@core/token.interceptor';
+import { DialogContentProjectComponent } from './components/dialog-content-project/dialog-content-project.component';
 // Required for AOT compilation
 export function TranslateHttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, DialogContentProjectComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

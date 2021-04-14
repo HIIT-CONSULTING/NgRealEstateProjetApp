@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, filter, take, switchMap } from 'rxjs/operators';
-
-
-import { LoginService} from '@core/login.service';
+import { LoginService} from '@shared/services/login.service';
 
 @Injectable()
 export class TokenInterceptor  {

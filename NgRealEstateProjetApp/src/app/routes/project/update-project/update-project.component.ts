@@ -1,13 +1,12 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { FormBuilder, FormControl } from "@angular/forms";
+import { FormBuilder, FormControl ,   Validators} from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { TranslateService } from "@ngx-translate/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { SponsorService } from "app/routes/sponsor/sponsor.service";
-import { ProjectService } from "../project.service";
-import { ContactService } from "app/routes/contact/contact.service";
+import { SponsorService } from "@shared/services/sponsor.service";
+import { ProjectService } from "@shared/services/project.service";
 import { Observable } from "rxjs";
-import { City, Country, Contact, Project } from "@shared/models/Agent.model";
+import { City, Country, Project } from "@shared/models/Agent.model";
 
 @Component({
   selector: "app-update-project",
@@ -24,7 +23,7 @@ export class UpdateProjectComponent implements OnInit {
   city$: Observable<City[]>;
   country$: Observable<Country[]>;
   project$: Observable<Project>;
-showSpinner=true;
+  showSpinner=true;
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -41,40 +40,35 @@ showSpinner=true;
     contact:null,
     property: this.fb.group({
       propertyType: null,
-      minimalPrice: null,
-      maximumPrice: null,
-      area: null,
+      minimalPrice: ['',Validators.required],
+      maximumPrice: ['',Validators.required],
+      area: ['',Validators.required],
       room: null,
       address: this.fb.group({
-        description: null,
-        city: null,
-        country: null,
+        description: ['',Validators.required],
+        city: ['',Validators.required],
+        country: ['',Validators.required],
       }),
     }),
   });
 
-  ngOnInit(): void {
-
-    
+    ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.id = +params["id"];
     });
-    this.city$ = this.sponsorService.getCity();
-    this.sponsorService.getCity().subscribe();
-
+    
+   // this.city$ = this.sponsorService.getCity();
+    //this.sponsorService.getCity().subscribe();
     this.country$ = this.sponsorService.getCountry();
-    this.sponsorService.getCity().subscribe();
-debugger;
+    //this.sponsorService.getCity().subscribe();
     this.project$ = this.projectService.getProject(this.id);
     this.projectService.getProject(this.id).subscribe((project) => {
       this.Project = project;
-      debugger;
+      this.city$ = this.sponsorService.getCitys(project.property.address.country.id);
       if(project!={})
       {
         this.showSpinner=false;
       }
-      console.log(project);
-      debugger;
       this.form.setValue({
         
         projectType:project.project_type,
@@ -87,45 +81,43 @@ debugger;
           minimalPrice: project.property.minimal_price,
           maximumPrice: project.property.maximum_price,
           area: project.property.area,
-          room: "6",
+          room: project.property.room,
           address: {
             description: project.property.address.description,
-            city: project.property.address.city,
-            country: project.property.address.country,
+            country: project.property.address.country.id,
+            city: project.property.address.city.id,
+            
           },
         },
         contact:project.contact,
       });
     });
   }
+  
 
 
 
+  OnCountry(id:number){    
+    this.city$ = this.sponsorService.getCitys(id);
+   // this.city$.subscribe();
+  }
+   
   onSubmit() {
-    debugger;  
     this.Project["property"] = this.form.get("property").value;
-    console.log("ddd", this.Project);
-
     this.projectService
       .updateProject(this.Project, this.id)
       .subscribe(
-        
         (user) => {
           user = user;
           this.snackBar.open('le projet est modifié avec succès!', '', { duration: 1000 ,panelClass: ['blue-snackbar'] ,  verticalPosition: 'top', horizontalPosition:'end' });
           setTimeout(()=>{  
             this.router.navigate(["/project/projectlist"]);
           }, 2000);
-         
-        },
-  
+        },  
         (error) => {
-          console.log('error',error);
           this.snackBar.open("veuillez vérifier vos informations!", '', { duration: 1000, panelClass: ['blue-snackbar'], verticalPosition: 'top', horizontalPosition:'end'});
-  
         }
 );
-
     this.router.navigate(["/project/projectlist"]);
   }
 }

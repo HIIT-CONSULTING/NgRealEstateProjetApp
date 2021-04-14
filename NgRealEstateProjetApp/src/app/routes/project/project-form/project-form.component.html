@@ -1,11 +1,10 @@
-
 <mat-card>
  
-  <form [formGroup]="form">
+  <form [formGroup]="form"  >
    
     <mat-horizontal-stepper linear #stepper>
       <mat-step>
-        <ng-template matStepLabel> Transaction </ng-template>
+        <ng-template matStepLabel> {{'Property.transaction'|translate}} </ng-template>
         <mat-card>
           <mat-card-content>
             <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px"
@@ -23,7 +22,7 @@
       </mat-step>
 
       <mat-step>
-        <ng-template matStepLabel> Domaine </ng-template>
+        <ng-template matStepLabel> {{'Property.domaine'|translate}}  </ng-template>
         <mat-card>
           <mat-card-content>
             <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px"
@@ -37,14 +36,14 @@
               </button>
             </div>
             <button mat-button matStepperPrevious mat-stroked-button class="full">
-              <i class="fas fa-arrow-left"> </i>&nbsp;&nbsp;&nbsp;ÉTAPE PÉCÉDENTE
+              <i class="fas fa-arrow-left"> </i>&nbsp;&nbsp;&nbsp;{{'Property.previous'|translate}}
             </button>
           </mat-card-content>
         </mat-card>
       </mat-step>
 
       <mat-step>
-        <ng-template matStepLabel> Destination </ng-template>
+        <ng-template matStepLabel> {{'Property.destination'|translate}}  </ng-template>
         <mat-card>
           <mat-card-content>
             <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px"
@@ -58,14 +57,14 @@
               </button>
             </div>
             <button mat-button matStepperPrevious mat-stroked-button class="full">
-              <i class="fas fa-arrow-left"> </i>&nbsp;&nbsp;&nbsp;ÉTAPE PÉCÉDENTE
+              <i class="fas fa-arrow-left"> </i>&nbsp;&nbsp;&nbsp;{{'Property.previous'|translate}}
             </button>
           </mat-card-content>
         </mat-card>
       </mat-step>
 
       <mat-step>
-        <ng-template matStepLabel> Bien </ng-template>
+        <ng-template matStepLabel> {{'Property.property_type'|translate}}  </ng-template>
         <mat-card *ngIf="!choose">
           <mat-card-content>
             <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px"
@@ -87,7 +86,7 @@
               </button>
             </div>
             <button mat-button matStepperPrevious mat-stroked-button class="full">
-              <i class="fas fa-arrow-left"> </i>&nbsp;&nbsp;&nbsp;ÉTAPE PÉCÉDENTE
+              <i class="fas fa-arrow-left"> </i>&nbsp;&nbsp;&nbsp;{{'Property.previous'|translate}}
             </button>
           </mat-card-content>
         </mat-card>
@@ -105,15 +104,15 @@
               </button>
             </div>
             <button mat-button matStepperPrevious mat-stroked-button class="full">
-              <i class="fas fa-arrow-left"> </i>&nbsp;&nbsp;&nbsp;ÉTAPE PÉCÉDENTE
+              <i class="fas fa-arrow-left"> </i>&nbsp;&nbsp;&nbsp;{{'Property.previous'|translate}}
             </button>
           </mat-card-content>
         </mat-card>
       </mat-step>
 
       <mat-step>
-        <form formGroupName="property">
-          <ng-template matStepLabel> Informations sur le projet </ng-template>
+        <form [formGroup]="properties">
+          <ng-template matStepLabel > {{'Property.informations'|translate}}  </ng-template>
           <mat-card>
             <div style="margin-top: 8%;margin-bottom: 5%;">
               <mat-accordion fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
@@ -122,55 +121,65 @@
                     [expandedHeight]="'70px'">
                     <mat-panel-title>
                       <div class="title-cardd">
-                        LIEU DU BIEN
+                        {{'Property.form.propery_title'| translate}}
                       </div>
                     </mat-panel-title>
                   </mat-expansion-panel-header>
                   <div formGroupName="address">
 
                     <div fxLayout="column" fxLayoutAlign="space-between center " style="margin-top: 30px;">
-
                       <mat-form-field appearance="outline" class="full-width">
-                        <mat-label> Pays </mat-label>
+                        <mat-label> {{'form_standard.country'|translate}} </mat-label>
                         <mat-select formControlName="country">
-                          <mat-option *ngFor="let country of country$|async " [value]="country.id">{{country.name}}
+                          <mat-option *ngFor="let country of country$|async " [value]="country.id" (click)="OnCountry(country.id)" >{{country.name}}
                           </mat-option>
                         </mat-select>
+                        <mat-error *ngIf="properties.get('address.country').invalid">
+                          {{'Property.form.country.error'|translate}}
+                        </mat-error>
+                            
                       </mat-form-field>
                     </div>
 
                     <div fxLayout="column" fxLayoutAlign="space-between center ">
                       <mat-form-field appearance="outline" class="full-width">
-                        <mat-label> Ville </mat-label>
+                        <mat-label> {{'form_standard.city'|translate}} </mat-label>
                         <mat-select formControlName="city">
                           <mat-option *ngFor="let city of city$|async " [value]="city.id">{{city.name}} </mat-option>
                         </mat-select>
+                        <mat-error *ngIf="properties.get('address.city').invalid">
+                          {{'Property.form.city.error'|translate}}
+                        </mat-error>
                       </mat-form-field>
                     </div>
 
 
                     <div fxLayout="column" fxLayoutAlign="space-between center ">
                       <mat-form-field class="full-width" appearance="outline">
-                        <mat-label> Secteur </mat-label>
+                        <mat-label> {{'form_standard.address'|translate}} </mat-label>
                         <i matSuffix class="fas fa-lg fa-address-card"></i>
                         <input matInput name="address" formControlName="description" />
+                        <mat-error *ngIf="properties.get('address.description').invalid">
+                          {{'Property.form.description.error'|translate}}
+                        </mat-error>
                       </mat-form-field>
                     </div>
-                  </div>
-
-                </mat-expansion-panel>
+                  </div></mat-expansion-panel>
                 <mat-expansion-panel #panel2 style="width: 100%;">
                   <mat-expansion-panel-header class="disable_ripple" [collapsedHeight]="'70px'"
                     [expandedHeight]="'70px'">
                     <div class="title-cardd">
-                      SURFACES
+                      {{'Property.form.area'|translate}}
                     </div>
                   </mat-expansion-panel-header>
                   <div fxLayout="column" fxLayoutAlign="space-between center " style="margin-top: 30px;">
                     <mat-form-field class="full-width" appearance="outline">
-                      <mat-label> Surface</mat-label>
+                      <mat-label> {{'Property.form.area'|translate}}</mat-label>
                       <i matSuffix class="fas fa-lg fa-chart-area"></i>
-                      <input matInput name="area" formControlName="area" />
+                      <input type="number" matInput name="area" formControlName="area" />
+                      <mat-error *ngIf="properties.get('area').invalid">
+                        {{'Property.form.area.error'|translate}}
+                      </mat-error>
                     </mat-form-field>
                   </div>
                 </mat-expansion-panel>
@@ -178,21 +187,27 @@
                   <mat-expansion-panel-header class="disable_ripple" [collapsedHeight]="'70px'"
                     [expandedHeight]="'70px'">
                     <div class="title-cardd">
-                      PRIX
+                      {{'Property.form.budget'|translate}}
                     </div>
                   </mat-expansion-panel-header>
                   <div fxLayout="column" fxLayoutAlign="space-between center " style="margin-top: 30px;">
                     <mat-form-field class="full-width" appearance="outline">
-                      <mat-label> Minimum </mat-label>
+                      <mat-label> {{'Property.form.pricemin'|translate}} </mat-label>
                       <mat-icon matSuffix aria-hidden="false" aria-label="Example home icon">attach_money</mat-icon>
-                      <input matInput name="minimalPrice" formControlName="minimalPrice" />
+                      <input type="number" matInput name="minimalPrice" formControlName="minimalPrice" />
+                      <mat-error *ngIf="properties.get('minimalPrice').invalid">
+                        {{'Property.form..minimalPrice.error'|translate}}
+                      </mat-error>
                     </mat-form-field>
                   </div>
                   <div fxLayout="column" fxLayoutAlign="space-between center ">
                     <mat-form-field class="full-width" appearance="outline">
-                      <mat-label> Maximum </mat-label>
+                      <mat-label> {{'Property.form.pricemax'|translate}} </mat-label>
                       <mat-icon matSuffix aria-hidden="false" aria-label="Example home icon">attach_money</mat-icon>
-                      <input matInput name="maximumPrice" formControlName="maximumPrice" />
+                      <input type="number" matInput name="maximumPrice" formControlName="maximumPrice" />
+                      <mat-error *ngIf="properties.get('maximumPrice').invalid">
+                        {{'Property.form.maximumPrice.error'|translate}}
+                      </mat-error>
                     </mat-form-field>
                   </div>
                 </mat-expansion-panel>
@@ -200,12 +215,12 @@
                   <mat-expansion-panel-header class="disable_ripple" [collapsedHeight]="'70px'"
                     [expandedHeight]="'70px'">
                     <div class="title-cardd">
-                      NOMBRE DE PIÈCES
+                      {{'Property.form.nbpieces'|translate}}
                     </div>
                   </mat-expansion-panel-header>
                   <div fxLayout="column" fxLayoutAlign="space-between center " style="margin-top: 3%;" >
                     <mat-form-field class="full-width" appearance="outline">
-                      <mat-label> Nombre de pièces</mat-label>
+                      <mat-label> {{'Property.form.nbpieces'|translate}}</mat-label>
                       <input matInput name="room" formControlName="room" />
                     </mat-form-field>
                   </div>
@@ -213,11 +228,11 @@
               </mat-accordion>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-around end">
-              <button mat-button matStepperPrevious mat-stroked-button class="full" style=" margin-left: -30%;">
-                <i class="fas fa-arrow-left"> </i>&nbsp;&nbsp;&nbsp;ÉTAPE PÉCÉDENTE
+              <button mat-button matStepperPrevious mat-stroked-button class="full" style=" margin-left: -25%;">
+                <i class="fas fa-arrow-left"> </i>&nbsp;&nbsp;&nbsp;{{'Property.previous' |translate}}
               </button>
-              <button class="full" mat-button matStepperNext mat-stroked-button style="margin-right: -30%;">
-                ÉTAPE SUIVANTE &nbsp;&nbsp;&nbsp;<i class="fas fa-arrow-right"></i>
+              <button class="full" mat-button matStepperNext mat-stroked-button [disabled]="properties.invalid" style="margin-right: -25%;"  >
+                {{'Property.next' |translate}} &nbsp;&nbsp;&nbsp;<i class="fas fa-arrow-right"></i>
               </button>
             </div>
           </mat-card>
@@ -225,29 +240,29 @@
       </mat-step>
 
       <mat-step>
-        <ng-template matStepLabel> Contact lié au projet </ng-template>
+        <ng-template matStepLabel> {{'Property.contact'|translate}}  </ng-template>
         <mat-card>
           
             <div style="margin-top: 8%;">
               <mat-card-content>
               <div fxLayout="row" fxLayoutAlign="space-between center" style="margin-top: 7%;">
                 <ng-select [items]="(contacts$| async)?.items" bindLabel="firstname" bindValue="id" autofocus class="full-width"
-                  appearance="outline" [(ngModel)]="selectedPersonId" placeholder="Séléctionner un contact"
+                  appearance="outline" [(ngModel)]="selectedPersonId" placeholder="{{'Property.select_contact'|translate}}"
                   formControlName="contact"(click)="OnClick()">
                 </ng-select>
-
+                <mat-error *ngIf="form.get('contact').invalid">
+                  {{'Property.form.contact.error'|translate}}
+                </mat-error>
                 <span>Ou</span>
                 <a>
-                  <span>
-                    <i class="fa fa-2x fa-user-plus" aria-hidden="true"></i>
-                  </span>
-                  <span> Nouveau contact</span>
+                  <button mat-button mat-stroked-button style="margin-right: -30%;"(click)="openDialog()">
+                    <i class="fa fa-2x fa-user-plus" ></i> &nbsp;&nbsp;&nbsp; {{'Contact.title'|translate}}
+                  </button>
                 </a>
-
               </div>
               <div style="margin-top: 5%;
               font-size: medium;
-              font-family: serif;" >LE CONTACTS LIÉ :</div>
+              font-family: serif;" >{{'Property.contactresult'|translate}} :</div>
               <div *ngIf="!show" style="font-size: medium;
               font-family: serif;
               margin-top: 1%;
@@ -263,8 +278,8 @@
                   {{(contact|async).firstname }}&nbsp;{{(contact|async).lastname |uppercase}}
                  </div>
                  <div class="role">Acheteur</div>
-  
-                <div style="    margin-top:2%;
+
+                <div style="margin-top:2%;
                 margin-bottom:0.5%;
                 font-family: initial;
                 color: darkblue;">ADRESSE :</div>
@@ -280,10 +295,10 @@
           </mat-card-content>
           <mat-card-actions>
             <div fxLayout="row" fxLayoutAlign="space-around end" style=" margin-top: 6%;">
-              <button mat-button matStepperPrevious mat-stroked-button class="full" style=" margin-left: -30%;">
-                <i class="fas fa-arrow-left"> </i>&nbsp;&nbsp;&nbsp;ÉTAPE PÉCÉDENTE
+              <button mat-button matStepperPrevious mat-stroked-button class="full" style=" margin-left: -22%;">
+                <i class="fas fa-arrow-left"> </i>&nbsp;&nbsp;&nbsp;{{'title-previous' |translate}}
               </button>
-              <button class="full" mat-button mat-stroked-button style="margin-right: -30%;"(click)="save()">
+              <button class="full" (click)="save()" mat-button mat-stroked-button style="margin-right: -22%;" [disabled]="form.invalid" >
                 ENREGISTRER &nbsp;&nbsp;&nbsp;<i class="fas fa-save"></i>
               </button>
             </div>

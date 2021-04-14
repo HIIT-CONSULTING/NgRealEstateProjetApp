@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { TranslateService } from "@ngx-translate/core";
 
 
 
@@ -8,8 +9,13 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./project.component.scss"],
 })
 export class ProjectComponent  {
+  
+  constructor(
+    private translate: TranslateService,
+  ) {}
+
   navLinks = [
-    { path: 'projectform', label: 'Créer un nouveau projet',icon:'list_alt' },
-    { path: 'projectlist', label: 'Liste des projets',icon:'' },
+    { path: 'projectform', label: 'Property.title',icon:'list_alt' },
+    { path: 'projectlist', label: 'Property.title-list',icon:'' },
   ];
 }

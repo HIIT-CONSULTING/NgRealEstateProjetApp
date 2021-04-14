@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Candidate } from '@shared/models/Agent.model';
 import { Router, ActivatedRoute } from '@angular/router';
-import { SponsorService } from '../../sponsor.service';
+import { SponsorService } from '@shared/services/sponsor.service';
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: 'app-candidate-details',
@@ -13,35 +14,27 @@ export class CandidateDetailsComponent implements OnInit {
 
   id:number;
   candidate$:Observable<Candidate>;
-  women:"Women";
-  men:"Men";
   isMen=false;
   inProgress=false;
   accepted=false;
- refused=false;
-  constructor(private route:ActivatedRoute, private router:Router, private sponsorService:SponsorService) { 
+  refused=false;
+  constructor(private route:ActivatedRoute, private router:Router, private sponsorService:SponsorService,private translate: TranslateService) { 
     
       this.route.params.subscribe((params)=>{
       this.id=+params['id'];
       this.candidate$=this.sponsorService.getCandidate(this.id);
       this.candidate$.subscribe(res=>
-      {console.log(this.isMen);
-        debugger;
+      {
         if(res.gender.name=="Men"){ this.isMen=true}
-        else{ 
-          console.log("women111")
-        }
+
           if(res.status==="in_progress"){
-            console.log('cc',res.status)
             this.inProgress=true;
           }
           if(res.status==="accepted"){
-            console.log('cc',res.status)
             this.accepted=true;
           }
 
           if(res.status==="refused"){
-            console.log('cc',res.status)
             this.refused=true;
           }
        
@@ -50,8 +43,6 @@ export class CandidateDetailsComponent implements OnInit {
   }
 
  
-  ngOnInit(){
-     
-   
+  ngOnInit(){   
   }
 }

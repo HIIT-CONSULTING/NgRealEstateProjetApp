@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { Agent, Gender, City, Country, Contact_type, Contact } from '@shared/models/Agent.model';
+import { Contact } from '@shared/models/Agent.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ContactService } from '../contact.service';
-import { SponsorService } from 'app/routes/sponsor/sponsor.service';
+import { ContactService } from '@shared/services/contact.service';
+import { SponsorService } from '@shared/services/sponsor.service';
 
 @Component({
   selector: 'app-contact-details',
@@ -14,77 +13,38 @@ import { SponsorService } from 'app/routes/sponsor/sponsor.service';
 })
 export class ContactDetailsComponent implements OnInit {
 
- 
-  constructor(
-    private fb: FormBuilder,
-    private route:ActivatedRoute,private router:Router,
-    private sponsorService:SponsorService,
-    private contactService:ContactService
-    
-            ){}
-
   
   id:number;
   contact$:Observable<Contact>;
-  contact:Contact;
-  isMen=false;
- showSpinner=true;
-ShowContact:any;
+  contact:Contact =null;
+  isMen : boolean;
+  showSpinner=true;
+  ShowContact:any;
 
+  constructor(
+    private route:ActivatedRoute,private router:Router,
+    private sponsorService:SponsorService,
+    private contactService:ContactService)
+    {}
+
+  
   ngOnInit(){
-
     this.route.params.subscribe((params)=>{
       this.id=+params['id'];
+  })
 
+  this.contact$=this.contactService.getContact(this.id);
+  this.contactService.getContact(this.id).pipe(first()).subscribe(res=>
+    {
+        this.ShowContact=res;
+        setTimeout(()=>{    
+        this.showSpinner=false; }, 50);
+        this.isMen=res.gender.name=="Homme" ? true : false ;
+       });
     }
-    )
-
-    this.contact$=this.contactService.getContact(this.id);
-    this.contactService.getContact(this.id).pipe(first()).subscribe(res=>
-      {console.log(res.address.city.name);
-       this.ShowContact=res;
-       setTimeout(()=>{    
-        this.showSpinner=false;
-   }, 100);
-      
-        
-        if(res.gender.name=="Homme"){ this.isMen=true}
-        else{ 
-          console.log("women111")}
-       
-      });
-     
-
-
-    }
-
-
-    form = this.fb.group({
-      gender: {id:null,
-               name:null
-              },
-      first_name: null,
-      last_name: null,
-      birth_day:null,
-      telephone: [null, Validators.minLength(10)],
-      email: [null, Validators.email],
-      address: this.fb.group({
-        description: null,
-        city: {id:null,
-               name:null
-              },
-        country:{id:null,
-                 name:null
-                },
-      }),
-      contact_type:{id:null,
-        name:null
-       },
-    });
-
-
-    Onclick(){
-
+    
+  Onclick(){
       this.router.navigate(['/contact/contactlist']);
     }
+    
 }

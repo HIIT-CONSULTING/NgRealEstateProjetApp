@@ -1,55 +1,93 @@
-<mat-card >
-  <mat-card-header class="header"  fxLayout="row" fxLayoutAlign="space-between center">
-    <div  class="title-card1"  ></div>
-   
-      <a  style="color: #1ba0a7; "   matTooltip="Ajouter un contact" (click)="onClick()" >
-        <i class="fas fa-2x fa-user-plus"></i>
-      </a>
-    
-    
-</mat-card-header>
-      <div fxLayout="row wrap">
-         <div class="hiit-col" *ngFor="let project of (this.project$|async)?.items">
-            <mat-card class="list-cardProject" >
-              <div  style=" margin-left: 20%;
-              width: 50%;
-              " >
-                <img mat-card-image src="./assets/images/home.png">
-              </div>
-                <mat-card-content style="margin-bottom: 80px; text-align: center;">
-                  <div class="name" style="font-size: large;">
-                     {{project.contact.firstname }}&nbsp;&nbsp;{{project.contact.lastname |uppercase}}
-                    </div>
-                    <div class="role">{{project.project_type}} /{{project.project_state}}/{{project.project_kind}}/{{project.property.property_type.name}}</div>
-                    <div style="    margin-top: 15%;
-                    margin-bottom: 3%;
-                    font-family: initial;
-                    
-                    color: darkblue; background-color: aliceblue;">ADRESSE :</div>
-                    <div style="font-family: initial;
-                    font-size: unset;text-align: center;" > {{project.property.address.description}}, {{project.property.address.city.name}},{{project.property.address.country.name}}</div>
-                    
-
-                    <div style="    margin-top: 15%;
-                    margin-bottom: 3%;
-                    font-family: initial;
-                    
-                    color: darkblue;background-color: aliceblue;">INFORMATIONS COMPLÉMENTAIRES :</div>
-                    <div style="font-family: initial;
-                    font-size: unset; text-align: center;" >$ BUDGET : {{project.property.minimal_price}}$
-                   
-                  </div>
-                </mat-card-content>
-
-
-                
-                
-                <mat-card-actions fxLayout="row" fxLayoutAlign="space-around center"  >
-                    <a mat-button style="color: #52a0c9;"(click)="details(project.id)">Consulter</a>
-                    <a mat-button style="color: #e7d71a;"(click)="Update(project.id)">Modifier</a>
-                    <a mat-button style="color: red;"  (click)="Delete(project.id)">Supprimer</a>
-                </mat-card-actions>
-              </mat-card>
+<mat-card>
+  <mat-card-header
+    class="header"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+  >
+    <div class="title-card1"></div>
+    <a
+      style="color: #1ba0a7; margin-right: 8px"
+      matTooltip="{{ 'Property.form.add' | translate }} "
+      (click)="onClick()"
+    >
+      <i class="fas fa-2x fa-plus"></i>
+    </a>
+  </mat-card-header>
+  <div fxLayout="row wrap">
+    <div
+      class="hiit-col"
+      *ngFor="let project of (this.project$ | async)?.items"
+    >
+      <mat-card class="list-cardProject">
+        <div style="margin-left: 20%; width: 50%">
+          <img mat-card-image src="./assets/images/home.png" />
+        </div>
+        <mat-card-content style="margin-bottom: 80px; text-align: center">
+          <div class="name" style="font-size: large">
+            {{ project.contact.firstname }}&nbsp;&nbsp;{{
+              project.contact.lastname | uppercase
+            }}
           </div>
-      </div>
-    </mat-card>
+          <div class="role"
+          style="height: 30px;">
+            {{ project.project_type }} /{{ project.project_state }}/{{
+              project.project_kind
+            }}/{{ project.property.property_type.name }}
+          </div>
+          <div
+            style="
+              margin-top: 15%;
+              margin-bottom: 3%;
+              font-family: initial;
+              color: darkblue;
+              background-color: aliceblue;
+            "
+          >
+            {{ "form_standard.address" | translate }} :
+          </div>
+          <div
+            style="
+              font-family: initial;
+              font-size: unset;
+              text-align: center;
+              height: 50px;
+            "
+          >
+            {{ project.property.address.description }},
+            {{ project.property.address.city.name }},{{
+              project.property.address.country.name
+            }}
+          </div>
+          <div
+            style="
+              margin-top: 15%;
+              margin-bottom: 3%;
+              font-family: initial;
+              color: darkblue;
+              background-color: aliceblue;
+            "
+          >
+            {{ "Property.title-data" | translate }} :
+          </div>
+          <div
+            style="font-family: initial; font-size: unset; text-align: center"
+          >
+            $ {{ "Property.form.budget" | translate }} :
+            {{ project.property.minimal_price }} $
+          </div>
+        </mat-card-content>
+        <mat-card-actions fxLayout="row" fxLayoutAlign="space-around center">
+          <a mat-button style="color: #52a0c9" (click)="details(project.id)">{{
+            "form_standard.consult" | translate
+          }}</a>
+          <a mat-button style="color: #e7d71a" (click)="Update(project.id)">{{
+            "form_standard.update" | translate
+          }}</a>
+          <a mat-button style="color: red" (click)="Delete(project.id)">{{
+            "form_standard.delete" | translate
+          }}</a>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</mat-card>

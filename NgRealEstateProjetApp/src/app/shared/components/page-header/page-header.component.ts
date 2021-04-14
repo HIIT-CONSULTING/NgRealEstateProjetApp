@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
-import { MenuService } from '@core/bootstrap/menu.service';
+import { MenuService } from '../../services/boostrap/menu.service';
 import { Router } from '@angular/router';
 
 @Component({

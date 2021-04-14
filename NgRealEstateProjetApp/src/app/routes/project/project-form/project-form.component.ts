@@ -1,25 +1,15 @@
 import { Component, OnInit } from "@angular/core";
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  FormControl,
-} from "@angular/forms";
+import { FormBuilder, Validators,FormControl } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { TranslateService } from "@ngx-translate/core";
 import { Observable } from "rxjs";
 import { ActivatedRoute, Router } from "@angular/router";
-import {
-  Agent,
-  Gender,
-  City,
-  Country,
-  Contact,
-} from "@shared/models/Agent.model";
-import { SponsorService } from "../../sponsor/sponsor.service";
-import { filter, map } from "rxjs/operators";
-import { ProjectService } from "./../project.service";
-import { ContactService } from "app/routes/contact/contact.service";
+import { Agent, City, Country, Contact } from "@shared/models/Agent.model";
+import { SponsorService } from "@shared/services/sponsor.service";
+import { ProjectService } from "@shared/services/project.service";
+import { ContactService } from "@shared/services/contact.service";
+import { DialogContentProjectComponent } from "app/components/dialog-content-project/dialog-content-project.component";
+import { MatDialog } from "@angular/material/dialog";
 
 @Component({
   selector: "app-project-form",
@@ -35,7 +25,8 @@ export class ProjectFormComponent implements OnInit {
     private router: Router,
     private sponsorService: SponsorService,
     private projectService: ProjectService,
-    private contactService: ContactService
+    private contactService: ContactService,
+    private dialog: MatDialog,
   ) {}
   show: any = false;
   agents$: Observable<Agent[]>;
@@ -46,43 +37,79 @@ export class ProjectFormComponent implements OnInit {
   selectedPersonId = null;
   contacts$: Observable<Contact[]>;
   contact: Observable<Contact>;
+  test : boolean = false;
+  valid_result : number =0;
+  openDialog() {
+    this.dialog
+      .open(DialogContentProjectComponent, {
+        width: "550px",
+        disableClose: true
+      })
+      .afterClosed()
+      .subscribe(() => {
+        this.contacts$ = this.contactService.getContacts();       
+      });
+}
+properties = this.fb.group({
+  propertyType: ['',Validators.required],
+  minimalPrice: ['',Validators.required],
+  maximumPrice: ['',Validators.required],
+  area: ['',Validators.required],
+  room: ['',Validators.required],
+  address: this.fb.group({
+    description: ['',Validators.required],
+    city: ['',Validators.required],
+    country: ['',Validators.required],
+  })
+});
+form = this.fb.group({
+  projectType: [''],
+  projectState: [''],
+  projectKind: [''],
+  contact:  ['', Validators.required],
+  property : this.properties
+});
 
-  form = this.fb.group({
-    projectType: "",
-    projectState: "",
-    projectKind: "",
-    contact: "",
-    property: this.fb.group({
-      propertyType: "",
-      minimalPrice: "",
-      maximumPrice: "",
-      area: "",
-      room: "",
-      address: this.fb.group({
-        description: "",
-        city: "",
-        country: "",
-      }),
-    }),
-  });
+
+
+
+
+3:34
+
+  control_adress(control:string) {
+   return  this.form.get('property').get('address').get(control) ; 
+  }
+  
+  control_property(control:string) {
+    return  this.form.get('property').get(control); 
+  }
+  valid_form() : boolean
+  {
+    const country_valid = (this.control_adress('country').valid && this.control_adress('country').value !=' ' &&  this.control_adress('description').touched) ? 1 : 0;
+    const city_valid = (this.control_adress('city').valid && this.control_adress('city').value !=' ' &&  this.control_adress('city').touched) ? 1 : 0;
+    const description_valid = (this.control_adress('description').valid && this.control_adress('description').value !=' ') ? 1 : 0;   
+    const area_valid = (this.control_property('area').valid && this.control_property('area').value ==' ' &&  this.control_adress('city').touched) ? 1 : 0;
+    const minimalPrice_valid = (this.control_property('minimalPrice').valid && this.control_property('minimalPrice').value !=' ' &&  this.control_property('minimalPrice').touched) ? 1 : 0;
+    const maximumPrice_valid = (this.control_property('maximumPrice').valid && this.control_property('maximumPrice').value !=' ' && this.control_property('maximumPrice').touched) ? 1 : 0;
+    const propertyType_valid = (this.control_property('propertyType').valid && this.control_property('propertyType').value !=' ' && this.control_property('propertyType').touched) ? 1 : 0;
+    
+    this.valid_result= this.valid_result+country_valid+city_valid+description_valid+area_valid+minimalPrice_valid+maximumPrice_valid+propertyType_valid;
+    const valid_disabled = (this.valid_result>=7) ?  false :  true;
+    return valid_disabled; 
+  }
   myControl = new FormControl();
   filteredOptions: Observable<City[]>;
   ngOnInit() {
-    this.city$ = this.sponsorService.getCity();
-    this.sponsorService.getCity().subscribe();
-
+   // this.city$ = this.sponsorService.getCity();
+  //this.sponsorService.getCity().subscribe();
     this.country$ = this.sponsorService.getCountry();
-    this.sponsorService.getCity().subscribe();
+   // this.sponsorService.getCity().subscribe();
     this.contacts$ = this.contactService.getContacts();
     this.contactService.getContacts().subscribe();
   }
 
   OnClickTransaction(id: string) {
- 
-    
     this.form.get("projectType").setValue(id);
-  
-    console.log("1",this.form.get("projectType"));
   }
 
 
@@ -100,28 +127,29 @@ export class ProjectFormComponent implements OnInit {
   }
 
   OnClickProperty(id: number) {
-    
-    this.form.get("property.propertyType").setValue(id);
+    this.properties.get("propertyType").setValue(id);
   }
+
   save() {
-    console.log(this.form.value);
-    this.projectService.save(this.form.value).subscribe(response=>{console.log(response)
+    this.projectService.save(this.form.value).subscribe(response=>{
       this.router.navigate(['/project/projectlist'])
     }
 
     );
   }
+
   OnClick() {
-   
-    console.log(this.selectedPersonId);
-    if (this.selectedPersonId != null) {
-      debugger;
+      if (this.selectedPersonId != null) {
       this.show = true;
       this.contact = this.contactService.getContact(this.selectedPersonId);
       this.contactService.getContact(this.selectedPersonId).subscribe();
-      console.log(this.contact);
     }
     else{this.show = false;}
     
   }
+
+  OnCountry(id:number){    
+    this.city$ = this.sponsorService.getCitys(id);
+  }
+
 }

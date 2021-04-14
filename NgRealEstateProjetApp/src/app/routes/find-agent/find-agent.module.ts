@@ -4,8 +4,8 @@ import { FindAgentFormComponent } from './find-agent-form/find-agent-form.compon
 import { FindAgentDetailComponent } from './find-agent-detail/find-agent-detail.component';
 import { FindAgentRoutingModule } from './find-agent-routing.module';
 import { MaterialModule } from '../../material.module';
-import {DragDropModule} from '@angular/cdk/drag-drop';
-import { FindAgentService } from './find-agent.service';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { FindAgentService } from '@shared/services/find-agent.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from '@core/token.interceptor';
 import { AuthGuard } from '@core/guards/auth.guard';

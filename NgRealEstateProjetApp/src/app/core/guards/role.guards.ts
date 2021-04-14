@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { LoginService } from '@core/login.service';
-import { Role } from '@shared/models/role.model';
+import { LoginService } from '@shared/services/login.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +20,6 @@ export class RoleGuard implements CanActivate {
           this.router.navigate(['/not-found']);
           return false;
       }
-
       // authorised so return true
       return true;
   }

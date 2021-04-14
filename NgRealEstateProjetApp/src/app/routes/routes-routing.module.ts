@@ -60,7 +60,14 @@ const routes: Routes = [
         canActivate: [RoleGuard,AuthGuard],
         data: { title: "contact", titleI18n: "contact",roles: [Role.User]},
         loadChildren: () => import("./contact/contact.module").then((m) => m.ContactModule),
-       }
+       },
+       {
+        path: "profil",
+        canActivate: [RoleGuard,AuthGuard],
+        data: { title: "profil", titleI18n: "profil",roles: [Role.User,Role.Admin] },
+        loadChildren: () =>
+          import("./profil/profil.module").then((m) => m.ProfilModule),
+      },
 
     ]
   },

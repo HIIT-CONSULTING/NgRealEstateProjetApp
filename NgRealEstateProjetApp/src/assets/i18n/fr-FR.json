@@ -10,19 +10,116 @@
         "profile": "Profile",
         "logout": "Déconnecter"
     },
+    "form_standard" :{
+        "firstname":"Prénom",
+        "lastname":"Nom",
+        "mail":"Email",
+        "civility":"Civilité",
+        "tel":"Numéro de Téléphone",
+        "Date_Birth" : "Date de Naissance", 
+        "Fullname" : "Nom complet" ,
+        "address" : "Adresse",
+        "city":"Ville",
+        "country":"Pays",
+        "reset":"Réinitialiser",
+        "confirm":"Valider",
+        "cancel":"Annuler",
+        "update":"Modifier",
+        "consult":"Consulter",
+        "delete":"Supprimer",
+        "email.error":"entrer un email valide",
+        "tel.error":"Entrer un numéro de téléphone valide Exemple: 0612345678 ou +212612345678 ",
+        "lastname.error":"Entrer un nom valide ",
+        "firstname.error":"Entrer un prénom valide ",
+        "date.error":"Entrer une date valide (jj/mm/aaaa)"
+    },
     "searchAgent": {
         "title":"RECHERCHER UN CONSEILLER",
-        "title-detail":"Fiche d'un Conseiller",
+        "title-detail":"FICHE D'UN CONSEILLER",
         "form":{
-            "firstname":"Prénom",
-            "lastname":"Nom",
-            "mail":"Email",
-            "tel":"Numéro de Téléphone",
-            "subsidiary":"Secteur d'activité",
-            "reset":"Réinitialiser",
             "search":"Rechercher",
-            "email.error":"entrer un email valide",
-            "tel.error":"entrer un numéro de téléphone valide Exemple: 123-456-7890"
+            "findagent":"CONSEILLERS TROUVÉS"
         }
+    },
+    "Contact" : {
+        "title":"Créer un nouveau contact",
+        "title-form":"CRÉER UN NOUVEAU CONTACT",
+        "title-detail":"FICHE D'UN CONTACT",
+        "title-list":"Liste des contacts",
+        "title-update":"MODIFIER UN CONTACT",
+        "form":{
+            "buyer":"Acheteur",
+            "add":"Ajouter un contact"
+        }
+        
+    } , 
+    "Property" : {
+        "title":"Créer un nouveau projet",
+        "title-detail":"FICHE D'UN PROJET",
+        "title-list":"Liste des projets",
+        "title-update":"MODIFIER UN Projet",
+        "title-data":"RÉCAPITULATIF DU BIEN",       
+        "next":"ÉTAPE SUIVANTE",
+        "previous":"ÉTAPE PÉCÉDENTE", 
+        "transaction":"Transaction",
+        "domaine":"Domaine",
+        "destination":"Destination",
+        "property_type":"Bien",
+        "informations":"Informations sur le projet",
+        "contact":"Contact lié au projet",
+        "select_contact":"Séléctionner un contact",
+        "contactresult":"LE CONTACT LIÉ",
+        "form":{
+            "pricemin":"PRIX MINIMUM",
+            "pricemax":"PRIX MAXIMUM ",
+            "area":"Surface",
+            "nbpieces":"NOMBRE DE PIÉCES",
+            "budget":"PRIX",
+            "propery_title":"LIEU DU BIEN",
+            "add":"Ajouter un projet",
+            "country.error":"Veuillez sélectionner un pays ",
+            "city.error":"Veuillez sélectionner un ville ",
+            "description.error":"Entrer un Secteur",
+            "area.error":"Entrer une surface valide",
+            "minimalPrice.error":"Entrer un prix valide",
+            "maximumPrice.error":"Entrer un prix valide",
+            "contact.error":"Veuillez sélectionner un contact"
+        }
+    },
+    "project" : {
+        "country.error":"Veuillez sélectionner un pays ",
+        "city.error":"Veuillez sélectionner un ville ",
+        "description.error":"Entrer un Secteur",
+        "area.error":"Entrer une surface valide",
+        "minimalPrice.error":"Entrer un prix valide",
+        "maximumPrice.error":"Entrer un prix valide",
+        "contact.error":"Veuillez sélectionner un contact"
+    } , 
+
+    "Sponsor" : {
+        "title":"CRÉER UNE NOUVELLE DEMANDE D'AGRÉMENT",
+        "title-candidat":"FICHE D'UN CANDIDAT",
+        "title-list":"Liste des candidatures",
+        "title-form":"Faire une demande de parrainage", 
+        "title-update":"MODIFIER UN CANDIDAT",
+        "title-sponsor":"PARRAIN",
+        "form":{
+            "firstname_sponsor":"Prénom Parrain",
+            "firstname_candidat":"Prénom Candidat",
+            "name_sponsor":"Nom Parrain",
+            "name_candidat":"Nom Candidat",
+            "Date_CREATION" : "Date de Création", 
+            "status" : "ÉTAT DU CANDIDAT",
+            "add":"Ajouter un candidat",
+            "accept":"ACCEPTER",
+            "refus":"REfUSER"         
+        }
+        
     }
+
+
+
+
+    
+
 }

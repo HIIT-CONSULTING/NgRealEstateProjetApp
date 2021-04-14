@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SponsorService } from 'app/routes/sponsor/sponsor.service';
+import { SponsorService } from '@shared/services/sponsor.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Candidate } from '@shared/models/Agent.model';
 import { Observable } from 'rxjs';
@@ -23,18 +23,14 @@ export class CandidateDetailsComponent implements OnInit {
       this.id=+params['id'];
       this.candidate$=this.sponsorService.getCandidate(this.id);
       this.candidate$.subscribe(res=>
-      {console.log(this.isMen);
-        debugger;
+      {
         if(res.gender.name=="Men"){ this.isMen=true}
-        else{ 
-          console.log("women111")
-        }
+   
           if(res.status==="in_progress"){
-            console.log('cc',res.status)
             this.inProgress=true;
           }
           
-       
+      
       })}) 
       
   }

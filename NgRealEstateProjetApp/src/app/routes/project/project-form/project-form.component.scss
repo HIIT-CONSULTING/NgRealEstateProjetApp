@@ -1,31 +1,42 @@
 button:hover{
-    background-color: #28458e !important;
-    color:white
+  background-color: #28458e !important;
+  color:white
 }
-
 
 .disable_ripple:hover{
-  background-color: #203574 !important;
-
-  .title-cardd{
-      color:white  !important;
-  } 
-}
-
-
-
-
-  .ng-select .ng-select-container.ng-appearance-outline:hover:after {
-    /* border-color: rgba(0,0,0,0.87); */
-    border-width: 2px;
-  }
-
-  .mat-expansion-panel-header.mat-expanded,
-.mat-expansion-panel-header.mat-expanded:hover {
-  background: #203574;
-  .title-cardd{
+background-color: #203574 !important;
+.title-cardd{
     color:white  !important;
 } 
 }
 
+.step-title {
+pointer-events: none !important; /**<-----------*/
+}
+::ng-deep .mat-horizontal-stepper-header{
+pointer-events: none !important;
+}
 
+.mat-step-header {
+pointer-events: none !important;
+}
+
+.ng-select .ng-select-container.ng-appearance-outline:hover:after {
+  border-width: 2px;
+}
+
+.mat-expansion-panel-header.mat-expanded,
+.mat-expansion-panel-header.mat-expanded:hover {
+background: #203574;
+.title-cardd{
+  color:white  !important;
+} 
+}
+
+.mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
+  color: black;
+}
+
+.mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
+  color : black;
+}

@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '@shared/shared.module';
-
-
 import { MaterialModule } from '../../material.module';
-import {DragDropModule} from '@angular/cdk/drag-drop';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { SponsorAdminComponent } from './sponsor-admin.component';
 import { CandidateDetailsComponent } from './candidate-details/candidate-details.component';
 import { SponsorAdminRoutingModule } from './sponsor-admin-routing.module';

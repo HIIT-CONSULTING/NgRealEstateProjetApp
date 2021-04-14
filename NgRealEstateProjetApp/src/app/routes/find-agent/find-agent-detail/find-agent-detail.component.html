@@ -1,35 +1,29 @@
 <page-header></page-header>
-
 <mat-card >
   <div class="card-header card-header-danger" style="margin-top: -40px;">
-    <h4 class="card-title">{{ 'searchAgent.title-detail' | translate }}</h4>
+    <h4 class="card-title">{{'searchAgent.title-detail'| translate }}</h4>
   </div>
 <mat-card-content style="margin-bottom: 5%;" >
   <div fxLayout="row" fxLayoutAlign="space-evenly ">
   <aside fxFlex="15">
-  <img mat-card-image src="./assets/images/profile.png" style="border-radius: 100%;
-  margin-top: 3%;
-" >
+  <img mat-card-image src="./assets/images/profile.png" style="border-radius: 100%;margin-top: 3%;" >
   </aside>
   <section fxFlex="60">
-    <div fxLayout="row" fxLayoutAlign="space-evenly none" >
+    <div fxLayout="row"  >
       <div fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
-        CIVILITÉ :
-      </div>
-     
+         {{'form_standard.civility'|translate}} :
+      </div> 
       <div fxLayout="column" fxFlex="40"  *ngIf="isMen" style="color:blue;" >
         <i class="fas fa-lg fa-male"></i>
       </div>
       <div fxLayout="column" fxFlex="40"  *ngIf="!isMen" >
           <i class="fas fa-lg fa-female"  style="color: palevioletred;"></i>
-       
       </div>
     </div>
    <br>
-    <div fxLayout="row"  fxLayoutAlign="space-evenly center" >
+    <div fxLayout="row">
       <div  fxLayout="column" fxFlex="40" >
-
-        NOM COMPLET :
+        {{'form_standard.Fullname'|translate}} : 
       </div>
       <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
 
@@ -37,45 +31,46 @@
       </div>
     </div>
     <br>
-    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+    <div fxLayout="row"  >
       <div  fxLayout="column" fxFlex="40">
-        DATE DE NAISSANCE:
+        {{'form_standard.Date_Birth'|translate}} : 
       </div>
       <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
         {{((agent$|async).birth_day) | date: 'dd/MM/yyyy'}}
       </div>
     </div>
     <br>
-    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+    <div fxLayout="row"  >
       <div  fxLayout="column" fxFlex="40">
-        EMAIL :
+      {{'form_standard.mail'|translate}} : 
+
       </div>
       <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
         {{(agent$|async).email}}
       </div>
     </div>
     <br>
-    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+    <div fxLayout="row" >
       <div  fxLayout="column" fxFlex="40"  >
-        TÉLÉPHONE :
+        {{'form_standard.tel'|translate}} : 
       </div>
       <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
         {{(agent$|async).telephone}}
       </div>
     </div>
     <br>
-    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+    <div fxLayout="row"  >
       <div  fxLayout="column" fxFlex="40"  >
-       ADRESSE :
+       {{'form_standard.address'|translate}} : 
       </div>
       <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
         {{(agent$|async).address.description}},&nbsp;{{(agent$|async).address.city.name}},&nbsp;{{(agent$|async).address.country.name}}
       </div>
     </div>
     <br>
-    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+    <div fxLayout="row"  >
       <div  fxLayout="column" fxFlex="40" >
-       SECTEUR D'ACTIVITÉ :
+       {{'form_standard.country'|translate}} : 
       </div>
       <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
         {{(agent$|async).subsidiary.country.name}}

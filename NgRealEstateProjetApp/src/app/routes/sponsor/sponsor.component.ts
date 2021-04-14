@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: 'app-sponsor',
@@ -8,14 +9,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SponsorComponent implements OnInit {
 
-  constructor() { }
+  
+  constructor(
+    private translate: TranslateService,
+  ) {}
 
   ngOnInit(): void {
   }
 
   navLinks = [
-    { path: 'form', label: 'Faire une demande de parrainage',icon:'list_alt' },
-    { path: 'list', label: 'Liste des candidatures',icon:'' },
+    { path: 'form', label: 'Sponsor.title-form',icon:'list_alt' },
+    { path: 'list', label: 'Sponsor.title-list',icon:'' },
   ];
 
 }

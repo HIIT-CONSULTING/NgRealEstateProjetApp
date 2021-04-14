@@ -4,8 +4,8 @@ import { Observable, BehaviorSubject, from } from 'rxjs';
 import { map, switchMap, catchError } from 'rxjs/operators';
 import { Agent } from '@shared/models/Agent.model';
 import { Role } from '@shared/models/role.model';
-import { MenuService } from './bootstrap/menu.service';
-
+import { environment } from '@env/environment';
+import { MenuService } from './boostrap/menu.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,20 +13,17 @@ import { MenuService } from './bootstrap/menu.service';
 export class LoginService {
   private readonly JWT_TOKEN = 'JWT_TOKEN';
   private readonly CURRENT_USER = 'CURRENT_USER';
-
   private loggedUser: string;
-
+  private hosturlname = environment.hostURL;
   constructor(private http: HttpClient, private menuService: MenuService) {}
 
 
   login(user:any): Observable<any> {
-     return this.http.post<any>('https://stage.hiitconsulting.com/api/login_check',user).pipe(switchMap((response: any) => { 
-       console.log(response);
-     localStorage.setItem(this.JWT_TOKEN, response.token);
-       return this.http.get('https://stage.hiitconsulting.com/api/v1/authenticateMe').pipe((map((user: any) => {
-         localStorage.setItem(this.CURRENT_USER, JSON.stringify(user));
+    return this.http.post<any>(`${this.hosturlname}api/login_check`,user).pipe(switchMap((response: any) => { 
 
-         //
+      localStorage.setItem(this.JWT_TOKEN, response.token);
+        return this.http.get(`${this.hosturlname}api/v1/authenticateMe`).pipe((map((user: any) => {
+         localStorage.setItem(this.CURRENT_USER, JSON.stringify(user));
          const role = this.getRole() === Role.Admin ? 'admin' : 'user'
          return this.http
            .get(`assets/data/menu-${role}.json?_t=` + Date.now())

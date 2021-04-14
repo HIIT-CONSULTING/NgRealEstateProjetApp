@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '@core/login.service';
+import { LoginService } from '@shared/services/login.service';
 import { Agent } from '@shared/models/Agent.model';
 
 @Component({
@@ -23,7 +23,6 @@ export class UserPanelComponent implements OnInit {
 
   ngOnInit(): void {
    this.User= this.loginService.getCurentUser();
-   console.log(this.User);
   }
   constructor(private loginService:LoginService){}
 
