@@ -10,6 +10,8 @@ import { ProjectService } from "@shared/services/project.service";
 import { ContactService } from "@shared/services/contact.service";
 import { DialogContentProjectComponent } from "app/components/dialog-content-project/dialog-content-project.component";
 import { MatDialog } from "@angular/material/dialog";
+import * as moment from "moment";
+
 
 @Component({
   selector: "app-project-form",
@@ -56,6 +58,30 @@ properties = this.fb.group({
   maximumPrice: ['',Validators.required],
   area: ['',Validators.required],
   room: ['',Validators.required],
+  
+    isAvailable: [''],
+    dateAvailability:[''],
+    keysNumber:[''],
+    //hasKeys:[''],
+    estimatedSurface: [''],
+    state: [''],
+    constructionYear: [''],
+    orientation: [''],
+    floorsNumber: [''],
+
+    hasGuardian: [''],
+    hasIntercom: [''],
+    hasElevator: [''],
+    hasTerace: [''],
+    hasBalcony: [''],
+    hasGarage: [''],
+    hasParkCar: [''],
+    hasBasement: [''],
+    hasParkCarOutside: [''],
+    hasCellar: [''],
+
+
+
   address: this.fb.group({
     description: ['',Validators.required],
     city: ['',Validators.required],
@@ -70,11 +96,6 @@ form = this.fb.group({
   property : this.properties
 });
 
-
-
-
-
-3:34
 
   control_adress(control:string) {
    return  this.form.get('property').get('address').get(control) ; 
@@ -107,6 +128,9 @@ form = this.fb.group({
     this.contacts$ = this.contactService.getContacts();
     this.contactService.getContacts().subscribe();
   }
+  handleChange(property:string) {
+    this.properties.get(property).setValue('');
+  }
 
   OnClickTransaction(id: string) {
     this.form.get("projectType").setValue(id);
@@ -130,7 +154,19 @@ form = this.fb.group({
     this.properties.get("propertyType").setValue(id);
   }
 
+  formatDate(){
+    
+    if (this.properties.get("constructionYear").value != '') {
+      this.properties.get("constructionYear").setValue(moment(this.properties.get("constructionYear").value).format("YYYY-MM-DD"));
+    }
+    if (this.properties.get("dateAvailability" ).value !='') {
+      this.properties.get("dateAvailability").setValue(moment(this.properties.get("dateAvailability").value).format("YYYY-MM-DD"));
+    }
+  }
+
   save() {
+    
+    this.formatDate();
     this.projectService.save(this.form.value).subscribe(response=>{
       this.router.navigate(['/project/projectlist'])
     }

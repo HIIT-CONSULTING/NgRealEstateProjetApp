@@ -9,6 +9,7 @@ import { ContactService } from '@shared/services/contact.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { DateAdapter } from '@angular/material/core';
 import { SponsorService } from "@shared/services/sponsor.service";
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-dialog-content-project',
@@ -48,14 +49,21 @@ export class DialogContentProjectComponent {
     birthDay:null,
     telephone:[null,Validators.pattern(/^((\+)212|0)[1-9](\d{2}){4}$/)],
     email: [null, Validators.email],
+    societe: null,
+    channelType: null,
+    notes: null,
     address: this.fb.group({
       description: null,
       city: null,
       country: null,
     }),
   });
+  formatDate(){
+    this.form.get("birthDay").setValue(moment(this.form.get("birthDay").value).format("YYYY-MM-DD"));
+  }
 
   onSubmit() {
+    this.formatDate();
     this.contactService
       .addContact(this.form.value)
       .subscribe(

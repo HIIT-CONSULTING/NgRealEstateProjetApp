@@ -8,6 +8,7 @@ import { Agent, Gender, City, Country, Contact_type } from "@shared/models/Agent
 import { SponsorService } from "@shared/services/sponsor.service";
 import { ContactService } from '@shared/services/contact.service';
 import { DateAdapter } from '@angular/material/core';
+import * as moment from "moment";
 
 @Component({
   selector: 'app-contact-form',
@@ -45,14 +46,22 @@ export class ContactFormComponent implements OnInit {
     email: [null, Validators.email],
     telephone: [null,[Validators.required,Validators.pattern(/^((\+)212|0)[1-9](\d{2}){4}$/)]],
     birthDay: null,
+    societe: null,
+    channelType: null,
+    notes: null,
+
     address: this.fb.group({
       description: null,
       city: null,
       country: null,
     }),
   });
-
+  formatDate(){
+    this.form.get("birthDay").setValue(moment(this.form.get("birthDay").value).format("YYYY-MM-DD"));
+  }
   onSubmit() {
+    
+    this.formatDate();
     this.contactService
       .addContact(this.form.value)
       .subscribe(

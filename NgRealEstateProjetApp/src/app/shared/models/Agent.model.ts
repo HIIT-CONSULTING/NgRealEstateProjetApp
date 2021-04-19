@@ -88,14 +88,35 @@ export interface Agent{
     contact:Contact,
     property:{
       id:number,
+      area:string,
+      minimalPrice: string,
+      maximumPrice: string,
+      room: String
+
+      orientation?: string,
+      key?: number,
+      roomsNumber?: number,
+      estimatedSurface?: number,
+      constructionYear?: Date,
+      state?: string;
+      floorsNumber?: number,
+      dateAvailability?: Date,
+      isAvailable?: boolean,
+      hasGuardian? : boolean,
+      hasIntercom?: boolean,
+      hasElevator? : boolean,
+      hasTerace? :  boolean,
+      hasBalcony? : boolean,
+      hasGarage? : boolean,
+      hasParkCar?: boolean,
+      sousSol?: boolean,
+      exterieur?: boolean,
+      cave?: boolean,
+    
       propertyType:{
         id:number,
         name:String,
       },
-      area:string,
-      minimalPrice: string,
-      maximumPrice: string,
-      room: String,
       address:{
         description:string,
         city: {id:number,name:string},
