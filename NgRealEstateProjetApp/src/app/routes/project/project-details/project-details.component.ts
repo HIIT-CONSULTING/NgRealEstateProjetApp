@@ -45,3 +45,36 @@ export class ProjectDetailsComponent implements OnInit {
     this.router.navigate(["/contact/contactlist"]);
   }
 }
+
+/** 
+ is_available": false,
+    "date_availability": "2021-04-14T14:31:37+02:00",
+
+    
+    "estimated_surface": 66,
+
+    "state": "New",
+    " construction_year": "2021-04-29T00:00:00+02:00",
+
+
+     "orientation": "IO",
+    "keys_number": 2658
+
+
+    "floors_number": 20,
+    
+    "has_guardian": true,
+    "has_intercom": true,
+    "has_elevator": true,
+    "has_terace": true,
+    "has_balcony": true,
+    "has_garage": true,
+    "has_park_car": true,
+    "has_basement": true,
+    "has_park_car_outside": true,
+    "has_cellar": true,
+
+    "orientation": "IO",
+    "state": "New",
+    "keys_number": 2658
+    */

@@ -1,8 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, Validators,FormControl } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { TranslateService } from "@ngx-translate/core";
-import { Observable } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Agent, City, Country, Contact } from "@shared/models/Agent.model";
 import { SponsorService } from "@shared/services/sponsor.service";
@@ -11,6 +11,7 @@ import { ContactService } from "@shared/services/contact.service";
 import { DialogContentProjectComponent } from "app/components/dialog-content-project/dialog-content-project.component";
 import { MatDialog } from "@angular/material/dialog";
 import * as moment from "moment";
+import { takeUntil } from "rxjs/operators";
 
 
 @Component({
@@ -18,7 +19,8 @@ import * as moment from "moment";
   templateUrl: "./project-form.component.html",
   styleUrls: ["./project-form.component.scss"],
 })
-export class ProjectFormComponent implements OnInit {
+export class ProjectFormComponent implements OnInit, OnDestroy {
+  unsubscribe$: Subject<void>;
   constructor(
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
@@ -29,7 +31,12 @@ export class ProjectFormComponent implements OnInit {
     private projectService: ProjectService,
     private contactService: ContactService,
     private dialog: MatDialog,
-  ) {}
+  ) {
+    this.unsubscribe$ = new Subject();
+    this.properties.controls['hasKey'].valueChanges.pipe(takeUntil(this.unsubscribe$)).subscribe((value) => {
+      value ? this.properties.get('keysNumber').enable() : this.properties.get('keysNumber').disable()
+    })
+  }
   show: any = false;
   agents$: Observable<Agent[]>;
   agents: Agent[] = [];
@@ -61,8 +68,8 @@ properties = this.fb.group({
   
     isAvailable: [''],
     dateAvailability:[''],
-    keysNumber:[''],
-    //hasKeys:[''],
+    keysNumber:[{ value: '', disabled: true}],
+    hasKey:false,
     estimatedSurface: [''],
     state: [''],
     constructionYear: [''],
@@ -188,4 +195,8 @@ form = this.fb.group({
     this.city$ = this.sponsorService.getCitys(id);
   }
 
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
 }
