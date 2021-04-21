@@ -9,6 +9,7 @@ import { first } from "rxjs/operators";
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from "@ngx-translate/core";
 import { DateAdapter } from '@angular/material/core';
+import * as moment from "moment";
 
 @Component({
   selector: "app-update-contact",
@@ -43,6 +44,9 @@ export class UpdateContactComponent implements OnInit {
     email: [null, Validators.email],
     telephone: [null,[Validators.required,Validators.pattern(/^((\+)212|0)[1-9](\d{2}){4}$/)]],
     birthDay: null,
+    societe: null,
+    channelType: null,
+    notes: null,
     address: this.fb.group({
       description: null,
       city: { id: null, name: null },
@@ -68,6 +72,9 @@ export class UpdateContactComponent implements OnInit {
           lastname: user.lastname,
           telephone: user.telephone,
           email: user.email,
+          societe: user.societe??'',
+          channelType: user.channel_type??'',
+          notes: user.notes??'',
           address: 
            {
             description: user.address.description,
@@ -85,16 +92,14 @@ export class UpdateContactComponent implements OnInit {
   OnCountry(id:number){    
     this.city$ = this.sponsorService.getCitys(id);
   }
+  formatDate(){
+    this.form.get("birthDay").setValue(moment(this.form.get("birthDay").value).format("YYYY-MM-DD"));
+  }
 
   onSubmit() {
-    this.contact["gender"] = this.form.get("gender").value;
-    this.contact["firstname"] = this.form.get("firstname").value;
-    this.contact["lastname"] = this.form.get("lastname").value;
-    this.contact["telephone"] = this.form.get("telephone").value;
-    this.contact["email"] = this.form.get("email").value;
-    this.contact["address"] = this.form.get("address").value;
+    this.formatDate();
     this.contactService
-      .updateContact(this.contact, this.id)
+      .updateContact(this.form.value, this.id)
       .subscribe(
         (user) => {
           user = user;

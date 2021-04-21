@@ -40,7 +40,7 @@
                 <mat-icon matSuffix>email</mat-icon>
                 <input matInput name="email" formControlName="email"/>
                 <mat-error *ngIf="form.get('email').invalid">
-                   {{ getErrorMessage(form) }}
+                  
                 </mat-error>
              </mat-form-field>
           </div>
@@ -101,6 +101,26 @@
                 </mat-form-field>
              </div>
           </div>
+
+          <div fxLayout="column" fxLayoutAlign="space-between center">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label> Société </mat-label>
+              <input matInput name="societe" formControlName="societe" />
+            </mat-form-field>
+          </div>
+          <div fxLayout="column" fxLayoutAlign="space-between center">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label> Type de voie </mat-label>
+              <input matInput name="channelType" formControlName="channelType" />
+            </mat-form-field>
+          </div>
+          <div fxLayout="column" fxLayoutAlign="space-between center">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label> Notes </mat-label>
+              <textarea matInput name="notes" formControlName="notes"></textarea>
+            </mat-form-field>
+          </div>
+
        </mat-card-content>
        <mat-card-actions>
         <div class="btns">

@@ -331,7 +331,35 @@
                   {{ (project$ | async)?.contact.telephone }}
                 </div>
               </div>
-              
+
+              <div fxLayout="row" *ngIf="(project$ | async)?.contact.societe" >
+                <div  fxLayout="column" fxFlex="50"  >
+                  Société :
+                  
+                </div>
+                <div  fxLayout="column" fxFlex="50" fxLayoutAlign="space-around none" >
+                  {{(project$ | async)?.contact.societe}}
+                </div>
+              </div>
+            
+              <div fxLayout="row" *ngIf="(project$ | async)?.contact.channel_type" >
+                <div  fxLayout="column" fxFlex="50"  >
+                  Type de voie :
+                  
+                </div>
+                <div  fxLayout="column" fxFlex="50" fxLayoutAlign="space-around none" >
+                  {{(project$ | async)?.contact.channel_type}}
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
               <div fxLayout="row">
                 <div fxLayout="column" fxFlex="50">
                   {{ "form_standard.address" | translate }} :
@@ -349,6 +377,15 @@
                 </div>
                 <div fxLayout="column" fxFlex="50">
                   {{ (project$ | async)?.contact.address.country.name }}
+                </div>
+              </div>
+              <div fxLayout="row" *ngIf="(project$ | async)?.contact.notes" >
+                <div  fxLayout="column" fxFlex="50"  >
+                  Notes :
+                  
+                </div>
+                <div  fxLayout="column" fxFlex="50" fxLayoutAlign="space-around none" >
+                  {{(project$ | async)?.contact.notes}}
                 </div>
               </div>
             </section>

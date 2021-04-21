@@ -48,8 +48,11 @@ export interface Agent{
     email: string;
     telephone: string;
     gender:Gender,
-    address:Address;
-    birth_day:Date;
+    address: Address;
+    birth_day: Date;
+    channel_type?: string;
+    societe?: string;
+    notes?: string;
 
   }
 

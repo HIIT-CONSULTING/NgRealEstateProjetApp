@@ -30,7 +30,7 @@
        
       </div>
     </div>
-   <br>
+ 
     <div fxLayout="row"   >
       <div  fxLayout="column" fxFlex="40" >
         {{'form_standard.Fullname'|translate}} :
@@ -39,7 +39,7 @@
        {{(contact$|async)?.firstname}}  {{((contact$|async)?.lastname)|uppercase}}
       </div>
     </div>
-    <br>
+
     <div fxLayout="row"  >
       <div  fxLayout="column" fxFlex="40">
         {{'form_standard.Date_Birth'|translate}} :
@@ -49,7 +49,7 @@
         {{((contact$|async)?.birth_day) | date: 'dd/MM/yyyy'}}
       </div>
     </div>
-    <br>
+  
     <div fxLayout="row"  >
       <div  fxLayout="column" fxFlex="40">
         {{'form_standard.mail'|translate}} :
@@ -59,7 +59,7 @@
         {{(contact$|async)?.email}}
       </div>
     </div>
-    <br>
+  
     <div fxLayout="row" >
       <div  fxLayout="column" fxFlex="40"  >
         {{'form_standard.tel'|translate}} :
@@ -69,7 +69,40 @@
         {{(contact$|async)?.telephone}}
       </div>
     </div>
-    <br>
+
+
+
+    
+  
+    <div fxLayout="row" *ngIf="(contact$|async)?.societe" >
+      <div  fxLayout="column" fxFlex="40"  >
+        Société :
+        
+      </div>
+      <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
+        {{(contact$|async)?.societe}}
+      </div>
+    </div>
+  
+    <div fxLayout="row" *ngIf="(contact$|async)?.channel_type" >
+      <div  fxLayout="column" fxFlex="40"  >
+        Type de voie :
+        
+      </div>
+      <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
+        {{(contact$|async)?.channel_type}}
+      </div>
+    </div>
+    
+
+
+
+
+
+
+
+
+  
     <div fxLayout="row"  >
       <div  fxLayout="column" fxFlex="40"  >
         {{'form_standard.address'|translate}} :
@@ -78,7 +111,7 @@
         {{(contact$|async)?.address.description}}
       </div>
     </div>
-    <br>
+  
     <div fxLayout="row"  >
         <div  fxLayout="column" fxFlex="40" >
           {{'form_standard.city'|translate}} :
@@ -87,7 +120,7 @@
           {{(contact$|async)?.address.city.name}}
         </div>
       </div>
-      <br>
+    
     <div fxLayout="row"  >
       <div  fxLayout="column" fxFlex="40" >
         {{'form_standard.country'|translate}} :
@@ -97,6 +130,17 @@
         {{(contact$|async)?.address.country.name}}
       </div>
     </div>
+  
+    <div fxLayout="row" *ngIf="(contact$|async)?.notes" >
+      <div  fxLayout="column" fxFlex="40"  >
+        Notes :
+        
+      </div>
+      <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
+        {{(contact$|async)?.notes}}
+      </div>
+    </div>
+
 
   </section>
   

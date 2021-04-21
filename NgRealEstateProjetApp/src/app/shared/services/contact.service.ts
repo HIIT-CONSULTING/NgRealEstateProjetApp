@@ -54,21 +54,8 @@ export class ContactService {
    * @param id - contact's number
    */
   updateContact(contact:any,id:number): Observable<any>{
-    const formatedCandidate={
-      firstname:contact.firstname,
-      lastname:contact.lastname,
-      email:contact.email,
-      telephone:contact.telephone,
-      birthDay:contact.birth_day,
-      address:{
-        description:contact.address.description,
-        city:contact.address.city,
-        country:contact.address.country
-      },
-      gender:contact.gender,
-    }
-    formatedCandidate.birthDay=formatedCandidate.birthDay.toString().replace(/-/gi,'/').substr(0,10);
-    return this.http.put(`${this.hosturlname}api/v1/updateContact/${id}`, formatedCandidate);
+    
+    return this.http.put(`${this.hosturlname}api/v1/updateContact/${id}`, contact);
    }
 
 } 
