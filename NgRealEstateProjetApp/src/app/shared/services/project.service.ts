@@ -54,27 +54,35 @@ export class ProjectService {
    * @param id - project's number
    */
   updateProject(project:any,id:number): Observable<any>{
-    const formatedProject={
-      projectType:project.project_type,
-      projectState:project.project_state,
-      projectKind:project.project_kind,
-      contact:project.contact.id,
-      property:{
-        address:{
-        description:project.property.address.description,
-        country:project.property.address.country,
-        city:project.property.address.city,
-        
-      },
-      area:project.property.area,
-      propertyType:project.property.propertyType.id,
-      minimalPrice:project.property.minimalPrice,
-      maximumPrice:project.property.maximumPrice,
-      room:project.property.room,
-    }
-  }
-    return this.http.put(`${this.hosturlname}api/v1/updateProject/${id}`, formatedProject);
+  
+    return this.http.put(`${this.hosturlname}api/v1/updateProject/${id}`, project);
   }
  
 } 
+/*
+  
+updateProject(project:any,id:number): Observable<any>{
+  const formatedProject={
+    projectType:project.project_type,
+    projectState:project.project_state,
+    projectKind:project.project_kind,
+    contact:project.contact.id,
+    property:{
+      address:{
+      description:project.property.address.description,
+      country:project.property.address.country,
+      city:project.property.address.city,
+      
+    },
+    area:project.property.area,
+    propertyType:project.property.propertyType.id,
+    minimalPrice:project.property.minimalPrice,
+    maximumPrice:project.property.maximumPrice,
+    room:project.property.room,
+  }
+}
+  return this.http.put(`${this.hosturlname}api/v1/updateProject/${id}`, formatedProject);
+}
+
+ */
 

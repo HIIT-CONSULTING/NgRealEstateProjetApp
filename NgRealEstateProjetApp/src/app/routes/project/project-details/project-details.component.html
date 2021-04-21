@@ -64,7 +64,7 @@
               <i class="fas fa-lg fa-calendar-alt"></i> &nbsp;&nbsp;&nbsp; ANNÉE DE CONSTRUCTION:
             </div>
             <div fxLayout="column" fxFlex="50">
-              {{ (project$ | async)?.property.construction_year }}
+              {{ ((project$ | async)?.property.construction_year )| date: 'dd/MM/yyyy'}}
             </div>
           </div>
           
@@ -104,7 +104,7 @@
               <i class="fas fa-lg fa-calendar-alt"></i>&nbsp;&nbsp;&nbsp; DATE DE DISPONIBILITÉ:
             </div>
             <div fxLayout="column" fxFlex="50">
-              {{ (project$ | async)?.property.date_availability }}
+              {{ ((project$ | async)?.property.date_availability) | date: 'dd/MM/yyyy' }}
             </div>
           </div>
           
