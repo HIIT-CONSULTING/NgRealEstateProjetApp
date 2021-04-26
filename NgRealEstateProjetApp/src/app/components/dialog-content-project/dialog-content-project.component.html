@@ -21,7 +21,7 @@
              <mat-label> Prénom </mat-label>
              <input matInput name="firstname" formControlName="firstname" required/>
              <mat-error *ngIf="form.get('firstname').invalid">
-               {{'searchAgent.form.firstname.error'|translate}}
+               {{'form_standard.firstname.error'|translate}}
              </mat-error>
           </mat-form-field>
        </div>
@@ -31,7 +31,7 @@
              <mat-label> Nom </mat-label>
              <input matInput name="lastname" formControlName="lastname" required />
              <mat-error *ngIf="form.get('lastname').invalid ">
-               {{'searchAgent.form.lastname.error'|translate}}
+               {{'form_standard.lastname.error'|translate}}
              </mat-error>
           </mat-form-field>
        </div>
@@ -53,7 +53,7 @@
              <mat-icon matSuffix>phone</mat-icon>
              <input matInput name="telephone" formControlName="telephone" required/>
                 <mat-error *ngIf="form.get('telephone').invalid ">
-                  {{'searchAgent.form.tel.error'|translate}}
+                  {{"form_standard.tel.error"|translate}}
                </mat-error>
           </mat-form-field>
        </div>
@@ -65,7 +65,7 @@
              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
              <mat-datepicker #picker></mat-datepicker>
              <mat-error *ngIf="form.get('birthDay').invalid">
-               {{ "searchAgent.form.date.error" | translate }}
+               {{ "form_standard.date.error" | translate }}
             </mat-error>
            </mat-form-field>             
        </div>

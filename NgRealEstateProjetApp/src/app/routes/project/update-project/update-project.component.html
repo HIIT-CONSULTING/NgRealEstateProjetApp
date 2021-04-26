@@ -7,7 +7,7 @@
     <form formGroupName="property">
 <section class="demo-expansion" style="margin-bottom: 2%;" >
   <div fxLayoutAlign="center center" style="color: rgb(34, 55, 120);" ><i class="fa fa-5x fa-home" aria-hidden="true"></i></div>
-  <div fxLayoutAlign="center center"  style="color:#1ba0a7;font-size: large; margin-top: 1.2%;    font-family: monospace;">{{(project$|async)?.project_type}} /{{(project$|async)?.project_state}}/{{(project$|async)?.project_kind}}/{{(project$|async)?.property.property_type.name}}</div>
+  <div fxLayoutAlign="center center"  style="color:#1ba0a7;font-size: large; margin-top: 1.2%;    font-family: monospace;">{{Project?.project_type}} /{{Project?.project_state}}/{{Project?.project_kind}}/{{Project?.property.property_type.name}}</div>
 <div *ngIf="showSpinner" fxLayoutAlign="center end" >
   <mat-spinner></mat-spinner>
 
@@ -126,15 +126,28 @@
         </mat-expansion-panel-header>
 
         <div
-          fxLayout="column"
-          fxLayoutAlign="space-between center "
-          style="margin-top: 30px"
-        >
-          <mat-form-field class="full-width" appearance="outline">
-            <mat-label> Etat du batiment </mat-label>
-
-            <input matInput formControlName="state" />
-          </mat-form-field>
+        fxLayout="column"
+        fxLayoutAlign="space-between center "
+        style="margin-top: 30px"
+      >
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Etat général du bien</mat-label>
+        <mat-select formControlName="state" >
+          <mat-option *ngFor="let state of stateList" [value]="state">{{state}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div>
+      <div
+        fxLayout="column"
+        fxLayoutAlign="space-between center "
+        style="margin-top: 30px"
+      >
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Orientation général du bien </mat-label>
+        <mat-select formControlName="orientation" >
+          <mat-option *ngFor="let orientation of orientationList" [value]="orientation">{{orientation}}</mat-option>
+        </mat-select>
+      </mat-form-field>
         </div>
         <div
           fxLayout="column"
@@ -171,17 +184,7 @@
             />
           </mat-form-field>
         </div>
-        <div
-          fxLayout="column"
-          fxLayoutAlign="space-between center "
-          style="margin-top: 30px"
-        >
-          <mat-form-field class="full-width" appearance="outline">
-            <mat-label> Orientation </mat-label>
-
-            <input matInput formControlName="orientation" />
-          </mat-form-field>
-        </div>
+       
         <div
           fxLayout="column"
           fxLayoutAlign="space-between center "
@@ -189,27 +192,26 @@
         >
           <div fxLayout="row" fxLayoutAlign="space-between center ">
             <mat-checkbox
-              class="example-margin"
               formControlName="hasElevator"
               >Ascenseur</mat-checkbox
             >
             <mat-checkbox
-              class="example-margin"
+              
               formControlName="hasTerace"
               >Terrasse</mat-checkbox
             >
             <mat-checkbox
-              class="example-margin"
+              
               formControlName="hasBalcony"
               >Balcon</mat-checkbox
             >
             <mat-checkbox
-              class="example-margin"
+              
               formControlName="hasGuardian"
               >Gardien</mat-checkbox
             >
             <mat-checkbox
-              class="example-margin"
+             
               formControlName="hasIntercom"
               >Interphone</mat-checkbox
             >
@@ -258,78 +260,95 @@
 
 
 
-
-      <mat-expansion-panel #panel4 style="width: 100%;">
-        <mat-expansion-panel-header class="disable_ripple" [collapsedHeight]="'70px'"
-          [expandedHeight]="'70px'">
+      <mat-expansion-panel #panel4 style="width: 100%">
+        <mat-expansion-panel-header
+          class="disable_ripple"
+          [collapsedHeight]="'70px'"
+          [expandedHeight]="'70px'"
+        >
           <div class="title-cardd">Plus d'informations</div>
-
         </mat-expansion-panel-header>
-        <br/>
-        <div fxLayout="column" fxLayoutAlign="space-between center" *ngIf="form.get('property.propertyType').value !=4">
+        <div
+          fxLayout="column"
+          fxLayoutAlign="space-between center "
+          style="margin-top: 2%"
+
+          *ngIf="form.get('property.propertyType').value !=4"
+        >
           <mat-form-field class="full-width" appearance="outline">
-            <mat-label> {{'Property.form.nbpieces'|translate}} </mat-label>
-            <input matInput name="room" formControlName="room" />
+            <mat-label>
+              {{ "Property.form.nbpieces" | translate }}</mat-label
+            >
+            <input
+              matInput
+              name="room"
+              type="number"
+              min="0"
+              formControlName="room"
+            />
           </mat-form-field>
         </div>
-        <div
-                    fxLayout="column"
-                    fxLayoutAlign="space-between center "
-                    style="margin-top: 3%"
+
+        <div fxLayoutAlign="center" style="margin-top: 2%">
+          <div fxLayoutAlign="space-between center" class="full-width">
+      
+            <div appearance="outline" fxFlex fxLayoutAlign="space-between center" >
+              <mat-radio-group formControlName="isAvailable">
+                  <mat-radio-button
+                    class="example-margin"
+                    [value]="true"
+                    (click)="handleChange('dateAvailability')"
+                    >Libre</mat-radio-button
                   >
-                    <div fxLayout="row" fxLayoutAlign="space-between center ">
-                      <mat-radio-group formControlName="isAvailable">
-                        <mat-radio-button
-                          class="example-margin"
-                          [value]="true"
-                          (click)="handleChange('dateAvailability')"
-                          >Vide</mat-radio-button
-                        >
-                        <mat-radio-button class="example-margin" [value]="false"
-                          >Occupé</mat-radio-button
-                        >
-                      </mat-radio-group>
-                      <mat-form-field class="full-width" appearance="outline">
-                        <mat-label>Date de disponibilité</mat-label>
-                        <input
-                          matInput
-                          [matDatepicker]="picker1"
-                          [disabled]="form.get('property.isAvailable').value"
-                          formControlName="dateAvailability"
-                        />
-                        <mat-datepicker-toggle
-                          matSuffix
-                          [for]="picker1"
-                          [disabled]="form.get('property.isAvailable').value"
-                        ></mat-datepicker-toggle>
-                        <mat-datepicker #picker1></mat-datepicker>
-                      </mat-form-field>
-                    </div>
-                  </div>
-                  <div
-                    fxLayout="column"
-                    fxLayoutAlign="space-between center "
-                    style="margin-top: 3%"
+                  <mat-radio-button class="example-margin" [value]="false"
+                    >Occupé</mat-radio-button
                   >
-                    <div fxLayout="row" fxLayoutAlign="space-between center" *ngIf="form.get('property.propertyType').value !=4">
-                      <mat-checkbox
-                        class="example-margin"
-                        (click)="handleChange('keysNumber')"
-                        
-                        formControlName="hasKey"
-                        >Clé disponible</mat-checkbox
-                      >
-                      <mat-form-field class="full-width" appearance="outline">
-                        <mat-label> Numéro de clé</mat-label>
-                        <input
-                          matInput
-                          type="number"
-                          min="0"
-                          formControlName="keysNumber"
-                        />
-                      </mat-form-field>
-                    </div>
-                  </div>
+                </mat-radio-group>
+            </div>
+      
+             <mat-form-field appearance="outline" fxFlex="40">
+              <mat-label>Date de disponibilité</mat-label>
+              <input
+                matInput
+                [matDatepicker]="picker1"
+                [disabled]="form.get('property.isAvailable').value"
+                formControlName="dateAvailability"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker1"
+                [disabled]="form.get('property.isAvailable').value"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+             </mat-form-field>
+      
+          </div>
+       </div>
+       <div fxLayoutAlign="center" style="margin-top: 2%"
+       *ngIf="form.get('property.propertyType').value !=4">
+        <div fxLayoutAlign="space-between center" class="full-width">
+    
+          <div appearance="outline" fxFlex fxLayoutAlign="space-between center" >
+            <mat-checkbox
+            class="example-margin"
+            (click)="handleChange('keysNumber')"
+            formControlName="hasKey"
+            >Clé disponible</mat-checkbox
+          >
+          </div>
+    
+           <mat-form-field appearance="outline" fxFlex="40">
+            <mat-label> Numéro de clé</mat-label>
+            <input
+              matInput
+              type="number"
+              min="0"
+              formControlName="keysNumber"
+            />
+           </mat-form-field>
+    
+        </div>
+     </div>
       </mat-expansion-panel>
 
     </mat-accordion>

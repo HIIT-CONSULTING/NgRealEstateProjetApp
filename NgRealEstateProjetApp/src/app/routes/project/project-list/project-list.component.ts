@@ -26,7 +26,8 @@ export class ProjectListComponent implements OnInit {
   Delete(id:number){
       this.projectService.deleteProject(id).subscribe( 
         (data) => {
-          this.snackBar.open('le candidat est supprimé avec succès!', '', { duration: 1000 ,panelClass: ['blue-snackbar'] ,  verticalPosition: 'top', horizontalPosition:'end' });
+          this.snackBar.open('le projet est supprimé avec succès!', '', { duration: 1000 ,panelClass: ['blue-snackbar'] ,  verticalPosition: 'top', horizontalPosition:'end' });
+         this.router.navigate(['/project/projectlist'])
         },
         (error) => {
           this.snackBar.open("veuillez vérifier vos informations!", '', { duration: 1000, panelClass: ['blue-snackbar'], verticalPosition: 'top', horizontalPosition:'end'});

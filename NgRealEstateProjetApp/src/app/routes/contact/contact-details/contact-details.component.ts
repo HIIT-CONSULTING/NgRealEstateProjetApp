@@ -36,10 +36,11 @@ export class ContactDetailsComponent implements OnInit {
   this.contact$=this.contactService.getContact(this.id);
   this.contactService.getContact(this.id).pipe(first()).subscribe(res=>
     {
-        this.ShowContact=res;
-        setTimeout(()=>{    
-        this.showSpinner=false; }, 50);
-        this.isMen=res.gender.name=="Homme" ? true : false ;
+      this.contact=res;
+      this.ShowContact=res;
+      setTimeout(()=>{    
+      this.showSpinner=false; }, 50);
+      this.isMen=res.gender.name=="Homme" ? true : false ;
        });
     }
     

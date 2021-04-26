@@ -9,7 +9,7 @@ import { environment } from '@env/environment';
 })
 export class ContactService {
   page=1;
-  limit=6;  
+  limit=10;  
   private hosturlname = environment.hostURL;
   constructor(private http: HttpClient) { }
   

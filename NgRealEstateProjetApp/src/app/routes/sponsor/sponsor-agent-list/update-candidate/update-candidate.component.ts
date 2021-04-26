@@ -52,7 +52,7 @@ export class UpdateCandidateComponent implements OnInit {
         telephone:user.telephone,
         birthDay:user.birth_day,
         address:{
-          description:user.address.description,
+          description:user.address.description??'',
           country:user.address.country.id,
           city:user.address.city.id
         },

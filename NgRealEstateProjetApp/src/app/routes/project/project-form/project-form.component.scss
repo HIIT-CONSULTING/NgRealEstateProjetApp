@@ -34,15 +34,17 @@ background: #203574;
 }
 
 .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
-  color: black;
+  color:#f44336
 }
 
 .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
-  color : black;
-}
+  color:#f44336}
 mat-checkbox{
-  margin: 12px;
+  margin: 10px;
 }
+.example-margin {
+  margin: 14px
+} 
 mat-radio-button {
-  margin: 20px;
+  margin: 6px;
 }

@@ -4,8 +4,8 @@
   <mat-card-content style="margin: auto; width: 80%; padding: 30px">
     <div class="card-header card-header-danger">
       <h4 class="card-title">
-        Projet {{ (project$ | async)?.contact.firstname }}
-        {{ (project$ | async)?.contact.lastname }}
+        Projet {{ project?.contact.firstname }}
+        {{ project?.contact.lastname }}
       </h4>
     </div>
     <div style="text-align: center; color: rgb(34, 55, 120)">
@@ -19,10 +19,10 @@
         text-align: center;
       "
     >
-      {{ (project$ | async)?.project_type }}/{{
-        (project$ | async)?.project_state
-      }}/{{ (project$ | async)?.project_kind }}/{{
-        (project$ | async)?.property.property_type.name
+      {{ project?.project_type }}/{{
+        project?.project_state
+      }}/{{ project?.project_kind }}/{{
+        project?.property.property_type.name
       }}
     </div>
     <div>
@@ -36,180 +36,180 @@
               <i class="fas fa-lg fa-chart-area"></i>&nbsp;&nbsp;&nbsp; SURFACE:
             </div>
             <div fxLayout="column" fxFlex="50">
-              {{ (project$ | async)?.property.area }}
+              {{ project?.property.area }}
             </div>
           </div>
           
-          <div  *ngIf="(project$ | async)?.property.estimated_surface">
+          <div  *ngIf="project?.property.estimated_surface">
             <div fxLayout="row" fxFlex="50">
               <i class="fas fa-lg fa-chart-area"></i>&nbsp;&nbsp;&nbsp; SURFACE ESTIMÉE:
             </div>
             <div fxLayout="column" fxFlex="50">
-              {{ (project$ | async)?.property.estimated_surface }}
+              {{ project?.property.estimated_surface }}
             </div>
           </div>
           
 
-          <div fxLayout="row" *ngIf="(project$ | async)?.property.state ">
+          <div fxLayout="row" *ngIf="project?.property.state ">
             <div fxLayout="row" fxFlex="50">
               <i class="fas fa-lg far fa-building"></i>&nbsp;&nbsp;&nbsp; ÉTAT DU BATIMENT:
             </div>
             <div fxLayout="column" fxFlex="50" >
-              {{ (project$ | async)?.property.state}}
+              {{ project?.property.state}}
             </div>
           </div>
           
-          <div fxLayout="row" *ngIf="(project$ | async)?.property.construction_year">
+          <div fxLayout="row" *ngIf="project?.property.construction_year">
             <div fxLayout="row" fxFlex="70">
               <i class="fas fa-lg fa-calendar-alt"></i> &nbsp;&nbsp;&nbsp; ANNÉE DE CONSTRUCTION:
             </div>
             <div fxLayout="column" fxFlex="50">
-              {{ ((project$ | async)?.property.construction_year )| date: 'dd/MM/yyyy'}}
+              {{ (project?.property.construction_year )| date: 'dd/MM/yyyy'}}
             </div>
           </div>
           
-          <div fxLayout="row" *ngIf="(project$ | async)?.property.orientation ">
+          <div fxLayout="row" *ngIf="project?.property.orientation ">
             <div fxLayout="row" fxFlex="50">
               <i class="fas fa-lg fa-cloud-sun"></i>&nbsp;&nbsp;&nbsp; ORIENTATION :
             </div>
             <div fxLayout="column" fxFlex="50">
-              {{ (project$ | async)?.property.orientation}}
+              {{ project?.property.orientation}}
             </div>
           </div>
           
-          <div fxLayout="row" *ngIf="(project$ | async)?.property.has_key ">
+          <div fxLayout="row" *ngIf="project?.property.has_key ">
             <div fxLayout="row" fxFlex="50">
               <i class="fas fa-lg fa-key"></i>&nbsp;&nbsp;&nbsp; NUMERO DE CLÉ :
             </div>
             <div fxLayout="column" fxFlex="50">
-              {{ (project$ | async)?.property.keys_number}}
+              {{ project?.property.keys_number}}
             </div>
           </div>
           
-          <div fxLayout="row" *ngIf="(project$ | async)?.property.is_available ">
+          <div fxLayout="row" *ngIf="project?.property.is_available ">
             <div fxLayout="row" fxFlex="50">
               <i class="fas fa-lg fa-home"></i>&nbsp;&nbsp;&nbsp; DISPONIBILITÉ:
             </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="(project$ | async)?.property.is_available">
+            <div fxLayout="column" fxFlex="50" *ngIf="project?.property.is_available">
              Vide
             </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="!(project$ | async)?.property.is_available">
+            <div fxLayout="column" fxFlex="50" *ngIf="!project?.property.is_available">
               Occupé
             </div>
           </div>
           
-          <div fxLayout="row" *ngIf="!(project$ | async)?.property.is_available">
+          <div fxLayout="row" *ngIf="!project?.property.is_available">
             
             <div fxLayout="row" fxFlex="50">
               <i class="fas fa-lg fa-calendar-alt"></i>&nbsp;&nbsp;&nbsp; DATE DE DISPONIBILITÉ:
             </div>
             <div fxLayout="column" fxFlex="50">
-              {{ ((project$ | async)?.property.date_availability) | date: 'dd/MM/yyyy' }}
+              {{ (project?.property.date_availability) | date: 'dd/MM/yyyy' }}
             </div>
           </div>
           
-          <div fxLayout="row" *ngIf="(project$ | async)?.floors_number">
+          <div fxLayout="row" *ngIf="project?.floors_number">
             <div fxLayout="row" fxFlex="50">
               <i class="fas fa-lg far fa-building"></i>&nbsp;&nbsp;&nbsp; NOMBRE D'ÉTAGES:
             </div>
             <div fxLayout="column" fxFlex="50">
-              {{ (project$ | async)?.property.floors_number }}
+              {{ project?.property.floors_number }}
             </div>
           </div>
           
-          <div fxLayout="row" *ngIf="(project$ | async)?.property.has_elevator ">
+          <div fxLayout="row" *ngIf="project?.property.has_elevator ">
             <div fxLayout="row" fxFlex="50">
               <i class="fas fa-lg fa-cogs"></i>&nbsp;&nbsp;&nbsp; ASCENSEUR:
             </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="(project$ | async)?.property.has_elevator">
+            <div fxLayout="column" fxFlex="50" *ngIf="project?.property.has_elevator">
              Oui
             </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="!(project$ | async)?.property.has_elevator">
+            <div fxLayout="column" fxFlex="50" *ngIf="!project?.property.has_elevator">
               Non
             </div>
           </div>
           
-          <div fxLayout="row" *ngIf="(project$ | async)?.property.has_garage ">
+          <div fxLayout="row" *ngIf="project?.property.has_garage ">
             <div fxLayout="row" fxFlex="50">
               <i class="fas fa-lg fa-warehouse"></i>&nbsp;&nbsp;&nbsp; GARAGE:
             </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="(project$ | async)?.property.has_garage">
+            <div fxLayout="column" fxFlex="50" *ngIf="project?.property.has_garage">
              Oui
             </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="!(project$ | async)?.property.has_garage">
+            <div fxLayout="column" fxFlex="50" *ngIf="!project?.property.has_garage">
               Non
             </div>
           </div>
           
-          <div fxLayout="row" *ngIf="(project$ | async)?.property.has_cellar ">
+          <div fxLayout="row" *ngIf="project?.property.has_cellar ">
             <div fxLayout="row" fxFlex="50">
               <i class="fas fa-lg fa-home"></i>&nbsp;&nbsp;&nbsp; CAVE:
             </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="(project$ | async)?.property.has_cellar">
+            <div fxLayout="column" fxFlex="50" *ngIf="project?.property.has_cellar">
              Oui
             </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="!(project$ | async)?.property.has_cellar">
+            <div fxLayout="column" fxFlex="50" *ngIf="!project?.property.has_cellar">
               Non
             </div>
           </div>
           
           
-          <div fxLayout="row" *ngIf="(project$ | async)?.property.has_basement || (project$ | async)?.property.has_park_car_outside ">
+          <div fxLayout="row" *ngIf="project?.property.has_basement || project?.property.has_park_car_outside ">
             <div fxLayout="row" fxFlex="50">
               <i class="fas fa-lg fa-parking"></i>&nbsp;&nbsp;&nbsp; PARKING:
             </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="(project$ | async)?.property.has_basement">
+            <div fxLayout="column" fxFlex="50" *ngIf="project?.property.has_basement">
              Sous-sol
             </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="(project$ | async)?.property.has_park_car_outside">
+            <div fxLayout="column" fxFlex="50" *ngIf="project?.property.has_park_car_outside">
               Extérieur
             </div>
           </div>
           
-          <div fxLayout="row" *ngIf="(project$ | async)?.property.has_guardian ">
+          <div fxLayout="row" *ngIf="project?.property.has_guardian ">
             <div fxLayout="row" fxFlex="50">
               <i class="fas fa-lg fa-user-shield"></i>&nbsp;&nbsp;&nbsp; GARDIEN:
             </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="(project$ | async)?.property.has_guardian">
+            <div fxLayout="column" fxFlex="50" *ngIf="project?.property.has_guardian">
              Oui
             </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="!(project$ | async)?.property.has_guardian">
+            <div fxLayout="column" fxFlex="50" *ngIf="!project?.property.has_guardian">
               Non
             </div>
           </div>
           
-          <div fxLayout="row" *ngIf="(project$ | async)?.property.has_balcony ">
+          <div fxLayout="row" *ngIf="project?.property.has_balcony ">
             <div fxLayout="row" fxFlex="50">
               <i class="fas fa-lg fa-home"></i>&nbsp;&nbsp;&nbsp; BALCON:
             </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="(project$ | async)?.property.has_balcony">
+            <div fxLayout="column" fxFlex="50" *ngIf="project?.property.has_balcony">
              Oui
             </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="!(project$ | async)?.property.has_balcony">
+            <div fxLayout="column" fxFlex="50" *ngIf="!project?.property.has_balcony">
               Non
             </div>
           </div>
           
-          <div fxLayout="row" *ngIf="(project$ | async)?.property.has_terace ">
+          <div fxLayout="row" *ngIf="project?.property.has_terace ">
             <div fxLayout="row" fxFlex="50">
               <i class="fas fa-lg fa-home"></i>&nbsp;&nbsp;&nbsp; TERRASSE:
             </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="(project$ | async)?.property.has_terace">
+            <div fxLayout="column" fxFlex="50" *ngIf="project?.property.has_terace">
              Oui
             </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="!(project$ | async)?.property.has_terace">
+            <div fxLayout="column" fxFlex="50" *ngIf="!project?.property.has_terace">
               Non
             </div>
           </div>
           
-          <div fxLayout="row" *ngIf="(project$ | async)?.property.has_intercom ">
+          <div fxLayout="row" *ngIf="project?.property.has_intercom ">
             <div fxLayout="row" fxFlex="50">
               <i class="fas fa-lg fa-phone-alt"></i>&nbsp;&nbsp;&nbsp; INTERPHONE:
             </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="(project$ | async)?.property.has_intercom">
+            <div fxLayout="column" fxFlex="50" *ngIf="project?.property.has_intercom">
              Oui
             </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="!(project$ | async)?.property.has_intercom">
+            <div fxLayout="column" fxFlex="50" *ngIf="!project?.property.has_intercom">
               Non
             </div>
           </div>
@@ -230,7 +230,7 @@
               }}:
             </div>
             <div fxLayout="column" fxFlex="50">
-              {{ (project$ | async)?.property.minimal_price }}
+              {{ project?.property.minimal_price }}
             </div>
           </div>
           
@@ -243,7 +243,7 @@
               }}:
             </div>
             <div fxLayout="column" fxFlex="50">
-              {{ (project$ | async)?.property.maximum_price }}
+              {{ project?.property.maximum_price }}
             </div>
           </div>
           
@@ -255,7 +255,7 @@
               }}:
             </div>
             <div fxLayout="column" fxFlex="50">
-              {{ (project$ | async)?.property.room }}
+              {{ project?.property.room }}
             </div>
           </div>
           
@@ -266,8 +266,8 @@
               >&nbsp;&nbsp;&nbsp;&nbsp;{{ "form_standard.address" | translate }}:
             </div>
             <div fxLayout="column" fxFlex="50">
-              {{ (project$ | async)?.property.address.description }}
-              {{ (project$ | async)?.property.address.city.name }}
+              {{ project?.property.address.description }}
+              {{ project?.property.address.city.name }}
             </div>
           </div>
           
@@ -279,7 +279,7 @@
               }}:
             </div>
             <div fxLayout="column" fxFlex="50">
-              {{ (project$ | async)?.property.address.country.name }}
+              {{ project?.property.address.country.name }}
             </div>
           </div>
         </mat-card-content>
@@ -308,8 +308,8 @@
                   {{ "form_standard.Fullname" | translate }} :
                 </div>
                 <div fxLayout="column" fxFlex="50">
-                  {{ (project$ | async)?.contact.firstname }}&nbsp;{{
-                    (project$ | async)?.contact.lastname | uppercase
+                  {{ project?.contact.firstname }}&nbsp;{{
+                    project?.contact.lastname | uppercase
                   }}
                 </div>
               </div>
@@ -319,7 +319,7 @@
                   {{ "form_standard.mail" | translate }} :
                 </div>
                 <div fxLayout="column" fxFlex="50">
-                  {{ (project$ | async)?.contact.email }}
+                  {{ project?.contact.email }}
                 </div>
               </div>
               
@@ -328,27 +328,27 @@
                   {{ "form_standard.tel" | translate }} :
                 </div>
                 <div fxLayout="column" fxFlex="50">
-                  {{ (project$ | async)?.contact.telephone }}
+                  {{ project?.contact.telephone }}
                 </div>
               </div>
 
-              <div fxLayout="row" *ngIf="(project$ | async)?.contact.societe" >
+              <div fxLayout="row" *ngIf="project?.contact.societe" >
                 <div  fxLayout="column" fxFlex="50"  >
                   Société :
                   
                 </div>
                 <div  fxLayout="column" fxFlex="50" fxLayoutAlign="space-around none" >
-                  {{(project$ | async)?.contact.societe}}
+                  {{project?.contact.societe}}
                 </div>
               </div>
             
-              <div fxLayout="row" *ngIf="(project$ | async)?.contact.channel_type" >
+              <div fxLayout="row" *ngIf="project?.contact.channel_type" >
                 <div  fxLayout="column" fxFlex="50"  >
                   Type de voie :
                   
                 </div>
                 <div  fxLayout="column" fxFlex="50" fxLayoutAlign="space-around none" >
-                  {{(project$ | async)?.contact.channel_type}}
+                  {{project?.contact.channel_type}}
                 </div>
               </div>
 
@@ -365,8 +365,8 @@
                   {{ "form_standard.address" | translate }} :
                 </div>
                 <div fxLayout="column" fxFlex="50">
-                  {{ (project$ | async)?.contact.address.description }},{{
-                    (project$ | async)?.contact.address.city.name
+                  {{ project?.contact.address.description }},{{
+                    project?.contact.address.city.name
                   }}
                 </div>
               </div>
@@ -376,16 +376,16 @@
                   {{ "form_standard.country" | translate }} :
                 </div>
                 <div fxLayout="column" fxFlex="50">
-                  {{ (project$ | async)?.contact.address.country.name }}
+                  {{ project?.contact.address.country.name }}
                 </div>
               </div>
-              <div fxLayout="row" *ngIf="(project$ | async)?.contact.notes" >
+              <div fxLayout="row" *ngIf="project?.contact.notes" >
                 <div  fxLayout="column" fxFlex="50"  >
                   Notes :
                   
                 </div>
                 <div  fxLayout="column" fxFlex="50" fxLayoutAlign="space-around none" >
-                  {{(project$ | async)?.contact.notes}}
+                  {{project?.contact.notes}}
                 </div>
               </div>
             </section>

@@ -31,7 +31,7 @@
         {{'form_standard.Fullname'|translate}} :
       </div>
       <div  fxLayout="column"  fxFlex="40" fxLayoutAlign="space-around none" >
-       {{(candidate$|async).firstname}}  {{((candidate$|async).lastname)|uppercase}}
+       {{candidate.firstname}}  {{(candidate.lastname)|uppercase}}
       </div>
     </div>
     <br>
@@ -40,7 +40,7 @@
         {{'form_standard.mail'|translate}} :
       </div>
       <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
-        {{(candidate$|async).email}}
+        {{candidate.email}}
       </div>
      
     </div>
@@ -51,7 +51,7 @@
         {{'form_standard.tel'|translate}} :
       </div>
       <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
-        {{(candidate$|async).telephone}}
+        {{candidate.telephone}}
       </div>
     </div>
     <br>
@@ -60,7 +60,7 @@
         {{'form_standard.address'|translate}} :
       </div>
       <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
-        {{(candidate$|async).address.description}}
+        {{candidate.address.description}}
       </div>
     </div>
     <br>
@@ -70,7 +70,7 @@
         {{'form_standard.city'|translate}} :
       </div>
       <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
-        {{(candidate$|async).address.city.name}}
+        {{candidate.address.city.name}}
       </div>
     </div>
     <br>
@@ -80,7 +80,7 @@
         {{'form_standard.country'|translate}} :
       </div>
       <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
-        {{(candidate$|async).address.country.name}}
+        {{candidate.address.country.name}}
       </div>
     </div>
     <br>
@@ -90,7 +90,7 @@
       {{'form_standard.Date_Birth'|translate}} :
     </div>
      <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
-       {{((candidate$|async).birth_day)|date:'yy/mm/dd'}}
+       {{(candidate.birth_day)|date:'yy/mm/dd'}}
      </div>
    </div>
    <br>
@@ -130,7 +130,7 @@
         </div>
         <div  fxLayout="column"  fxFlex="40" fxLayoutAlign="space-around none" >
   
-         {{(candidate$|async).sponsor.firstname}}  {{((candidate$|async).sponsor.lastname)|uppercase}}
+         {{candidate.sponsor.firstname}}  {{(candidate.sponsor.lastname)|uppercase}}
         </div>
       </div>
       <br>
@@ -139,7 +139,7 @@
           {{'form_standard.mail'|translate}} :
         </div>
         <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
-          {{(candidate$|async).sponsor.email}}
+          {{candidate.sponsor.email}}
         </div>
        
       </div>
@@ -150,7 +150,7 @@
           {{'form_standard.tel'|translate}} :
         </div>
         <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
-          {{(candidate$|async).sponsor.telephone}}
+          {{candidate.sponsor.telephone}}
         </div>
       </div>
       <br>
@@ -159,7 +159,7 @@
           {{'form_standard.address'|translate}} :
         </div>
         <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
-          {{(candidate$|async).sponsor.address.description}}
+          {{candidate.sponsor.address.description}}
         </div>
       </div>
       <br>
@@ -169,7 +169,7 @@
           {{'form_standard.city'|translate}} :
         </div>
         <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
-          {{(candidate$|async).sponsor.address.city.name}}
+          {{candidate.sponsor.address.city.name}}
         </div>
       </div>
       <br>
@@ -178,7 +178,7 @@
           {{'form_standard.country'|translate}} :
         </div>
         <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
-          {{(candidate$|async).sponsor.address.country.name}}
+          {{candidate.sponsor.address.country.name}}
         </div>
       </div>
       <br>

@@ -27,7 +27,7 @@
       </div>
       <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
 
-       {{(agent$|async).firstname}}  {{((agent$|async).lastname)|uppercase}}
+       {{agent?.firstname}}  {{(agent?.lastname)|uppercase}}
       </div>
     </div>
     <br>
@@ -36,7 +36,7 @@
         {{'form_standard.Date_Birth'|translate}} : 
       </div>
       <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
-        {{((agent$|async).birth_day) | date: 'dd/MM/yyyy'}}
+        {{(agent?.birth_day) | date: 'dd/MM/yyyy'}}
       </div>
     </div>
     <br>
@@ -46,7 +46,7 @@
 
       </div>
       <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
-        {{(agent$|async).email}}
+        {{agent?.email}}
       </div>
     </div>
     <br>
@@ -55,7 +55,7 @@
         {{'form_standard.tel'|translate}} : 
       </div>
       <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
-        {{(agent$|async).telephone}}
+        {{agent?.telephone}}
       </div>
     </div>
     <br>
@@ -64,7 +64,7 @@
        {{'form_standard.address'|translate}} : 
       </div>
       <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
-        {{(agent$|async).address.description}},&nbsp;{{(agent$|async).address.city.name}},&nbsp;{{(agent$|async).address.country.name}}
+        {{agent?.address.description}},&nbsp;{{agent?.address.city.name}},&nbsp;{{agent?.address.country.name}}
       </div>
     </div>
     <br>
@@ -73,7 +73,7 @@
        {{'form_standard.country'|translate}} : 
       </div>
       <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
-        {{(agent$|async).subsidiary.country.name}}
+        {{agent?.subsidiary.country.name}}
       </div>
     </div>
   </section>

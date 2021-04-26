@@ -36,7 +36,7 @@
         {{'form_standard.Fullname'|translate}} :
       </div>
       <div  fxLayout="column" fxLayoutAlign="space-around none" >
-       {{(contact$|async)?.firstname}}  {{((contact$|async)?.lastname)|uppercase}}
+       {{contact?.firstname}}  {{(contact?.lastname)|uppercase}}
       </div>
     </div>
 
@@ -46,7 +46,7 @@
         
       </div>
       <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
-        {{((contact$|async)?.birth_day) | date: 'dd/MM/yyyy'}}
+        {{(contact?.birth_day) | date: 'dd/MM/yyyy'}}
       </div>
     </div>
   
@@ -56,7 +56,7 @@
         
       </div>
       <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
-        {{(contact$|async)?.email}}
+        {{contact?.email}}
       </div>
     </div>
   
@@ -66,7 +66,7 @@
         
       </div>
       <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
-        {{(contact$|async)?.telephone}}
+        {{contact?.telephone}}
       </div>
     </div>
 
@@ -74,23 +74,23 @@
 
     
   
-    <div fxLayout="row" *ngIf="(contact$|async)?.societe" >
+    <div fxLayout="row" *ngIf="contact?.societe" >
       <div  fxLayout="column" fxFlex="40"  >
         Société :
         
       </div>
       <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
-        {{(contact$|async)?.societe}}
+        {{contact?.societe}}
       </div>
     </div>
   
-    <div fxLayout="row" *ngIf="(contact$|async)?.channel_type" >
+    <div fxLayout="row" *ngIf="contact?.channel_type" >
       <div  fxLayout="column" fxFlex="40"  >
         Type de voie :
         
       </div>
       <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
-        {{(contact$|async)?.channel_type}}
+        {{contact?.channel_type}}
       </div>
     </div>
     
@@ -108,7 +108,7 @@
         {{'form_standard.address'|translate}} :
       </div>
       <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
-        {{(contact$|async)?.address.description}}
+        {{contact?.address.description}}
       </div>
     </div>
   
@@ -117,7 +117,7 @@
           {{'form_standard.city'|translate}} :
         </div>
         <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
-          {{(contact$|async)?.address.city.name}}
+          {{contact?.address.city.name}}
         </div>
       </div>
     
@@ -127,17 +127,17 @@
 
       </div>
       <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
-        {{(contact$|async)?.address.country.name}}
+        {{  contact?.address.country.name}}
       </div>
     </div>
   
-    <div fxLayout="row" *ngIf="(contact$|async)?.notes" >
+    <div fxLayout="row" *ngIf="contact?.notes" >
       <div  fxLayout="column" fxFlex="40"  >
         Notes :
         
       </div>
       <div  fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none" >
-        {{(contact$|async)?.notes}}
+        {{contact?.notes}}
       </div>
     </div>
 

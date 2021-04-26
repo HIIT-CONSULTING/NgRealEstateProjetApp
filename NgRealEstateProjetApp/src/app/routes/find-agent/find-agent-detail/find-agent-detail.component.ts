@@ -11,16 +11,16 @@ import { Agent } from '@shared/models/Agent.model';
 })
 export class FindAgentDetailComponent implements OnInit {
   id:number;
-  agent$:Observable<Agent>;
+  agent:Agent;
   isMen=false;
   constructor(private route:ActivatedRoute, private router:Router, private findAgentService:FindAgentService,
         private translate: TranslateService) { 
     
       this.route.params.subscribe((params)=>{
       this.id=+params['id'];
-      this.agent$=this.findAgentService.getAgent(this.id);
-      this.agent$.subscribe(res=>
+      this.findAgentService.getAgent(this.id).subscribe(res=>
       {
+        this.agent=res;
         if(res.gender.name=="Homme"){ this.isMen=true}      
       })}) 
       

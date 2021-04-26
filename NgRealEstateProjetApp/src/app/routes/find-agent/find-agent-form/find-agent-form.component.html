@@ -86,7 +86,7 @@
 
 <mat-card *ngIf="isSearsh">
 <mat-card-header class="header" >
-  <div class="title-card">{{(agents$|async).length}}  {{'searchAgent.form.findagent'|translate}}</div>
+  <div class="title-card">{{(agents$|async)?.length}}  {{'searchAgent.form.findagent'|translate}}</div>
 </mat-card-header>
   <div fxLayout="row wrap">
      <div class="hiit-col" *ngFor="let agent of agents$|async">

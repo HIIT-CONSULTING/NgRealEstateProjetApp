@@ -451,11 +451,41 @@
                     fxLayoutAlign="space-between center "
                     style="margin-top: 30px"
                   >
-                    <mat-form-field class="full-width" appearance="outline">
-                      <mat-label> Etat du batiment </mat-label>
+                  <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Etat général du bien</mat-label>
+                    <mat-select formControlName="state" >
+                      <mat-option *ngFor="let state of stateList" [value]="state">{{state}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  </div>
+                  <div
+                    fxLayout="column"
+                    fxLayoutAlign="space-between center "
+                    style="margin-top: 30px"
+                  >
+                  <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Orientation général du bien </mat-label>
+                    <mat-select formControlName="orientation" >
+                      <mat-option *ngFor="let orientation of orientationList" [value]="orientation">{{orientation}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  
 
-                      <input matInput formControlName="state" />
-                    </mat-form-field>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                   </div>
                   <div
                     fxLayout="column"
@@ -492,17 +522,7 @@
                       />
                     </mat-form-field>
                   </div>
-                  <div
-                    fxLayout="column"
-                    fxLayoutAlign="space-between center "
-                    style="margin-top: 30px"
-                  >
-                    <mat-form-field class="full-width" appearance="outline">
-                      <mat-label> Orientation </mat-label>
-
-                      <input matInput formControlName="orientation" />
-                    </mat-form-field>
-                  </div>
+                  
                   <div
                     fxLayout="column"
                     fxLayoutAlign="space-between center "
@@ -510,73 +530,74 @@
                   >
                     <div fxLayout="row" fxLayoutAlign="space-between center ">
                       <mat-checkbox
-                        class="example-margin"
+                        
                         formControlName="hasElevator"
                         >Ascenseur</mat-checkbox
                       >
                       <mat-checkbox
-                        class="example-margin"
+                        
                         formControlName="hasTerace"
                         >Terrasse</mat-checkbox
                       >
                       <mat-checkbox
-                        class="example-margin"
+                        
                         formControlName="hasBalcony"
                         >Balcon</mat-checkbox
                       >
                       <mat-checkbox
-                        class="example-margin"
+                        
                         formControlName="hasGuardian"
                         >Gardien</mat-checkbox
                       >
                       <mat-checkbox
-                        class="example-margin"
+                        
                         formControlName="hasIntercom"
                         >Interphone</mat-checkbox
                       >
                     </div>
                   </div>
                   <div
-                    fxLayout="column"
-                    fxLayoutAlign="space-between center "
-                    style="margin-top: 30px"
-                  >
-                    <div fxLayout="row" fxLayoutAlign="space-between center ">
-                      <mat-checkbox
-                        class="example-margin"
-                        formControlName="hasGarage"
-                        >Garage</mat-checkbox
-                      >
-                      <mat-checkbox
-                        class="example-margin"
-                        formControlName="hasCellar"
-                        >Cave</mat-checkbox
-                      >
-                      <mat-checkbox
-                        class="example-margin"
-                        formControlName="hasParkCar"
-                        (click)="
-                          handleChange('hasParkCarOutside');
-                          handleChange('hasBasement')
-                        "
-                        >Parking</mat-checkbox
-                      >
-                      <mat-checkbox
-                        class="example-margin"
-                        formControlName="hasParkCarOutside"
-                        [disabled]="!properties.get('hasParkCar').value"
-                        >Extérieur</mat-checkbox
-                      >
-                      <mat-checkbox
-                        class="example-margin"
-                        formControlName="hasBasement"
-                        [disabled]="!properties.get('hasParkCar').value"
-                        >Sous-sol</mat-checkbox
-                      >
-                    </div>
-                  </div>
+                  fxLayout="column"
+                  fxLayoutAlign=" center center "
+                  style="margin-top: 30px"
+                >
+                  <div fxLayout="row" fxLayoutAlign="space-between center ">
+                                      <mat-checkbox 
+                                        class="example-margin"
+                                        formControlName="hasGarage"
+                                        >Garage</mat-checkbox
+                                      >
+                                      <mat-checkbox 
+                                        class="example-margin"
+                                        formControlName="hasCellar"
+                                        >Cave</mat-checkbox
+                                      >
+                                      <mat-checkbox
+                                      
+                                        class="example-margin"
+                                        formControlName="hasParkCar"
+                                        (click)="
+                                          handleChange('hasParkCarOutside');
+                                          handleChange('hasBasement')
+                                        "
+                                        >Parking</mat-checkbox
+                                      >
+                                      <mat-checkbox 
+                                        class="example-margin"
+                                        formControlName="hasParkCarOutside"
+                                        [disabled]="!properties.get('hasParkCar').value"
+                                        >Extérieur</mat-checkbox
+                                      >
+                                      <mat-checkbox 
+                                        class="example-margin"
+                                        formControlName="hasBasement"
+                                        [disabled]="!properties.get('hasParkCar').value"
+                                        >Sous-sol</mat-checkbox
+                                      >
+                                    </div>
+                                  </div>
                 </mat-expansion-panel>
-                <!--.........................................-->
+                
                 <mat-expansion-panel #panel4 style="width: 100%">
                   <mat-expansion-panel-header
                     class="disable_ripple"
@@ -588,7 +609,8 @@
                   <div
                     fxLayout="column"
                     fxLayoutAlign="space-between center "
-                    style="margin-top: 3%"
+                    style="margin-top: 2%"
+
                     *ngIf="properties.get('propertyType').value !=4"
                   >
                     <mat-form-field class="full-width" appearance="outline">
@@ -604,26 +626,25 @@
                       />
                     </mat-form-field>
                   </div>
-                  <!--  *******                          **************-->
 
-                  <div
-                    fxLayout="column"
-                    fxLayoutAlign="space-between center "
-                    style="margin-top: 3%"
-                  >
-                    <div fxLayout="row" fxLayoutAlign="space-between center ">
-                      <mat-radio-group formControlName="isAvailable">
-                        <mat-radio-button
-                          class="example-margin"
-                          [value]="true"
-                          (click)="handleChange('dateAvailability')"
-                          >Vide</mat-radio-button
-                        >
-                        <mat-radio-button class="example-margin" [value]="false"
-                          >Occupé</mat-radio-button
-                        >
-                      </mat-radio-group>
-                      <mat-form-field class="full-width" appearance="outline">
+                  <div fxLayoutAlign="center" style="margin-top: 2%">
+                    <div fxLayoutAlign="space-between center" class="full-width">
+                
+                      <div appearance="outline" fxFlex fxLayoutAlign="space-between center" >
+                        <mat-radio-group formControlName="isAvailable">
+                            <mat-radio-button
+                              class="example-margin"
+                              [value]="true"
+                              (click)="handleChange('dateAvailability')"
+                              >Libre</mat-radio-button
+                            >
+                            <mat-radio-button class="example-margin" [value]="false"
+                              >Occupé</mat-radio-button
+                            >
+                          </mat-radio-group>
+                      </div>
+                
+                       <mat-form-field appearance="outline" fxFlex="40">
                         <mat-label>Date de disponibilité</mat-label>
                         <input
                           matInput
@@ -637,32 +658,36 @@
                           [disabled]="properties.get('isAvailable').value"
                         ></mat-datepicker-toggle>
                         <mat-datepicker #picker1></mat-datepicker>
-                      </mat-form-field>
+                        
+                       </mat-form-field>
+                
                     </div>
-                  </div>
-                  <div
-                    fxLayout="column"
-                    fxLayoutAlign="space-between center "
-                    style="margin-top: 3%"
-                  >
-                    <div fxLayout="row" fxLayoutAlign="space-between center " *ngIf="properties.get('propertyType').value !=4">
+                 </div>
+                
+                 <div fxLayoutAlign="center" style="margin-top: 2%"  *ngIf="properties.get('propertyType').value !=4">
+                  <div fxLayoutAlign="space-between center" class="full-width">
+              
+                    <div appearance="outline" fxFlex fxLayoutAlign="space-between center" >
                       <mat-checkbox
-                        class="example-margin"
-                        (click)="handleChange('keysNumber')"
-                        formControlName="hasKey"
-                        >Clé disponible</mat-checkbox
-                      >
-                      <mat-form-field class="full-width" appearance="outline">
-                        <mat-label> Numéro de clé</mat-label>
-                        <input
-                          matInput
-                          type="number"
-                          min="0"
-                          formControlName="keysNumber"
-                        />
-                      </mat-form-field>
+                      class="example-margin"
+                      (click)="handleChange('keysNumber')"
+                      formControlName="hasKey"
+                      >Clé disponible</mat-checkbox
+                    >
                     </div>
+              
+                     <mat-form-field appearance="outline" fxFlex="40">
+                      <mat-label> Numéro de clé</mat-label>
+                      <input
+                        matInput
+                        type="number"
+                        min="0"
+                        formControlName="keysNumber"
+                      />
+                     </mat-form-field>
+              
                   </div>
+               </div>
                 </mat-expansion-panel>
               </mat-accordion>
             </div>
@@ -762,8 +787,8 @@
 
                   <section fxFlex="60">
                     <div class="name1" style="font-size: large">
-                      {{ (contact | async).firstname }}&nbsp;{{
-                        (contact | async).lastname | uppercase
+                      {{ contact?.firstname }}&nbsp;{{
+                        contact?.lastname | uppercase
                       }}
                     </div>
                     <div class="role">Acheteur</div>
@@ -779,9 +804,9 @@
                       ADRESSE :
                     </div>
                     <div style="font-family: initial; font-size: large">
-                      {{ (contact | async).address.description }},&nbsp;{{
-                        (contact | async).address.city.name
-                      }},&nbsp;{{ (contact | async).address.country.name }}
+                      {{ contact?.address?.description }},&nbsp;{{
+                        contact?.address?.city.name
+                      }},&nbsp;{{contact?.address?.country.name }}
                     </div>
                   </section>
                 </div>
@@ -822,3 +847,17 @@
     </mat-horizontal-stepper>
   </form>
 </mat-card>
+<!--<div fxLayoutAlign="center">
+    <div fxLayoutAlign="space-between center" class="full-width">
+
+      <mat-form-field appearance="outline" fxFlex="45">
+         
+      </mat-form-field>
+
+       <mat-form-field appearance="outline" fxFlex="45">
+          
+       </mat-form-field>
+
+    </div>
+ </div>
+ -->

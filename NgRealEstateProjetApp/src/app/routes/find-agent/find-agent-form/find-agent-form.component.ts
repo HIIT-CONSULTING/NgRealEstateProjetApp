@@ -33,11 +33,11 @@ export class FindAgentFormComponent implements OnInit {
   
 
   form = this.fb.group({
-    firstname:[null,Validators.pattern(/^([a-zA-Z]{1,}\s?'?-?_?[a-zA-Z]{2,}(\s?'?-?_?[a-zA-Z]{2,})?$)/)],
-    lastname: [null,Validators.pattern(/^([a-zA-Z]{1,}\s?'?-?_?[a-zA-Z]{2,}(\s?'?-?_?[a-zA-Z]{2,})?$)/)],
-    telephone:[null,Validators.pattern(/^((\+)212|0)[1-9](\d{2}){4}$/)],
-    email: [null, Validators.email],
-    subsidiary: null
+    firstname:['',Validators.pattern(/^([a-zA-Z]{1,}\s?'?-?_?[a-zA-Z]{2,}(\s?'?-?_?[a-zA-Z]{2,})?$)/)],
+    lastname: ['',Validators.pattern(/^([a-zA-Z]{1,}\s?'?-?_?[a-zA-Z]{2,}(\s?'?-?_?[a-zA-Z]{2,})?$)/)],
+    telephone:['',Validators.pattern(/^((\+)212|0)[1-9](\d{2}){4}$/)],
+    email: ['', Validators.email],//{ value: '', disabled: true}
+    subsidiary: ''
   });
 
   onSubmit() {

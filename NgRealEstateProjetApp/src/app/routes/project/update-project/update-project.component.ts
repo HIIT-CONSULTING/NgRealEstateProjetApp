@@ -27,6 +27,8 @@ export class UpdateProjectComponent implements OnInit, OnDestroy {
   project$: Observable<Project>;
   showSpinner=true;
   unsubscribe$: Subject<void>;
+  stateList: string[] = ['Neuf', 'rénover','Normal', 'En construction', 'En ruine', 'A rénover', 'Ancien'];
+  orientationList: string[] = ['Nord', 'Sud', 'Ouest', 'Est', 'Nord Est', 'Nord Ouest','Sud Est', 'Sud Ouest'];
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -35,7 +37,7 @@ export class UpdateProjectComponent implements OnInit, OnDestroy {
     private projectService: ProjectService,
     private snackBar: MatSnackBar,
   ) {
-   console.log('kkkkk')
+
     this.unsubscribe$ = new Subject();
     this.form.get('property').get('hasKey').valueChanges.pipe(takeUntil(this.unsubscribe$)).subscribe((value) => {
       value ? this.form.get('property.keysNumber').enable() : this.form.get('property.keysNumber').disable()

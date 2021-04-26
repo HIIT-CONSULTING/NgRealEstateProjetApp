@@ -32,10 +32,13 @@ export class ProjectFormComponent implements OnInit, OnDestroy {
     private contactService: ContactService,
     private dialog: MatDialog,
   ) {
+    //this.properties.get('dateAvailability').disable();
+    this.properties.get('keysNumber').disable();
     this.unsubscribe$ = new Subject();
     this.properties.controls['hasKey'].valueChanges.pipe(takeUntil(this.unsubscribe$)).subscribe((value) => {
       value ? this.properties.get('keysNumber').enable() : this.properties.get('keysNumber').disable()
     })
+  
   }
   show: any = false;
   agents$: Observable<Agent[]>;
@@ -45,9 +48,12 @@ export class ProjectFormComponent implements OnInit, OnDestroy {
   choose: boolean;
   selectedPersonId = null;
   contacts$: Observable<Contact[]>;
-  contact: Observable<Contact>;
+  contact: Contact;
   test : boolean = false;
   valid_result : number =0;
+  stateList: string[] = ['Neuf', 'rénover','Normal', 'En construction', 'En ruine', 'A rénover', 'Ancien'];
+  orientationList: string[] = ['Nord', 'Sud', 'Ouest', 'Est', 'Nord Est', 'Nord Ouest','Sud Est', 'Sud Ouest'];
+
   openDialog() {
     this.dialog
       .open(DialogContentProjectComponent, {
@@ -66,25 +72,25 @@ properties = this.fb.group({
   area: ['',Validators.required],
   room: [''],
   
-    isAvailable: ['false'],
+    isAvailable: true,
     dateAvailability:[''],
-    keysNumber:[{ value: '', disabled: true}],
+    keysNumber:[''],
     hasKey:false,
     estimatedSurface: [''],
-    state: ['new'],
+    state: [''],
     constructionYear: [''],
     orientation: [''],
     floorsNumber: [''],
-    hasGuardian: [''],
-    hasIntercom: [''],
-    hasElevator: [''],
-    hasTerace: [''],
-    hasBalcony: [''],
-    hasGarage: [''],
-    hasParkCar: [''],
-    hasBasement: [''],
-    hasParkCarOutside: [''],
-    hasCellar: [''],
+    hasGuardian: false,
+    hasIntercom: false,
+    hasElevator: false,
+    hasTerace: false,
+    hasBalcony:false,
+    hasGarage: false,
+    hasParkCar: false,
+    hasBasement: false,
+    hasParkCarOutside: false,
+    hasCellar: false,
 
 
 
@@ -165,26 +171,30 @@ form = this.fb.group({
     if (this.properties.get("constructionYear").value != '') {
       this.properties.get("constructionYear").setValue(moment(this.properties.get("constructionYear").value).format("YYYY-MM-DD"));
     }
-    if (this.properties.get("dateAvailability" ).value !='') {
+    if (this.properties.get("dateAvailability").value !='') {
       this.properties.get("dateAvailability").setValue(moment(this.properties.get("dateAvailability").value).format("YYYY-MM-DD"));
     }
   }
 
   save() {
-    
     this.formatDate();
     this.projectService.save(this.form.value).subscribe(response=>{
-      this.router.navigate(['/project/projectlist'])
-    }
-
-    );
-  }
+      this.snackBar.open('le projet est ajouté avec succès!', '', { duration: 1000 ,panelClass: ['blue-snackbar'] ,  verticalPosition: 'top', horizontalPosition:'end' });
+      setTimeout(()=>{  
+        this.router.navigate(['/project/projectlist'])
+      }, 2000); },
+    (error) => {
+      this.snackBar.open("veuillez vérifier vos informations!", '', { duration: 1000, panelClass: ['red-snackbar'], verticalPosition: 'top', horizontalPosition:'end'});
+    });
+}
 
   OnClick() {
       if (this.selectedPersonId != null) {
       this.show = true;
-      this.contact = this.contactService.getContact(this.selectedPersonId);
-      this.contactService.getContact(this.selectedPersonId).subscribe();
+     
+      this.contactService.getContact(this.selectedPersonId).subscribe(contact => {
+        this.contact=contact
+      });
     }
     else{this.show = false;}
     

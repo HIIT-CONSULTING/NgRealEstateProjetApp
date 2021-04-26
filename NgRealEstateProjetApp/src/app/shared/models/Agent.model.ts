@@ -9,7 +9,7 @@ export interface Agent{
     telephone: string;
     address:Address;
     gender:Gender,
-    birthDay:Date;
+    birth_day:Date;
     subsidiary: Subsidiary;
     roles:Role;
     
@@ -35,7 +35,7 @@ export interface Agent{
       telephone: Agent['telephone'];
       address:Agent['address'];
       gender:Agent['gender'],
-      birthDay:Agent['birthDay'];
+      birthDay:Agent['birth_day'];
     }
     
     
@@ -85,38 +85,38 @@ export interface Agent{
 
    export interface Project{
     id:number,
-    projectType: string,
-    projectState: string,
-    projectKind: string,
+    project_type: string,
+    project_state: string,
+    project_kind: string,
     contact:Contact,
     property:{
       id:number,
       area:string,
-      minimalPrice: string,
-      maximumPrice: string,
+      minimal_price: string,
+      maximum_price: string,
       room: String
 
       orientation?: string,
       key?: number,
-      roomsNumber?: number,
-      estimatedSurface?: number,
-      constructionYear?: Date,
+      rooms_number?: number,
+      estimated_surface?: number,
+      construction_year?: Date,
       state?: string;
-      floorsNumber?: number,
-      dateAvailability?: Date,
-      isAvailable?: boolean,
-      hasGuardian? : boolean,
-      hasIntercom?: boolean,
-      hasElevator? : boolean,
-      hasTerace? :  boolean,
-      hasBalcony? : boolean,
-      hasGarage? : boolean,
-      hasParkCar?: boolean,
-      sousSol?: boolean,
+      floors_number?: number,
+      date_availability?: Date,
+      is_available?: boolean,
+      has_guardian? : boolean,
+      has_intercom?: boolean,
+      has_elevator? : boolean,
+      has_terace? :  boolean,
+      has_balcony? : boolean,
+      has_garage? : boolean,
+      has_park_car?: boolean,
+      sous_sol?: boolean,
       exterieur?: boolean,
       cave?: boolean,
     
-      propertyType:{
+      property_type:{
         id:number,
         name:String,
       },

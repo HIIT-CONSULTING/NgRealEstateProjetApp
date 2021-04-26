@@ -14,6 +14,7 @@ export class CandidateDetailsComponent implements OnInit {
 
   id:number;
   candidate$:Observable<Candidate>;
+  candidate:Candidate;
   isMen=false;
   inProgress=false;
   accepted=false;
@@ -24,7 +25,9 @@ export class CandidateDetailsComponent implements OnInit {
       this.id=+params['id'];
       this.candidate$=this.sponsorService.getCandidate(this.id);
       this.candidate$.subscribe(res=>
+        
       {
+        this.candidate =res;
         if(res.gender.name=="Men"){ this.isMen=true}
 
           if(res.status==="in_progress"){
