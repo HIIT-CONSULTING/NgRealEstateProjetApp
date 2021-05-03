@@ -4,7 +4,8 @@
         "sponsorship":"Parrainage",
         "sponsorship-admin":"Parrainage",
         "project":"Gestions des projets ",
-        "contact":"Gestion des contacts"
+        "contact":"Gestion des contacts",
+        "mandat":"Gestion des mandat"
     },
     "user": {
         "profile": "Profile",
@@ -27,6 +28,17 @@
         "update":"Modifier",
         "consult":"Consulter",
         "delete":"Supprimer",
+
+
+
+
+
+        "societe": "Société",
+        "channelType": "Type de voie",
+        "notes": "Notes",
+        "save": "Enregistrer",
+        "yes" : "Oui",
+
         "email.error":"entrer un email valide",
         "tel.error":"Entrer un numéro de téléphone valide Exemple: 0612345678 ou +212612345678 ",
         "lastname.error":"Entrer un nom valide ",
@@ -55,12 +67,12 @@
     } , 
     "Property" : {
         "title":"Créer un nouveau projet",
-        "title-detail":"FICHE D'UN PROJET",
+        "title-detail":"Fiche d'un projet",
         "title-list":"Liste des projets",
-        "title-update":"MODIFIER UN Projet",
-        "title-data":"RÉCAPITULATIF DU BIEN",       
-        "next":"ÉTAPE SUIVANTE",
-        "previous":"ÉTAPE PÉCÉDENTE", 
+        "title-update":"Modifier un projet",
+        "title-data":"Récapitulatif du bien",       
+        "next":"Étape suivante",
+        "previous":"Étape précédente", 
         "transaction":"Transaction",
         "domaine":"Domaine",
         "destination":"Destination",
@@ -68,14 +80,44 @@
         "informations":"Informations sur le projet",
         "contact":"Contact lié au projet",
         "select_contact":"Séléctionner un contact",
-        "contactresult":"LE CONTACT LIÉ",
+        "contactresult":"Le contact lié",
         "form":{
-            "pricemin":"PRIX MINIMUM",
-            "pricemax":"PRIX MAXIMUM ",
+            "pricemin":"Prix minimum",
+            "pricemax":"Prix maximum ",
             "area":"Surface",
-            "nbpieces":"NOMBRE DE PIÉCES",
-            "budget":"PRIX",
-            "propery_title":"LIEU DU BIEN",
+            "nbpieces":"Nomber de piéces",
+            "budget":"Prix",
+
+            "construction": "Construction",
+            "areaEsteme":"Surface estimatée",
+            "state":"Etat général du bien",
+            "orientation":"Orientation général du bien ",
+            "constructionYear":"Année de construction",
+            "floorsNumber":"Nombre d'étages",
+            "hasElevator":"Ascenseur",
+            "hasTerace": "Terrasse",
+            "hasBalcony": "Balcon",
+            "hasGuardian":"Gardien",
+            "hasIntercom":"Interphone",
+            "hasGarage": "Garage",
+            "hasCellar":"Cave",
+            "hasParkCar": "Parking",
+            "hasParkCarOutside": "Extérieur",
+            "hasBasement": "Sous-sol",
+            "isAvailable": "Libre",
+            "notAvailable": "Occupé",
+            "dateAvailability": "Date de disponibilité ",
+            "vailability": "Disponibilité",
+            "hasKey": "Clé disponible",
+            "keysNumber": "Numéro de clé",
+            "or": "Ou",
+
+
+            
+
+
+
+            "propery_title":"Lieu du bien",
             "add":"Ajouter un projet",
             "country.error":"Veuillez sélectionner un pays ",
             "city.error":"Veuillez sélectionner un ville ",
@@ -109,13 +151,23 @@
             "name_sponsor":"Nom Parrain",
             "name_candidat":"Nom Candidat",
             "Date_CREATION" : "Date de Création", 
-            "status" : "ÉTAT DU CANDIDAT",
-            "add":"Ajouter un candidat",
+            "status" : "État Du Candidat",
+            "add":"Ajouter Un Candidat",
             "accept":"ACCEPTER",
             "refus":"REfUSER"         
+        }        
+    },
+    "Mandat" : {
+        "title": "Mandat",
+        "title-list":"Liste des mandats",
+        "title-data" : "Type de mandat" ,
+        "newMandate" :"Nouveau Mandat" ,
+        "detail" : "Detail De Mandat",
+        "Download":"Telecharger",
+        "title-bien":"Détail du bien",
+        "title-mandan":"Détail du mandant"
         }
         
-    }
 
 
 

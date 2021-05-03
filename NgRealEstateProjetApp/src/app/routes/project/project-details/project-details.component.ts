@@ -42,6 +42,10 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
   Onclick() {
-    this.router.navigate(["/contact/contactlist"]);
+    this.router.navigate(["/contact/projectlist"]);
   }
+  Onpage(id:number){
+    this.router.navigate(['/project',id,'mandatlist']);
+  }
+
 }

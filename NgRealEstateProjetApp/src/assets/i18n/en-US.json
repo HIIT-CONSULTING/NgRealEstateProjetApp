@@ -4,7 +4,9 @@
         "sponsorship":"Sponsorship",
         "sponsorship-admin":"Sponsorship",
         "project":"Projects",
-        "contact":"Contacts"
+        "contact":"Contacts",
+        "mandat" : "Mandates"
+        
     },
     "user": {
         "profile": "profile",
@@ -103,6 +105,7 @@
             "maximumPrice.error":"Enter a valid price",
             "contact.error":"Please select a contact"
         }
+        
     } 
 
 

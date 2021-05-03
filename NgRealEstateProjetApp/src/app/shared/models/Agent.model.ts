@@ -95,9 +95,9 @@ export interface Agent{
       minimal_price: string,
       maximum_price: string,
       room: String
-
       orientation?: string,
-      key?: number,
+      keys_number?: number,
+      has_key?:boolean,
       rooms_number?: number,
       estimated_surface?: number,
       construction_year?: Date,
@@ -115,6 +115,11 @@ export interface Agent{
       sous_sol?: boolean,
       exterieur?: boolean,
       cave?: boolean,
+      has_cellar?: boolean,
+      has_park_car_outside?:boolean,
+      has_basement?:boolean,
+
+    
     
       property_type:{
         id:number,
@@ -136,4 +141,15 @@ export interface Agent{
     email: string,
     subsidiary: number
    }
-
+   export interface TypeMandat{
+    id:number;
+    name:string;
+   }
+   export interface Mandat{
+     id :number;
+    status: string,
+    project: Project,
+    type: TypeMandat,
+ 
+   }
+   

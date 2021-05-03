@@ -24,7 +24,7 @@ export class ProjectService {
    */
   getProjects():Observable<any[]>{
     let page=1;
-    let limit=6
+    let limit=10;
     let params=new HttpParams();  
     params=params.append('page',page.toString());
     params=params.append('limit',limit.toString());

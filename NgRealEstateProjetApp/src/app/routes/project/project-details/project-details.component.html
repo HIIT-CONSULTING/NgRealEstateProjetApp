@@ -2,7 +2,7 @@
 
 <mat-card *ngIf="!showSpinner">
   <mat-card-content style="margin: auto; width: 80%; padding: 30px">
-    <div class="card-header card-header-danger">
+    <div class="card-header card-header-danger width-class">
       <h4 class="card-title">
         Projet {{ project?.contact.firstname }}
         {{ project?.contact.lastname }}
@@ -19,208 +19,241 @@
         text-align: center;
       "
     >
-      {{ project?.project_type }}/{{
-        project?.project_state
-      }}/{{ project?.project_kind }}/{{
-        project?.property.property_type.name
-      }}
-    </div>
-    <div>
+      {{ project?.project_type }}/{{ project?.project_state }}/{{
+        project?.project_kind
+      }}/{{ project?.property.property_type.name }}
+
       <mat-card style="width: 80%; margin-top: 3%">
-        <mat-card-header class="header">
-          <div class="title-card">{{ "Property.title-data" | translate }}</div>
-        </mat-card-header>
-        <mat-card-content style="font-size: 100%; font-family: none">
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="header">
+          <mat-card-header>
+            <div class="title-card">
+              {{ "Property.title-data" | translate }}
+            </div>
+          </mat-card-header>
+          <div>
+            <button
+              mat-button
+              mat-stroked-button
+              class="btn"
+              (click)="Onpage(project?.id)"
+            >
+            {{ "Mandat.title" | translate }}
+            </button>
+          </div>
+        </div>
+
+        <mat-card-content>
           <div fxLayout="row">
             <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg fa-chart-area"></i>&nbsp;&nbsp;&nbsp; SURFACE:
+              <i class="fas fa-lg fa-chart-area"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.area" | translate }}:
             </div>
             <div fxLayout="column" fxFlex="50">
               {{ project?.property.area }}
             </div>
           </div>
-          
-          <div  *ngIf="project?.property.estimated_surface">
+
+          <div *ngIf="project?.property.estimated_surface">
             <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg fa-chart-area"></i>&nbsp;&nbsp;&nbsp; SURFACE ESTIMÉE:
+              <i class="fas fa-lg fa-chart-area"></i>&nbsp;&nbsp;&nbsp;{{"Property.form.areaEsteme" | translate }} :
             </div>
             <div fxLayout="column" fxFlex="50">
               {{ project?.property.estimated_surface }}
             </div>
           </div>
-          
 
-          <div fxLayout="row" *ngIf="project?.property.state ">
+          <div fxLayout="row" *ngIf="project?.property.state">
             <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg far fa-building"></i>&nbsp;&nbsp;&nbsp; ÉTAT DU BATIMENT:
+              <i class="fas fa-lg far fa-building"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.state" | translate }} :
+              
+           
             </div>
-            <div fxLayout="column" fxFlex="50" >
-              {{ project?.property.state}}
+            <div fxLayout="column" fxFlex="50">
+              {{ project?.property.state }}
             </div>
           </div>
-          
+
           <div fxLayout="row" *ngIf="project?.property.construction_year">
             <div fxLayout="row" fxFlex="70">
-              <i class="fas fa-lg fa-calendar-alt"></i> &nbsp;&nbsp;&nbsp; ANNÉE DE CONSTRUCTION:
+              <i class="fas fa-lg fa-calendar-alt"></i> &nbsp;&nbsp;&nbsp; {{"Property.form.constructionYear"|translate }} :
             </div>
             <div fxLayout="column" fxFlex="50">
-              {{ (project?.property.construction_year )| date: 'dd/MM/yyyy'}}
+              {{ project?.property.construction_year | date: "dd/MM/yyyy" }}
             </div>
           </div>
-          
-          <div fxLayout="row" *ngIf="project?.property.orientation ">
+
+          <div fxLayout="row" *ngIf="project?.property.orientation">
             <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg fa-cloud-sun"></i>&nbsp;&nbsp;&nbsp; ORIENTATION :
+              <i class="fas fa-lg fa-cloud-sun"></i>&nbsp;&nbsp;&nbsp;
+              {{"Property.form.orientation" | translate }} :
             </div>
             <div fxLayout="column" fxFlex="50">
-              {{ project?.property.orientation}}
+              {{ project?.property.orientation }}
             </div>
           </div>
-          
-          <div fxLayout="row" *ngIf="project?.property.has_key ">
+
+          <div fxLayout="row" *ngIf="project?.property.has_key">
             <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg fa-key"></i>&nbsp;&nbsp;&nbsp; NUMERO DE CLÉ :
+              <i class="fas fa-lg fa-key"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.keysNumber" | translate }} :
             </div>
             <div fxLayout="column" fxFlex="50">
-              {{ project?.property.keys_number}}
+              {{ project?.property.keys_number }}
             </div>
           </div>
-          
-          <div fxLayout="row" *ngIf="project?.property.is_available ">
+
+          <div fxLayout="row" *ngIf="project?.property.is_available==true||project?.property.is_available==false">
             <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg fa-home"></i>&nbsp;&nbsp;&nbsp; DISPONIBILITÉ:
+              <i class="fas fa-lg fa-home"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.vailability" | translate }} :
             </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="project?.property.is_available">
-             Vide
+            <div
+              fxLayout="column"
+              fxFlex="50"
+              *ngIf="project?.property.is_available"
+            >
+            {{"Property.form.isAvailable" | translate }} 
             </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="!project?.property.is_available">
-              Occupé
+            <div
+              fxLayout="column"
+              fxFlex="50"
+              *ngIf="!project?.property.is_available"
+            >
+              {{"Property.form.notAvailable" | translate }} 
             </div>
           </div>
-          
+
           <div fxLayout="row" *ngIf="!project?.property.is_available">
-            
             <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg fa-calendar-alt"></i>&nbsp;&nbsp;&nbsp; DATE DE DISPONIBILITÉ:
+              <i class="fas fa-lg fa-calendar-alt"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.dateAvailability" | translate }} :
             </div>
             <div fxLayout="column" fxFlex="50">
-              {{ (project?.property.date_availability) | date: 'dd/MM/yyyy' }}
+              {{ project?.property.date_availability | date: "dd/MM/yyyy" }}
             </div>
           </div>
-          
-          <div fxLayout="row" *ngIf="project?.floors_number">
+
+          <div fxLayout="row" *ngIf="project?.property.floors_number">
             <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg far fa-building"></i>&nbsp;&nbsp;&nbsp; NOMBRE D'ÉTAGES:
+              <i class="fas fa-lg far fa-building"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.floorsNumber" | translate }} :
             </div>
             <div fxLayout="column" fxFlex="50">
               {{ project?.property.floors_number }}
             </div>
           </div>
-          
-          <div fxLayout="row" *ngIf="project?.property.has_elevator ">
-            <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg fa-cogs"></i>&nbsp;&nbsp;&nbsp; ASCENSEUR:
-            </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="project?.property.has_elevator">
-             Oui
-            </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="!project?.property.has_elevator">
-              Non
-            </div>
-          </div>
-          
-          <div fxLayout="row" *ngIf="project?.property.has_garage ">
-            <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg fa-warehouse"></i>&nbsp;&nbsp;&nbsp; GARAGE:
-            </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="project?.property.has_garage">
-             Oui
-            </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="!project?.property.has_garage">
-              Non
-            </div>
-          </div>
-          
-          <div fxLayout="row" *ngIf="project?.property.has_cellar ">
-            <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg fa-home"></i>&nbsp;&nbsp;&nbsp; CAVE:
-            </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="project?.property.has_cellar">
-             Oui
-            </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="!project?.property.has_cellar">
-              Non
-            </div>
-          </div>
-          
-          
-          <div fxLayout="row" *ngIf="project?.property.has_basement || project?.property.has_park_car_outside ">
-            <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg fa-parking"></i>&nbsp;&nbsp;&nbsp; PARKING:
-            </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="project?.property.has_basement">
-             Sous-sol
-            </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="project?.property.has_park_car_outside">
-              Extérieur
-            </div>
-          </div>
-          
-          <div fxLayout="row" *ngIf="project?.property.has_guardian ">
-            <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg fa-user-shield"></i>&nbsp;&nbsp;&nbsp; GARDIEN:
-            </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="project?.property.has_guardian">
-             Oui
-            </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="!project?.property.has_guardian">
-              Non
-            </div>
-          </div>
-          
-          <div fxLayout="row" *ngIf="project?.property.has_balcony ">
-            <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg fa-home"></i>&nbsp;&nbsp;&nbsp; BALCON:
-            </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="project?.property.has_balcony">
-             Oui
-            </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="!project?.property.has_balcony">
-              Non
-            </div>
-          </div>
-          
-          <div fxLayout="row" *ngIf="project?.property.has_terace ">
-            <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg fa-home"></i>&nbsp;&nbsp;&nbsp; TERRASSE:
-            </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="project?.property.has_terace">
-             Oui
-            </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="!project?.property.has_terace">
-              Non
-            </div>
-          </div>
-          
-          <div fxLayout="row" *ngIf="project?.property.has_intercom ">
-            <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg fa-phone-alt"></i>&nbsp;&nbsp;&nbsp; INTERPHONE:
-            </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="project?.property.has_intercom">
-             Oui
-            </div>
-            <div fxLayout="column" fxFlex="50" *ngIf="!project?.property.has_intercom">
-              Non
-            </div>
-          </div>
-          
-          
 
+          <div fxLayout="row" *ngIf="project?.property.has_elevator">
+            <div fxLayout="row" fxFlex="50">
+              <i class="fas fa-lg fa-cogs"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.hasElevator" | translate }} :
+            </div>
+            <div
+              fxLayout="column"
+              fxFlex="50"
+            >
+              {{ "form_standard.yes" | translate }}
+            </div>
+            
+          </div>
 
+          <div fxLayout="row" *ngIf="project?.property.has_garage">
+            <div fxLayout="row" fxFlex="50">
+              <i class="fas fa-lg fa-warehouse"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.hasGarage" | translate }} :
+            </div>
+            <div
+              fxLayout="column"
+              fxFlex="50"
+              
+            >
+              {{ "form_standard.yes" | translate }}
+            </div>
+            
+          </div>
 
+          <div fxLayout="row" *ngIf="project?.property.has_cellar">
+            <div fxLayout="row" fxFlex="50">
+              <i class="fas fa-lg fa-home"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.hasCellar" | translate }} :
+            </div>
+            <div
+              fxLayout="column"
+              fxFlex="50"
+            >
+              {{ "form_standard.yes" | translate }}
+            </div>
+            
+          </div>
 
+          <div
+            fxLayout="row"
+            *ngIf="
+              project?.property.has_basement ||
+              project?.property.has_park_car_outside
+            "
+          >
+            <div fxLayout="row" fxFlex="50">
+              <i class="fas fa-lg fa-parking"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.hasParkCar" | translate }} :
+            </div>
+            <div
+              fxLayout="column"
+              fxFlex="50"
+              *ngIf="project?.property.has_basement"
+            >
+            {{"Property.form.hasBasement" | translate }}
+            </div>
+            <div
+              fxLayout="column"
+              fxFlex="50"
+              *ngIf="project?.property.has_park_car_outside"
+            >
+            {{"Property.form.hasParkCarOutside" | translate }} 
+            </div>
+          </div>
 
+          <div fxLayout="row" *ngIf="project?.property.has_guardian">
+            <div fxLayout="row" fxFlex="50">
+              <i class="fas fa-lg fa-user-shield"></i>&nbsp;&nbsp;&nbsp;
+              {{"Property.form.hasGuardian" | translate }} :
+            </div>
+            <div
+              fxLayout="column"
+              fxFlex="50"
+            >
+              {{ "form_standard.yes" | translate }}
+            </div>
+            
+          </div>
 
+          <div fxLayout="row" *ngIf="project?.property.has_balcony">
+            <div fxLayout="row" fxFlex="50">
+              <i class="fas fa-lg fa-home"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.hasBalcony" | translate }} :
+            </div>
+            <div
+              fxLayout="column"
+              fxFlex="50"
+            >
+              {{ "form_standard.yes" | translate }}
+            </div>
+          </div>
+
+          <div fxLayout="row" *ngIf="project?.property.has_terace">
+            <div fxLayout="row" fxFlex="50">
+              <i class="fas fa-lg fa-home"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.hasTerace" | translate }} :
+            </div>
+            <div
+              fxLayout="column"
+              fxFlex="50"
+            >
+              {{ "form_standard.yes" | translate }}
+            </div>
+          </div>
+
+          <div fxLayout="row" *ngIf="project?.property.has_intercom">
+            <div fxLayout="row" fxFlex="50">
+              <i class="fas fa-lg fa-phone-alt"></i>&nbsp;&nbsp;&nbsp;
+              {{"Property.form.hasIntercom" | translate }} :
+            </div>
+            <div
+              fxLayout="column"
+              fxFlex="50"
+            >
+              {{ "form_standard.yes" | translate }}
+            </div>
+          </div>
 
           <div fxLayout="row">
             <div fxLayout="row" fxFlex="50">
@@ -233,7 +266,6 @@
               {{ project?.property.minimal_price }}
             </div>
           </div>
-          
 
           <div fxLayout="row">
             <div fxLayout="row" fxFlex="50">
@@ -246,7 +278,6 @@
               {{ project?.property.maximum_price }}
             </div>
           </div>
-          
 
           <div fxLayout="row">
             <div fxLayout="row" fxFlex="50">
@@ -258,19 +289,19 @@
               {{ project?.property.room }}
             </div>
           </div>
-          
 
           <div fxLayout="row">
             <div fxLayout="row" fxFlex="50">
               <i class="fas fa-lg fa-address-card"></i
-              >&nbsp;&nbsp;&nbsp;&nbsp;{{ "form_standard.address" | translate }}:
+              >&nbsp;&nbsp;&nbsp;&nbsp;{{
+                "form_standard.address" | translate
+              }}:
             </div>
             <div fxLayout="column" fxFlex="50">
               {{ project?.property.address.description }}
               {{ project?.property.address.city.name }}
             </div>
           </div>
-          
 
           <div fxLayout="row">
             <div fxLayout="row" fxFlex="50">
@@ -286,10 +317,12 @@
       </mat-card>
     </div>
 
+
+
     <div>
       <mat-card style="width: 80%">
         <mat-card-header class="header">
-          <div class="title-card">CONTACT PRINCIPAL</div>
+          <div class="title-card">{{"Property.contact" | translate }}</div>
         </mat-card-header>
         <mat-card-content style="font-size: 100%; font-family: none">
           <div fxLayout="row">
@@ -313,7 +346,7 @@
                   }}
                 </div>
               </div>
-              
+
               <div fxLayout="row">
                 <div fxLayout="column" fxFlex="50">
                   {{ "form_standard.mail" | translate }} :
@@ -322,7 +355,7 @@
                   {{ project?.contact.email }}
                 </div>
               </div>
-              
+
               <div fxLayout="row">
                 <div fxLayout="column" fxFlex="50">
                   {{ "form_standard.tel" | translate }} :
@@ -332,33 +365,27 @@
                 </div>
               </div>
 
-              <div fxLayout="row" *ngIf="project?.contact.societe" >
-                <div  fxLayout="column" fxFlex="50"  >
-                  Société :
-                  
-                </div>
-                <div  fxLayout="column" fxFlex="50" fxLayoutAlign="space-around none" >
-                  {{project?.contact.societe}}
-                </div>
-              </div>
-            
-              <div fxLayout="row" *ngIf="project?.contact.channel_type" >
-                <div  fxLayout="column" fxFlex="50"  >
-                  Type de voie :
-                  
-                </div>
-                <div  fxLayout="column" fxFlex="50" fxLayoutAlign="space-around none" >
-                  {{project?.contact.channel_type}}
+              <div fxLayout="row" *ngIf="project?.contact.societe">
+                <div fxLayout="column" fxFlex="50">{{ "form_standard.societe" | translate }} :</div>
+                <div
+                  fxLayout="column"
+                  fxFlex="50"
+                  fxLayoutAlign="space-around none"
+                >
+                  {{ project?.contact.societe }}
                 </div>
               </div>
 
-
-
-
-
-
-
-
+              <div fxLayout="row" *ngIf="project?.contact.channel_type">
+                <div fxLayout="column" fxFlex="50">{{ "form_standard.channelType" | translate }}</div>
+                <div
+                  fxLayout="column"
+                  fxFlex="50"
+                  fxLayoutAlign="space-around none"
+                >
+                  {{ project?.contact.channel_type }}
+                </div>
+              </div>
 
               <div fxLayout="row">
                 <div fxLayout="column" fxFlex="50">
@@ -370,7 +397,7 @@
                   }}
                 </div>
               </div>
-              
+
               <div fxLayout="row">
                 <div fxLayout="column" fxFlex="50">
                   {{ "form_standard.country" | translate }} :
@@ -379,19 +406,30 @@
                   {{ project?.contact.address.country.name }}
                 </div>
               </div>
-              <div fxLayout="row" *ngIf="project?.contact.notes" >
-                <div  fxLayout="column" fxFlex="50"  >
-                  Notes :
-                  
-                </div>
-                <div  fxLayout="column" fxFlex="50" fxLayoutAlign="space-around none" >
-                  {{project?.contact.notes}}
+              <div fxLayout="row" *ngIf="project?.contact.notes">
+                <div fxLayout="column" fxFlex="50">{{ "form_standard.notes" | translate }} :</div>
+                <div
+                  fxLayout="column"
+                  fxFlex="50"
+                  fxLayoutAlign="space-around none"
+                >
+                  {{ project?.contact.notes }}
                 </div>
               </div>
             </section>
           </div>
         </mat-card-content>
       </mat-card>
+      <div fxLayoutAlign="start center">
+        <a
+          ><i
+            (click)="Onclick()"
+            class="fa fa-3x fa-angle-left"
+            style="color: #4e99c5"
+            aria-hidden="true"
+          ></i
+        ></a>
+      </div>
     </div>
   </mat-card-content>
 </mat-card>
