@@ -21,12 +21,7 @@
 
 
         
-        <ng-container cdkColumnDef="Date De Création">
-          <mat-header-cell *cdkHeaderCellDef>Date De Création</mat-header-cell>
-          <mat-cell *cdkCellDef="let row">{{
-            row.created_at | date: "dd/MM/yyyy"
-          }} </mat-cell>
-              </ng-container>
+        
 
 
         
@@ -49,7 +44,21 @@
         <ng-container cdkColumnDef="Nom Du Mandant">
           <mat-header-cell *cdkHeaderCellDef>Nom Du Mandant</mat-header-cell>
           <mat-cell *cdkCellDef="let row">{{ row.project.contact.lastname }}</mat-cell>
-              </ng-container>
+        </ng-container>
+        
+
+        <ng-container cdkColumnDef="projectState">
+                <mat-header-cell *cdkHeaderCellDef>Statut Du Bian</mat-header-cell>
+                <mat-cell *cdkCellDef="let row">{{
+                  row.project.projectState
+                }} </mat-cell>
+        </ng-container>
+        <ng-container cdkColumnDef="projectType">
+                      <mat-header-cell *cdkHeaderCellDef>Type Du Bian</mat-header-cell>
+                      <mat-cell *cdkCellDef="let row">{{
+                        row.project.projectType
+                      }} </mat-cell>
+          </ng-container>
 
 
         
@@ -100,18 +109,7 @@
           </mat-cell>
            </ng-container>
 
-           <ng-container cdkColumnDef="Telecharger">
-            <mat-header-cell *cdkHeaderCellDef>Telecharger</mat-header-cell>
-            <mat-cell *cdkCellDef="let row"> <button  *ngIf="row.status == 'accepted'"
-              class="btn"
-              mat-button
-              mat-stroked-button
-              (click)="download(row.id)"
-              
-            >
-            {{ "Mandat.Download" | translate }}
-            </button></mat-cell>
-                </ng-container>
+      
 
 
         
@@ -135,6 +133,10 @@
               <button mat-menu-item (click)="details(row.id)">
                 <mat-icon>remove_red_eye</mat-icon>
                 <span>{{ "form_standard.consult" | translate }}</span>
+              </button>
+              <button mat-menu-item (click)="download(row.id)" *ngIf="row.status == 'accepted'">
+                <mat-icon>cloud_download</mat-icon>
+                <span>{{ "Mandat.Download" | translate }}</span>
               </button>
             </mat-menu>
           </mat-cell>

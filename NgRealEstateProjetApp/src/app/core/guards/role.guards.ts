@@ -14,10 +14,9 @@ export class RoleGuard implements CanActivate {
     
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const currentUser = this.loginService.getCurentUser();
-    debugger
       // check if route is restricted by role
       if (route.data.roles && route.data.roles.indexOf(currentUser.roles) === -1) {
-        debugger
+    
           // role not authorised so redirect to home page
           this.router.navigate(['/not-found']);
           return false;

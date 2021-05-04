@@ -24,13 +24,8 @@
       "name": "contact",
       "type": "link",
       "icon": "contacts"
-    },
-    {
-      "route": "project/47/details",
-      "name": "mandat",
-      "type": "link",
-      "icon": "assignment"
     }
+    
     
   ]
 }

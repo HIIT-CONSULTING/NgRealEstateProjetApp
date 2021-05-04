@@ -24,12 +24,12 @@ export class MandatListComponent implements OnInit {
   unsubscribe$: Subject<void>;
 
   displayedColumns = [
-    "Date De Création",
     "Prénom Du Mandant",
     "Nom Du Mandant",
+    "projectState",
+    "projectType",
     "Type",
     "Status",
-    "Telecharger",
     "Menu",
   ];
 
