@@ -5,7 +5,8 @@
         "sponsorship-admin":"Parrainage",
         "project":"Gestions des projets ",
         "contact":"Gestion des contacts",
-        "mandat":"Gestion des mandat"
+        "mandat":"Gestion des mandat",
+        "mandat-admin":"Mandat"
     },
     "user": {
         "profile": "Profile",
@@ -45,7 +46,7 @@
         "firstname.error":"Entrer un prénom valide ",
         "date.error":"Entrer une date valide (jj/mm/aaaa)"
     },
-    "searchAgent": {
+    "searchAgent" : {
         "title":"RECHERCHER UN CONSEILLER",
         "title-detail":"FICHE D'UN CONSEILLER",
         "form":{
@@ -87,6 +88,10 @@
             "area":"Surface",
             "nbpieces":"Nombre de piéces",
             "budget":"Prix",
+
+
+
+            
 
             "construction": "Construction",
             "areaEsteme":"Surface estimatée",
@@ -158,6 +163,7 @@
         }        
     },
     "Mandat" : {
+        "id": "Id Mandat",
         "title": "Mandat",
         "title-list":"Liste des mandats",
         "title-data" : "Type de mandat" ,
@@ -165,7 +171,18 @@
         "detail" : "Detail De Mandat",
         "Download":"Telecharger",
         "title-bien":"Détail du bien",
-        "title-mandan":"Détail du mandant"
+        "title-mandan":"Détail du mandant",
+        "firstname_mandant":"Prénom Mandant",
+        "firstname_agent":"Prénom Agent",
+        "nameMandant":"Nom Mandant",
+        "nameAgent":"Nom Agent",
+        "statusProject": "Statut Du Bien",
+        "typeProject": "Type Du Bien",
+        "typeMandat" : "Type Du Mandat",
+        "sttusMandat": "Statut Mandat",
+        "sortList":"Trier"
+        
+
         }
         
 

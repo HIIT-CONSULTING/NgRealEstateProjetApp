@@ -10,13 +10,12 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from '@core/token.interceptor';
 
 
-
 const COMPONENTS = [ NotFoundComponent];
 const COMPONENTS_DYNAMIC = [];
 
 @NgModule({
   imports: [SharedModule, RoutesRoutingModule,MaterialModule],
-  declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC],
+  declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC,],
   entryComponents: COMPONENTS_DYNAMIC,
   providers: [
   {

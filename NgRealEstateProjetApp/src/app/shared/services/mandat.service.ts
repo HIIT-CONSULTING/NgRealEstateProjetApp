@@ -44,14 +44,14 @@ export class MandatService {
  }
 
  /**
-  * web service using to get mandat
+  * web service using to get mandat 
   */
  getMandats(id): Observable<Mandat[]>{
   return this.http.get<Mandat[]>(`${this.hosturlname}api/v2/projects/${id}/mandates.json`);
  }
 
 /**
-  * web service using to get mandat
+  * web service using to get mandat by id project
   */
  getMandat(id): Observable<Mandat>{
   return this.http.get<Mandat>(`${this.hosturlname}api/v2/mandates/${id}.json`);
@@ -66,5 +66,22 @@ export class MandatService {
     responseType: 'blob',
     observe: 'response'
   }); }
+  /**
+  * web service using to get all mandat
+  */
+ getAllMandats(params:any): Observable<Mandat[]>{
+   
+  return this.http.get<Mandat[]>(`${this.hosturlname}api/v2/mandates.json`,{params});
+ }
+ /**
+   * web service using to Update a mandat 
+   * @param status - new updates of the  mandat
+   * @param id - mandat's number
+   */
+  updateMandat(status:any,id:number): Observable<any>{
+  
+    return this.http.put(`${this.hosturlname}api/v2/mandates/${id}`, status);
+  }
  
+  
 }
