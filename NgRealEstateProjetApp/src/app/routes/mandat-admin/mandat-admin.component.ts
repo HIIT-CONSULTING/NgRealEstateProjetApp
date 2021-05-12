@@ -1,3 +1,4 @@
+import { first } from 'rxjs/operators';
 import { FormGroup } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -16,10 +17,6 @@ import { DateAdapter } from '@angular/material/core';
 })
 export class MandatAdminComponent implements OnInit {
 
-
-  page = 1;
-  limit = 5;
-  paginatedDataSource: any;
   id: number;
   mandat$: Observable<Mandat[]>;
   typeMandat$:Observable<TypeMandat[]>;
@@ -27,6 +24,8 @@ export class MandatAdminComponent implements OnInit {
   unsubscribe$: Subject<void>;
   form:FormGroup;
   panelOpenState: boolean =false;
+  lastPage: number;
+  currentPage: number = 1;
   stateList = [
     {value: '', viewValue: 'Tout'},
     {value: 'accepted', viewValue: 'Accepted'},
@@ -70,36 +69,38 @@ export class MandatAdminComponent implements OnInit {
       private fb: FormBuilder,
       private dateAdapter: DateAdapter<Date>
     ) {
-      this.dateAdapter.setLocale('en-GB');
       this.unsubscribe$ = new Subject();
       this.form = this.fb.group({
-        id: '',
-        status: '',
-        createdAt:'',
-        'type.name': '',
-        'project.agent.firstname':'',
-        'project.agent.lastname': '',
-        'project.property.propertyType.name':'',
-        'project.property.maximumPrice':'',
-        'project.property.minimalPrice': '',
+          id: '',
+          createdAt: '',
+          status: '',
+          'type.name': '',
+          'project.agent.firstname':'',
+          'project.agent.lastname': '',
+          'project.property.propertyType.name':'',
+          'project.property.maximumPrice':'',
+          'project.property.minimalPrice': '',
 
-      });
-    }
-
+        });
+      }
+    
     ngOnInit(): void {
       this.typeMandat$=this.mandatService.getType().pipe(takeUntil(this.unsubscribe$));
       this.mandatService.getAllMandats({}).pipe(takeUntil(this.unsubscribe$))
           .subscribe((res) => {
-            this.mandat = res;
-            this.paginatedDataSource = this.mandat;
+            this.mandat = res['hydra:member'];
+            if(res)
+              this.lastPage=res['hydra:view']['hydra:last'].split('=')[1];
+            
       });
     }
     onclick(){
 
       this.mandatService.getAllMandats(this.form.value).pipe(takeUntil(this.unsubscribe$))
           .subscribe((res) => {
-            this.mandat = res;
-            this.paginatedDataSource = this.mandat;
+            this.mandat = res['hydra:member'];
+            if(res)
+              this.lastPage=res['hydra:view']['hydra:last'].split('=')[1];
       });
     }
 
@@ -107,9 +108,10 @@ export class MandatAdminComponent implements OnInit {
       this.mandatService.updateMandat({'status':'refused'},id).pipe(takeUntil(this.unsubscribe$))
           .subscribe((res) => {
             this.mandatService.getAllMandats({}).pipe(takeUntil(this.unsubscribe$))
-          .subscribe((res) => {
-            this.mandat = res;
-            this.paginatedDataSource = this.mandat;
+              .subscribe((res) => {
+                this.mandat = res['hydra:member'];
+                if(res)
+                  this.lastPage=res['hydra:view']['hydra:last'].split('=')[1];
       });
             
       });
@@ -120,8 +122,9 @@ export class MandatAdminComponent implements OnInit {
       .subscribe((res) => {
         this.mandatService.getAllMandats({}).pipe(takeUntil(this.unsubscribe$))
           .subscribe((res) => {
-            this.mandat = res;
-            this.paginatedDataSource = this.mandat;
+            this.mandat = res['hydra:member'];
+            if(res)
+              this.lastPage=res['hydra:view']['hydra:last'].split('=')[1];
       });
         
   });
@@ -132,7 +135,17 @@ export class MandatAdminComponent implements OnInit {
       this.router.navigate(["./", id, "details"], { relativeTo: this.route });
     }
    
-    onPage(){
+    onPage(nbrPage:number){
+      this.currentPage = nbrPage;
+      this.mandatService.getAllMandats({page:this.currentPage}).pipe(takeUntil(this.unsubscribe$))
+          .subscribe((res) => {
+            this.mandat = res['hydra:member'];
+            if(res)
+              this.lastPage=res['hydra:view']['hydra:last'].split('=')[1];
+            
+      });
+    
+      
 
     }
     ngOnDestroy(): void {

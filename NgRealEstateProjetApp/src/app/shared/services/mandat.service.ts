@@ -71,7 +71,7 @@ export class MandatService {
   */
  getAllMandats(params:any): Observable<Mandat[]>{
    
-  return this.http.get<Mandat[]>(`${this.hosturlname}api/v2/mandates.json`,{params});
+  return this.http.get<Mandat[]>(`${this.hosturlname}api/v2/mandates`,{params});
  }
  /**
    * web service using to Update a mandat 

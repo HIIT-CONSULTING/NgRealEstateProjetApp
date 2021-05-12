@@ -10,9 +10,9 @@
 
 
 
-  <mat-card [formGroup]="form">
+  <mat-card >
     <mat-card-content>
-
+      <form [formGroup]="form">
       <div fxLayout="row" fxLayoutAlign="space-evenly center" >
         <mat-form-field class="example-full-width"  appearance="outline" fxFlex="16">
           <mat-label>{{'Mandat.id'|translate}}</mat-label>
@@ -39,10 +39,9 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-  
         <mat-form-field class="example-full-width"  appearance="outline" fxFlex="18">
           <mat-label>{{'Mandat.sortList'|translate}}</mat-label>
-          <mat-select formControlName="createdAt" >
+          <mat-select formControlName = "createdAt" >
             <mat-option *ngFor="let type of sortList" [value]="type.value">{{type.viewValue}}</mat-option>
           </mat-select>
         </mat-form-field>
@@ -117,6 +116,8 @@
           </mat-expansion-panel>
         </mat-accordion>
       </div>
+    </form>
+
     </mat-card-content>
   </mat-card>
 
@@ -132,7 +133,7 @@
  
     <section>
       <mat-card-content>
-      <mat-table [dataSource]="paginatedDataSource" aria-readonly="true">
+      <mat-table [dataSource]="mandat" aria-readonly="true">
         <ng-container cdkColumnDef="Date De Création">
             <mat-header-cell   *cdkHeaderCellDef>{{'Sponsor.form.Date_CREATION'|translate}}</mat-header-cell>
             <mat-cell *cdkCellDef="let row;">{{row?.createdAt| date: 'dd/MM/yyyy'}}</mat-cell>
@@ -240,17 +241,27 @@
       </mat-table>
        </mat-card-content>
     </section>
- 
-  <mat-card-actions>
-    <div fxLayoutAlign="end end">
-      <a
+    
+  <mat-card-actions  fxLayout="row"  fxLayoutAlign="space-between center">
+    <div >
+      <a *ngIf="currentPage > 1"
         ><i
-          (click)="onPage()"
+          (click)="onPage(currentPage-1)"
+          class="fa fa-3x fa-angle-left"
+          style="color: #4e99c5"
+          aria-hidden="true"
+        ></i
+      ></a>
+    </div>
+    <div>
+      <a *ngIf="currentPage < lastPage"
+        ><i
+          (click)="onPage(currentPage+1)"
           class="fa fa-3x fa-angle-right"
           style="color: #4e99c5"
           aria-hidden="true"
         ></i
       ></a>
     </div>
-  </mat-card-actions>
+    </mat-card-actions>
 </mat-card>

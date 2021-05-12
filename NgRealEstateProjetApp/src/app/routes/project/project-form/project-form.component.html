@@ -733,7 +733,7 @@
                 style="margin-top: 7%"
               >
                 <ng-select
-                  [items]="(contacts$ | async)?.items"
+                  [items]="(contacts$ | async).items"
                   bindLabel="firstname"
                   bindValue="id"
                   autofocus

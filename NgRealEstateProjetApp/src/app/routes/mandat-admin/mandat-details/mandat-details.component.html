@@ -7,8 +7,7 @@
     
 <section class="demo-expansion" style="margin-bottom: 2%;" >
   <div fxLayoutAlign="center center" style="color: rgb(34, 55, 120);" ><i class="fa fa-5x fa-home" aria-hidden="true"></i></div>
-  {{mandat|json}}
-  <div fxLayoutAlign="center center"  style="color:#1ba0a7;font-size: large; margin-top: 1.2%;    font-family: monospace;">{{mandat?.project?.projectType}} /{{mandat?.project?.projectState}}/{{mandat?.project?.projectKind}}/{{mandat?.project?.property?.propertyType?.name}}</div>
+  <div fxLayoutAlign="center center"  style="color:#1ba0a7;font-size: large; margin-top: 1.2%;    font-family: monospace;">{{project?.project_type}} /{{project?.project_state}}/{{project?.project_kind}}/{{project?.property.property_type.name}}</div>
 <div *ngIf="showSpinner" fxLayoutAlign="center end" >
   <mat-spinner></mat-spinner>
 
@@ -60,97 +59,97 @@
                 <i class="fas fa-lg fa-chart-area"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.area" | translate }} :
               </div>
               <div fxLayout="column" fxFlex="50">
-                {{ mandat?.project?.property.area }}
+                {{ project?.property.area }}
               </div>
             </div>
   
-            <div *ngIf="mandat?.project?.property.estimatedSurface">
+            <div *ngIf="project?.property.estimated_surface">
               <div fxLayout="row" fxFlex="50">
                 <i class="fas fa-lg fa-chart-area"></i>&nbsp;&nbsp;&nbsp;{{"Property.form.areaEsteme" | translate }} :
               </div>
               <div fxLayout="column" fxFlex="50">
-                {{ mandat?.project?.property.estimatedSurface }}
+                {{ project?.property.estimated_surface }}
               </div>
             </div>
   
-            <div fxLayout="row" *ngIf="mandat?.project?.property.state">
+            <div fxLayout="row" *ngIf="project?.property.state">
               <div fxLayout="row" fxFlex="50">
                 <i class="fas fa-lg far fa-building"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.state" | translate }} :
                
              
               </div>
               <div fxLayout="column" fxFlex="50">
-                {{ mandat?.project?.property.state }}
+                {{ project?.property.state }}
               </div>
             </div>
   
-            <div fxLayout="row" *ngIf="mandat?.project?.property.constructionYear">
+            <div fxLayout="row" *ngIf="project?.property.construction_year">
               <div fxLayout="row" fxFlex="70">
                 <i class="fas fa-lg fa-calendar-alt"></i> &nbsp;&nbsp;&nbsp; {{"Property.form.constructionYear"|translate }} :
               </div>
               <div fxLayout="column" fxFlex="50">
-                {{ mandat?.project?.property.constructionYear | date: "dd/MM/yyyy" }}
+                {{ project?.property.construction_year | date: "dd/MM/yyyy" }}
               </div>
             </div>
   
-            <div fxLayout="row" *ngIf="mandat?.project?.property.orientation">
+            <div fxLayout="row" *ngIf="project?.property.orientation">
               <div fxLayout="row" fxFlex="50">
                 <i class="fas fa-lg fa-cloud-sun"></i>&nbsp;&nbsp;&nbsp;
                 {{"Property.form.orientation" | translate }} :
               </div>
               <div fxLayout="column" fxFlex="50">
-                {{ mandat?.project?.property.orientation }}
+                {{ project?.property.orientation }}
               </div>
             </div>
   
-            <div fxLayout="row" *ngIf="mandat?.project?.property.hasKey">
+            <div fxLayout="row" *ngIf="project?.property.has_key">
               <div fxLayout="row" fxFlex="50">
                 <i class="fas fa-lg fa-key"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.keysNumber" | translate }} :
               </div>
               <div fxLayout="column" fxFlex="50">
-                {{ mandat?.project?.property.keysNumber }}
+                {{ project?.property.keys_number }}
               </div>
             </div>
   
-            <div fxLayout="row" *ngIf="mandat?.project?.property.isAvailable==true||mandat?.project?.property.isAvailable==false">
+            <div fxLayout="row" *ngIf="project?.property.is_available==true||project?.property.is_available==false">
               <div fxLayout="row" fxFlex="50">
                 <i class="fas fa-lg fa-home"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.vailability" | translate }} :
               </div>
               <div
                 fxLayout="column"
                 fxFlex="50"
-                *ngIf="mandat?.project?.property.isAvailable"
+                *ngIf="project?.property.is_available"
               >
               {{"Property.form.isAvailable" | translate }} 
               </div>
               <div
                 fxLayout="column"
                 fxFlex="50"
-                *ngIf="!mandat?.project?.property.isAvailable"
+                *ngIf="!project?.property.is_available"
               >
                 {{"Property.form.notAvailable" | translate }} 
               </div>
             </div>
   
-            <div fxLayout="row" *ngIf="!mandat?.project?.property.isAvailable">
+            <div fxLayout="row" *ngIf="!project?.property.is_available">
               <div fxLayout="row" fxFlex="50">
                 <i class="fas fa-lg fa-calendar-alt"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.dateAvailability" | translate }} :
               </div>
               <div fxLayout="column" fxFlex="50">
-                {{ mandat?.project?.property.dateAvailability | date: "dd/MM/yyyy" }}
+                {{ project?.property.date_availability | date: "dd/MM/yyyy" }}
               </div>
             </div>
   
-            <div fxLayout="row" *ngIf="mandat?.project?.property.floorsNumber">
+            <div fxLayout="row" *ngIf="project?.property.floors_number">
               <div fxLayout="row" fxFlex="50">
                 <i class="fas fa-lg far fa-building"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.floorsNumber" | translate }} :
               </div>
               <div fxLayout="column" fxFlex="50">
-                {{ mandat?.project?.property.floorsNumber }}
+                {{ project?.property.floors_number }}
               </div>
             </div>
   
-            <div fxLayout="row" *ngIf="mandat?.project?.property.hasElevator">
+            <div fxLayout="row" *ngIf="project?.property.has_elevator">
               <div fxLayout="row" fxFlex="50">
                 <i class="fas fa-lg fa-cogs"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.hasElevator" | translate }} :
               </div>
@@ -163,21 +162,20 @@
               
             </div>
   
-            <div fxLayout="row" *ngIf="mandat?.project?.property.hasGarage">
+            <div fxLayout="row" *ngIf="project?.property.has_garage">
               <div fxLayout="row" fxFlex="50">
                 <i class="fas fa-lg fa-warehouse"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.hasGarage" | translate }} :
               </div>
               <div
                 fxLayout="column"
                 fxFlex="50"
-                
               >
                 {{ "form_standard.yes" | translate }}
               </div>
               
             </div>
   
-            <div fxLayout="row" *ngIf="mandat?.project?.property.hasCellar">
+            <div fxLayout="row" *ngIf="project?.property.has_cellar">
               <div fxLayout="row" fxFlex="50">
                 <i class="fas fa-lg fa-home"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.hasCellar" | translate }} :
               </div>
@@ -193,8 +191,8 @@
             <div
               fxLayout="row"
               *ngIf="
-                mandat?.project?.property.hasBasement ||
-                mandat?.project?.property.hasParkCarOutside
+                project?.property.has_basement ||
+                project?.property.has_park_car_outside
               "
             >
               <div fxLayout="row" fxFlex="50">
@@ -203,20 +201,20 @@
               <div
                 fxLayout="column"
                 fxFlex="50"
-                *ngIf="mandat?.project?.property.hasBasement"
+                *ngIf="project?.property.has_basement"
               >
               {{"Property.form.hasBasement" | translate }}
               </div>
               <div
                 fxLayout="column"
                 fxFlex="50"
-                *ngIf="mandat?.project?.property.hasParkCarOutside"
+                *ngIf="project?.property.has_park_car_outside"
               >
               {{"Property.form.hasParkCarOutside" | translate }} 
               </div>
             </div>
   
-            <div fxLayout="row" *ngIf="mandat?.project?.property.hasGuardian">
+            <div fxLayout="row" *ngIf="project?.property.has_guardian">
               <div fxLayout="row" fxFlex="50">
                 <i class="fas fa-lg fa-user-shield"></i>&nbsp;&nbsp;&nbsp;
                 {{"Property.form.hasGuardian" | translate }} :
@@ -230,7 +228,7 @@
               
             </div>
   
-            <div fxLayout="row" *ngIf="mandat?.project?.property.hasBalcony">
+            <div fxLayout="row" *ngIf="project?.property.has_balcony">
               <div fxLayout="row" fxFlex="50">
                 <i class="fas fa-lg fa-home"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.hasBalcony" | translate }} :
               </div>
@@ -242,7 +240,7 @@
               </div>
             </div>
   
-            <div fxLayout="row" *ngIf="mandat?.project?.property.hasTerace">
+            <div fxLayout="row" *ngIf="project?.property.has_terace">
               <div fxLayout="row" fxFlex="50">
                 <i class="fas fa-lg fa-home"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.hasTerace" | translate }} :
               </div>
@@ -254,7 +252,7 @@
               </div>
             </div>
   
-            <div fxLayout="row" *ngIf="mandat?.project?.property.hasIntercom">
+            <div fxLayout="row" *ngIf="project?.property.has_intercom">
               <div fxLayout="row" fxFlex="50">
                 <i class="fas fa-lg fa-phone-alt"></i>&nbsp;&nbsp;&nbsp;
                 {{"Property.form.hasIntercom" | translate }} :
@@ -275,7 +273,7 @@
                 }}:
               </div>
               <div fxLayout="column" fxFlex="50">
-                {{ mandat?.project?.property.minimalPrice }}
+                {{ project?.property.minimal_price }}
               </div>
             </div>
   
@@ -287,7 +285,7 @@
                 }}:
               </div>
               <div fxLayout="column" fxFlex="50">
-                {{ mandat?.project?.property.maximumPrice }}
+                {{ project?.property.maximum_price }}
               </div>
             </div>
   
@@ -298,7 +296,7 @@
                 }}:
               </div>
               <div fxLayout="column" fxFlex="50">
-                {{ mandat?.project?.property.room }}
+                {{ project?.property.room }}
               </div>
             </div>
   
@@ -310,8 +308,8 @@
                 }}:
               </div>
               <div fxLayout="column" fxFlex="50">
-                {{ mandat?.project?.property.address.description }}
-                {{ mandat?.project?.property.address.city.name }}
+                {{ project?.property.address.description }}
+                {{ project?.property.address.city.name }}
               </div>
             </div>
   
@@ -322,7 +320,7 @@
                 }}:
               </div>
               <div fxLayout="column" fxFlex="50">
-                {{ mandat?.project?.property.address.country.name }}
+                {{ project?.property.address.country.name }}
               </div>
             </div>
           </mat-card-content>
@@ -367,8 +365,8 @@
                             {{ "form_standard.Fullname" | translate }} :
                           </div>
                           <div fxLayout="column" fxFlex="50">
-                            {{ mandat?.project?.contact.firstname }}&nbsp;{{
-                              mandat?.project?.contact.lastname | uppercase
+                            {{ project?.contact.firstname }}&nbsp;{{
+                              project?.contact.lastname | uppercase
                             }}
                           </div>
                         </div>
@@ -378,7 +376,7 @@
                             {{ "form_standard.mail" | translate }} :
                           </div>
                           <div fxLayout="column" fxFlex="50">
-                            {{ mandat?.project?.contact.email }}
+                            {{ project?.contact.email }}
                           </div>
                         </div>
                         
@@ -387,27 +385,27 @@
                             {{ "form_standard.tel" | translate }} :
                           </div>
                           <div fxLayout="column" fxFlex="50">
-                            {{ mandat?.project?.contact.telephone }}
+                            {{ project?.contact.telephone }}
                           </div>
                         </div>
           
-                        <div fxLayout="row" *ngIf="mandat?.project?.contact.societe" >
+                        <div fxLayout="row" *ngIf="project?.contact.societe" >
                           <div  fxLayout="column" fxFlex="50"  >
                             {{ "form_standard.societe" | translate }} :
                             
                           </div>
                           <div  fxLayout="column" fxFlex="50" fxLayoutAlign="space-around none" >
-                            {{mandat?.project?.contact.societe}}
+                            {{project?.contact.societe}}
                           </div>
                         </div>
                       
-                        <div fxLayout="row" *ngIf="mandat?.project?.contact.channelType" >
+                        <div fxLayout="row" *ngIf="project?.contact.channel_type" >
                           <div  fxLayout="column" fxFlex="50"  >
                             {{ "form_standard.channelType" | translate }} :
                             
                           </div>
                           <div  fxLayout="column" fxFlex="50" fxLayoutAlign="space-around none" >
-                            {{mandat?.project?.contact.channelType}}
+                            {{project?.contact.channel_type}}
                           </div>
                         </div>
                         <div fxLayout="row">
@@ -415,8 +413,8 @@
                             {{ "form_standard.address" | translate }} :
                           </div>
                           <div fxLayout="column" fxFlex="50">
-                            {{ mandat?.project?.contact.address.description }},{{
-                              mandat?.project?.contact.address.city.name
+                            {{ project?.contact.address.description }},{{
+                              project?.contact.address.city.name
                             }}
                           </div>
                         </div>
@@ -426,16 +424,16 @@
                             {{ "form_standard.country" | translate }} :
                           </div>
                           <div fxLayout="column" fxFlex="50">
-                            {{ mandat?.project?.contact.address.country.name }}
+                            {{ project?.contact.address.country.name }}
                           </div>
                         </div>
-                        <div fxLayout="row" *ngIf="mandat?.project?.contact.notes" >
+                        <div fxLayout="row" *ngIf="project?.contact.notes" >
                           <div  fxLayout="column" fxFlex="50"  >
                             {{ "form_standard.notes" | translate }} : 
                             
                           </div>
                           <div  fxLayout="column" fxFlex="50" fxLayoutAlign="space-around none" >
-                            {{mandat?.project?.contact.notes}}
+                            {{project?.contact.notes}}
                           </div>
                         </div>
                       </section>

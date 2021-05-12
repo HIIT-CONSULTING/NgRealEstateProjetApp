@@ -14,7 +14,9 @@ import { takeUntil } from 'rxjs/operators';
 export class MandatDetailsComponent implements OnInit {
 
   
-  mandat:any;
+  mandat:Mandat;
+  project: Project;
+  project$: Observable<Project>;
   showSpinner=true;
   id:number;
   unsubscribe$: Subject<void>;
@@ -36,7 +38,15 @@ export class MandatDetailsComponent implements OnInit {
    this.mandatService.getMandat(this.id).pipe(takeUntil(this.unsubscribe$)).subscribe(res =>{ 
      this.mandat = res });
    //this.project$ = this.projectService.getProject(this.id);
-         
+   this.projectService.getProject(this.id).pipe(takeUntil(this.unsubscribe$)).subscribe((project) => {
+     this.project = project;
+     if(project!={})
+     {
+       this.showSpinner=false;
+     }
+    });
+    
+      
   }
   ngOnDestroy(): void {
     this.unsubscribe$.next();
