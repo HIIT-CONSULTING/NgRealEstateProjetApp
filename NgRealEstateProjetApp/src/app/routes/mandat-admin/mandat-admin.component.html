@@ -9,7 +9,6 @@
 
 
 
-
   <mat-card >
     <mat-card-content>
       <form [formGroup]="form">
@@ -31,26 +30,15 @@
         </mat-form-field>
         <mat-form-field class="example-full-width"  appearance="outline" fxFlex="18">
           <mat-label>{{'Mandat.typeMandat'|translate}}</mat-label>
-          <mat-select formControlName="type.name">
-            <mat-option
-              *ngFor="let type of typeMandat$ | async"
-              [value]="type.name"
-              >{{ type.name }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field class="example-full-width"  appearance="outline" fxFlex="18">
-          <mat-label>{{'Mandat.sortList'|translate}}</mat-label>
-          <mat-select formControlName = "createdAt" >
-            <mat-option *ngFor="let type of sortList" [value]="type.value">{{type.viewValue}}</mat-option>
+          <mat-select formControlName="type.name" >
+            <mat-option *ngFor="let type of typeMandatList" [value]="type.value">{{type.viewValue}}</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-card-actions class="example-full-width" >
           <button mat-raised-button color="primary" (click)= onclick() >
             {{'searchAgent.form.search'|translate}} 
           </button>
-        </mat-card-actions>
-        
+        </mat-card-actions> 
       </div>
       <div>
         <mat-accordion>
@@ -89,6 +77,15 @@
                   <mat-option *ngFor="let type of typeProjectList" [value]="type.value">{{type.viewValue}}</mat-option>
                 </mat-select>
               </mat-form-field>
+              <div class="custom-slider"  fxFlex="22">
+                <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"
+                (mouseup)="valueChange()"
+                
+                
+                ></ngx-slider>
+              </div>
+              
+              <!--
               <mat-form-field class="example-full-width"  appearance="outline" fxFlex="18">
                 <mat-label>{{'Property.form.pricemax'|translate}}</mat-label>
                 <input 
@@ -111,8 +108,9 @@
                          >
               </mat-form-field>
 
-              
+            -->
             </div>
+            
           </mat-expansion-panel>
         </mat-accordion>
       </div>
@@ -135,28 +133,23 @@
       <mat-card-content>
       <mat-table [dataSource]="mandat" aria-readonly="true">
         <ng-container cdkColumnDef="Date De Création">
-            <mat-header-cell   *cdkHeaderCellDef>{{'Sponsor.form.Date_CREATION'|translate}}</mat-header-cell>
-            <mat-cell *cdkCellDef="let row;">{{row?.createdAt| date: 'dd/MM/yyyy'}}</mat-cell>
+            <mat-header-cell   *cdkHeaderCellDef>{{'Sponsor.form.Date_CREATION'|translate}}
+              &nbsp;&nbsp;<i  class="fa fa-sort fa-lg" aria-hidden="true" (click)="sort()"></i>&nbsp;&nbsp;
+            </mat-header-cell>
+            <mat-cell *cdkCellDef="let row;">{{row?.createdAt| date: 'dd/MM/yyyy'}}
+            </mat-cell>
         </ng-container>
-        <ng-container cdkColumnDef="Prénom Agent">
-            <mat-header-cell  *cdkHeaderCellDef>{{'Mandat.firstname_agent'|translate}}</mat-header-cell>
-            <mat-cell *cdkCellDef="let row;">{{row?.project?.agent?.firstname}}</mat-cell>
-    
-        </ng-container>
+       
         <ng-container cdkColumnDef="Nom Agent">
-            <mat-header-cell  *cdkHeaderCellDef>{{'Mandat.nameAgent'|translate}}</mat-header-cell>
-            <mat-cell *cdkCellDef="let row;">{{row?.project?.agent?.lastname}}</mat-cell>
-          </ng-container>
-        <ng-container cdkColumnDef="Prénom Du Mandant">
-          <mat-header-cell *cdkHeaderCellDef>{{'Mandat.firstname_mandant'|translate}}</mat-header-cell>
-          <mat-cell *cdkCellDef="let row">{{
-            row.project.contact.firstname
-          }}</mat-cell>
+            <mat-header-cell  *cdkHeaderCellDef>{{'Mandat.agent'|translate}}</mat-header-cell>
+            <mat-cell *cdkCellDef="let row;">{{row?.project?.agent?.firstname}}&nbsp;&nbsp;{{row?.project?.agent?.lastname}}</mat-cell>
         </ng-container>
 
         <ng-container cdkColumnDef="Nom Du Mandant">
-          <mat-header-cell *cdkHeaderCellDef>{{'Mandat.nameMandant'|translate}}</mat-header-cell>
+          <mat-header-cell *cdkHeaderCellDef>{{'Mandat.mandant'|translate}}</mat-header-cell>
           <mat-cell *cdkCellDef="let row">{{
+            row.project.contact.firstname
+          }}&nbsp;&nbsp;{{
             row.project.contact.lastname
           }}</mat-cell>
         </ng-container>

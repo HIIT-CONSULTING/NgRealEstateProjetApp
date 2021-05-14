@@ -2,8 +2,70 @@
     margin: 0 auto;
     width: 25%;
   }
-  mat-card-actions{
+  mat-card-actions {
     margin-left: 4px;
     margin-right: 4px;
   }
+  .full-width{
+    margin:  auto;
+    width: 75%;
+  }
   
+  // We need to use ::ng-deep to overcome view encapsulation
+::ng-deep {
+  .ngx-slider-span .ngx-slider-bubble .ngx-slider-limit .ngx-slider-floor {
+    color: #4f9cc6;
+}
+
+  .custom-slider .ngx-slider .ngx-slider-bar {
+    background: #cbe5fd;
+    height: 2px;
+  }
+  .custom-slider .ngx-slider .ngx-slider-selection {
+    background: #4f9cc6;
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-pointer {
+    width: 8px;
+    height: 16px;
+    top: auto; /* to remove the default positioning */
+    bottom: 0;
+    background-color: #4f9cc6;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-pointer:after {
+    display: none;
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-bubble {
+    bottom: 14px;
+   
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-limit {
+    font-size: 85%;
+    color: #4f9cc6;
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-tick {
+    width: 1px;
+    height: 10px;
+    margin-left: 4px;
+    border-radius: 0;
+    background: #cbe5fd;
+    top: -1px;
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-tick.ngx-slider-selected {
+    background: #4f9cc6;
+  }
+  b {
+    font-weight: normal;
+    font-size: 85%;
+}  
+}
+
+
+
