@@ -28,8 +28,6 @@ export class MandatAdminComponent implements OnInit {
   lastPage: number;
   currentPage: number = 1;
   sortValue: string = 'asc';
-  minValue: number = 0;
-  maxValue: number = 500000;
   stateList = [
     {value: '', viewValue: 'Tout'},
     {value: 'accepted', viewValue: 'Accepté'},
@@ -80,14 +78,13 @@ export class MandatAdminComponent implements OnInit {
           'project.agent.firstname':'',
           'project.agent.lastname': '',
           'project.property.propertyType.name':'',
-          'project.property.maximumPrice':'',
-          'project.property.minimalPrice': '',
+          'project.property.maximumPrice[lte]':'',
+          'project.property.minimalPrice[gte]': '',
 
         });
       }
     
     ngOnInit(): void {
-      this.typeMandat$=this.mandatService.getType().pipe(takeUntil(this.unsubscribe$));
       this.mandatService.getAllMandats({}).pipe(takeUntil(this.unsubscribe$))
           .subscribe((res) => {
             this.mandat = res['hydra:member'];
@@ -95,7 +92,7 @@ export class MandatAdminComponent implements OnInit {
             
       });
     }
-    onclick(){
+    onSubmit(){
       this.currentPage = 1;
       this.form.get('page').setValue(this.currentPage );
       this.mandatService.getAllMandats(this.form.value).pipe(takeUntil(this.unsubscribe$))
@@ -155,33 +152,11 @@ export class MandatAdminComponent implements OnInit {
             this.lastPage=res['hydra:view']['hydra:last']?res['hydra:view']['hydra:last'].split('page=')[1]:1;
       });
     }
-    valueChange(){
-      this.form.patchValue({
-        'project.property.minimalPrice': this.minValue,
-        'project.property.maximumPrice' : this.maxValue
-     });
-
-    }
+    
     ngOnDestroy(): void {
       this.unsubscribe$.next();
       this.unsubscribe$.complete();
     }
     
-    options: Options = {
-      floor: 0,
-      ceil: 500000,
-      translate: (value: number, label: LabelType): string => {
-        switch (label) {
-          case LabelType.Low:
-            
-            return '<b>Min:</b> €' + value;
-          case LabelType.High:
-            
-            return '<b>Max:</b> €' + value;
-          default:
-            return '€' + value;
-        }
-      }
     
-    };
 }

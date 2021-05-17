@@ -11,7 +11,7 @@
 
   <mat-card >
     <mat-card-content>
-      <form [formGroup]="form">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div fxLayout="row" fxLayoutAlign="space-evenly center" >
         <mat-form-field class="example-full-width"  appearance="outline" fxFlex="16">
           <mat-label>{{'Mandat.id'|translate}}</mat-label>
@@ -34,11 +34,12 @@
             <mat-option *ngFor="let type of typeMandatList" [value]="type.value">{{type.viewValue}}</mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-card-actions class="example-full-width" >
-          <button mat-raised-button color="primary" (click)= onclick() >
-            {{'searchAgent.form.search'|translate}} 
-          </button>
-        </mat-card-actions> 
+        <mat-form-field class="example-full-width"  appearance="outline" fxFlex="18">
+          <mat-label>{{'Mandat.typeProject'|translate}}</mat-label>
+          <mat-select formControlName="project.property.propertyType.name" >
+            <mat-option *ngFor="let type of typeProjectList" [value]="type.value">{{type.viewValue}}</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
       <div>
         <mat-accordion>
@@ -69,30 +70,23 @@
                         placeholder="{{'Mandat.firstname_agent'|translate}}" 
                          >
                 </mat-form-field>
-              
-              
-              <mat-form-field class="example-full-width"  appearance="outline" fxFlex="18">
-                <mat-label>{{'Mandat.typeProject'|translate}}</mat-label>
-                <mat-select formControlName="project.property.propertyType.name" >
-                  <mat-option *ngFor="let type of typeProjectList" [value]="type.value">{{type.viewValue}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-              <div class="custom-slider"  fxFlex="22">
+              <!--
+                <div class="custom-slider"  fxFlex="22">
                 <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"
                 (mouseup)="valueChange()"
                 
                 
                 ></ngx-slider>
               </div>
-              
-              <!--
+            -->
+             
               <mat-form-field class="example-full-width"  appearance="outline" fxFlex="18">
                 <mat-label>{{'Property.form.pricemax'|translate}}</mat-label>
                 <input 
                         type="number"
                         min="0"
                         matInput
-                        formControlName="project.property.maximumPrice"
+                        formControlName="project.property.maximumPrice[lte]"
                         placeholder="{{'Property.form.pricemax'|translate}}" 
                          >
               </mat-form-field>
@@ -102,18 +96,24 @@
                         type="number"
                         min="0"
                         matInput
-                        formControlName="project.property.minimalPrice"
+                        formControlName="project.property.minimalPrice[gte]"
                         placeholder="{{'Property.form.pricemin'|translate}}" 
 
                          >
               </mat-form-field>
 
-            -->
+            
             </div>
             
           </mat-expansion-panel>
         </mat-accordion>
       </div>
+      <mat-card-actions >
+        <div class="btns">
+         <button mat-raised-button class="btn-submit" type="submit" >{{'searchAgent.form.search'|translate}}<mat-icon>search</mat-icon> </button>
+         <button mat-raised-button class="btn-warning" type="reset">{{'form_standard.reset'|translate}}  <mat-icon>refresh</mat-icon>  </button>
+        </div>
+     </mat-card-actions>
     </form>
 
     </mat-card-content>
