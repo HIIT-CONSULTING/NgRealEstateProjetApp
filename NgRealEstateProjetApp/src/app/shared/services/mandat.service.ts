@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
 import { TypeMandat, Mandat } from '@shared/models/Agent.model';
 import { Observable } from 'rxjs';
+import { omitBy, isNull } from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -70,8 +71,8 @@ export class MandatService {
   * web service using to get all mandat
   */
  getAllMandats(params:any): Observable<Mandat[]>{
-   
-  return this.http.get<Mandat[]>(`${this.hosturlname}api/v2/mandates`,{params});
+   let data :any = omitBy(params, isNull);
+  return this.http.get<Mandat[]>(`${this.hosturlname}api/v2/mandates`,{ params: data });
  }
  /**
    * web service using to Update a mandat 

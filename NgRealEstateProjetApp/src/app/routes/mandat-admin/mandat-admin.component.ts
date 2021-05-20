@@ -28,6 +28,7 @@ export class MandatAdminComponent implements OnInit {
   lastPage: number;
   currentPage: number = 1;
   sortValue: string = 'asc';
+  
   stateList = [
     {value: '', viewValue: 'Tout'},
     {value: 'accepted', viewValue: 'Accepté'},
@@ -71,15 +72,15 @@ export class MandatAdminComponent implements OnInit {
       this.unsubscribe$ = new Subject();
       this.form = this.fb.group({
           page: 1,
-          id: '',
-          createdAt: '',
-          status: '',
-          'type.name': '',
-          'project.agent.firstname':'',
-          'project.agent.lastname': '',
-          'project.property.propertyType.name':'',
-          'project.property.maximumPrice[lte]':'',
-          'project.property.minimalPrice[gte]': '',
+          id: null,
+          createdAt: null,
+          status: null,
+          'type.name': null,
+          'project.agent.firstname':null,
+          'project.agent.lastname': null,
+          'project.property.propertyType.name':null,
+          'project.property.maximumPrice[lte]': null,
+          'project.property.minimalPrice[gte]': null,
 
         });
       }
