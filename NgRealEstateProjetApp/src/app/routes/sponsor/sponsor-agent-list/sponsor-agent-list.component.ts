@@ -6,7 +6,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { map } from "rxjs/operators";
 import { Candidate } from "@shared/models/Agent.model";
 import { ActivatedRoute, Router } from "@angular/router";
-import { SponsorService } from "../sponsor.service";
+import { SponsorService } from "@shared/services/sponsor.service";
 
 @Component({
   selector: "app-sponsor-agent-list",
@@ -39,45 +39,34 @@ export class SponsorAgentListComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    debugger;
     this.candidates$ = this.sponsorService.getCandidates(this.page, this.limit);
-    debugger;
     this.candidates$.subscribe((candidate) => {
       this.candidates = candidate;
-      console.log("cc", this.candidates);
       this.paginatedDataSource = this.candidates;
     });
   }
 
   Onpage() {
     this.page = this.page + 1;
-
     this.candidates$ = this.sponsorService.getCandidates(this.page, this.limit);
-    debugger;
     this.candidates$.subscribe((candidate) => {
       this.candidates = candidate;
-      console.log("cc", this.candidates);
       this.paginatedDataSource = this.candidates;
     });
   }
 
   Update(id: number) {
-    //this.router.navigate(['/sponsorship/list',id,'update'])
-    //this.router.navigate([`${id}/update`], { relativeTo: this.route });
     this.router.navigate(["/sponsorship", id, "update"]);
   }
+  
   Delete(id: number) {
     this.sponsorService.deleteCandidate(id).subscribe((data) => {
-      console.log("success");
-      debugger;
+
       this.snackBar.open('le candidat est supprimé avec succès!', '', { duration: 1000 ,panelClass: ['blue-snackbar'] ,  verticalPosition: 'top', horizontalPosition:'end' });
-
-
       this.candidates$ = this.sponsorService.getCandidates(
         this.page,
         this.limit
       );
-     
       this.candidates$.subscribe((candidate) => {
         this.candidates = candidate;
         this.paginatedDataSource = this.candidates;
@@ -85,9 +74,7 @@ export class SponsorAgentListComponent implements OnInit {
       });
     },
     (error) => {
-      console.log('error',error);
       this.snackBar.open("veuillez vérifier vos informations!", '', { duration: 1000, panelClass: ['blue-snackbar'], verticalPosition: 'top', horizontalPosition:'end'});
-
     });
 
   }

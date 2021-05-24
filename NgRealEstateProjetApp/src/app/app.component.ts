@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { PreloaderService } from '@core';
+import { PreloaderService } from '@shared/services/boostrap/preloader.service';
 
 @Component({
   selector: 'app-root',

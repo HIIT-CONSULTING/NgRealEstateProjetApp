@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: 'app-contact',
@@ -6,11 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent{
-
+  
+  constructor(
+    private translate: TranslateService,
+  ) {}
 
   navLinks = [
-    { path: 'contactform', label: 'Créer un nouveau contact',icon:'list_alt' },
-    { path: 'contactlist', label: 'Liste des contacts',icon:'' },
+    { path: 'contactform', label: "Contact.title",icon:'list_alt' },
+    { path: 'contactlist', label: 'Contact.title-list',icon:'' },
   ];
 }
 

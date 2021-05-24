@@ -60,7 +60,21 @@ const routes: Routes = [
         canActivate: [RoleGuard,AuthGuard],
         data: { title: "contact", titleI18n: "contact",roles: [Role.User]},
         loadChildren: () => import("./contact/contact.module").then((m) => m.ContactModule),
-       }
+       },
+       {
+        path: "profil",
+        canActivate: [RoleGuard,AuthGuard],
+        data: { title: "profil", titleI18n: "profil",roles: [Role.User,Role.Admin] },
+        loadChildren: () =>
+          import("./profil/profil.module").then((m) => m.ProfilModule),
+        },
+        {
+          path: "mandat-admin",
+          canActivate: [RoleGuard,AuthGuard],
+          data: { title: "mandat-admin", titleI18n: "mandat-admin",roles: [Role.Admin]},
+          loadChildren: () => import("./mandat-admin/mandat-admin.module").then((m) => m.MandatAdminModule),
+         },
+        
 
     ]
   },
@@ -68,7 +82,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  //imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{ useHash: true })],
   exports: [RouterModule],
 })
 export class RoutesRoutingModule {}

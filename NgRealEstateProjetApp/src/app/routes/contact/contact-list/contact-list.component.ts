@@ -1,9 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
 import { Contact } from "@shared/models/Agent.model";
-import { ContactService } from "../contact.service";
+import { ContactService } from "@shared/services/contact.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-contact-list",
@@ -11,21 +12,20 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ["./contact-list.component.scss"],
 })
 export class ContactListComponent implements OnInit {
-  contacts$: Observable<any[]>;
-  contacts: any[];
+  contacts$: Observable<Contact[]>;
+  contacts: Contact[];
+  contactList : Contact[];
+  contactst:Observable<Contact[]>;
   constructor(
     private contactService: ContactService,
     private route: ActivatedRoute,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private translate: TranslateService,
   ) {}
 
   ngOnInit(): void {
     this.contacts$ = this.contactService.getContacts();
-    this.contactService.getContacts().subscribe((contacts) => {
-      this.contacts = contacts;
-      console.log("contacts", this.contacts);
-    });
   }
 
   onClick() {
@@ -36,10 +36,7 @@ export class ContactListComponent implements OnInit {
       .deleteContact(id)
       .subscribe(
         (data) => {
-          console.log("success");
-          debugger;
           this.snackBar.open('le candidat est supprimé avec succès!', '', { duration: 1000 ,panelClass: ['blue-snackbar'] ,  verticalPosition: 'top', horizontalPosition:'end' });
-
         },
         (error) => {
           this.snackBar.open("veuillez vérifier vos informations!", '', { duration: 1000, panelClass: ['blue-snackbar'], verticalPosition: 'top', horizontalPosition:'end'});
@@ -49,15 +46,15 @@ export class ContactListComponent implements OnInit {
       this.contactService.getContacts().subscribe(
         (contacts) => {
         this.contacts = contacts;
-        console.log("contacts", this.contacts);
       });
   }
 
   Update(id: number) {
-
     this.router.navigate(["/contact", id, "update"]);
   }
+
   details(id: number) {
     this.router.navigate(["/contact", id, "details"]);
   }
+
 }

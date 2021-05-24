@@ -1,32 +1,26 @@
-import { Component, OnInit } from "@angular/core";
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  FormControl,
-} from "@angular/forms";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { FormBuilder, Validators,FormControl } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { TranslateService } from "@ngx-translate/core";
-import { Observable } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import { ActivatedRoute, Router } from "@angular/router";
-import {
-  Agent,
-  Gender,
-  City,
-  Country,
-  Contact,
-} from "@shared/models/Agent.model";
-import { SponsorService } from "../../sponsor/sponsor.service";
-import { filter, map } from "rxjs/operators";
-import { ProjectService } from "./../project.service";
-import { ContactService } from "app/routes/contact/contact.service";
+import { Agent, City, Country, Contact } from "@shared/models/Agent.model";
+import { SponsorService } from "@shared/services/sponsor.service";
+import { ProjectService } from "@shared/services/project.service";
+import { ContactService } from "@shared/services/contact.service";
+import { DialogContentProjectComponent } from "app/components/dialog-content-project/dialog-content-project.component";
+import { MatDialog } from "@angular/material/dialog";
+import * as moment from "moment";
+import { takeUntil } from "rxjs/operators";
+
 
 @Component({
   selector: "app-project-form",
   templateUrl: "./project-form.component.html",
   styleUrls: ["./project-form.component.scss"],
 })
-export class ProjectFormComponent implements OnInit {
+export class ProjectFormComponent implements OnInit, OnDestroy {
+  unsubscribe$: Subject<void>;
   constructor(
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
@@ -35,8 +29,17 @@ export class ProjectFormComponent implements OnInit {
     private router: Router,
     private sponsorService: SponsorService,
     private projectService: ProjectService,
-    private contactService: ContactService
-  ) {}
+    private contactService: ContactService,
+    private dialog: MatDialog,
+  ) {
+    //this.properties.get('dateAvailability').disable();
+    this.properties.get('keysNumber').disable();
+    this.unsubscribe$ = new Subject();
+    this.properties.controls['hasKey'].valueChanges.pipe(takeUntil(this.unsubscribe$)).subscribe((value) => {
+      value ? this.properties.get('keysNumber').enable() : this.properties.get('keysNumber').disable()
+    })
+  
+  }
   show: any = false;
   agents$: Observable<Agent[]>;
   agents: Agent[] = [];
@@ -45,44 +48,104 @@ export class ProjectFormComponent implements OnInit {
   choose: boolean;
   selectedPersonId = null;
   contacts$: Observable<Contact[]>;
-  contact: Observable<Contact>;
+  contact: Contact;
+  test : boolean = false;
+  valid_result : number =0;
+  stateList: string[] = ['Neuf', 'rénover','Normal', 'En construction', 'En ruine', 'A rénover', 'Ancien'];
+  orientationList: string[] = ['Nord', 'Sud', 'Ouest', 'Est', 'Nord Est', 'Nord Ouest','Sud Est', 'Sud Ouest'];
 
-  form = this.fb.group({
-    projectType: "",
-    projectState: "",
-    projectKind: "",
-    contact: "",
-    property: this.fb.group({
-      propertyType: "",
-      minimalPrice: "",
-      maximumPrice: "",
-      area: "",
-      room: "",
-      address: this.fb.group({
-        description: "",
-        city: "",
-        country: "",
-      }),
-    }),
-  });
+  openDialog() {
+    this.dialog
+      .open(DialogContentProjectComponent, {
+        width: "550px",
+        disableClose: true
+      })
+      .afterClosed()
+      .subscribe(() => {
+        this.contacts$ = this.contactService.getContacts();       
+      });
+}
+properties = this.fb.group({
+  propertyType: ['',Validators.required],
+  minimalPrice: ['',Validators.required],
+  maximumPrice: ['',Validators.required],
+  area: ['',Validators.required],
+  room: [''],
+  
+    isAvailable: true,
+    dateAvailability:[''],
+    keysNumber:[''],
+    hasKey:false,
+    estimatedSurface: [''],
+    state: [''],
+    constructionYear: [''],
+    orientation: [''],
+    floorsNumber: [''],
+    hasGuardian: false,
+    hasIntercom: false,
+    hasElevator: false,
+    hasTerace: false,
+    hasBalcony:false,
+    hasGarage: false,
+    hasParkCar: false,
+    hasBasement: false,
+    hasParkCarOutside: false,
+    hasCellar: false,
+
+
+
+  address: this.fb.group({
+    description: ['',Validators.required],
+    city: ['',Validators.required],
+    country: ['',Validators.required],
+  })
+});
+form = this.fb.group({
+  projectType: [''],
+  projectState: [''],
+  projectKind: [''],
+  contact:  ['', Validators.required],
+  property : this.properties
+});
+
+
+  control_adress(control:string) {
+   return  this.form.get('property').get('address').get(control) ; 
+  }
+  
+  control_property(control:string) {
+    return  this.form.get('property').get(control); 
+  }
+  valid_form() : boolean
+  {
+    const country_valid = (this.control_adress('country').valid && this.control_adress('country').value !=' ' &&  this.control_adress('description').touched) ? 1 : 0;
+    const city_valid = (this.control_adress('city').valid && this.control_adress('city').value !=' ' &&  this.control_adress('city').touched) ? 1 : 0;
+    const description_valid = (this.control_adress('description').valid && this.control_adress('description').value !=' ') ? 1 : 0;   
+    const area_valid = (this.control_property('area').valid && this.control_property('area').value ==' ' &&  this.control_adress('city').touched) ? 1 : 0;
+    const minimalPrice_valid = (this.control_property('minimalPrice').valid && this.control_property('minimalPrice').value !=' ' &&  this.control_property('minimalPrice').touched) ? 1 : 0;
+    const maximumPrice_valid = (this.control_property('maximumPrice').valid && this.control_property('maximumPrice').value !=' ' && this.control_property('maximumPrice').touched) ? 1 : 0;
+    const propertyType_valid = (this.control_property('propertyType').valid && this.control_property('propertyType').value !=' ' && this.control_property('propertyType').touched) ? 1 : 0;
+    
+    this.valid_result= this.valid_result+country_valid+city_valid+description_valid+area_valid+minimalPrice_valid+maximumPrice_valid+propertyType_valid;
+    const valid_disabled = (this.valid_result>=7) ?  false :  true;
+    return valid_disabled; 
+  }
   myControl = new FormControl();
   filteredOptions: Observable<City[]>;
   ngOnInit() {
-    this.city$ = this.sponsorService.getCity();
-    this.sponsorService.getCity().subscribe();
-
+   // this.city$ = this.sponsorService.getCity();
+  //this.sponsorService.getCity().subscribe();
     this.country$ = this.sponsorService.getCountry();
-    this.sponsorService.getCity().subscribe();
+   // this.sponsorService.getCity().subscribe();
     this.contacts$ = this.contactService.getContacts();
     this.contactService.getContacts().subscribe();
   }
+  handleChange(property:string) {
+    this.properties.get(property).setValue('');
+  }
 
   OnClickTransaction(id: string) {
- 
-    
     this.form.get("projectType").setValue(id);
-  
-    console.log("1",this.form.get("projectType"));
   }
 
 
@@ -100,28 +163,49 @@ export class ProjectFormComponent implements OnInit {
   }
 
   OnClickProperty(id: number) {
-    
-    this.form.get("property.propertyType").setValue(id);
+    this.properties.get("propertyType").setValue(id);
   }
-  save() {
-    console.log(this.form.value);
-    this.projectService.save(this.form.value).subscribe(response=>{console.log(response)
-      this.router.navigate(['/project/projectlist'])
-    }
 
-    );
+  formatDate(){
+    
+    if (this.properties.get("constructionYear").value != '') {
+      this.properties.get("constructionYear").setValue(moment(this.properties.get("constructionYear").value).format("YYYY-MM-DD"));
+    }
+    if (this.properties.get("dateAvailability").value !='') {
+      this.properties.get("dateAvailability").setValue(moment(this.properties.get("dateAvailability").value).format("YYYY-MM-DD"));
+    }
   }
+
+  save() {
+    this.formatDate();
+    this.projectService.save(this.form.value).subscribe(response=>{
+      this.snackBar.open('le projet est ajouté avec succès!', '', { duration: 1000 ,panelClass: ['blue-snackbar'] ,  verticalPosition: 'top', horizontalPosition:'end' });
+      setTimeout(()=>{  
+        this.router.navigate(['/project/projectlist'])
+      }, 2000); },
+    (error) => {
+      this.snackBar.open("veuillez vérifier vos informations!", '', { duration: 1000, panelClass: ['red-snackbar'], verticalPosition: 'top', horizontalPosition:'end'});
+    });
+}
+
   OnClick() {
-   
-    console.log(this.selectedPersonId);
-    if (this.selectedPersonId != null) {
-      debugger;
+      if (this.selectedPersonId != null) {
       this.show = true;
-      this.contact = this.contactService.getContact(this.selectedPersonId);
-      this.contactService.getContact(this.selectedPersonId).subscribe();
-      console.log(this.contact);
+     
+      this.contactService.getContact(this.selectedPersonId).subscribe(contact => {
+        this.contact=contact
+      });
     }
     else{this.show = false;}
     
+  }
+
+  OnCountry(id:number){    
+    this.city$ = this.sponsorService.getCitys(id);
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

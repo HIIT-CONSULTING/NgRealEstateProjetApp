@@ -15,9 +15,6 @@ const routes: Routes = [
       path:':id/details',
       component:CandidateDetailsComponent
   }
-      
-  
-  
 ];
 
 @NgModule({

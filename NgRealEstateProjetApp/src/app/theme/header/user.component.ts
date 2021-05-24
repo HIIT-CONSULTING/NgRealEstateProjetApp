@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SponsorService } from 'app/routes/sponsor/sponsor.service';
-import { LoginService } from '@core/login.service';
+import { LoginService } from '@shared/services/login.service';
 import { Agent } from '@shared/models/Agent.model';
 
 @Component({
@@ -18,7 +17,7 @@ import { Agent } from '@shared/models/Agent.model';
     </button>
 
     <mat-menu #menu="matMenu">
-      <a routerLink="/profile/overview" mat-menu-item>
+      <a routerLink="/profil" mat-menu-item>
         <mat-icon>account_circle</mat-icon>
         <span>{{ 'user.profile' | translate }}</span>
       </a>
@@ -47,7 +46,6 @@ export class UserComponent {
 
      ngOnInit(): void {
       this.User= this.loginService.getCurentUser();
-      console.log(this.User);
      }
   
 

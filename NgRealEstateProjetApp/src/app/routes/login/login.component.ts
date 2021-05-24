@@ -4,7 +4,7 @@ import { Component, OnInit, AfterViewInit } from "@angular/core";
 import { FormGroup, Validators, FormBuilder } from "@angular/forms";
 import { Router } from "@angular/router";
 import { particlesConfig } from "../../../assets/data/particles";
-import { LoginService } from "@core/login.service";
+import { LoginService } from "@shared/services/login.service";
 import { first } from "rxjs/operators";
 import { throwError } from 'rxjs';
 
@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     particlesJS("particles", particlesConfig, () => {
-      console.log("callback - particles.js config loaded");
     });
   }
   // getter pratique pour un accès facile aux champs de formulaire
@@ -41,13 +40,11 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    debugger;
-    this.loginService.login(this.reactiveForm.value).subscribe(
+   
+
+      this.loginService.login(this.reactiveForm.value).subscribe(
       
-      (data) => {
-        
-        console.log('data',data);
-       
+      (data) => {       
         if (this.loginService.isLoggedIn()) {
           
           this.router.navigate(["/annuaire"]);
@@ -58,10 +55,8 @@ export class LoginComponent implements OnInit {
         }
       },
      
-      (error)=>{
-      
+      (error)=>{      
       this.loginError = "email or password is incorrect.";
-      console.log(this.loginError);
       return throwError(error);
     }
     );

@@ -5,8 +5,8 @@ import { TranslateService } from "@ngx-translate/core";
 import { Observable, Subject } from "rxjs";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Agent, Gender, City, Country } from "@shared/models/Agent.model";
-import { SponsorService } from "../sponsor.service";
-import { takeUntil } from "rxjs/operators";
+import { SponsorService } from "@shared/services/sponsor.service";
+import { DateAdapter } from '@angular/material/core';
 
 @Component({
   selector: "app-sponsor-agent-form",
@@ -14,31 +14,28 @@ import { takeUntil } from "rxjs/operators";
   styleUrls: ["./sponsor-agent-form.component.scss"],
 })
 export class SponsorAgentFormComponent implements OnInit {
-  form: any;
-  constructor(
-    private fb: FormBuilder,
-    private snackBar: MatSnackBar,
-    private translate: TranslateService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private sponsorService: SponsorService
-  ) {
-    this.unsubscribe$ = new Subject<void>();
-  }
-
+  form: any;  
   agents$: Observable<Agent[]>;
   agents: Agent[] = [];
   gender$: Observable<Gender[]>;
   city$: Observable<City[]>;
   country$: Observable<Country[]>;
   unsubscribe$: Subject<void>;
+    
+  constructor(
+    private fb: FormBuilder,private snackBar: MatSnackBar,private translate: TranslateService,private route: ActivatedRoute,
+    private router: Router,private dateAdapter: DateAdapter<Date>,private sponsorService: SponsorService) {
+    this.unsubscribe$ = new Subject<void>();
+    this.dateAdapter.setLocale('en-GB'); //dd/MM/yyyy
+  }
+
 
   createForm() {
     this.form = this.fb.group({
-      firstname: null,
-      lastname: null,
+      firstname:[null,[Validators.required,Validators.pattern(/^([a-zA-Z]{1,}\s?'?-?_?[a-zA-Z]{2,}(\s?'?-?_?[a-zA-Z]{2,})?$)/)]],
+      lastname: [null,[Validators.required,Validators.pattern(/^([a-zA-Z]{1,}\s?'?-?_?[a-zA-Z]{2,}(\s?'?-?_?[a-zA-Z]{2,})?$)/)]],
       email: [null, Validators.email],
-      telephone: [null, Validators.minLength(10)],
+      telephone: [null,[Validators.required,Validators.pattern(/^((\+)212|0)[1-9](\d{2}){4}$/)]],
       birthDay: null,
       address: this.fb.group({
         description: null,
@@ -49,19 +46,14 @@ export class SponsorAgentFormComponent implements OnInit {
     });
   }
 
-  OnCountry(id:number){
-    
+  OnCountry(id:number){    
     this.city$ = this.sponsorService.getCitys(id);
-    this.city$.subscribe((city) => console.log(city));
   }
 
   onSubmit() {
-    console.log("response", this.form);
     this.sponsorService.sponsorAgent(this.form).subscribe(
       (data) => {
-        console.log("data", data);
         this.snackBar.open('Un email a été envoyé pour confirmer votre demande', '', { duration: 3000 ,panelClass: ['blue-snackbar'] ,  verticalPosition: 'top', horizontalPosition:'end' });
-
         setTimeout(()=>{  
           this.router.navigate(["/sponsorship/list"]);
      }, 3000);
@@ -69,8 +61,7 @@ export class SponsorAgentFormComponent implements OnInit {
       },
 
       (error) => {
-        console.log('error',error);
-        this.snackBar.open("l'email ou le numéro de téléphone déjà existent ", '', { duration: 2000, panelClass: ['blue-snackbar'], verticalPosition: 'top', horizontalPosition:'end'});
+        this.snackBar.open("l'email ou le numéro de téléphone  existe déjà ", '', { duration: 2000, panelClass: ['red-snackbar'], verticalPosition: 'top', horizontalPosition:'end'});
 
       }
     );
@@ -78,12 +69,7 @@ export class SponsorAgentFormComponent implements OnInit {
   ngOnInit() {
     this.createForm();
     this.gender$ = this.sponsorService.getGender();
-    this.gender$.subscribe((gender) => console.log(gender));
-
-    
-
     this.country$ = this.sponsorService.getCountry();
-    this.country$.subscribe((country) => console.log(country));
   }
 
   getErrorMessage(form: FormGroup) {
@@ -102,4 +88,5 @@ export class SponsorAgentFormComponent implements OnInit {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
   }
+
 }

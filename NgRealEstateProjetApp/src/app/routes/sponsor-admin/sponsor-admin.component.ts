@@ -1,13 +1,8 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { MatPaginator } from "@angular/material/paginator";
-import { MatSort } from "@angular/material/sort";
-import { DataSource } from "@angular/cdk/table";
-import { BehaviorSubject, Observable, merge } from "rxjs";
-import { map } from "rxjs/operators";
-import { Agent, Candidate } from "@shared/models/Agent.model";
+import { Component, OnInit } from "@angular/core";
+import { Observable } from "rxjs";
+import { Candidate } from "@shared/models/Agent.model";
 import { ActivatedRoute, Router } from "@angular/router";
-import { SponsorService } from "../sponsor/sponsor.service";
-import { Role } from "@shared/models/role.model";
+import { SponsorService } from "@shared/services/sponsor.service";
 
 @Component({
   selector: "app-sponsor-admin",
@@ -28,8 +23,6 @@ export class SponsorAdminComponent implements OnInit {
     private sponsorService: SponsorService
   ) {}
 
-
-
   displayedColumns = [
     "Date De Création",
     "Prénom Parrain",
@@ -45,47 +38,42 @@ export class SponsorAdminComponent implements OnInit {
     this.candidates$.subscribe((candidate) => {
       this.candidates = candidate;
       this.paginatedDataSource = this.candidates;
-      console.log("cc", this.candidates);
     });
   }
 
-  Onpage() {
+  onPage() {
     this.page = this.page + 1;
-
     this.candidates$ = this.sponsorService.getCandidates(this.page, this.limit);
-    debugger;
     this.candidates$.subscribe((candidate) => {
       this.candidates = candidate;
-      console.log("cc", this.candidates);
       this.paginatedDataSource = this.candidates;
     });
   }
 
-  Accept(id: number) {
- 
+  accept(id: number) {
+    debugger 
     this.sponsorService.valide(id).subscribe((user) => {
         user = user;
         this.candidates$ = this.sponsorService.getCandidates(this.page, this.limit);
-        debugger;
         this.candidates$.subscribe((candidate) => {
           this.candidates = candidate;
           this.paginatedDataSource = this.candidates;
-          console.log("cc", this.candidates);
         });
-      });
+      }); 
 
-    
   }
-  Reffus(id: number) {
-   
-      this.sponsorService.reffus(id).subscribe((user) => {
+  
+  refus(id: number) {
+    debugger
+      this.sponsorService.refus(id).subscribe((user) => {
         user = user;
         this.candidates$ = this.sponsorService.getCandidates(this.page, this.limit);
-        debugger;
+       
+
         this.candidates$.subscribe((candidate) => {
+          debugger
           this.candidates = candidate;
           this.paginatedDataSource = this.candidates;
-          console.log("cc", this.candidates);
         });
       });
 
@@ -95,4 +83,5 @@ export class SponsorAdminComponent implements OnInit {
   details(id: number) {
     this.router.navigate(["./", id, "details"], { relativeTo: this.route });
   }
+  
 }

@@ -5,8 +5,10 @@ import { TranslateService } from "@ngx-translate/core";
 import { Observable } from "rxjs";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Agent, Gender, City, Country, Contact_type } from "@shared/models/Agent.model";
-import { SponsorService } from "../../sponsor/sponsor.service";
-import { ContactService } from '../contact.service';
+import { SponsorService } from "@shared/services/sponsor.service";
+import { ContactService } from '@shared/services/contact.service';
+import { DateAdapter } from '@angular/material/core';
+import * as moment from "moment";
 
 @Component({
   selector: 'app-contact-form',
@@ -14,6 +16,13 @@ import { ContactService } from '../contact.service';
   styleUrls: ['./contact-form.component.scss']
 })
 export class ContactFormComponent implements OnInit {
+  
+  agents$: Observable<Agent[]>;
+  agents: Agent[] = [];
+  gender$: Observable<Gender[]>;
+  city$: Observable<City[]>;
+  country$: Observable<Country[]>;
+  contact_type$:Observable<Contact_type[]>;
 
   constructor(
     private fb: FormBuilder,
@@ -23,68 +32,59 @@ export class ContactFormComponent implements OnInit {
     private sponsorService: SponsorService,
     private contactService:ContactService,
     private snackBar: MatSnackBar,
-  ) {}
-
-  agents$: Observable<Agent[]>;
-  agents: Agent[] = [];
-  gender$: Observable<Gender[]>;
-  city$: Observable<City[]>;
-  country$: Observable<Country[]>;
-  contact_type$:Observable<Contact_type[]>;
-
+    private dateAdapter: DateAdapter<Date>
+    ) 
+  {this.dateAdapter.setLocale('en-GB');}
+ 
   form = this.fb.group({
     gender: {
       id:null,
       name:null
     },
-    firstname: null,
-    lastname: null,
-    birthDay:null,
-    telephone: [null, Validators.minLength(10)],
+    firstname:[null,[Validators.required,Validators.pattern(/^([a-zA-Z]{1,}\s?'?-?_?[a-zA-Z]{2,}(\s?'?-?_?[a-zA-Z]{2,})?$)/)]],
+    lastname: [null,[Validators.required,Validators.pattern(/^([a-zA-Z]{1,}\s?'?-?_?[a-zA-Z]{2,}(\s?'?-?_?[a-zA-Z]{2,})?$)/)]],
     email: [null, Validators.email],
+    telephone: [null,[Validators.required,Validators.pattern(/^((\+)212|0)[1-9](\d{2}){4}$/)]],
+    birthDay: null,
+    societe: null,
+    channelType: null,
+    notes: null,
+
     address: this.fb.group({
       description: null,
       city: null,
       country: null,
     }),
   });
-
+  formatDate(){
+    this.form.get("birthDay").setValue(moment(this.form.get("birthDay").value).format("YYYY-MM-DD"));
+  }
   onSubmit() {
-    console.log("response",this.form.value);
+    
+    this.formatDate();
     this.contactService
       .addContact(this.form.value)
       .subscribe(
         (data) => {
-          console.log("data", data);
           this.snackBar.open('le contact est ajouté avec succès!', '', { duration: 1000 ,panelClass: ['blue-snackbar'] ,  verticalPosition: 'top', horizontalPosition:'end' });
-          setTimeout(()=>{  
+       setTimeout(()=>{  
             this.router.navigate(['/contact/contactlist'])
        }, 2000);
          
-        },
-  
+      },
         (error) => {
-          console.log('error',error);
-          this.snackBar.open("l'email ou le numéro de téléphone déjà existent ", '', { duration: 2000, panelClass: ['blue-snackbar'], verticalPosition: 'top', horizontalPosition:'end'});
-  
+          this.snackBar.open("l'email ou le numéro de téléphone  existe déjà", '', { duration: 2000, panelClass: ['red-snackbar'], verticalPosition: 'top', horizontalPosition:'end'});  
         }
       );
   }
 
   OnCountry(id:number){
-    
     this.city$ = this.sponsorService.getCitys(id);
-    this.city$.subscribe((city) => console.log(city));
   }
+
   ngOnInit() {
     this.gender$ = this.sponsorService.getGender();
-    this.sponsorService.getGender().subscribe((gender) => console.log(gender));
-
-   
     this.country$ = this.sponsorService.getCountry();
-    this.sponsorService.getCity().subscribe((country) => console.log(country));
-
-
   }
 
   getErrorMessage(form: FormGroup) {

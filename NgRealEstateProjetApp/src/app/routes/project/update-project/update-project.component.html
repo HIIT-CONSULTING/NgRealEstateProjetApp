@@ -1,24 +1,17 @@
 <page-header></page-header>
 <mat-card>
   <div class="card-header card-header-danger" style="margin-top: -40px;">
-    <h4 class="card-title">MODIFIER UN PROJET</h4>
+    <h4 class="card-title">{{'Property.title-update'|translate}}</h4>
   </div>
-  <form [formGroup]="form">
+  <form [formGroup]="form" >
     <form formGroupName="property">
 <section class="demo-expansion" style="margin-bottom: 2%;" >
   <div fxLayoutAlign="center center" style="color: rgb(34, 55, 120);" ><i class="fa fa-5x fa-home" aria-hidden="true"></i></div>
-  <div fxLayoutAlign="center center"  style="color:#1ba0a7;font-size: large; margin-top: 1.2%;    font-family: monospace;">{{(project$|async).project_type}} /{{(project$|async).project_state}}/{{(project$|async).project_kind}}/{{(project$|async).property.property_type.name}}</div>
+  <div fxLayoutAlign="center center"  style="color:#1ba0a7;font-size: large; margin-top: 1.2%;    font-family: monospace;">{{Project?.project_type}} /{{Project?.project_state}}/{{Project?.project_kind}}/{{Project?.property.property_type.name}}</div>
 <div *ngIf="showSpinner" fxLayoutAlign="center end" >
   <mat-spinner></mat-spinner>
 
 </div>
-
-
-
-
-
-
-
 <div *ngIf="!showSpinner">
   <div style="margin-top: 8%;margin-bottom: 5%;">
     <mat-accordion fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
@@ -27,36 +20,36 @@
           [expandedHeight]="'70px'">
           <mat-panel-title>
             <div class="title-cardd">
-              LIEU DU BIEN
+            {{'Property.form.propery_title'| translate}}
             </div>
           </mat-panel-title>
         </mat-expansion-panel-header>
         <div formGroupName="address">
+          <div fxLayout="column" fxLayoutAlign="space-between center ">
+            <mat-form-field appearance="outline" class="full-width" style="margin-top: 30px;"> 
+              <mat-label> {{'form_standard.country'|translate}} </mat-label>
+              <mat-select [value]="1" formControlName="country">
+                <mat-option *ngFor="let country of country$|async " (click)="OnCountry(country.id)" [value]="country.id">{{country.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
 
-          <div fxLayout="column" fxLayoutAlign="space-between center "style="margin-top: 30px;">
+          <div fxLayout="column" fxLayoutAlign="space-between center">
             <mat-form-field appearance="outline" class="full-width">
-              <mat-label> Ville </mat-label>
+              <mat-label> {{'form_standard.city'|translate}} </mat-label>
               <mat-select formControlName="city">
                 <mat-option *ngFor="let city of city$|async " [value]="city.id">{{city.name}} </mat-option>
               </mat-select>
             </mat-form-field>
           </div>
-
-          <div fxLayout="column" fxLayoutAlign="space-between center ">
-
-            <mat-form-field appearance="outline" class="full-width">
-              <mat-label> Pays </mat-label>
-              <mat-select formControlName="country">
-                <mat-option *ngFor="let country of country$|async " [value]="country.id">{{country.name}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
+          
           <div fxLayout="column" fxLayoutAlign="space-between center ">
             <mat-form-field class="full-width" appearance="outline">
-              <mat-label> Secteur </mat-label>
+              <mat-label> {{'form_standard.address'|translate}} </mat-label>
               <i matSuffix class="fas fa-lg fa-address-card"></i>
-              <input matInput name="address" formControlName="description" />
+              <input matInput name="description" formControlName="description" />
+              
             </mat-form-field>
           </div>
         </div>
@@ -66,58 +59,303 @@
         <mat-expansion-panel-header class="disable_ripple" [collapsedHeight]="'70px'"
           [expandedHeight]="'70px'">
           <div class="title-cardd">
-            SURFACES
+            {{'Property.form.area'|translate}}
           </div>
         </mat-expansion-panel-header>
         <div fxLayout="column" fxLayoutAlign="space-between center " style="margin-top: 30px;">
           <mat-form-field class="full-width" appearance="outline">
-            <mat-label> Surface</mat-label>
+            <mat-label> {{'Property.form.area'|translate}}</mat-label>
             <i matSuffix class="fas fa-lg fa-chart-area"></i>
             <input matInput name="area" formControlName="area" />
           </mat-form-field>
         </div>
+        <div
+        fxLayout="column"
+        fxLayoutAlign="space-between center "
+        style="margin-top: 30px"
+      >
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>{{'Property.form.areaEsteme'|translate}}</mat-label>
+          <i matSuffix class="fas fa-lg fa-chart-area"></i>
+          <input
+            type="number"
+            min="0"
+            matInput
+            name="estimatedSurface"
+            formControlName="estimatedSurface"
+          />
+          <mat-error
+            *ngIf="form.get('property.estimatedSurface').invalid"
+          >
+            {{ "Property.form.area.error" | translate }}
+          </mat-error>
+        </mat-form-field>
+      </div>
       </mat-expansion-panel>
       <mat-expansion-panel #panel3 style="width: 100%;">
         <mat-expansion-panel-header class="disable_ripple" [collapsedHeight]="'70px'"
           [expandedHeight]="'70px'">
           <div class="title-cardd">
-            PRIX
+            {{'Property.form.budget'|translate}}
           </div>
         </mat-expansion-panel-header>
         <div fxLayout="column" fxLayoutAlign="space-between center " style="margin-top: 30px;">
           <mat-form-field class="full-width" appearance="outline">
-            <mat-label> Minimum </mat-label>
+            <mat-label> {{'Property.form.pricemin'|translate}} </mat-label>
             <mat-icon matSuffix aria-hidden="false" aria-label="Example home icon">attach_money</mat-icon>
             <input matInput name="maximum_price" formControlName="minimalPrice" />
           </mat-form-field>
         </div>
         <div fxLayout="column" fxLayoutAlign="space-between center ">
           <mat-form-field class="full-width" appearance="outline">
-            <mat-label> Maximum </mat-label>
+            <mat-label> {{'Property.form.pricemax'|translate}} </mat-label>
             <mat-icon matSuffix aria-hidden="false" aria-label="Example home icon">attach_money</mat-icon>
             <input matInput name="minimum_price" formControlName="maximumPrice" />
           </mat-form-field>
         </div>
       </mat-expansion-panel>
-      <mat-expansion-panel #panel4 style="width: 100%;">
-        <mat-expansion-panel-header class="disable_ripple" [collapsedHeight]="'70px'"
-          [expandedHeight]="'70px'">
-          <div class="title-cardd">
-            NOMBRE DE PIÈCES
-          </div>
+
+
+      <mat-expansion-panel #panel4 style="width: 100%" *ngIf="form.get('property.propertyType').value !=4">
+        <mat-expansion-panel-header
+          class="disable_ripple"
+          [collapsedHeight]="'70px'"
+          [expandedHeight]="'70px'"
+        >
+          <div class="title-cardd">{{'Property.form.construction'|translate}}</div>
         </mat-expansion-panel-header>
-        <div fxLayout="column" fxLayoutAlign="space-between center" >
+
+        <div
+        fxLayout="column"
+        fxLayoutAlign="space-between center "
+        style="margin-top: 30px"
+      >
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{'Property.form.state'|translate}}</mat-label>
+        <mat-select formControlName="state" >
+          <mat-option *ngFor="let state of stateList" [value]="state">{{state}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div>
+      <div
+        fxLayout="column"
+        fxLayoutAlign="space-between center "
+        style="margin-top: 30px"
+      >
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{'Property.form.orientation'|translate}}</mat-label>
+        <mat-select formControlName="orientation" >
+          <mat-option *ngFor="let orientation of orientationList" [value]="orientation">{{orientation}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+        </div>
+        <div
+          fxLayout="column"
+          fxLayoutAlign="space-between center "
+          style="margin-top: 30px"
+        >
           <mat-form-field class="full-width" appearance="outline">
-            <mat-label> Nombre de pièces</mat-label>
-            <input matInput name="room" formControlName="room" />
+            <mat-label>{{'Property.form.constructionYear'|translate}}</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="constructionYear"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
         </div>
+        <div
+          fxLayout="column"
+          fxLayoutAlign="space-between center "
+          style="margin-top: 30px"
+        >
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>{{'Property.form.floorsNumber'|translate}}</mat-label>
+
+            <input
+              matInput
+              type="number"
+              min="0"
+              formControlName="floorsNumber"
+            />
+          </mat-form-field>
+        </div>
+       
+        <div
+          fxLayout="column"
+          fxLayoutAlign="space-between center "
+          style="margin-top: 30px"
+        >
+          <div fxLayout="row" fxLayoutAlign="space-between center ">
+            <mat-checkbox
+              formControlName="hasElevator"
+              >{{'Property.form.hasElevator'|translate}}</mat-checkbox
+            >
+            <mat-checkbox
+              
+              formControlName="hasTerace"
+              >{{'Property.form.hasTerace'|translate}}</mat-checkbox
+            >
+            <mat-checkbox
+              
+              formControlName="hasBalcony"
+              >{{'Property.form.hasBalcony'|translate}}</mat-checkbox
+            >
+            <mat-checkbox
+              
+              formControlName="hasGuardian"
+              >{{'Property.form.hasGuardian'|translate}}</mat-checkbox
+            >
+            <mat-checkbox
+             
+              formControlName="hasIntercom"
+              >{{'Property.form.hasIntercom'|translate}}</mat-checkbox
+            >
+          </div>
+        </div>
+        <div
+          fxLayout="column"
+          fxLayoutAlign="space-between center "
+          style="margin-top: 30px"
+        >
+          <div fxLayout="row" fxLayoutAlign="space-between center ">
+            <mat-checkbox
+              class="example-margin"
+              formControlName="hasGarage"
+              >{{'Property.form.hasGarage'|translate}}</mat-checkbox
+            >
+            <mat-checkbox
+              class="example-margin"
+              formControlName="hasCellar"
+              >{{'Property.form.hasCellar'|translate}}</mat-checkbox
+            >
+            <mat-checkbox
+              class="example-margin"
+              formControlName="hasParkCar"
+              (click)="
+                handleChange('hasParkCarOutside');
+                handleChange('hasBasement')
+              "
+              >{{'Property.form.hasParkCar'|translate}}</mat-checkbox
+            >
+            <mat-checkbox
+              class="example-margin"
+              formControlName="hasParkCarOutside"
+              [disabled]="!form.get('property.hasParkCar').value"
+              >{{'Property.form.hasParkCarOutside'|translate}}</mat-checkbox
+            >
+            <mat-checkbox
+              class="example-margin"
+              formControlName="hasBasement"
+              [disabled]="!form.get('property.hasParkCar').value"
+              >{{'Property.form.hasBasement'|translate}}</mat-checkbox
+            >
+          </div>
+        </div>
       </mat-expansion-panel>
+
+
+
+      <mat-expansion-panel #panel4 style="width: 100%">
+        <mat-expansion-panel-header
+          class="disable_ripple"
+          [collapsedHeight]="'70px'"
+          [expandedHeight]="'70px'"
+        >
+          <div class="title-cardd">Plus d'informations</div>
+        </mat-expansion-panel-header>
+        <div
+          fxLayout="column"
+          fxLayoutAlign="space-between center "
+          style="margin-top: 2%"
+
+          *ngIf="form.get('property.propertyType').value !=4"
+        >
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>
+              {{ "Property.form.nbpieces" | translate }}</mat-label
+            >
+            <input
+              matInput
+              name="room"
+              type="number"
+              min="0"
+              formControlName="room"
+            />
+          </mat-form-field>
+        </div>
+
+        <div fxLayoutAlign="center" style="margin-top: 2%">
+          <div fxLayoutAlign="space-between center" class="full-width">
+      
+            <div appearance="outline" fxFlex fxLayoutAlign="space-between center" >
+              <mat-radio-group formControlName="isAvailable">
+                  <mat-radio-button
+                    class="example-margin"
+                    [value]="true"
+                    (click)="handleChange('dateAvailability')"
+                    >{{ "Property.form.isAvailable" | translate }}</mat-radio-button
+                  >
+                  <mat-radio-button class="example-margin" [value]="false"
+                    >{{ "Property.form.notAvailable" | translate }}</mat-radio-button
+                  >
+                </mat-radio-group>
+            </div>
+      
+             <mat-form-field appearance="outline" fxFlex="40">
+              <mat-label>{{"Property.form.dateAvailability"|translate }}</mat-label>
+              <input
+                matInput
+                [matDatepicker]="picker1"
+                [disabled]="form.get('property.isAvailable').value"
+                formControlName="dateAvailability"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker1"
+                [disabled]="form.get('property.isAvailable').value"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+             </mat-form-field>
+      
+          </div>
+       </div>
+       <div fxLayoutAlign="center" style="margin-top: 2%"
+       *ngIf="form.get('property.propertyType').value !=4">
+        <div fxLayoutAlign="space-between center" class="full-width">
+    
+          <div appearance="outline" fxFlex fxLayoutAlign="space-between center" >
+            <mat-checkbox
+            class="example-margin"
+            (click)="handleChange('keysNumber')"
+            formControlName="hasKey"
+            >{{"Property.form.hasKey"|translate }}</mat-checkbox
+          >
+          </div>
+    
+           <mat-form-field appearance="outline" fxFlex="40">
+            <mat-label> {{"Property.form.keysNumber"|translate }}</mat-label>
+            <input
+              matInput
+              type="number"
+              min="0"
+              formControlName="keysNumber"
+            />
+           </mat-form-field>
+    
+        </div>
+     </div>
+      </mat-expansion-panel>
+
     </mat-accordion>
   </div>
   <div  fxLayoutAlign="end end" >
-    <button class="full" mat-button  mat-stroked-button (click)="onSubmit() " >
-      ENREGISTRER ET QUITTER &nbsp;&nbsp;&nbsp;<i class="fas fa-arrow-right"></i>
+    <button class="full" mat-button  mat-stroked-button  (click)=onSubmit()  [disabled]="form.invalid" >
+      {{"form_standard.save"|translate }} &nbsp;&nbsp;&nbsp;<i class="fas fa-arrow-right"></i>
     </button>
   </div>
   </div>

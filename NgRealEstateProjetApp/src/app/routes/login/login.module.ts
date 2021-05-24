@@ -7,10 +7,9 @@ import { SharedModule } from '@shared/shared.module';
 import { MaterialModule } from '../../material.module';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { LoginComponent } from './login.component';
-import { LoginService } from '@core/login.service';
+import { LoginService } from '@shared/services/login.service';
 import { TokenInterceptor } from '@core/token.interceptor';
 import { LoginRoutingModule } from './login-routing.module';
-import { LoginGuard } from '@core/guards/login.guard';
 
 const COMPONENTS = [LoginComponent];
 const COMPONENTS_DYNAMIC = [];

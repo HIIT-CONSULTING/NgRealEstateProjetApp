@@ -9,7 +9,7 @@ export interface Agent{
     telephone: string;
     address:Address;
     gender:Gender,
-    birthDay:Date;
+    birth_day:Date;
     subsidiary: Subsidiary;
     roles:Role;
     
@@ -35,7 +35,7 @@ export interface Agent{
       telephone: Agent['telephone'];
       address:Agent['address'];
       gender:Agent['gender'],
-      birthDay:Agent['birthDay'];
+      birthDay:Agent['birth_day'];
     }
     
     
@@ -48,8 +48,11 @@ export interface Agent{
     email: string;
     telephone: string;
     gender:Gender,
-    address:Address;
-    birth_day:Date;
+    address: Address;
+    birth_day: Date;
+    channel_type?: string;
+    societe?: string;
+    notes?: string;
 
   }
 
@@ -82,20 +85,46 @@ export interface Agent{
 
    export interface Project{
     id:number,
-    projectType: string,
-    projectState: string,
-    projectKind: string,
+    project_type: string,
+    project_state: string,
+    project_kind: string,
     contact:Contact,
     property:{
       id:number,
-      propertyType:{
+      area:string,
+      minimal_price: string,
+      maximum_price: string,
+      room: String
+      orientation?: string,
+      keys_number?: number,
+      has_key?:boolean,
+      rooms_number?: number,
+      estimated_surface?: number,
+      construction_year?: Date,
+      state?: string;
+      floors_number?: number,
+      date_availability?: Date,
+      is_available?: boolean,
+      has_guardian? : boolean,
+      has_intercom?: boolean,
+      has_elevator? : boolean,
+      has_terace? :  boolean,
+      has_balcony? : boolean,
+      has_garage? : boolean,
+      has_park_car?: boolean,
+      sous_sol?: boolean,
+      exterieur?: boolean,
+      cave?: boolean,
+      has_cellar?: boolean,
+      has_park_car_outside?:boolean,
+      has_basement?:boolean,
+
+    
+    
+      property_type:{
         id:number,
         name:String,
       },
-      area:string,
-      minimalPrice: string,
-      maximumPrice: string,
-      room: String,
       address:{
         description:string,
         city: {id:number,name:string},
@@ -112,4 +141,15 @@ export interface Agent{
     email: string,
     subsidiary: number
    }
-
+   export interface TypeMandat{
+    id:number;
+    name:string;
+   }
+   export interface Mandat{
+     id :number;
+    status: string,
+    project: Project,
+    type: TypeMandat,
+ 
+   }
+   

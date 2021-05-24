@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {  FormBuilder, Validators } from '@angular/forms';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import{Agent, Candidate, Gender, City, Country} from '@shared/models/Agent.model';
-import { SponsorService } from '../../sponsor.service';
+import { SponsorService } from "@shared/services/sponsor.service";
+import { DateAdapter } from '@angular/material/core';
 
 
 @Component({
@@ -13,77 +14,69 @@ import { SponsorService } from '../../sponsor.service';
   styleUrls: ['./update-candidate.component.scss']
 })
 export class UpdateCandidateComponent implements OnInit {
-
-  constructor(
-    private fb: FormBuilder,
-    private route:ActivatedRoute,private router:Router,
-    private sponsorService:SponsorService,
-    private snackBar: MatSnackBar,
-    
-            ){}
-
-  
   id:number;
   candidate$:Observable<Candidate>;
   candidate:Candidate;
   candidat:Candidate;
-
   agents$: Observable<Agent[]>;
   agents: Agent[] = [];
   gender$: Observable<Gender[]>;
   city$: Observable<City[]>;
   country$: Observable<Country[]>;
 
+  constructor(
+    private fb: FormBuilder,
+    private route:ActivatedRoute,private router:Router,
+    private sponsorService:SponsorService,
+    private snackBar: MatSnackBar,
+    private dateAdapter: DateAdapter<Date>){
+      this.dateAdapter.setLocale('en-GB'); //dd/MM/yyyy
+    }
+
+  
+ 
   ngOnInit(){
-debugger;
     this.route.params.subscribe((params)=>{
       this.id=+params['id'];
-    }
-    )
+    })
 
-    debugger;
-  
     this.sponsorService.getCandidate(this.id).subscribe(user => {
-      console.log('candidate',user);
-      this.candidat=user;
-    
+
+      this.candidat=user;      
+      this.city$ =this.sponsorService.getCitys(user.address.country.id);       
       this.form.setValue({
         
         firstname: user.firstname,
         lastname:user.lastname,
         email:user.email,
         telephone:user.telephone,
-        address:{
-          city:{id:user.address.city.id,name:user.address.city.name},
-          country:{id:user.address.country.id,name:user.address.country.name},
-          description:user.address.description
-        },
         birthDay:user.birth_day,
-        gender:{id:user.gender.id,name:user.gender.name},
+        address:{
+          description:user.address.description??'',
+          country:user.address.country.id,
+          city:user.address.city.id
+        },
+        gender:user.gender.id,
 
 
       });
     })
 
     this.gender$ = this.sponsorService.getGender();
-    this.sponsorService.getGender().subscribe((gender) => console.log(gender));
+    this.country$ = this.sponsorService.getCountry(); 
+    }
 
-    this.city$ = this.sponsorService.getCity();
-    this.sponsorService.getCity().subscribe((city) => console.log(city));
-
-    this.country$ = this.sponsorService.getCountry();
-    this.sponsorService.getCountry().subscribe((country) => console.log(country));
-
-
+    OnCountry(id:number){    
+      this.city$ = this.sponsorService.getCitys(id);
     }
 
 
     form = this.fb.group({
-      firstname: null,
-      lastname: null,
+      firstname:[null,[Validators.required,Validators.pattern(/^([a-zA-Z]{1,}\s?'?-?_?[a-zA-Z]{2,}(\s?'?-?_?[a-zA-Z]{2,})?$)/)]],
+      lastname: [null,[Validators.required,Validators.pattern(/^([a-zA-Z]{1,}\s?'?-?_?[a-zA-Z]{2,}(\s?'?-?_?[a-zA-Z]{2,})?$)/)]],
       email: [null, Validators.email],
-      telephone: [null, Validators.minLength(10)],
-      birthDay:null,
+      telephone: [null,[Validators.required,Validators.pattern(/^((\+)212|0)[1-9](\d{2}){4}$/)]],
+      birthDay: null,
       address: this.fb.group({
         description: null,
         city:null,
@@ -108,17 +101,15 @@ debugger;
 
     this.sponsorService.update(this.candidat,this.id).subscribe(
       (data) => {
-        console.log("data", data);
         this.snackBar.open('le candidat est modifié avec succès!', '', { duration: 1000 ,panelClass: ['blue-snackbar'] ,  verticalPosition: 'top', horizontalPosition:'end' });
         setTimeout(()=>{  
           this.router.navigate(["/sponsorship/list"]);
      }, 2000);
        
-      },
+  },
 
       (error) => {
-        console.log('error',error);
-        this.snackBar.open("veuillez vérifier vos informations!", '', { duration: 1000, panelClass: ['blue-snackbar'], verticalPosition: 'top', horizontalPosition:'end'});
+        this.snackBar.open("veuillez vérifier vos informations!", '', { duration: 1000, panelClass: ['red-snackbar'], verticalPosition: 'top', horizontalPosition:'end'});
 
       }
     );
