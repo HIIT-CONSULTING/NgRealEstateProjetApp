@@ -67,6 +67,7 @@ export class MandatAdminComponent implements OnInit {
       private router: Router,
       private mandatService: MandatService,
       private fb: FormBuilder,
+      private snackBar: MatSnackBar,
     ) 
     {
       this.unsubscribe$ = new Subject();
@@ -121,9 +122,14 @@ export class MandatAdminComponent implements OnInit {
           .subscribe((res) => {
             this.mandatService.getAllMandats(this.form.value).pipe(takeUntil(this.unsubscribe$))
               .subscribe((res) => {
-                this.mandat = res['hydra:member'];
-                this.lastPage=res['hydra:view']['hydra:last']?res['hydra:view']['hydra:last'].split('page=')[1]:1;
-       });   
+               this.snackBar.open('le mandat est refusé!', '', { duration: 1000 ,panelClass: ['blue-snackbar'] ,  verticalPosition: 'top', horizontalPosition:'end' });
+               this.mandat = res['hydra:member'];
+               this.lastPage=res['hydra:view']['hydra:last']?res['hydra:view']['hydra:last'].split('page=')[1]:1;
+
+                },
+              (error) => {
+                this.snackBar.open("veuillez vérifier vos connexions!", '', { duration: 1000, panelClass: ['red-snackbar'], verticalPosition: 'top', horizontalPosition:'end'});
+              });  
       });
     }
     
@@ -132,8 +138,11 @@ export class MandatAdminComponent implements OnInit {
       .subscribe((res) => {
         this.mandatService.getAllMandats(this.form.value).pipe(takeUntil(this.unsubscribe$))
           .subscribe((res) => {
+            this.snackBar.open('le mandat est accepté!', '', { duration: 1000 ,panelClass: ['blue-snackbar'] ,  verticalPosition: 'top', horizontalPosition:'end' });
             this.mandat = res['hydra:member'];
             this.lastPage=res['hydra:view']['hydra:last']?res['hydra:view']['hydra:last'].split('page=')[1]:1;
+        },(error) =>{
+          this.snackBar.open("veuillez vérifier vos connexions!", '', { duration: 1000, panelClass: ['red-snackbar'], verticalPosition: 'top', horizontalPosition:'end'});
         });
         
       });
