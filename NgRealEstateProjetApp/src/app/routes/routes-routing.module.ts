@@ -74,6 +74,12 @@ const routes: Routes = [
           data: { title: "mandat-admin", titleI18n: "mandat-admin",roles: [Role.Admin]},
           loadChildren: () => import("./mandat-admin/mandat-admin.module").then((m) => m.MandatAdminModule),
          },
+         {
+          path: "mandat",
+          canActivate: [RoleGuard,AuthGuard],
+          data: { title: "mandat", titleI18n: "mandat",roles: [Role.User]},
+          loadChildren: () => import("./mandat/mandat.module").then((m) => m.MandatModule),
+         },
         
 
     ]

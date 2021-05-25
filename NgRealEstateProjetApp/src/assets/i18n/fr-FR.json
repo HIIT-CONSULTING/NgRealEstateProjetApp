@@ -172,7 +172,8 @@
         "Download":"Telecharger",
         "title-bien":"Détail du bien",
         "title-mandan":"Détail du mandant",
-        "firstname_mandant":"Prénom Mandant",
+        "firstname_mandant":"Prénom DU Mandant",
+        "lastname_mandant":"Nom Du Mandant",
         "firstname_agent":"Prénom Agent",
         "agent":"Agent",
         "mandant":"Mandant",
@@ -181,7 +182,8 @@
         "typeProject": "Type Du Bien",
         "typeMandat" : "Type Du Mandat",
         "sttusMandat": "Statut Mandat",
-        "sortList":"Trier"
+        "sortList":"Trier",
+        "add":"Ajouter un mandat"
         
 
         }
