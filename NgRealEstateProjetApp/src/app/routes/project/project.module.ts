@@ -21,7 +21,7 @@ const COMPONENTS = [ProjectComponent,ProjectFormComponent,ProjectListComponent];
 const COMPONENTS_DYNAMIC = [];
 
 @NgModule({
-  imports: [SharedModule, ProjectRoutingModule, MaterialModule, SharedModule,DragDropModule,CommonModule],
+  imports: [ProjectRoutingModule, MaterialModule, SharedModule,DragDropModule,CommonModule],
   declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC, UpdateProjectComponent, ProjectDetailsComponent, AddMandatComponent, MandatListComponent, MandatDetailsComponent],
   entryComponents: COMPONENTS_DYNAMIC
 })

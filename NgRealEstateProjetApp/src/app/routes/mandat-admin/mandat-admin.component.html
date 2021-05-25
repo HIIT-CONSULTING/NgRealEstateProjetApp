@@ -132,6 +132,10 @@
     <section>
       <mat-card-content>
       <mat-table [dataSource]="mandat" aria-readonly="true">
+        <ng-container cdkColumnDef="Id Mandat">
+          <mat-header-cell  *cdkHeaderCellDef>{{'Mandat.id'|translate}}</mat-header-cell>
+          <mat-cell *cdkCellDef="let row;">{{row?.id}}</mat-cell>
+      </ng-container>
         <ng-container cdkColumnDef="Date De Création">
             <mat-header-cell   *cdkHeaderCellDef>{{'Sponsor.form.Date_CREATION'|translate}}
               &nbsp;&nbsp;<i  class="fa fa-sort fa-lg" aria-hidden="true" (click)="sort()"></i>&nbsp;&nbsp;
@@ -212,12 +216,12 @@
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-                <button mat-menu-item (click)="accept(row.id)"> 
+                <button mat-menu-item (click)="accept(row.id)" *ngIf="row.status == 'in_progress'"> 
                   <i style="color: green;" class="fa fa-check-circle"></i>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <span>{{'Sponsor.form.accept'|translate}}</span>
                 </button>
-                <button mat-menu-item (click)="refus(row.id)">
+                <button mat-menu-item (click)="refus(row.id)" *ngIf="row.status == 'in_progress'">
                   <i  style="color: red;" class="fa fa-ban" aria-hidden="true"></i>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <span >{{'Sponsor.form.refus'|translate}}</span>

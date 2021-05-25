@@ -8,7 +8,6 @@ import { Mandat, TypeMandat } from '@shared/models/Agent.model';
 import { MandatService } from '@shared/services/mandat.service';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { Options, LabelType } from '@angular-slider/ngx-slider';
 
 
 @Component({
@@ -51,6 +50,7 @@ export class MandatAdminComponent implements OnInit {
     {value: 'Simple', viewValue: 'Simple'},
     {value: 'Exclusif', viewValue: 'Exclusif'}];
   displayedColumns = [
+    "Id Mandat",
     "Date De Création",
     "Nom Agent",
     "Nom Du Mandant",
@@ -100,7 +100,7 @@ export class MandatAdminComponent implements OnInit {
           .subscribe((res) => {
             this.mandat = res['hydra:member'];
             this.lastPage=res['hydra:view']['hydra:last']?res['hydra:view']['hydra:last'].split('page=')[1]:1;
-            console.log(res['hydra:view']['hydra:last'])
+           
       });
     }
     sort(){
