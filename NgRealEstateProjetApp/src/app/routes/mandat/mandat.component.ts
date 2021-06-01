@@ -24,7 +24,6 @@ export class MandatComponent implements OnInit {
   displayedColumns = [
     "Id Mandant",
     "Prénom Du Mandant",
-    "Nom Du Mandant",
     "projectState",
     "projectType",
     "Type",

@@ -47,15 +47,15 @@ export class DialogContentProjectComponent {
     firstname:[null,Validators.pattern(/^([a-zA-Z]{1,}\s?'?-?_?[a-zA-Z]{2,}(\s?'?-?_?[a-zA-Z]{2,})?$)/)],
     lastname: [null,Validators.pattern(/^([a-zA-Z]{1,}\s?'?-?_?[a-zA-Z]{2,}(\s?'?-?_?[a-zA-Z]{2,})?$)/)],
     birthDay:null,
-    telephone:[null,Validators.pattern(/^((\+)212|0)[1-9](\d{2}){4}$/)],
+    telephone: [null,[Validators.required,Validators.pattern(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/)]],
     email: [null, Validators.email],
     societe: null,
     channelType: null,
     notes: null,
     address: this.fb.group({
       description: null,
-      city: null,
-      country: null,
+      city: [null, Validators.required],
+      country: [null, Validators.required],
     }),
   });
   formatDate(){

@@ -5,7 +5,7 @@
         "sponsorship-admin":"Parrainage",
         "project":"Gestions des projets ",
         "contact":"Gestion des contacts",
-        "mandat":"Gestion des mandat",
+        "mandat":"Gestion des mandats",
         "mandat-admin":"Mandat"
     },
     "user": {
@@ -39,9 +39,10 @@
         "notes": "Notes",
         "save": "Enregistrer",
         "yes" : "Oui",
+        "and" : "et",
 
         "email.error":"entrer un email valide",
-        "tel.error":"Entrer un numéro de téléphone valide Exemple: 0612345678 ou +212612345678 ",
+        "tel.error":"Entrer un numéro de téléphone valide",
         "lastname.error":"Entrer un nom valide ",
         "firstname.error":"Entrer un prénom valide ",
         "date.error":"Entrer une date valide (jj/mm/aaaa)"
@@ -158,8 +159,8 @@
             "Date_CREATION" : "Date de Création", 
             "status" : "État Du Candidat",
             "add":"Ajouter Un Candidat",
-            "accept":"ACCEPTER",
-            "refus":"REfUSER"         
+            "accept":"Accepter",
+            "refus":"Refuser"         
         }        
     },
     "Mandat" : {
@@ -168,8 +169,8 @@
         "title-list":"Liste des mandats",
         "title-data" : "Type de mandat" ,
         "newMandate" :"Nouveau Mandat" ,
-        "detail" : "Detail De Mandat",
-        "Download":"Telecharger",
+        "detail" : "Détail De Mandat",
+        "Download":"Télécharger",
         "title-bien":"Détail du bien",
         "title-mandan":"Détail du mandant",
         "firstname_mandant":"Prénom DU Mandant",
@@ -181,7 +182,7 @@
         "statusProject": "Statut Du Bien",
         "typeProject": "Type Du Bien",
         "typeMandat" : "Type Du Mandat",
-        "sttusMandat": "Statut Mandat",
+        "sttusMandat": "Statut Du Mandat",
         "sortList":"Trier",
         "add":"Ajouter un mandat"
         

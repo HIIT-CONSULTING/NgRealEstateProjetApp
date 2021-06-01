@@ -188,19 +188,22 @@
             <div fxLayout="row" fxFlex="50">
               <i class="fas fa-lg fa-parking"></i> {{"Property.form.hasParkCar" | translate }} :
             </div>
-            <div
-              fxLayout="column"
-              fxFlex="50"
-              *ngIf="project?.property.has_basement"
-            >
-            {{"Property.form.hasBasement" | translate }}
+            <div fxLayout="column" *ngIf="project?.property.has_basement">
+              {{ "Property.form.hasBasement" | translate }}
             </div>
             <div
+              *ngIf="
+                project?.property.has_basement &&
+                project?.property.has_park_car_outside
+              "
+            >
+              &nbsp;{{ "form_standard.and" | translate }}&nbsp;
+          </div>
+            <div
               fxLayout="column"
-              fxFlex="50"
               *ngIf="project?.property.has_park_car_outside"
             >
-            {{"Property.form.hasParkCarOutside" | translate }} 
+              {{ "Property.form.hasParkCarOutside" | translate }}
             </div>
           </div>
 
@@ -392,9 +395,7 @@
                   {{ "form_standard.address" | translate }} :
                 </div>
                 <div fxLayout="column" fxFlex="50">
-                  {{ project?.contact.address.description }},{{
-                    project?.contact.address.city.name
-                  }}
+                  {{ project?.contact?.address?.description }},{{project?.contact?.address?.city?.name}}
                 </div>
               </div>
 

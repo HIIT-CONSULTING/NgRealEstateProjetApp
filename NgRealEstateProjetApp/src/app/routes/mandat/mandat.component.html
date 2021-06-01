@@ -28,19 +28,9 @@
           <mat-cell *cdkCellDef="let row">{{ row.id }}</mat-cell>
         </ng-container>
         <ng-container cdkColumnDef="Prénom Du Mandant">
-          <mat-header-cell *cdkHeaderCellDef>{{'Mandat.firstname_mandant'|translate}}</mat-header-cell>
-          <mat-cell *cdkCellDef="let row">{{
-            row.project.contact.firstname
-          }}</mat-cell>
+          <mat-header-cell *cdkHeaderCellDef>{{'Mandat.lastname_mandant'|translate}} </mat-header-cell>
+          <mat-cell *cdkCellDef="let row">{{row.project.contact.firstname}}&nbsp;{{row.project.contact.lastname}}</mat-cell>
         </ng-container>
-
-        <ng-container cdkColumnDef="Nom Du Mandant">
-          <mat-header-cell *cdkHeaderCellDef>{{'Mandat.lastname_mandant'|translate}}</mat-header-cell>
-          <mat-cell *cdkCellDef="let row">{{
-            row.project.contact.lastname
-          }}</mat-cell>
-        </ng-container>
-
         <ng-container cdkColumnDef="projectState">
           <mat-header-cell *cdkHeaderCellDef>{{'Mandat.statusProject'|translate}}</mat-header-cell>
           <mat-cell *cdkCellDef="let row"

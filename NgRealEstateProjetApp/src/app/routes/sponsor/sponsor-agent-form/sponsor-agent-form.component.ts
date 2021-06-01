@@ -35,7 +35,7 @@ export class SponsorAgentFormComponent implements OnInit {
       firstname:[null,[Validators.required,Validators.pattern(/^([a-zA-Z]{1,}\s?'?-?_?[a-zA-Z]{2,}(\s?'?-?_?[a-zA-Z]{2,})?$)/)]],
       lastname: [null,[Validators.required,Validators.pattern(/^([a-zA-Z]{1,}\s?'?-?_?[a-zA-Z]{2,}(\s?'?-?_?[a-zA-Z]{2,})?$)/)]],
       email: [null, Validators.email],
-      telephone: [null,[Validators.required,Validators.pattern(/^((\+)212|0)[1-9](\d{2}){4}$/)]],
+      telephone: [null,[Validators.required,Validators.pattern(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/)]],
       birthDay: null,
       address: this.fb.group({
         description: null,
