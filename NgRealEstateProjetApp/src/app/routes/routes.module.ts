@@ -8,6 +8,7 @@ import { ContactFormComponent } from './contact/contact-form/contact-form.compon
 import { ContactListComponent } from './contact/contact-list/contact-list.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from '@core/token.interceptor';
+import { TransactionComponent } from './transaction/transaction.component';
 
 
 const COMPONENTS = [ NotFoundComponent];
@@ -15,7 +16,7 @@ const COMPONENTS_DYNAMIC = [];
 
 @NgModule({
   imports: [SharedModule, RoutesRoutingModule,MaterialModule],
-  declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC,],
+  declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC, TransactionComponent,],
   entryComponents: COMPONENTS_DYNAMIC,
   providers: [
   {
