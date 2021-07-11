@@ -1,0 +1,661 @@
+<mat-card>
+  <form [formGroup]="form">
+    <mat-horizontal-stepper linear = "false" #stepper>
+      <mat-step>
+        <ng-template matStepLabel>
+          {{ "Transaction.projectAchat" | translate }}
+        </ng-template>
+        <mat-card>
+          <div style="margin-top: 8%">
+            <mat-accordion
+              fxLayout="column"
+              fxLayoutAlign="center center"
+              fxLayoutGap="20px"
+            >
+              <mat-card-content>
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>{{
+                    "Transaction.selectProjectAchar" | translate
+                  }}</mat-label>
+                  <mat-select >
+                    <mat-option
+                      *ngFor="let project of projectsAchat"
+                      [value]="project.id"
+                      (onSelectionChange)="change($event, 1)"
+                    >
+                      {{ project?.id }}&nbsp;
+                      {{ project?.property?.propertyType.name }}&nbsp;|&nbsp;
+                      {{ project?.contact?.firstname }}&nbsp;{{
+                        project?.contact?.lastname
+                      }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </mat-card-content>
+              <div
+                *ngIf="projectAchat"
+                class="listProject"
+                fxLayout="column"
+                fxLayoutAlign="center center"
+              >
+                <mat-card
+                  class="list-cardProject"
+                  fxLayout="column"
+                  fxLayoutAlign="center center"
+                  style="width: 60%"
+                >
+                  <div style="margin-top: 4%; width: 60%">
+                    <img mat-card-image src="./assets/images/home.png" />
+                  </div>
+                  
+                    <div class="name" style="font-size: large">
+                      {{ projectAchat.contact.firstname }}&nbsp;&nbsp;{{
+                        projectAchat.contact.lastname | uppercase
+                      }}
+                    </div>
+                    <div class="role">
+                      {{ projectAchat.project_type }} /{{
+                        projectAchat.project_state
+                      }}/{{ projectAchat.project_kind }}/{{
+                        projectAchat.property.property_type.name
+                      }}
+                    </div>
+                    <div class="titleProject">
+                      {{ "form_standard.address" | translate }} :
+                    </div>
+                    <div class="text">
+                      {{ projectAchat.property.address.description }},
+                      {{ projectAchat.property.address.city.name }},{{
+                        projectAchat.property.address.country.name
+                      }}
+                    </div>
+                    <div class="titleProject">
+                      {{ "Property.title-data" | translate }} :
+                    </div>
+                    <div class="text">
+                      $ {{ "Property.form.budget" | translate }} :
+                      {{ projectAchat.property.minimal_price }} $
+                    </div>
+                  
+                </mat-card>
+              </div>
+            </mat-accordion>
+          </div>
+
+
+          <div fxLayout="row" fxLayoutAlign="space-around stretch"
+          fxLayout.xs="column" fxLayoutGap.xs="0">
+            <button
+              mat-button
+              matStepperPrevious
+              mat-stroked-button
+              class="full"
+              style="margin-left: -25%"
+            >
+              <i class="fas fa-arrow-left"> </i>&nbsp;&nbsp;&nbsp;{{
+                "Property.previous" | translate
+              }}
+            </button>
+            <button
+              class="full"
+              mat-button
+              matStepperNext
+              mat-stroked-button
+              style="margin-right: -25%"
+            >
+              {{ "Property.next" | translate }} &nbsp;&nbsp;&nbsp;<i
+                class="fas fa-arrow-right"
+              ></i>
+            </button>
+          </div>
+
+
+
+
+          
+        </mat-card>
+      </mat-step>
+      <!----------------------projectVeten--------------------------->
+      <mat-step>
+        <ng-template matStepLabel>
+          {{ "Transaction.projectVente" | translate }}
+        </ng-template>
+        <mat-card>
+          <div style="margin-top: 8%">
+            <mat-accordion
+              fxLayout="column"
+              fxLayoutAlign="center center"
+              fxLayoutGap="20px"
+            >
+              <mat-card-content>
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>{{
+                    "Transaction.selectProjectVent" | translate
+                  }}</mat-label>
+                  <mat-select >
+                    <mat-option
+                      *ngFor="let project of projectsVente"
+                      [value]="project.id"
+                      (onSelectionChange)="change($event, 2)"
+                    >
+                      {{ project?.id }}&nbsp;
+                      {{ project?.property?.propertyType.name }}&nbsp;|&nbsp;
+                      {{ project?.contact?.firstname }}&nbsp;{{
+                        project?.contact?.lastname
+                      }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </mat-card-content>
+              <div
+                *ngIf="projectVente"
+                class="listProject"
+                fxLayout="column"
+                fxLayoutAlign="center center"
+              >
+                <mat-card
+                  class="list-cardProject"
+                  fxLayout="column"
+                  fxLayoutAlign="center center"
+                  style="width: 60%"
+                >
+                  <div style="margin-top: 4%; width: 60%">
+                    <img mat-card-image src="./assets/images/home.png" />
+                  </div>
+                  <mat-card-content
+                    style="margin-bottom: 1%; text-align: center; width: 95%"
+                  >
+                    <div class="name" style="font-size: large">
+                      {{ projectVente.contact.firstname }}&nbsp;&nbsp;{{
+                        projectVente.contact.lastname | uppercase
+                      }}
+                    </div>
+                    <div class="role">
+                      {{ projectVente.project_type }} /{{
+                        projectVente.project_state
+                      }}/{{ projectVente.project_kind }}/{{
+                        projectVente.property.property_type.name
+                      }}
+                    </div>
+                    <div class="titleProject">
+                      {{ "form_standard.address" | translate }} :
+                    </div>
+                    <div class="text">
+                      {{ projectVente.property.address.description }},
+                      {{ projectVente.property.address.city.name }},{{
+                        projectVente.property.address.country.name
+                      }}
+                    </div>
+                    <div class="titleProject">
+                      {{ "Property.title-data" | translate }} :
+                    </div>
+                    <div class="text">
+                      $ {{ "Property.form.budget" | translate }} :
+                      {{ projectVente.property.minimal_price }} $
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+            </mat-accordion>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="space-around stretch"
+           fxLayout.xs="column" fxLayoutGap.xs="0">
+            <button
+              mat-button
+              matStepperPrevious
+              mat-stroked-button
+              class="full"
+              style="margin-left: -25%"
+            >
+              <i class="fas fa-arrow-left"> </i>&nbsp;&nbsp;&nbsp;{{
+                "Property.previous" | translate
+              }}
+            </button>
+            <button
+              class="full"
+              mat-button
+              matStepperNext
+              mat-stroked-button
+              [disabled]="false"
+              style="margin-right: -25%"
+            >
+              {{ "Property.next" | translate }} &nbsp;&nbsp;&nbsp;<i
+                class="fas fa-arrow-right"
+              ></i>
+            </button>
+          </div>
+
+
+
+
+        </mat-card>
+      </mat-step>
+       <!----------------------selectNotary--------------------------->
+       <mat-step>
+        <ng-template matStepLabel>
+          {{ "Transaction.selectNotary" | translate }}
+        </ng-template>
+        <mat-card>
+          <div style="margin-top: 8%">
+            <mat-accordion
+              fxLayout="column"
+              fxLayoutAlign="center center"
+              fxLayoutGap="20px"
+            >
+              <mat-card-content>
+                <div
+                  fxLayout="row"
+                  fxLayoutAlign="space-around centre"
+           fxLayout.xs="column" fxLayoutGap.xs="0"
+                  style="margin-top: 7%"
+                >
+                  <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>{{
+                      "Transaction.selectNotary" | translate
+                    }}</mat-label>
+                    <mat-select>
+                      <mat-option
+                        *ngFor="let notary of notarys"
+                        [value]="notary"
+                        (onSelectionChange)="selectNotary($event)"
+                      >
+                        {{ notary?.firstname }}&nbsp;{{ notary?.lastname }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                 
+                  <a>
+                    <button
+                      mat-button
+                      mat-stroked-button
+                      (click)="openDialog()"
+                      class="btnAdd"
+                    >
+                      <i class="fa fa-2x fa-user-plus"></i> &nbsp;&nbsp;&nbsp;
+                      {{ "Transaction.addnotary" | translate }}
+                    </button>
+                  </a>
+                </div>
+
+                <!--<div fxFlex = 30  fxLayoutAlign="space-between center" >
+                <button
+                    mat-button
+                    mat-stroked-button
+                    style="margin-right: -30%"
+                    (click)="openDialog()"
+                  >
+                    <i class="fa fa-2x fa-user-plus"></i> &nbsp;&nbsp;&nbsp;
+                    {{ "Contact.title" | translate }}
+                  </button>
+              </div>
+               -->
+
+                <div *ngIf="notary">
+                  <div fxLayout="column" fxLayoutAlign="space-between center">
+                    <mat-form-field class="full-width" appearance="outline">
+                      <mat-label
+                        >{{ "form_standard.civility" | translate }}
+                      </mat-label>
+                      <input
+                        matInput
+                        name="firstname"
+                        value="!!!!!!!"
+                        [disabled]="true"
+                      />
+                    </mat-form-field>
+                  </div>
+
+                  <div fxLayout="column" fxLayoutAlign="space-between center">
+                    <mat-form-field class="full-width" appearance="outline">
+                      <mat-label
+                        >{{ "form_standard.firstname" | translate }}
+                      </mat-label>
+                      <input
+                        matInput
+                        name="firstname"
+                        [value]="notary.firstname"
+                        [disabled]="true"
+                      />
+                    </mat-form-field>
+                  </div>
+
+                  <div fxLayout="column" fxLayoutAlign="space-between center">
+                    <mat-form-field class="full-width" appearance="outline">
+                      <mat-label
+                        >{{ "form_standard.lastname" | translate }}
+                      </mat-label>
+                      <input
+                        matInput
+                        name="lastname"
+                        [value]="notary.lastname"
+                        [disabled]="true"
+                      />
+                    </mat-form-field>
+                  </div>
+
+                  <div fxLayout="column" fxLayoutAlign="space-between center">
+                    <mat-form-field class="full-width" appearance="outline">
+                      <mat-label
+                        >{{ "form_standard.mail" | translate }}
+                      </mat-label>
+                      <mat-icon matSuffix>email</mat-icon>
+                      <input
+                        matInput
+                        name="email"
+                        [value]="notary.email"
+                        [disabled]="true"
+                      />
+                    </mat-form-field>
+                  </div>
+
+                  <div fxLayout="column" fxLayoutAlign="space-between center">
+                    <mat-form-field class="full-width" appearance="outline">
+                      <mat-label
+                        >{{ "form_standard.tel" | translate }}
+                      </mat-label>
+                      <mat-icon matSuffix>phone</mat-icon>
+                      <input
+                        matInput
+                        name="telephone"
+                        [value]="notary.telephone"
+                        [disabled]="true"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div>
+                    <div fxLayoutAlign="center">
+                      <div
+                        fxLayoutAlign="space-between center"
+                        class="full-width"
+                      >
+                        <mat-form-field appearance="outline" fxFlex="45">
+                          <mat-label
+                            >{{ "form_standard.country" | translate }}
+                          </mat-label>
+                          <input
+                            matInput
+                            name="country"
+                            [value]="notary.address.country.name"
+                            [disabled]="true"
+                          />
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" fxFlex="45">
+                          <mat-label
+                            >{{ "form_standard.city" | translate }}
+                          </mat-label>
+                          <input
+                            matInput
+                            name="city"
+                            [value]="notary.address.city.name"
+                            [disabled]="true"
+                          />
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="space-between center">
+                      <mat-form-field class="full-width" appearance="outline">
+                        <mat-label
+                          >{{ "form_standard.address" | translate }}
+                        </mat-label>
+                        <i matSuffix class="fas fa-lg fa-address-card"></i>
+                        <input
+                          matInput
+                          name="address"
+                          [value]="notary.address.description"
+                          [disabled]="true"
+                        />
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-accordion>
+          </div>
+
+
+          <div fxLayout="row" fxLayoutAlign="space-around stretch"
+           fxLayout.xs="column" fxLayoutGap.xs="0">
+            <button
+              mat-button
+              matStepperPrevious
+              mat-stroked-button
+              class="full"
+              style="margin-left: -25%"
+            >
+              <i class="fas fa-arrow-left"> </i>&nbsp;&nbsp;&nbsp;{{
+                "Property.previous" | translate
+              }}
+            </button>
+            <button
+              class="full"
+              mat-button
+              matStepperNext
+              mat-stroked-button
+              [disabled]="false"
+              style="margin-right: -25%"
+            >
+              {{ "Property.next" | translate }} &nbsp;&nbsp;&nbsp;<i
+                class="fas fa-arrow-right"
+              ></i>
+            </button>
+          </div>
+        </mat-card>
+      </mat-step>
+      <!----------------------moreData--------------------------->
+
+      <mat-step>
+        <ng-template matStepLabel>
+          {{ "Transaction.moreData" | translate }}
+        </ng-template>
+        <mat-card>
+          <div style="margin-top: 8%">
+            <mat-accordion
+              fxLayout="column"
+              fxLayoutAlign="center center"
+            >
+              <mat-card-content>
+                
+           
+                    <div fxLayoutAlign="center" >
+                      <div
+                      
+                        fxLayoutAlign="space-around stretch"
+                         fxLayout.xs="column" fxLayoutGap.xs="0"
+                        class="full-width"
+                      >
+                      <mat-form-field appearance="outline" fxFlex="45">
+                        <mat-label>{{
+                          "Transaction.transaction" | translate
+                        }}</mat-label>
+                        <mat-select formControlName="type">
+                          <mat-option
+                            *ngFor="let type of typeTransaction"
+                            [value]="type"
+                          >
+                          {{type}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline" fxFlex="45">
+                        <mat-label>{{
+                          "Transaction.typologie" | translate
+                        }}</mat-label>
+                        <mat-select formControlName="typologie">
+                          <mat-option
+                            *ngFor="let typologie of listTypologie"
+                            [value]="typologie"
+                          >
+                          {{typologie}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      </div>
+                    </div>
+
+                    <div fxLayoutAlign="center">
+                      <div
+                      fxLayoutAlign="space-around stretch"
+                      fxLayout.xs="column" fxLayoutGap.xs="0"
+                        class="full-width"
+                      >
+                        <mat-form-field appearance="outline" fxFlex="45">
+                          <mat-label
+                            >{{ "Transaction.prixVente" | translate }}
+                          </mat-label>
+                          <input
+                            matInput
+                            type="number"
+                            min="0"
+                            formControlName="price"
+                            
+                          />
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" fxFlex="45">
+                          <mat-label
+                            >{{ "Transaction.quote" | translate }}
+                          </mat-label>
+                          <input
+                            matInput
+                            type="number"
+                            min="0"
+                            formControlName="quote"
+                           
+                          />
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                    <div fxLayoutAlign="center">
+                      <div
+                      fxLayoutAlign="space-around stretch"
+                      fxLayout.xs="column" fxLayoutGap.xs="0"
+                        class="full-width"
+                      >
+                        <mat-form-field appearance="outline" fxFlex="45">
+                          <mat-label
+                            >{{ "Transaction.lowTtc" | translate }}
+                          </mat-label>
+                          <input
+                            matInput
+                            type="number"
+                            min="0"
+                            formControlName="companyBaseFees"
+                          />
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" fxFlex="45">
+                          <mat-label
+                            >{{ "Transaction.ttc" | translate }}
+                          </mat-label>
+                          <input
+                            matInput
+                            type="number"
+                            min="0"
+                            formControlName="companyFullFees"
+                           
+                          />
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+
+
+
+
+
+
+
+                    <div fxLayoutAlign="center" class="margin">
+                      <div
+                      fxLayoutAlign="space-around stretch"
+                      fxLayout.xs="column" fxLayoutGap.xs="0"
+                        class="full-width"
+                      >
+                      <label class="example-margin" >{{
+                        "Transaction.feesPaidBy" | translate
+                      }}</label>
+                      <mat-radio-group formControlName="feesPaidBy">
+                        <mat-radio-button class="example-margin" value="{{'Transaction.vendeur'| translate }}">{{"Transaction.vendeur" | translate }}</mat-radio-button>
+                        <mat-radio-button class="example-margin" value="{{'Transaction.acquirer' | translate }}" >{{"Transaction.acquirer" | translate }}</mat-radio-button>
+                      </mat-radio-group>
+                    </div>
+                    </div>
+
+
+
+                    
+                    <div fxLayoutAlign="center">
+                      <div
+                      fxLayoutAlign="space-around stretch"
+                      fxLayout.xs="column" fxLayoutGap.xs="0"
+                        class="full-width"
+                      >
+                        <mat-form-field appearance="outline" fxFlex="30">
+                          <mat-label
+                            >{{ "Transaction.compromiseDate" | translate }}
+                          </mat-label>
+                          <input matInput [matDatepicker]="picker" formControlName="compromiseDate">
+               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+               <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" fxFlex="30">
+                          <mat-label
+                            >{{ "Transaction.provisionalActDate" | translate }}
+                          </mat-label>
+                          <input matInput [matDatepicker]="picker1" formControlName="provisionalActDate">
+               <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+               <mat-datepicker #picker1></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" fxFlex="30">
+                          <mat-label
+                            >{{ "Transaction.officialActDate" | translate }}
+                          </mat-label>
+                          <input matInput [matDatepicker]="picker2" formControlName="officialActDate">
+               <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+               <mat-datepicker #picker2></mat-datepicker>
+                        </mat-form-field>
+                      </div>
+                    </div>
+              
+                
+              </mat-card-content>
+            </mat-accordion>
+          </div>
+
+
+          <div fxLayout="row" fxLayoutAlign="space-around stretch"
+          fxLayoutGap="70px" fxLayout.xs="column" fxLayoutGap.xs="0">
+            <button
+              mat-button
+              matStepperPrevious
+              mat-stroked-button
+              class="full"
+              style="margin-left: -25%"
+            >
+              <i class="fas fa-arrow-left"> </i>&nbsp;&nbsp;&nbsp;{{
+                "Property.previous" | translate
+              }}
+            </button>
+            <button
+              class="full"
+              (click)="onSubmit()"
+              mat-button
+              matStepperNext
+              mat-stroked-button
+              
+              [disabled]="false"
+              style="margin-right: -25%"
+            >
+            ENREGISTRER &nbsp;&nbsp;&nbsp;<i class="fas fa-save"></i>
+            </button>
+          </div>
+        </mat-card>
+      </mat-step>
+     
+    </mat-horizontal-stepper>
+  </form>
+</mat-card>

@@ -1,3 +1,29 @@
+.disable_ripple:hover{
+    background-color: #203574 !important;
+  
+    .title-cardd{
+        color:white  !important;
+    } 
+  }
+  
+  
+  .mat-expansion-panel-header.mat-expanded,
+  .mat-expansion-panel-header.mat-expanded:hover {
+  background: #203574;
+  .title-cardd{
+    color:white  !important;
+  } 
+  }
+  ng-select div, .ng-select input, .ng-select span {
+  box-sizing: border-box;
+  font-family: monospace;
+  font-size: large;
+  }
+  
+  .ng-select .ng-select-container.ng-appearance-outline:hover:after {
+  border-color: #bcd1de;
+  
+  }
 i {
     width: 38px;
     margin: 0px;

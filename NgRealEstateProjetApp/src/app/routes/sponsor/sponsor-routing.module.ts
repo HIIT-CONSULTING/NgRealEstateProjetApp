@@ -10,7 +10,7 @@ import { CandidateDetailsComponent } from './sponsor-agent-list/candidate-detail
 
 const routes: Routes = [
   {
-      path: '', 
+      path: '',
       component: SponsorComponent,
       children:[
         {

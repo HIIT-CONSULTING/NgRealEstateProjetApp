@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder,Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
@@ -9,7 +9,9 @@ import { ContactService } from '@shared/services/contact.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { DateAdapter } from '@angular/material/core';
 import { SponsorService } from "@shared/services/sponsor.service";
+import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import * as moment from 'moment';
+import { NotaryService } from '@shared/services/notary.service';
 
 @Component({
   selector: 'app-dialog-content-project',
@@ -19,11 +21,13 @@ import * as moment from 'moment';
 export class DialogContentProjectComponent {
 
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
     private translate: TranslateService,
     private route: ActivatedRoute,
     private router: Router,
     private sponsorService: SponsorService,
+    private notaryService: NotaryService,
     private contactService:ContactService,
     private snackBar: MatSnackBar,
     private dateAdapter: DateAdapter<Date>,
@@ -37,7 +41,7 @@ export class DialogContentProjectComponent {
   gender$: Observable<Gender[]>;
   city$: Observable<City[]>;
   country$: Observable<Country[]>;
-  contact_type$:Observable<Contact_type[]>;
+ // contact_type$:Observable<Contact_type[]>;
 
   form = this.fb.group({
     gender: {
@@ -64,23 +68,37 @@ export class DialogContentProjectComponent {
 
   onSubmit() {
     this.formatDate();
+    if(this.data.type =='contact'){
+      this.addContact();
+    }else if(this.data.type=='notary'){
+      this.addNotary();
+    }
+    
+  }
+  addContact(){
     this.contactService
       .addContact(this.form.value)
       .subscribe(
         (data) => {
           this.snackBar.open('le contact est ajouté avec succès!', '', { duration: 1000 ,panelClass: ['blue-snackbar'] ,  verticalPosition: 'top', horizontalPosition:'end' });
-       setTimeout(()=>{  
-            //this.router.navigate(['/contact/contactlist'])
-       }, 2000);
-
-       this.matDialogRef.disableClose = true;
-       this.matDialogRef.close(); 
-         
+          this.matDialogRef.disableClose = true;
+          this.matDialogRef.close(); 
         },
-  
         (error) => {
           this.snackBar.open("l'email ou le numéro de téléphone déjà existent ", "", { duration: 2000, panelClass: ["blue-snackbar"], verticalPosition: "top", horizontalPosition:"end"});
-  
+        }
+      );
+  }
+  addNotary(){
+    
+    this.notaryService.addNotary(this.form.value).subscribe(
+        (data) => {
+          this.snackBar.open('notaire est ajouté avec succès!', '', { duration: 1000 ,panelClass: ['blue-snackbar'] ,  verticalPosition: 'top', horizontalPosition:'end' });
+          this.matDialogRef.disableClose = true;
+          this.matDialogRef.close(); 
+        },
+        (error) => {
+          this.snackBar.open("l'email ou le numéro de téléphone déjà existent ", "", { duration: 2000, panelClass: ["blue-snackbar"], verticalPosition: "top", horizontalPosition:"end"});
         }
       );
   }

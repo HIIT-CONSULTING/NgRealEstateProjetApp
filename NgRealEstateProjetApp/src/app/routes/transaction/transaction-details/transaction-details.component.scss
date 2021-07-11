@@ -1,0 +1,44 @@
+.disable_ripple:hover{
+  background-color: #203574 !important;
+
+  .title-cardd{
+      color:white  !important;
+  } 
+}
+.mat-expansion-panel-header.mat-expanded,
+.mat-expansion-panel-header.mat-expanded:hover {
+background: #203574;
+.title-cardd{
+  color:white !important;
+} 
+}
+ng-select div, .ng-select input, .ng-select span {
+box-sizing: border-box;
+font-family: monospace;
+font-size: large;
+}
+
+.ng-select .ng-select-container.ng-appearance-outline:hover:after {
+border-color: #72838d;
+}
+.display_center{
+    position : absolute;
+    right :50%;
+   // top : 7%;
+}
+mat-card {
+height: 150%;
+}
+mat-card-content {
+font-family: none;
+margin: 2%;
+}
+div{
+margin: 3px;
+}
+.font{
+  text-align: center;
+  font-size: 100%;
+  font-family: none;
+  width: 80%;
+}

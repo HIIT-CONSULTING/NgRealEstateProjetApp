@@ -1,0 +1,404 @@
+<page-header></page-header>
+<mat-card>
+  <div class="card-header card-header-danger" style="margin-top: -40px">
+    <h4 class="card-title">{{ "Transaction.detail" | translate }}</h4>
+  </div>
+
+  <section class="demo-expansion" style="margin-bottom: 2%">
+    <div fxLayoutAlign="center center" style="color: rgb(34, 55, 120)">
+      <i class="fa fa-5x fa-home" aria-hidden="true"></i>
+    </div>
+    <div
+      *ngIf="!showSpinner"
+      fxLayoutAlign="center center"
+      style="
+        color: #0077b6;
+        font-size: large;
+        margin-top: 2%;
+        font-family: monospace;
+      "
+    >
+      {{ "Transaction.nbTransaction" | translate }} {{ transaction.id }}
+    </div>
+    <div *ngIf="!showSpinner">
+      <div style="margin-top: 8%; margin-bottom: 5%">
+        <mat-accordion
+          fxLayout="column"
+          fxLayoutAlign="center center"
+          fxLayoutGap="20px"
+        >
+          <!--project-->
+          <mat-expansion-panel #panel1 style="width: 100%">
+            <mat-expansion-panel-header
+              class="disable_ripple"
+              [collapsedHeight]="'70px'"
+              [expandedHeight]="'70px'"
+            >
+              <div class="title-cardd">
+                {{ "Property.title-data" | translate }}
+              </div>
+            </mat-expansion-panel-header>
+            <div fxLayout="row" class="font">
+              <aside
+                fxFlex="15"
+                style="margin-right: 30px"
+                fxLayoutAlign="center center"
+              >
+                <img mat-card-image src="./assets/images/home.png" />
+              </aside>
+              <section fxFlex="60">
+                <div
+                  fxLayoutAlign="center center"
+                  style="
+                    color: #0077b6;
+                    font-size: large;
+                    margin-top: 2%;
+                    font-family: monospace;
+                  "
+                >
+                  {{ transaction.projects[0].projectType }} /{{
+                    transaction.projects[0].projectState
+                  }}/{{ transaction.projects[0].projectKind }}/{{
+                    transaction.projects[0].property.propertyType.name
+                  }}
+                </div>
+                <div fxLayout="row">
+                  <div fxLayout="column" fxFlex="50">
+                    {{ "Property.form.area" | translate }}:
+                  </div>
+                  <div fxLayout="column" fxFlex="50">
+                    {{ transaction?.projects[0]?.property.area }}
+                  </div>
+                </div>
+
+                <div fxLayout="row">
+                  <div fxLayout="column" fxFlex="50">
+                    {{ "Property.form.areaEsteme" | translate }} :
+                  </div>
+                  <div fxLayout="column" fxFlex="50">
+                    {{ transaction?.projects[0]?.property.estimatedSurface }}
+                  </div>
+                </div>
+
+                <div fxLayout="row">
+                  <div fxLayout="column" fxFlex="50">
+                    {{ "Property.form.pricemin" | translate }}:
+                  </div>
+                  <div fxLayout="column" fxFlex="50">
+                    {{ transaction?.projects[0]?.property.minimalPrice }}
+                  </div>
+                </div>
+
+                <div fxLayout="row">
+                  <div fxLayout="column" fxFlex="50">
+                    {{ "Property.form.pricemax" | translate }}:
+                  </div>
+                  <div fxLayout="column" fxFlex="50">
+                    {{ transaction?.projects[0]?.property.maximumPrice }}
+                  </div>
+                </div>
+
+                <div fxLayout="row">
+                  <div fxLayout="column" fxFlex="50">
+                    {{ "form_standard.address" | translate }} :
+                  </div>
+                  <div fxLayout="column" fxFlex="50">
+                    {{
+                      transaction?.projects[0]?.property.address?.description
+                    }},{{
+                      transaction?.projects[0]?.property.address?.city?.name
+                    }}
+                    {{
+                      transaction?.projects[0]?.property.address?.country?.name
+                    }}
+                  </div>
+                </div>
+                <br />
+
+                <div
+                  fxLayoutAlign="center center"
+                  style="
+                    color: #0077b6;
+                    font-size: large;
+                    margin-top: 2%;
+                    font-family: monospace;
+                  "
+                >
+                  {{ "Property.contact" | translate }}
+                </div>
+
+                <div fxLayout="row">
+                  <div fxLayout="column" fxFlex="50">
+                    {{ "form_standard.Fullname" | translate }} :
+                  </div>
+                  <div fxLayout="column" fxFlex="50">
+                    {{ transaction?.projects[0].contact.firstname }}
+                    {{ transaction?.projects[0].contact.lastname | uppercase }}
+                  </div>
+                </div>
+
+                <div fxLayout="row">
+                  <div fxLayout="column" fxFlex="50">
+                    {{ "form_standard.mail" | translate }} :
+                  </div>
+                  <div fxLayout="column" fxFlex="50">
+                    {{ transaction.projects[0].contact.email }}
+                  </div>
+                </div>
+
+                <div fxLayout="row">
+                  <div fxLayout="column" fxFlex="50">
+                    {{ "form_standard.tel" | translate }} :
+                  </div>
+                  <div fxLayout="column" fxFlex="50">
+                    {{ transaction.projects[0].contact.telephone }}
+                  </div>
+                </div>
+
+                <div fxLayout="row">
+                  <div fxLayout="column" fxFlex="50">
+                    {{ "form_standard.address" | translate }} :
+                  </div>
+                  <div fxLayout="column" fxFlex="50">
+                    {{ transaction.projects[0].contact?.address?.description }},
+                    {{ transaction.projects[0].contact?.address?.city?.name }}
+                    {{ transaction?.projects[0].contact.address.country.name }}
+                  </div>
+                </div>
+              </section>
+            </div>
+          </mat-expansion-panel>
+          <!--agent-->
+          <mat-expansion-panel #panel2 style="width: 100%">
+            <mat-expansion-panel-header
+              class="disable_ripple"
+              [collapsedHeight]="'70px'"
+              [expandedHeight]="'70px'"
+            >
+              <div class="title-cardd">
+                {{ "Transaction.agent2" | translate }}
+              </div>
+            </mat-expansion-panel-header>
+            <div fxLayout="row" class="font">
+              <aside fxFlex="15" style="margin: 4%">
+                <img
+                  mat-card-image
+                  src="./assets/images/profile.png"
+                  style="border-radius: 80px"
+                />
+              </aside>
+              <section fxFlex="60">
+                <div fxLayout="row">
+                  <div fxLayout="column" fxFlex="50">
+                    {{ "form_standard.Fullname" | translate }} :
+                  </div>
+                  <div fxLayout="column" fxFlex="50">
+                    {{ transaction?.projects[0].agent.firstname
+                    }}{{ transaction?.projects[0].agent.lastname | uppercase }}
+                  </div>
+                </div>
+
+                <div fxLayout="row">
+                  <div fxLayout="column" fxFlex="50">
+                    {{ "form_standard.mail" | translate }} :
+                  </div>
+                  <div fxLayout="column" fxFlex="50">
+                    {{ transaction?.projects[0].agent.email }}
+                  </div>
+                </div>
+
+                <div fxLayout="row">
+                  <div fxLayout="column" fxFlex="50">
+                    {{ "form_standard.tel" | translate }} :
+                  </div>
+                  <div fxLayout="column" fxFlex="50">
+                    {{ transaction?.projects[0].agent.telephone }}
+                  </div>
+                </div>
+
+                <div fxLayout="row">
+                  <div fxLayout="column" fxFlex="50">
+                    {{ "form_standard.address" | translate }} :
+                  </div>
+                  <div fxLayout="column" fxFlex="50">
+                    {{ transaction?.projects[0].agent.address?.description }},
+                    {{ transaction?.projects[0].agent.address?.city?.name }}
+                    {{ transaction?.projects[0].agent.address.country.name }}
+                  </div>
+                </div>
+              </section>
+            </div>
+          </mat-expansion-panel>
+
+          <!--notary-->
+          <mat-expansion-panel #panel3 style="width: 100%">
+            <mat-expansion-panel-header
+              class="disable_ripple"
+              [collapsedHeight]="'70px'"
+              [expandedHeight]="'70px'"
+            >
+              <div class="title-cardd">
+                {{ "Transaction.notary" | translate }}
+              </div>
+            </mat-expansion-panel-header>
+            <div fxLayout="row" class="font">
+              <aside fxFlex="15" style="margin: 4%">
+                <img
+                  mat-card-image
+                  src="./assets/images/profile.png"
+                  style="border-radius: 80px"
+                />
+              </aside>
+              <section fxFlex="60">
+                <div fxLayout="row">
+                  <div fxLayout="column" fxFlex="50">
+                    {{ "form_standard.Fullname" | translate }} :
+                  </div>
+                  <div fxLayout="column" fxFlex="50">
+                    {{ transaction?.notary.firstname
+                    }}{{ transaction?.notary.lastname | uppercase }}
+                  </div>
+                </div>
+
+                <div fxLayout="row">
+                  <div fxLayout="column" fxFlex="50">
+                    {{ "form_standard.mail" | translate }} :
+                  </div>
+                  <div fxLayout="column" fxFlex="50">
+                    {{ transaction?.notary.email }}
+                  </div>
+                </div>
+
+                <div fxLayout="row">
+                  <div fxLayout="column" fxFlex="50">
+                    {{ "form_standard.tel" | translate }} :
+                  </div>
+                  <div fxLayout="column" fxFlex="50">
+                    {{ transaction?.notary.telephone }}
+                  </div>
+                </div>
+
+                <div fxLayout="row">
+                  <div fxLayout="column" fxFlex="50">
+                    {{ "form_standard.address" | translate }} :
+                  </div>
+                  <div fxLayout="column" fxFlex="50">
+                    {{ transaction?.notary?.address?.description }},
+                    {{ transaction?.notary?.address?.city?.name }}
+                    {{ transaction?.notary.address.country.name }}
+                  </div>
+                </div>
+              </section>
+            </div>
+          </mat-expansion-panel>
+          <!--plus infos-->
+          <mat-expansion-panel #panel4 style="width: 100%">
+            <mat-expansion-panel-header
+              class="disable_ripple"
+              [collapsedHeight]="'70px'"
+              [expandedHeight]="'70px'"
+            >
+              <div class="title-cardd">
+                {{ "Transaction.moreData" | translate }}
+              </div>
+            </mat-expansion-panel-header>
+            <div fxLayout="row" class="font">
+              <aside fxFlex="15" style="margin: 4%">
+                <i class="fas fa-calendar-alt fa-7x"></i>
+              </aside>
+              <section fxFlex="60">
+                <div fxLayout="row">
+                  <div fxLayout="column" fxFlex="50">
+                    {{ "Transaction.transaction" | translate }} :
+                  </div>
+                  <div fxLayout="column" fxFlex="50">
+                    {{ transaction?.type }}
+                  </div>
+                </div>
+
+                <div fxLayout="row">
+                  <div fxLayout="column" fxFlex="50">
+                    {{ "Transaction.typologie" | translate }} :
+                  </div>
+                  <div fxLayout="column" fxFlex="50">
+                    {{ transaction?.typologie }}
+                  </div>
+                </div>
+
+                <div fxLayout="row">
+                  <div fxLayout="column" fxFlex="50">
+                    {{ "Transaction.prixVente" | translate }} :
+                  </div>
+                  <div fxLayout="column" fxFlex="50">
+                    {{ transaction?.price }}
+                  </div>
+                </div>
+                <div fxLayout="row">
+                  <div fxLayout="column" fxFlex="50">
+                    {{ "Transaction.quote" | translate }} :
+                  </div>
+                  <div fxLayout="column" fxFlex="50">
+                    {{ transaction?.quote }}
+                  </div>
+                </div>
+
+                <div fxLayout="row">
+                  <div fxLayout="column" fxFlex="50">
+                    {{ "Transaction.lowTtc" | translate }} :
+                  </div>
+                  <div fxLayout="column" fxFlex="50">
+                    {{ transaction?.companyBaseFees }}
+                  </div>
+                </div>
+
+                <div fxLayout="row">
+                  <div fxLayout="column" fxFlex="50">
+                    {{ "Transaction.ttc" | translate }} :
+                  </div>
+                  <div fxLayout="column" fxFlex="50">
+                    {{ transaction?.companyFullFees }}
+                  </div>
+                </div>
+
+                <div fxLayout="row">
+                  <div fxLayout="column" fxFlex="50">
+                    {{ "Transaction.feesPaidBy" | translate }} :
+                  </div>
+                  <div fxLayout="column" fxFlex="50">
+                    {{ transaction?.feesPaidBy }}
+                  </div>
+                </div>
+                <div fxLayout="row">
+                  <div fxLayout="column" fxFlex="50">
+                    {{ "Transaction.compromiseDate" | translate }} :
+                  </div>
+                  <div fxLayout="column" fxFlex="50">
+                    {{ transaction?.compromiseDate | date: "dd/MM/yyyy" }}
+                  </div>
+                </div>
+
+                <div fxLayout="row">
+                  <div fxLayout="column" fxFlex="50">
+                    {{ "Transaction.provisionalActDate" | translate }} :
+                  </div>
+                  <div fxLayout="column" fxFlex="50">
+                    {{ transaction?.provisionalActDate | date: "dd/MM/yyyy" }}
+                  </div>
+                </div>
+
+                <div fxLayout="row">
+                  <div fxLayout="column" fxFlex="50">
+                    {{ "Transaction.officialActDate" | translate }} :
+                  </div>
+                  <div fxLayout="column" fxFlex="50">
+                    {{ transaction?.officialActDate | date: "dd/MM/yyyy" }}
+                  </div>
+                </div>
+              </section>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+  </section>
+</mat-card>

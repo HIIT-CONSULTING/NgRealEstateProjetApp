@@ -10,9 +10,6 @@ import { ProjectRoutingModule } from './project-routing.module';
 import { UpdateProjectComponent } from './update-project/update-project.component';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
 
-import { AddMandatComponent } from './add-mandat/add-mandat.component';
-import { MandatListComponent } from './mandat-list/mandat-list.component';
-import { MandatDetailsComponent } from './mandat-details/mandat-details.component';
 
 
 
@@ -22,7 +19,7 @@ const COMPONENTS_DYNAMIC = [];
 
 @NgModule({
   imports: [ProjectRoutingModule, MaterialModule, SharedModule,DragDropModule,CommonModule],
-  declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC, UpdateProjectComponent, ProjectDetailsComponent, AddMandatComponent, MandatListComponent, MandatDetailsComponent],
+  declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC, UpdateProjectComponent, ProjectDetailsComponent],
   entryComponents: COMPONENTS_DYNAMIC
 })
 export class ProjectModule { }

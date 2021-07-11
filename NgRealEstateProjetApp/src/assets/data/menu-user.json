@@ -29,6 +29,12 @@
       "route": "mandat",
       "name": "mandat",
       "type": "link",
+      "icon": "description"
+    },
+    {
+      "route": "transaction",
+      "name": "transaction",
+      "type": "link",
       "icon": "assignment"
     }
     

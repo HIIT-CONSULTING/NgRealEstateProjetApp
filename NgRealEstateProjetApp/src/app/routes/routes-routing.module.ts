@@ -80,6 +80,12 @@ const routes: Routes = [
           data: { title: "mandat", titleI18n: "mandat",roles: [Role.User]},
           loadChildren: () => import("./mandat/mandat.module").then((m) => m.MandatModule),
          },
+         {
+          path: "transaction",
+          canActivate: [RoleGuard,AuthGuard],
+          data: { title: "transaction", titleI18n: "transaction",roles: [Role.User]},
+          loadChildren: () => import("./transaction/transaction.module").then((m) => m.TransactionModule),
+         },
         
 
     ]

@@ -6,7 +6,8 @@
         "project":"Gestions des projets ",
         "contact":"Gestion des contacts",
         "mandat":"Gestion des mandats",
-        "mandat-admin":"Mandat"
+        "mandat-admin":"Mandat",
+        "transaction":"Transaction"
     },
     "user": {
         "profile": "Profile",
@@ -117,6 +118,7 @@
             "hasKey": "Clé disponible",
             "keysNumber": "Numéro de clé",
             "or": "Ou",
+            "noData": "Aucune donnée renseignée",
 
 
             
@@ -185,14 +187,38 @@
         "sttusMandat": "Statut Du Mandat",
         "sortList":"Trier",
         "add":"Ajouter un mandat"
-        
-
-        }
-        
-
-
-
-
-    
-
+        },
+    "Transaction" : {
+        "title":"Créer un nouveau transaction",
+        "title-list":"Liste des transactions",
+        "projectVente": "Projet vente",
+        "projectAchat": "Projet achat ",
+        "selectProjectAchar": "Sélectionner un projet d'achat",
+        "selectProjectVent": "Sélectionner un projet de vent",
+        "selectNotary": "Sélectionner un notaire",
+        "ProjectresultA":"Le projet d'achat lié",
+        "ProjectresultV":"Le projet du vent lié",
+        "transaction": "Type transaction",
+        "typologie": "Typologie",
+        "addnotary":"Nouveau notaire",
+        "notary": "Notaire",
+        "title-dialog":"CRÉER UN NOUVEAU NOTAIRE",
+        "prixVente":"Prix de vente(prix public)",
+        "feesPaidBy":"Honoraires payés par :",
+        "vendeur":"Le vendeur",
+        "acquirer":"L'acquéreur",
+        "quote":"% Quote-part délégation de mandat",
+        "ttc":"Honos TTC",
+        "lowTtc":"Honos Base TTC",
+        "compromiseDate":"Date du compromis",
+        "provisionalActDate":"Date de l'acte prévisionnel",
+        "officialActDate":"Date de l'acte officiel",
+        "NotaryResult":"Le projet du vent lié",
+        "moreData": "Plus d'information",
+        "nameNotary":"Nom De Notaire",
+        "detail" : "Détail De Transaction",
+        "nbTransaction" : "Transaction Nº:",
+        "agent1": "Agent 1",
+        "agent2": "Agent 2"
+    }
 }
