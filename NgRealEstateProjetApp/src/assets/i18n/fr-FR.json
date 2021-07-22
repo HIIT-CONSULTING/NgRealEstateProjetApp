@@ -7,7 +7,8 @@
         "contact":"Gestion des contacts",
         "mandat":"Gestion des mandats",
         "mandat-admin":"Mandat",
-        "transaction":"Transaction"
+        "transaction":"Gestion des transactions",
+        "transaction-admin":"Transaction"
     },
     "user": {
         "profile": "Profile",
@@ -218,7 +219,7 @@
         "nameNotary":"Nom De Notaire",
         "detail" : "Détail De Transaction",
         "nbTransaction" : "Transaction Nº:",
-        "agent1": "Agent 1",
-        "agent2": "Agent 2"
+        "agent1": "Premier agent",
+        "agent2": "Deuxième agent"
     }
 }

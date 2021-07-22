@@ -86,6 +86,12 @@ const routes: Routes = [
           data: { title: "transaction", titleI18n: "transaction",roles: [Role.User]},
           loadChildren: () => import("./transaction/transaction.module").then((m) => m.TransactionModule),
          },
+         {
+          path: "transaction-admin",
+          canActivate: [RoleGuard,AuthGuard],
+          data: { title: "transaction-admin", titleI18n: "transaction-admin",roles: [Role.Admin]},
+          loadChildren: () => import("./transaction-admin/transaction-admin.module").then((m) => m.TransactionAdminModule),
+         },
         
 
     ]

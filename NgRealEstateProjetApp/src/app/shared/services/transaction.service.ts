@@ -40,5 +40,13 @@ export class TransactionService {
       
       return this.http.post(`${this.hosturlname}api/v2/transactions`,formData);
    }
-   
+    /**
+   * web service using to Update transaction 
+   * @param status - new updates of the  transaction
+   * @param id - transaction's number
+   */
+  updatTransaction(status:any,id:number): Observable<any>{
+  
+    return this.http.put(`${this.hosturlname}api/v2/transactions/${id}`, status);
+  }
 }

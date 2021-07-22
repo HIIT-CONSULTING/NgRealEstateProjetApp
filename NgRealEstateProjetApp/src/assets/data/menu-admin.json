@@ -17,6 +17,12 @@
       "name": "mandat-admin",
       "type": "link",
       "icon": "assignment"
+    },
+    {
+      "route": "transaction-admin",
+      "name": "transaction-admin",
+      "type": "link",
+      "icon": "assignment"
     }
   ]
 }

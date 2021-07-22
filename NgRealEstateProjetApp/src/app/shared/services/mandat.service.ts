@@ -84,5 +84,4 @@ export class MandatService {
     return this.http.put(`${this.hosturlname}api/v2/mandates/${id}`, status);
   }
  
-  
 }
