@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '@shared/services/login.service';
 import { Agent } from '@shared/models/Agent.model';
+import { Role } from '@shared/models/role.model';
 
 @Component({
   selector: 'app-user-panel',
@@ -34,11 +35,11 @@ export class UserPanelComponent implements OnInit {
   }
   getUserRole():string {
     
-    if(this.userRole == 'ROLE_USER'){
+    if(this.userRole == Role.User){
       return 'AGENT';
     }
 
-    if(this.userRole == 'ROLE_MANAGER'){
+    if(this.userRole == Role.Admin){
       return 'GESTIONNAIRE';
     }
 
