@@ -3,7 +3,7 @@
     <mat-horizontal-stepper linear #stepper>
       <mat-step>
         <ng-template matStepLabel>
-          {{ "Property.transaction" | translate }}
+          {{ 'Property.transaction' | translate }}
         </ng-template>
         <mat-card>
           <mat-card-content>
@@ -36,7 +36,7 @@
 
       <mat-step>
         <ng-template matStepLabel>
-          {{ "Property.domaine" | translate }}
+          {{ 'Property.domaine' | translate }}
         </ng-template>
         <mat-card>
           <mat-card-content>
@@ -71,7 +71,7 @@
               class="full"
             >
               <i class="fas fa-arrow-left"> </i>&nbsp;&nbsp;&nbsp;{{
-                "Property.previous" | translate
+                'Property.previous' | translate
               }}
             </button>
           </mat-card-content>
@@ -80,7 +80,7 @@
 
       <mat-step>
         <ng-template matStepLabel>
-          {{ "Property.destination" | translate }}
+          {{ 'Property.destination' | translate }}
         </ng-template>
         <mat-card>
           <mat-card-content>
@@ -115,7 +115,7 @@
               class="full"
             >
               <i class="fas fa-arrow-left"> </i>&nbsp;&nbsp;&nbsp;{{
-                "Property.previous" | translate
+                'Property.previous' | translate
               }}
             </button>
           </mat-card-content>
@@ -124,7 +124,7 @@
 
       <mat-step>
         <ng-template matStepLabel>
-          {{ "Property.property_type" | translate }}
+          {{ 'Property.property_type' | translate }}
         </ng-template>
         <mat-card *ngIf="!choose">
           <mat-card-content>
@@ -177,7 +177,7 @@
               class="full"
             >
               <i class="fas fa-arrow-left"> </i>&nbsp;&nbsp;&nbsp;{{
-                "Property.previous" | translate
+                'Property.previous' | translate
               }}
             </button>
           </mat-card-content>
@@ -216,7 +216,7 @@
               class="full"
             >
               <i class="fas fa-arrow-left"> </i>&nbsp;&nbsp;&nbsp;{{
-                "Property.previous" | translate
+                'Property.previous' | translate
               }}
             </button>
           </mat-card-content>
@@ -226,7 +226,7 @@
       <mat-step>
         <form [formGroup]="properties">
           <ng-template matStepLabel>
-            {{ "Property.informations" | translate }}
+            {{ 'Property.informations' | translate }}
           </ng-template>
           <mat-card>
             <div style="margin-top: 8%; margin-bottom: 5%">
@@ -243,7 +243,7 @@
                   >
                     <mat-panel-title>
                       <div class="title-cardd">
-                        {{ "Property.form.propery_title" | translate }}
+                        {{ 'Property.form.propery_title' | translate }}
                       </div>
                     </mat-panel-title>
                   </mat-expansion-panel-header>
@@ -255,7 +255,7 @@
                     >
                       <mat-form-field appearance="outline" class="full-width">
                         <mat-label>
-                          {{ "form_standard.country" | translate }}
+                          {{ 'form_standard.country' | translate }}
                         </mat-label>
                         <mat-select formControlName="country">
                           <mat-option
@@ -268,7 +268,7 @@
                         <mat-error
                           *ngIf="properties.get('address.country').invalid"
                         >
-                          {{ "Property.form.country.error" | translate }}
+                          {{ 'Property.form.country.error' | translate }}
                         </mat-error>
                       </mat-form-field>
                     </div>
@@ -279,7 +279,7 @@
                     >
                       <mat-form-field appearance="outline" class="full-width">
                         <mat-label>
-                          {{ "form_standard.city" | translate }}
+                          {{ 'form_standard.city' | translate }}
                         </mat-label>
                         <mat-select formControlName="city">
                           <mat-option
@@ -291,7 +291,7 @@
                         <mat-error
                           *ngIf="properties.get('address.city').invalid"
                         >
-                          {{ "Property.form.city.error" | translate }}
+                          {{ 'Property.form.city.error' | translate }}
                         </mat-error>
                       </mat-form-field>
                     </div>
@@ -302,7 +302,7 @@
                     >
                       <mat-form-field class="full-width" appearance="outline">
                         <mat-label>
-                          {{ "form_standard.address" | translate }}
+                          {{ 'form_standard.address' | translate }}
                         </mat-label>
                         <i matSuffix class="fas fa-lg fa-address-card"></i>
                         <input
@@ -313,7 +313,7 @@
                         <mat-error
                           *ngIf="properties.get('address.description').invalid"
                         >
-                          {{ "Property.form.description.error" | translate }}
+                          {{ 'Property.form.description.error' | translate }}
                         </mat-error>
                       </mat-form-field>
                     </div>
@@ -326,7 +326,7 @@
                     [expandedHeight]="'70px'"
                   >
                     <div class="title-cardd">
-                      {{ "Property.form.area" | translate }}
+                      {{ 'Property.form.area' | translate }}
                     </div>
                   </mat-expansion-panel-header>
                   <div
@@ -336,7 +336,7 @@
                   >
                     <mat-form-field class="full-width" appearance="outline">
                       <mat-label>
-                        {{ "Property.form.area" | translate }}</mat-label
+                        {{ 'Property.form.area' | translate }}</mat-label
                       >
                       <i matSuffix class="fas fa-lg fa-chart-area"></i>
                       <input
@@ -347,7 +347,7 @@
                         formControlName="area"
                       />
                       <mat-error *ngIf="properties.get('area').invalid">
-                        {{ "Property.form.area.error" | translate }}
+                        {{ 'Property.form.area.error' | translate }}
                       </mat-error>
                     </mat-form-field>
                   </div>
@@ -359,7 +359,7 @@
                   >
                     <mat-form-field class="full-width" appearance="outline">
                       <mat-label>
-                        {{ "Property.form.areaEsteme" | translate }}
+                        {{ 'Property.form.areaEsteme' | translate }}
                       </mat-label>
                       <i matSuffix class="fas fa-lg fa-chart-area"></i>
                       <input
@@ -372,7 +372,7 @@
                       <mat-error
                         *ngIf="properties.get('estimatedSurface').invalid"
                       >
-                        {{ "Property.form.area.error" | translate }}
+                        {{ 'Property.form.area.error' | translate }}
                       </mat-error>
                     </mat-form-field>
                   </div>
@@ -384,7 +384,7 @@
                     [expandedHeight]="'70px'"
                   >
                     <div class="title-cardd">
-                      {{ "Property.form.budget" | translate }}
+                      {{ 'Property.form.budget' | translate }}
                     </div>
                   </mat-expansion-panel-header>
                   <div
@@ -394,7 +394,7 @@
                   >
                     <mat-form-field class="full-width" appearance="outline">
                       <mat-label>
-                        {{ "Property.form.pricemin" | translate }}
+                        {{ 'Property.form.pricemin' | translate }}
                       </mat-label>
                       <mat-icon
                         matSuffix
@@ -410,14 +410,14 @@
                         formControlName="minimalPrice"
                       />
                       <mat-error *ngIf="properties.get('minimalPrice').invalid">
-                        {{ "Property.form.minimalPrice.error" | translate }}
+                        {{ 'Property.form.minimalPrice.error' | translate }}
                       </mat-error>
                     </mat-form-field>
                   </div>
                   <div fxLayout="column" fxLayoutAlign="space-between center ">
                     <mat-form-field class="full-width" appearance="outline">
                       <mat-label>
-                        {{ "Property.form.pricemax" | translate }}
+                        {{ 'Property.form.pricemax' | translate }}
                       </mat-label>
                       <mat-icon matSuffix aria-hidden="false" aria-label="Ex"
                         >attach_money</mat-icon
@@ -430,7 +430,7 @@
                         formControlName="maximumPrice"
                       />
                       <mat-error *ngIf="properties.get('maximumPrice').invalid">
-                        {{ "Property.form.maximumPrice.error" | translate }}
+                        {{ 'Property.form.maximumPrice.error' | translate }}
                       </mat-error>
                     </mat-form-field>
                   </div>
@@ -456,7 +456,7 @@
                   >
                     <mat-form-field appearance="outline" class="full-width">
                       <mat-label>{{
-                        "Property.form.state" | translate
+                        'Property.form.state' | translate
                       }}</mat-label>
                       <mat-select formControlName="state">
                         <mat-option
@@ -474,7 +474,7 @@
                   >
                     <mat-form-field appearance="outline" class="full-width">
                       <mat-label>
-                        {{ "Property.form.orientation" | translate }}</mat-label
+                        {{ 'Property.form.orientation' | translate }}</mat-label
                       >
                       <mat-select formControlName="orientation">
                         <mat-option
@@ -492,7 +492,7 @@
                   >
                     <mat-form-field class="full-width" appearance="outline">
                       <mat-label>{{
-                        "Property.form.constructionYear" | translate
+                        'Property.form.constructionYear' | translate
                       }}</mat-label>
                       <input
                         matInput
@@ -513,7 +513,7 @@
                   >
                     <mat-form-field class="full-width" appearance="outline">
                       <mat-label>
-                        {{ "Property.form.floorsNumber" | translate }}
+                        {{ 'Property.form.floorsNumber' | translate }}
                       </mat-label>
 
                       <input
@@ -532,21 +532,21 @@
                   >
                     <div fxLayout="row" fxLayoutAlign="space-between center ">
                       <mat-checkbox formControlName="hasElevator">{{
-                        "Property.form.hasElevator" | translate
+                        'Property.form.hasElevator' | translate
                       }}</mat-checkbox>
                       <mat-checkbox formControlName="hasTerace">{{
-                        "Property.form.hasTerace" | translate
+                        'Property.form.hasTerace' | translate
                       }}</mat-checkbox>
                       <mat-checkbox formControlName="hasBalcony">
                         {{
-                          "Property.form.hasBalcony" | translate
+                          'Property.form.hasBalcony' | translate
                         }}</mat-checkbox
                       >
                       <mat-checkbox formControlName="hasGuardian">{{
-                        "Property.form.hasGuardian" | translate
+                        'Property.form.hasGuardian' | translate
                       }}</mat-checkbox>
                       <mat-checkbox formControlName="hasIntercom">{{
-                        "Property.form.hasIntercom" | translate
+                        'Property.form.hasIntercom' | translate
                       }}</mat-checkbox>
                     </div>
                   </div>
@@ -561,7 +561,7 @@
                         formControlName="hasGarage"
                       >
                         {{
-                          "Property.form.hasGarage" | translate
+                          'Property.form.hasGarage' | translate
                         }}</mat-checkbox
                       >
                       <mat-checkbox
@@ -569,7 +569,7 @@
                         formControlName="hasCellar"
                       >
                         {{
-                          "Property.form.hasCellar" | translate
+                          'Property.form.hasCellar' | translate
                         }}</mat-checkbox
                       >
                       <mat-checkbox
@@ -580,7 +580,7 @@
                           handleChange('hasBasement')
                         "
                         >{{
-                          "Property.form.hasParkCar" | translate
+                          'Property.form.hasParkCar' | translate
                         }}</mat-checkbox
                       >
                       <mat-checkbox
@@ -588,7 +588,7 @@
                         formControlName="hasParkCarOutside"
                         [disabled]="!properties.get('hasParkCar').value"
                         >{{
-                          "Property.form.hasParkCarOutside" | translate
+                          'Property.form.hasParkCarOutside' | translate
                         }}</mat-checkbox
                       >
                       <mat-checkbox
@@ -596,7 +596,7 @@
                         formControlName="hasBasement"
                         [disabled]="!properties.get('hasParkCar').value"
                         >{{
-                          "Property.form.hasBasement" | translate
+                          'Property.form.hasBasement' | translate
                         }}</mat-checkbox
                       >
                     </div>
@@ -619,7 +619,7 @@
                   >
                     <mat-form-field class="full-width" appearance="outline">
                       <mat-label>
-                        {{ "Property.form.nbpieces" | translate }}</mat-label
+                        {{ 'Property.form.nbpieces' | translate }}</mat-label
                       >
                       <input
                         matInput
@@ -648,14 +648,14 @@
                             (click)="handleChange('dateAvailability')"
                           >
                             {{
-                              "Property.form.isAvailable" | translate
+                              'Property.form.isAvailable' | translate
                             }}</mat-radio-button
                           >
                           <mat-radio-button
                             class="example-margin"
                             [value]="false"
                             >{{
-                              "Property.form.notAvailable" | translate
+                              'Property.form.notAvailable' | translate
                             }}</mat-radio-button
                           >
                         </mat-radio-group>
@@ -663,7 +663,7 @@
 
                       <mat-form-field appearance="outline" fxFlex="40">
                         <mat-label>{{
-                          "Property.form.dateAvailability" | translate
+                          'Property.form.dateAvailability' | translate
                         }}</mat-label>
                         <input
                           matInput
@@ -700,13 +700,13 @@
                           (click)="handleChange('keysNumber')"
                           formControlName="hasKey"
                         >
-                          {{ "Property.form.hasKey" | translate }}</mat-checkbox
+                          {{ 'Property.form.hasKey' | translate }}</mat-checkbox
                         >
                       </div>
 
                       <mat-form-field appearance="outline" fxFlex="40">
                         <mat-label
-                          >{{ "Property.form.keysNumber" | translate }}
+                          >{{ 'Property.form.keysNumber' | translate }}
                         </mat-label>
                         <input
                           matInput
@@ -729,7 +729,7 @@
                 style="margin-left: -25%"
               >
                 <i class="fas fa-arrow-left"> </i>&nbsp;&nbsp;&nbsp;{{
-                  "Property.previous" | translate
+                  'Property.previous' | translate
                 }}
               </button>
               <button
@@ -740,7 +740,7 @@
                 [disabled]="properties.invalid"
                 style="margin-right: -25%"
               >
-                {{ "Property.next" | translate }} &nbsp;&nbsp;&nbsp;<i
+                {{ 'Property.next' | translate }} &nbsp;&nbsp;&nbsp;<i
                   class="fas fa-arrow-right"
                 ></i>
               </button>
@@ -751,7 +751,7 @@
 
       <mat-step>
         <ng-template matStepLabel>
-          {{ "Property.contact" | translate }}
+          {{ 'Property.contact' | translate }}
         </ng-template>
         <mat-card>
           <div style="margin-top: 8%">
@@ -775,7 +775,7 @@
                 >
                 </ng-select>
 
-                <span>{{ "Property.form.or" | translate }} </span>
+                <span>{{ 'Property.form.or' | translate }} </span>
                 <a>
                   <button
                     mat-button
@@ -784,14 +784,14 @@
                     (click)="openDialog()"
                   >
                     <i class="fa fa-2x fa-user-plus"></i> &nbsp;&nbsp;&nbsp;
-                    {{ "Contact.title" | translate }}
+                    {{ 'Contact.title' | translate }}
                   </button>
                 </a>
               </div>
               <div
                 style="margin-top: 5%; font-size: medium; font-family: serif"
               >
-                {{ "Property.contactresult" | translate }} :
+                {{ 'Property.contactresult' | translate }} :
               </div>
               <div
                 *ngIf="!show"
@@ -855,7 +855,7 @@
                   style="margin-left: -22%"
                 >
                   <i class="fas fa-arrow-left"> </i>&nbsp;&nbsp;&nbsp;{{
-                    "title-previous" | translate
+                    'title-previous' | translate
                   }}
                 </button>
                 <button

@@ -28,8 +28,7 @@
               project.contact.lastname | uppercase
             }}
           </div>
-          <div class="role"
-          style="height: 30px;">
+          <div class="role" style="height: 30px">
             {{ project.project_type }} /{{ project.project_state }}/{{
               project.project_kind
             }}/{{ project.property.property_type.name }}
@@ -43,7 +42,7 @@
               background-color: aliceblue;
             "
           >
-            {{ "form_standard.address" | translate }} :
+            {{ 'form_standard.address' | translate }} :
           </div>
           <div
             style="
@@ -67,25 +66,34 @@
               background-color: aliceblue;
             "
           >
-            {{ "Property.title-data" | translate }} :
+            {{ 'Property.title-data' | translate }} :
           </div>
           <div
             style="font-family: initial; font-size: unset; text-align: center"
           >
-            $ {{ "Property.form.budget" | translate }} :
+            $ {{ 'Property.form.budget' | translate }} :
             {{ project.property.minimal_price }} $
           </div>
         </mat-card-content>
-        <mat-card-actions fxLayout="row" fxLayoutAlign="space-around center">
-          <a mat-button style="color: #52a0c9" (click)="details(project.id)">{{
-            "form_standard.consult" | translate
-          }}</a>
-          <a mat-button style="color: #e7d71a" (click)="Update(project.id)">{{
-            "form_standard.update" | translate
-          }}</a>
-          <a mat-button style="color: red" (click)="Delete(project.id)">{{
-            "form_standard.delete" | translate
-          }}</a>
+        <mat-card-actions>
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="Update(project.id)">
+              <i class="fas fa-pen"></i>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <span>{{ 'form_standard.update' | translate }}</span>
+            </button>
+            <button mat-menu-item (click)="Delete(project.id)">
+              <mat-icon>delete</mat-icon>
+              <span>{{ 'form_standard.delete' | translate }}</span>
+            </button>
+            <button mat-menu-item (click)="details(project.id)">
+              <mat-icon>remove_red_eye</mat-icon>
+              <span>{{ 'form_standard.consult' | translate }}</span>
+            </button>
+          </mat-menu>
         </mat-card-actions>
       </mat-card>
     </div>
