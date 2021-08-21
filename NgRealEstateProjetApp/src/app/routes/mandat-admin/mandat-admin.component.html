@@ -1,304 +1,323 @@
 <page-header></page-header>
 <mat-card>
-	<div class="card-header card-header-danger" style="margin-top: -40px">
-		<h4 class="card-title">{{ 'Mandat.title-list' | translate }}</h4>
-	</div>
+  <div class="card-header card-header-danger" style="margin-top: -40px">
+    <h4 class="card-title">{{ 'Mandat.title-list' | translate }}</h4>
+  </div>
 
-	<mat-card>
-		<mat-card-content>
-			<form [formGroup]="form" (ngSubmit)="onSubmit()">
-				<div fxLayout="row" fxLayoutAlign="space-evenly center">
-					<mat-form-field
-						class="example-full-width"
-						appearance="outline"
-						fxFlex="16"
-					>
-						<mat-label>{{ 'Mandat.id' | translate }}</mat-label>
-						<input
-							matInput
-							formControlName="id"
-							placeholder="{{ 'Mandat.id' | translate }}"
-						/>
-					</mat-form-field>
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div fxLayout="row" fxLayoutAlign="space-evenly center">
+          <mat-form-field
+            class="example-full-width"
+            appearance="outline"
+            fxFlex="16"
+          >
+            <mat-label>{{ 'Mandat.id' | translate }}</mat-label>
+            <input
+              matInput
+              formControlName="id"
+              placeholder="{{ 'Mandat.id' | translate }}"
+            />
+          </mat-form-field>
 
-					<mat-form-field
-						class="example-full-width"
-						appearance="outline"
-						fxFlex="18"
-					>
-						<mat-label>{{ 'Mandat.sttusMandat' | translate }}</mat-label>
-						<mat-select formControlName="status">
-							<mat-option *ngFor="let state of stateList" [value]="state.value">{{
-								state.viewValue
-							}}</mat-option>
-						</mat-select>
-					</mat-form-field>
-					<mat-form-field
-						class="example-full-width"
-						appearance="outline"
-						fxFlex="18"
-					>
-						<mat-label>{{ 'Mandat.typeMandat' | translate }}</mat-label>
-						<mat-select formControlName="type.name">
-							<mat-option *ngFor="let type of typeMandatList" [value]="type.value">{{
-								type.viewValue
-							}}</mat-option>
-						</mat-select>
-					</mat-form-field>
-					<mat-form-field
-						class="example-full-width"
-						appearance="outline"
-						fxFlex="18"
-					>
-						<mat-label>{{ 'Mandat.typeProject' | translate }}</mat-label>
-						<mat-select formControlName="project.property.propertyType.name">
-							<mat-option *ngFor="let type of typeProjectList" [value]="type.value">{{
-								type.viewValue
-							}}</mat-option>
-						</mat-select>
-					</mat-form-field>
-				</div>
-				<div>
-					<mat-accordion>
-						<mat-expansion-panel
-							class="mat-elevation-z0"
-							(opened)="panelOpenState = true"
-							(closed)="panelOpenState = false"
-						>
-							<mat-expansion-panel-header class="panel-header">
-								<mat-panel-title> </mat-panel-title>
-								<mat-panel-description>
-									{{ panelOpenState ? 'Moins de critères' : 'Plus de critères' }}
-								</mat-panel-description>
-							</mat-expansion-panel-header>
-							<div fxLayout="row" fxLayoutAlign="space-evenly center">
-								<mat-form-field
-									class="example-full-width"
-									appearance="outline"
-									fxFlex="18"
-								>
-									<mat-label>{{ 'Mandat.nameAgent' | translate }}</mat-label>
-									<input
-										matInput
-										formControlName="project.agent.lastname"
-										placeholder="{{ 'Mandat.nameAgent' | translate }}"
-									/>
-								</mat-form-field>
-								<mat-form-field
-									class="example-full-width"
-									appearance="outline"
-									fxFlex="18"
-								>
-									<mat-label>{{ 'Mandat.firstname_agent' | translate }}</mat-label>
-									<input
-										matInput
-										formControlName="project.agent.firstname"
-										placeholder="{{ 'Mandat.firstname_agent' | translate }}"
-									/>
-								</mat-form-field>
+          <mat-form-field
+            class="example-full-width"
+            appearance="outline"
+            fxFlex="18"
+          >
+            <mat-label>{{ 'Mandat.sttusMandat' | translate }}</mat-label>
+            <mat-select formControlName="status">
+              <mat-option
+                *ngFor="let state of stateList"
+                [value]="state.value"
+                >{{ state.viewValue }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field
+            class="example-full-width"
+            appearance="outline"
+            fxFlex="18"
+          >
+            <mat-label>{{ 'Mandat.typeMandat' | translate }}</mat-label>
+            <mat-select formControlName="type.name">
+              <mat-option
+                *ngFor="let type of typeMandatList"
+                [value]="type.value"
+                >{{ type.viewValue }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field
+            class="example-full-width"
+            appearance="outline"
+            fxFlex="18"
+          >
+            <mat-label>{{ 'Mandat.typeProject' | translate }}</mat-label>
+            <mat-select formControlName="project.property.propertyType.name">
+              <mat-option
+                *ngFor="let type of typeProjectList"
+                [value]="type.value"
+                >{{ type.viewValue }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-accordion>
+            <mat-expansion-panel
+              class="mat-elevation-z0"
+              (opened)="panelOpenState = true"
+              (closed)="panelOpenState = false"
+            >
+              <mat-expansion-panel-header class="panel-header">
+                <mat-panel-title> </mat-panel-title>
+                <mat-panel-description>
+                  {{
+                    panelOpenState ? 'Moins de critères' : 'Plus de critères'
+                  }}
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                <mat-form-field
+                  class="example-full-width"
+                  appearance="outline"
+                  fxFlex="18"
+                >
+                  <mat-label>{{ 'Mandat.nameAgent' | translate }}</mat-label>
+                  <input
+                    matInput
+                    formControlName="project.agent.lastname"
+                    placeholder="{{ 'Mandat.nameAgent' | translate }}"
+                  />
+                </mat-form-field>
+                <mat-form-field
+                  class="example-full-width"
+                  appearance="outline"
+                  fxFlex="18"
+                >
+                  <mat-label>{{
+                    'Mandat.firstname_agent' | translate
+                  }}</mat-label>
+                  <input
+                    matInput
+                    formControlName="project.agent.firstname"
+                    placeholder="{{ 'Mandat.firstname_agent' | translate }}"
+                  />
+                </mat-form-field>
 
-								<mat-form-field
-									class="example-full-width"
-									appearance="outline"
-									fxFlex="18"
-								>
-									<mat-label>{{ 'Property.form.pricemax' | translate }}</mat-label>
-									<input
-										type="number"
-										min="0"
-										matInput
-										formControlName="project.property.maximumPrice[lte]"
-										placeholder="{{ 'Property.form.pricemax' | translate }}"
-									/>
-								</mat-form-field>
-								<mat-form-field
-									class="example-full-width"
-									appearance="outline"
-									fxFlex="18"
-								>
-									<mat-label>{{ 'Property.form.pricemin' | translate }}</mat-label>
-									<input
-										type="number"
-										min="0"
-										matInput
-										formControlName="project.property.minimalPrice[gte]"
-										placeholder="{{ 'Property.form.pricemin' | translate }}"
-									/>
-								</mat-form-field>
-							</div>
-						</mat-expansion-panel>
-					</mat-accordion>
-				</div>
-				<mat-card-actions>
-					<div class="btns">
-						<button mat-raised-button class="btn-submit" type="submit">
-							{{ 'searchAgent.form.search' | translate }}<mat-icon>search</mat-icon>
-						</button>
-						<button mat-raised-button class="btn-warning" type="reset">
-							{{ 'form_standard.reset' | translate }}
-							<mat-icon>refresh</mat-icon>
-						</button>
-					</div>
-				</mat-card-actions>
-			</form>
-		</mat-card-content>
-	</mat-card>
+                <mat-form-field
+                  class="example-full-width"
+                  appearance="outline"
+                  fxFlex="18"
+                >
+                  <mat-label>{{
+                    'Property.form.pricemax' | translate
+                  }}</mat-label>
+                  <input
+                    type="number"
+                    min="0"
+                    matInput
+                    formControlName="project.property.maximumPrice[lte]"
+                    placeholder="{{ 'Property.form.pricemax' | translate }}"
+                  />
+                </mat-form-field>
+                <mat-form-field
+                  class="example-full-width"
+                  appearance="outline"
+                  fxFlex="18"
+                >
+                  <mat-label>{{
+                    'Property.form.pricemin' | translate
+                  }}</mat-label>
+                  <input
+                    type="number"
+                    min="0"
+                    matInput
+                    formControlName="project.property.minimalPrice[gte]"
+                    placeholder="{{ 'Property.form.pricemin' | translate }}"
+                  />
+                </mat-form-field>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+        <mat-card-actions>
+          <div class="btns">
+            <button mat-raised-button class="btn-submit" type="submit">
+              {{ 'searchAgent.form.search' | translate
+              }}<mat-icon>search</mat-icon>
+            </button>
+            <button mat-raised-button class="btn-warning" type="reset">
+              {{ 'form_standard.reset' | translate }}
+              <mat-icon>refresh</mat-icon>
+            </button>
+          </div>
+        </mat-card-actions>
+      </form>
+    </mat-card-content>
+  </mat-card>
 
-	<section>
-		<mat-card-content>
-			<mat-table [dataSource]="mandat" aria-readonly="true">
-				<ng-container cdkColumnDef="Id Mandat">
-					<mat-header-cell *cdkHeaderCellDef>{{
-						'Mandat.id' | translate
-					}}</mat-header-cell>
-					<mat-cell *cdkCellDef="let row">{{ row?.id }}</mat-cell>
-				</ng-container>
-				<ng-container cdkColumnDef="Date De Création">
-					<mat-header-cell *cdkHeaderCellDef
-						>{{ 'Sponsor.form.Date_CREATION' | translate }}
-					</mat-header-cell>
-					<mat-cell *cdkCellDef="let row"
-						>{{ row?.createdAt | date: 'dd/MM/yyyy' }}
-					</mat-cell>
-				</ng-container>
+  <section>
+    <mat-card-content>
+      <mat-table [dataSource]="mandat" aria-readonly="true">
+        <ng-container cdkColumnDef="Id Mandat">
+          <mat-header-cell *cdkHeaderCellDef>{{
+            'Mandat.id' | translate
+          }}</mat-header-cell>
+          <mat-cell *cdkCellDef="let row">{{ row?.id }}</mat-cell>
+        </ng-container>
+        <ng-container cdkColumnDef="Date De Création">
+          <mat-header-cell *cdkHeaderCellDef
+            >{{ 'Sponsor.form.Date_CREATION' | translate }}
+          </mat-header-cell>
+          <mat-cell *cdkCellDef="let row"
+            >{{ row?.createdAt | date: 'dd/MM/yyyy' }}
+          </mat-cell>
+        </ng-container>
 
-				<ng-container cdkColumnDef="Nom Agent">
-					<mat-header-cell *cdkHeaderCellDef>{{
-						'Mandat.agent' | translate
-					}}</mat-header-cell>
-					<mat-cell *cdkCellDef="let row"
-						><a [routerLink]="['/annuaire', row?.project?.agent?.id]"
-							>{{ row?.project?.agent?.firstname }}&nbsp;&nbsp;{{
-								row?.project?.agent?.lastname
-							}}</a
-						>
-					</mat-cell>
-				</ng-container>
+        <ng-container cdkColumnDef="Nom Agent">
+          <mat-header-cell *cdkHeaderCellDef>{{
+            'Mandat.agent' | translate
+          }}</mat-header-cell>
+          <mat-cell *cdkCellDef="let row"
+            ><a [routerLink]="['/annuaire', row?.project?.agent?.id]"
+              >{{ row?.project?.agent?.firstname }}&nbsp;&nbsp;{{
+                row?.project?.agent?.lastname
+              }}</a
+            >
+          </mat-cell>
+        </ng-container>
 
-				<ng-container cdkColumnDef="Nom Du Mandant">
-					<mat-header-cell *cdkHeaderCellDef>{{
-						'Mandat.mandant' | translate
-					}}</mat-header-cell>
-					<mat-cell *cdkCellDef="let row"
-						>{{ row.project.contact.firstname }}&nbsp;&nbsp;{{
-							row.project.contact.lastname
-						}}</mat-cell
-					>
-				</ng-container>
+        <ng-container cdkColumnDef="Nom Du Mandant">
+          <mat-header-cell *cdkHeaderCellDef>{{
+            'Mandat.mandant' | translate
+          }}</mat-header-cell>
+          <mat-cell *cdkCellDef="let row"
+            >{{ row.project.contact.firstname }}&nbsp;&nbsp;{{
+              row.project.contact.lastname
+            }}</mat-cell
+          >
+        </ng-container>
 
-				<ng-container cdkColumnDef="projectState">
-					<mat-header-cell *cdkHeaderCellDef>{{
-						'Mandat.statusProject' | translate
-					}}</mat-header-cell>
-					<mat-cell *cdkCellDef="let row">{{ row.project.projectState }} </mat-cell>
-				</ng-container>
-				<ng-container cdkColumnDef="projectType">
-					<mat-header-cell *cdkHeaderCellDef>{{
-						'Mandat.typeProject' | translate
-					}}</mat-header-cell>
-					<mat-cell *cdkCellDef="let row">{{ row.project.projectType }} </mat-cell>
-				</ng-container>
+        <ng-container cdkColumnDef="projectState">
+          <mat-header-cell *cdkHeaderCellDef>{{
+            'Mandat.statusProject' | translate
+          }}</mat-header-cell>
+          <mat-cell *cdkCellDef="let row"
+            >{{ row.project.projectState }}
+          </mat-cell>
+        </ng-container>
+        <ng-container cdkColumnDef="projectType">
+          <mat-header-cell *cdkHeaderCellDef>{{
+            'Mandat.typeProject' | translate
+          }}</mat-header-cell>
+          <mat-cell *cdkCellDef="let row"
+            >{{ row.project.projectType }}
+          </mat-cell>
+        </ng-container>
 
-				<ng-container cdkColumnDef="Type">
-					<mat-header-cell *cdkHeaderCellDef>{{
-						'Mandat.typeMandat' | translate
-					}}</mat-header-cell>
-					<mat-cell *cdkCellDef="let row">{{ row.type.name }}</mat-cell>
-				</ng-container>
+        <ng-container cdkColumnDef="Type">
+          <mat-header-cell *cdkHeaderCellDef>{{
+            'Mandat.typeMandat' | translate
+          }}</mat-header-cell>
+          <mat-cell *cdkCellDef="let row">{{ row.type.name }}</mat-cell>
+        </ng-container>
 
-				<ng-container cdkColumnDef="Status">
-					<mat-header-cell *cdkHeaderCellDef>{{
-						'Mandat.sttusMandat' | translate
-					}}</mat-header-cell>
-					<mat-cell *cdkCellDef="let row">
-						<div *ngIf="row.status == 'in_progress'">
-							<i
-								style="color: #fba914"
-								class="fas fa-lg fa-hourglass"
-								matTooltipClass="tooltip"
-								[matTooltipPosition]="'right'"
-								matTooltip="En attente"
-							></i>
-						</div>
-						<div *ngIf="row.status == 'accepted'">
-							<i
-								style="color: green"
-								class="fas fa-lg fa-check"
-								[matTooltipPosition]="'right'"
-								matTooltipClass="tooltip"
-								matTooltip="Accepté"
-							></i>
-						</div>
-						<div *ngIf="row.status == 'refused'">
-							<i
-								style="color: red"
-								class="fa fa-lg fa-ban"
-								[matTooltipPosition]="'right'"
-								matTooltipClass="tooltip"
-								matTooltip="Refusé"
-							></i>
-						</div>
-					</mat-cell>
-				</ng-container>
+        <ng-container cdkColumnDef="Status">
+          <mat-header-cell *cdkHeaderCellDef>{{
+            'Mandat.sttusMandat' | translate
+          }}</mat-header-cell>
+          <mat-cell *cdkCellDef="let row">
+            <div *ngIf="row.status == 'in_progress'">
+              <i
+                style="color: #fba914"
+                class="fas fa-lg fa-hourglass"
+                matTooltipClass="tooltip"
+                [matTooltipPosition]="'right'"
+                matTooltip="En attente"
+              ></i>
+            </div>
+            <div *ngIf="row.status == 'accepted'">
+              <i
+                style="color: green"
+                class="fas fa-lg fa-check"
+                [matTooltipPosition]="'right'"
+                matTooltipClass="tooltip"
+                matTooltip="Accepté"
+              ></i>
+            </div>
+            <div *ngIf="row.status == 'refused'">
+              <i
+                style="color: red"
+                class="fa fa-lg fa-ban"
+                [matTooltipPosition]="'right'"
+                matTooltipClass="tooltip"
+                matTooltip="Refusé"
+              ></i>
+            </div>
+          </mat-cell>
+        </ng-container>
 
-				<ng-container cdkColumnDef="Menu">
-					<mat-header-cell *cdkHeaderCellDef></mat-header-cell>
-					<mat-cell *cdkCellDef="let row">
-						<button mat-icon-button [matMenuTriggerFor]="menu">
-							<mat-icon>more_vert</mat-icon>
-						</button>
-						<mat-menu #menu="matMenu">
-							<button
-								mat-menu-item
-								(click)="accept(row.id)"
-								*ngIf="row.status != 'accepted'"
-							>
-								<i style="color: green" class="fa fa-check-circle"></i>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<span>{{ 'Sponsor.form.accept' | translate }}</span>
-							</button>
-							<button
-								mat-menu-item
-								(click)="refus(row.id)"
-								*ngIf="row.status != 'refused'"
-							>
-								<i style="color: red" class="fa fa-ban" aria-hidden="true"></i>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<span>{{ 'Sponsor.form.refus' | translate }}</span>
-							</button>
-							<button mat-menu-item (click)="details(row.project.id)">
-								<mat-icon>remove_red_eye</mat-icon>
-								<span>{{ 'form_standard.consult' | translate }}</span>
-							</button>
-						</mat-menu>
-					</mat-cell>
-				</ng-container>
-				<mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
-				<mat-row *cdkRowDef="let row; columns: displayedColumns"></mat-row>
-			</mat-table>
-		</mat-card-content>
-	</section>
+        <ng-container cdkColumnDef="Menu">
+          <mat-header-cell *cdkHeaderCellDef></mat-header-cell>
+          <mat-cell *cdkCellDef="let row">
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button
+                mat-menu-item
+                (click)="accept(row.id)"
+                *ngIf="row.status != 'accepted'"
+              >
+                <i style="color: green" class="fa fa-check-circle"></i>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span>{{ 'Sponsor.form.accept' | translate }}</span>
+              </button>
+              <button
+                mat-menu-item
+                (click)="refus(row.id)"
+                *ngIf="row.status != 'refused'"
+              >
+                <i style="color: red" class="fa fa-ban" aria-hidden="true"></i>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span>{{ 'Sponsor.form.refus' | translate }}</span>
+              </button>
+              <button mat-menu-item (click)="details(row.id)">
+                <mat-icon>remove_red_eye</mat-icon>
+                <span>{{ 'form_standard.consult' | translate }}</span>
+              </button>
+            </mat-menu>
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *cdkRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+    </mat-card-content>
+  </section>
 
-	<mat-card-actions fxLayout="row" fxLayoutAlign="space-between center">
-		<div>
-			<a *ngIf="currentPage > 1"
-				><i
-					(click)="onPage(currentPage - 1)"
-					class="fa fa-3x fa-angle-left"
-					style="color: #4e99c5"
-					aria-hidden="true"
-				></i
-			></a>
-		</div>
-		<div>
-			<a *ngIf="currentPage < lastPage"
-				><i
-					(click)="onPage(currentPage + 1)"
-					class="fa fa-3x fa-angle-right"
-					style="color: #4e99c5"
-					aria-hidden="true"
-				></i
-			></a>
-		</div>
-	</mat-card-actions>
+  <mat-card-actions fxLayout="row" fxLayoutAlign="space-between center">
+    <div>
+      <a *ngIf="currentPage > 1"
+        ><i
+          (click)="onPage(currentPage - 1)"
+          class="fa fa-3x fa-angle-left"
+          style="color: #4e99c5"
+          aria-hidden="true"
+        ></i
+      ></a>
+    </div>
+    <div>
+      <a *ngIf="currentPage < lastPage"
+        ><i
+          (click)="onPage(currentPage + 1)"
+          class="fa fa-3x fa-angle-right"
+          style="color: #4e99c5"
+          aria-hidden="true"
+        ></i
+      ></a>
+    </div>
+  </mat-card-actions>
 </mat-card>
