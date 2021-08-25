@@ -1,9 +1,0 @@
-{
-  "typescript.format.semicolons": "insert",
-  "javascript.format.semicolons": "insert",
-  "javascript.format.placeOpenBraceOnNewLineForControlBlocks": true,
-  "prettier.useTabs": false,
-  "prettier.singleQuote": true,
-  "prettier.tabWidth": 2,
-  "editor.tabSize": 2
-}
