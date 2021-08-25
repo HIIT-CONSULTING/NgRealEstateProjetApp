@@ -1,7 +1,7 @@
 <page-header></page-header>
 <mat-card>
   <div class="card-header card-header-danger" style="margin-top: -40px">
-    <h4 class="card-title">{{ "Mandat.title-list" | translate }}</h4>
+    <h4 class="card-title">{{ 'Mandat.title-list' | translate }}</h4>
   </div>
 
   <mat-card-header
@@ -24,33 +24,49 @@
     <section>
       <mat-table [dataSource]="mandat" aria-readonly="true">
         <ng-container cdkColumnDef="Id Mandant">
-          <mat-header-cell *cdkHeaderCellDef>{{'Mandat.id'|translate}}</mat-header-cell>
-          <mat-cell *cdkCellDef="let row">{{ row.id }}</mat-cell>
+          <mat-header-cell *cdkHeaderCellDef>{{
+            'Mandat.id' | translate
+          }}</mat-header-cell>
+          <mat-cell *cdkCellDef="let row">{{ row.id?.split('-')[0] }}</mat-cell>
         </ng-container>
         <ng-container cdkColumnDef="Prénom Du Mandant">
-          <mat-header-cell *cdkHeaderCellDef>{{'Mandat.lastname_mandant'|translate}} </mat-header-cell>
-          <mat-cell *cdkCellDef="let row">{{row.project.contact.firstname}}&nbsp;{{row.project.contact.lastname}}</mat-cell>
+          <mat-header-cell *cdkHeaderCellDef
+            >{{ 'Mandat.lastname_mandant' | translate }}
+          </mat-header-cell>
+          <mat-cell *cdkCellDef="let row"
+            >{{ row.project.contact.firstname }}&nbsp;{{
+              row.project.contact.lastname
+            }}</mat-cell
+          >
         </ng-container>
         <ng-container cdkColumnDef="projectState">
-          <mat-header-cell *cdkHeaderCellDef>{{'Mandat.statusProject'|translate}}</mat-header-cell>
+          <mat-header-cell *cdkHeaderCellDef>{{
+            'Mandat.statusProject' | translate
+          }}</mat-header-cell>
           <mat-cell *cdkCellDef="let row"
             >{{ row.project.projectState }}
           </mat-cell>
         </ng-container>
         <ng-container cdkColumnDef="projectType">
-          <mat-header-cell *cdkHeaderCellDef>{{'Mandat.typeProject'|translate}}</mat-header-cell>
+          <mat-header-cell *cdkHeaderCellDef>{{
+            'Mandat.typeProject' | translate
+          }}</mat-header-cell>
           <mat-cell *cdkCellDef="let row"
             >{{ row.project.projectType }}
           </mat-cell>
         </ng-container>
 
         <ng-container cdkColumnDef="Type">
-          <mat-header-cell *cdkHeaderCellDef>{{'Mandat.typeMandat'|translate}}</mat-header-cell>
+          <mat-header-cell *cdkHeaderCellDef>{{
+            'Mandat.typeMandat' | translate
+          }}</mat-header-cell>
           <mat-cell *cdkCellDef="let row">{{ row.type.name }}</mat-cell>
         </ng-container>
 
         <ng-container cdkColumnDef="Status">
-          <mat-header-cell *cdkHeaderCellDef>{{'Mandat.sttusMandat'|translate}}</mat-header-cell>
+          <mat-header-cell *cdkHeaderCellDef>{{
+            'Mandat.sttusMandat' | translate
+          }}</mat-header-cell>
           <mat-cell *cdkCellDef="let row">
             <div *ngIf="row.status == 'in_progress'">
               <i
@@ -91,7 +107,7 @@
             <mat-menu #menu="matMenu">
               <button mat-menu-item (click)="details(row.id)">
                 <mat-icon>remove_red_eye</mat-icon>
-                <span>{{ "form_standard.consult" | translate }}</span>
+                <span>{{ 'form_standard.consult' | translate }}</span>
               </button>
               <button
                 mat-menu-item
@@ -99,7 +115,7 @@
                 *ngIf="row.status == 'accepted'"
               >
                 <mat-icon>cloud_download</mat-icon>
-                <span>{{ "Mandat.Download" | translate }}</span>
+                <span>{{ 'Mandat.Download' | translate }}</span>
               </button>
             </mat-menu>
           </mat-cell>
@@ -109,11 +125,5 @@
         <mat-row *cdkRowDef="let row; columns: displayedColumns"></mat-row>
       </mat-table>
     </section>
-
-    
-
-
-
-    
   </mat-card-content>
 </mat-card>

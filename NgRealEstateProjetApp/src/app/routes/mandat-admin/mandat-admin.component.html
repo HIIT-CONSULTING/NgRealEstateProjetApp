@@ -166,7 +166,9 @@
           <mat-header-cell *cdkHeaderCellDef>{{
             'Mandat.id' | translate
           }}</mat-header-cell>
-          <mat-cell *cdkCellDef="let row">{{ row?.id }}</mat-cell>
+          <mat-cell *cdkCellDef="let row">{{
+            row?.id?.split('-')[0]
+          }}</mat-cell>
         </ng-container>
         <ng-container cdkColumnDef="Date De Création">
           <mat-header-cell *cdkHeaderCellDef
