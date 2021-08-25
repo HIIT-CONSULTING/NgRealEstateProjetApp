@@ -8,33 +8,32 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-transaction-list',
   templateUrl: './transaction-list.component.html',
-  styleUrls: ['./transaction-list.component.scss']
+  styleUrls: ['./transaction-list.component.scss'],
 })
 export class TransactionListComponent implements OnInit {
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private snackBar: MatSnackBar,
-    private transactionService: TransactionService,
+    private transactionService: TransactionService
   ) {}
-  
-  
+
   @ViewChild(MatPaginator, { static: true }) pager: MatPaginator;
   transactions: any[];
 
   displayedColumns = [
-    "Date De Création",
-    "Nom d'agent 2",
-    "Price",
-    "Typologie",
-    "CompromiseDate",
-    "ProvisionalActDate",
-    "OfficialActDate",
-    "Notary",
-    "Type",
-    "Status",
-    "Menu",
+    'Date De Création',
+    'id',
+    'mandant',
+    'Price',
+    'Typologie',
+    'CompromiseDate',
+    'ProvisionalActDate',
+    'OfficialActDate',
+    'Notary',
+    'Type',
+    'Status',
+    'Menu',
   ];
 
   ngOnInit(): void {
@@ -43,15 +42,13 @@ export class TransactionListComponent implements OnInit {
     });
   }
 
-  Onpage() {
-    
-  }
-  
+  Onpage() {}
+
   onClick() {
-    this.router.navigate(["transaction/addtransaction"]);
+    this.router.navigate(['transaction/addtransaction']);
   }
 
-  details(id: number) {
-    this.router.navigate(["/transaction", id, "details"]);
+  details(id: string) {
+    this.router.navigate(['/transaction', id, 'details']);
   }
 }

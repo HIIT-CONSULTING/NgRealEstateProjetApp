@@ -1,112 +1,121 @@
 {
-    "menu": {
-        "annuaire": "Phone book",
-        "sponsorship":"Sponsorship",
-        "sponsorship-admin":"Sponsorship",
-        "project":"Projects",
-        "contact":"Contacts",
-        "mandat" : "Mandates"
-        
-    },
-    "user": {
-        "profile": "profile",
-        "logout": "logout"
-    },
-    "searchAgent": {
-        "title":"FIND AN ADVISOR",
-        "title-detail":"ADVISOR FILE",
-        "form":{
-            "search":"Search" , 
-            "findagent" :"ADVISORS"
-        }        
-    },
-    "form_standard" :{
-        "firstname":"First Name",
-        "lastname":"Last Name",
-        "mail":"Mail",
-        "civility":"Civility",
-        "Date_Birth" : "Date of Birth", 
-        "address" : "Address",
-        "tel":"Mobile",
-        "country":"Country",
-        "Fullname" : "Full Name" ,
-        "city":"City",
-        "reset":"Reset",
-        "cancel":"Cancel",
-        "confirm":"Confirm",
-        "update":"Update",
-        "consult":"Consult",
-        "delete":"Delete",
-        "email.error":"You must enter a value",
-        "tel.error":"Enter a valid phone number Example: 0612345678 or +212612345678",
-        "lastname.error":"Enter a valid name ",
-        "firstname.error":"Enter a valid first name ",
-        "date.error":"Enter a valid date (dd/mm/yyyy)"
-    },
-    "Contact" : {
-        "title":"CREATE NEW CONTACT",
-        "title-detail":"CONTACT FILE",
-        "title-list":"CONTACTS LIST",
-        "title-update":"UPDATE A CONTACT",
-        "form":{        
-            "buyer":"Buyer",
-            "add":"Add a contact"
-        }
-        
-    },
-    "Sponsor" : {
-        "title":"CREATE NEW CANDIDAT",
-        "title-candidat":"CANDIDAT FILE",
-        "title-form":"CREATE NEW REQUEST OF SPONSOR",        
-        "title-sponsor":"SPONSOR",
-        "title-list":"CANDIDATS LIST",
-        "title-update":"UPDATE",
-        "form":{
-            "firstname_sponsor":"Sponsor's First name",
-            "firstname_candidat":"Candidat's First name",
-            "name_sponsor":"Sponsor's Last name",
-            "name_candidat":"Candidat's Last name",
-            "add":"Add a candidat", 
-            "status" : "STATUS",
-            "Date_CREATION" : "Date  Creation",
-            "accept":"ACCEPT",
-            "refus":"REFUS"
-        }
-    } ,     
-    "Property" : {
-        "title":"Create new project",
-        "title-detail":"PROJECT FILE",
-        "title-list":"Project list",
-        "title-update":"UPDATE A Project",
-        "title-data":"SUMMARY OF THE PROPERTY",
-        "next":"NEXT STEP",
-        "previous":"PREVIOUS STEP",
-        "transaction":"Transaction",
-        "domaine":"Domaine",
-        "destination":"Destination",
-        "property_type":"Property",
-        "informations":"Informations of the projet",
-        "contact":"Contact of the project",
-        "select_contact":"Select a contact",
-        "contactresult":"THE CONTACT",
-        "form":{
-            "pricemin":"MIN PRICE",
-            "pricemax":"MAX PRICE",
-            "area":"Area",
-            "nbpieces":"NUMBER OF PIECES",
-            "propery_title":"LOCATION OF PROPERTY",
-            "budget":"BUDGET",  
-            "add":"Add a property",
-            "country.error":"Please select a country",
-            "city.error":"Please select a city",
-            "description.error":"Enter a Sector",
-            "area.error":"Enter a valid surface",
-            "minimalPrice.error":"Enter a valid price",
-            "maximumPrice.error":"Enter a valid price",
-            "contact.error":"Please select a contact"
-        }
-        
-    } 
+  "menu": {
+    "annuaire": "Phone book",
+    "sponsorship": "Sponsorship",
+    "sponsorship-admin": "Sponsorship",
+    "project": "Projects",
+    "contact": "Contacts",
+    "mandat": "Mandates",
+    "mandat-admin": "Mandate management",
+    "transaction": "Transactions",
+    "transaction-admin": "Transaction management"
+  },
+  "user": {
+    "profile": "profile",
+    "logout": "logout"
+  },
+  "form_standard": {
+    "firstname": "First Name",
+    "lastname": "Last Name",
+    "mail": "Mail",
+    "civility": "Civility",
+    "Date_Birth": "Date of Birth",
+    "address": "Address",
+    "tel": "Mobile",
+    "country": "Country",
+    "Fullname": "Full Name",
+    "city": "City",
+    "reset": "Reset",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "update": "Update",
+    "consult": "Consult",
+    "delete": "Delete",
 
+    "cin": "ID card",
+    "zipCode": "Postal code",
+    "secondAddress": "Second address",
+    "societe": "Society",
+    "channelType": "Channel type",
+    "notes": "Notes",
+    "save": "Enregistrer",
+    "yes": "Oui",
+    "and": "et",
 
+    "email.error": "You must enter a value",
+    "tel.error": "Enter a valid phone number Example: 0612345678 or +212612345678",
+    "lastname.error": "Enter a valid name ",
+    "firstname.error": "Enter a valid first name ",
+    "date.error": "Enter a valid date (dd/mm/yyyy)"
+  },
+  "searchAgent": {
+    "title": "FIND AN ADVISOR",
+    "title-detail": "ADVISOR FILE",
+    "form": {
+      "search": "Search",
+      "findagent": "ADVISORS"
+    }
+  },
+  "Contact": {
+    "title": "CREATE NEW CONTACT",
+    "title-detail": "CONTACT FILE",
+    "title-list": "CONTACTS LIST",
+    "title-update": "UPDATE A CONTACT",
+    "form": {
+      "buyer": "Buyer",
+      "add": "Add a contact"
+    }
+  },
+  "Sponsor": {
+    "title": "CREATE NEW CANDIDAT",
+    "title-candidat": "CANDIDAT FILE",
+    "title-form": "CREATE NEW REQUEST OF SPONSOR",
+    "title-sponsor": "SPONSOR",
+    "title-list": "CANDIDATS LIST",
+    "title-update": "UPDATE",
+    "form": {
+      "firstname_sponsor": "Sponsor's First name",
+      "firstname_candidat": "Candidat's First name",
+      "name_sponsor": "Sponsor's Last name",
+      "name_candidat": "Candidat's Last name",
+      "add": "Add a candidat",
+      "status": "STATUS",
+      "Date_CREATION": "Date  Creation",
+      "accept": "ACCEPT",
+      "refus": "REFUS"
+    }
+  },
+  "Property": {
+    "title": "Create new project",
+    "title-detail": "PROJECT FILE",
+    "title-list": "Project list",
+    "title-update": "UPDATE A Project",
+    "title-data": "SUMMARY OF THE PROPERTY",
+    "next": "NEXT STEP",
+    "previous": "PREVIOUS STEP",
+    "transaction": "Transaction",
+    "domaine": "Domaine",
+    "destination": "Destination",
+    "property_type": "Property",
+    "informations": "Informations of the projet",
+    "contact": "Contact of the project",
+    "select_contact": "Select a contact",
+    "contactresult": "THE CONTACT",
+    "form": {
+      "pricemin": "MIN PRICE",
+      "pricemax": "MAX PRICE",
+      "area": "Area",
+      "nbpieces": "NUMBER OF PIECES",
+      "propery_title": "LOCATION OF PROPERTY",
+      "budget": "BUDGET",
+      "add": "Add a property",
+      "country.error": "Please select a country",
+      "city.error": "Please select a city",
+      "description.error": "Enter a Sector",
+      "area.error": "Enter a valid surface",
+      "minimalPrice.error": "Enter a valid price",
+      "maximumPrice.error": "Enter a valid price",
+      "contact.error": "Please select a contact"
+    }
+  }
 }

@@ -179,15 +179,11 @@
     "add": "Ajouter un mandat"
   },
   "Transaction": {
+    "id": "Id Transaction",
     "title": "Créer une nouvelle transaction",
     "title-list": "Liste des transactions",
-    "projectVente": "Projet vente",
-    "projectAchat": "Projet achat ",
-    "selectProjectAchar": "Sélectionner un projet d'achat",
-    "selectProjectVent": "Sélectionner un projet de vent",
+    "selectMandat": "Sélectionner un mandat",
     "selectNotary": "Sélectionner un notaire",
-    "ProjectresultA": "Le projet d'achat lié",
-    "ProjectresultV": "Le projet du vent lié",
     "transaction": "Type transaction",
     "typologie": "Typologie",
     "addnotary": "Nouveau notaire",
@@ -208,7 +204,6 @@
     "nameNotary": "Nom de notaire",
     "detail": "Détail De Transaction",
     "nbTransaction": "Transaction Nº:",
-    "agent1": "Premier agent",
-    "agent2": "Deuxième agent"
+    "agent": "Agent"
   }
 }

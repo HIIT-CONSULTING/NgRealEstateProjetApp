@@ -1,12 +1,18 @@
 <page-header></page-header>
 
-<nav mat-tab-nav-bar style="background: linear-gradient(60deg, #52a2ca, #191970);">
-  <a mat-tab-link
-     *ngFor="let link of navLinks"
-     [routerLink]="link.path"
-     routerLinkActive #rla="routerLinkActive"
-     [active]="rla.isActive">
-    {{link.label|translate}}
+<nav
+  mat-tab-nav-bar
+  style="background: linear-gradient(60deg, #52a2ca, #191970)"
+>
+  <a
+    mat-tab-link
+    *ngFor="let link of navLinks"
+    [routerLink]="link.path"
+    routerLinkActive
+    #rla="routerLinkActive"
+    [active]="rla.isActive"
+  >
+    {{ link.label | translate }}
   </a>
 </nav>
 <router-outlet></router-outlet>

@@ -6,29 +6,26 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-transaction-details',
   templateUrl: './transaction-details.component.html',
-  styleUrls: ['./transaction-details.component.scss']
+  styleUrls: ['./transaction-details.component.scss'],
 })
 export class TransactionDetailsComponent implements OnInit {
-
-  showSpinner=true;
-  id: number;
+  showSpinner = true;
+  id: string;
   transaction: Observable<any>;
-
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private transactionService: TransactionService
   ) {}
- 
+
   ngOnInit() {
     this.route.params.subscribe((params) => {
-    this.id = +params["id"];
+      this.id = params['id'];
     });
     this.transactionService.getTransaction(this.id).subscribe((res) => {
-      this.transaction = res;//['hydra:member'];
-      if(res!={})
-        this.showSpinner=false;
-    })
+      this.transaction = res;
+      if (res != {}) this.showSpinner = false;
+    });
   }
 }

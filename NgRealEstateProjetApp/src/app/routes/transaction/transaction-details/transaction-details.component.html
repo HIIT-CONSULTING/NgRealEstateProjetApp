@@ -18,7 +18,8 @@
         font-family: monospaclili2e;
       "
     >
-      {{ 'Transaction.nbTransaction' | translate }} {{ transaction.id }}
+      {{ 'Transaction.nbTransaction' | translate }}
+      {{ transaction.id?.split('-')[0] }}
     </div>
     <div *ngIf="!showSpinner">
       <div style="margin-top: 8%; margin-bottom: 5%">
@@ -57,10 +58,10 @@
                     font-family: monospace;
                   "
                 >
-                  {{ transaction.projects[0].projectType }} /{{
-                    transaction.projects[0].projectState
-                  }}/{{ transaction.projects[0].projectKind }}/{{
-                    transaction.projects[0].property.propertyType.name
+                  {{ transaction.mandate.project.projectType }} /{{
+                    transaction.mandate.project.projectState
+                  }}/{{ transaction.mandate.project.projectKind }}/{{
+                    transaction.mandate.project.property.propertyType.name
                   }}
                 </div>
                 <div fxLayout="row">
@@ -68,53 +69,50 @@
                     {{ 'Property.form.area' | translate }}:
                   </div>
                   <div fxLayout="column" fxFlex="50">
-                    {{ transaction?.projects[0]?.property.area }}
+                    {{ transaction?.mandate.project?.property.area }}
                   </div>
                 </div>
-
                 <div fxLayout="row">
                   <div fxLayout="column" fxFlex="50">
                     {{ 'Property.form.areaEsteme' | translate }} :
                   </div>
                   <div fxLayout="column" fxFlex="50">
-                    {{ transaction?.projects[0]?.property.estimatedSurface }}
+                    {{ transaction?.mandate.project.property.estimatedSurface }}
                   </div>
                 </div>
-
                 <div fxLayout="row">
                   <div fxLayout="column" fxFlex="50">
                     {{ 'Property.form.pricemin' | translate }}:
                   </div>
                   <div fxLayout="column" fxFlex="50">
-                    {{ transaction?.projects[0]?.property.minimalPrice }}
+                    {{ transaction?.mandate.project.property.minimalPrice }}
                   </div>
                 </div>
-
                 <div fxLayout="row">
                   <div fxLayout="column" fxFlex="50">
                     {{ 'Property.form.pricemax' | translate }}:
                   </div>
                   <div fxLayout="column" fxFlex="50">
-                    {{ transaction?.projects[0]?.property.maximumPrice }}
+                    {{ transaction?.mandate.project.property.maximumPrice }}
                   </div>
                 </div>
-
                 <div fxLayout="row">
                   <div fxLayout="column" fxFlex="50">
                     {{ 'form_standard.address' | translate }} :
                   </div>
                   <div fxLayout="column" fxFlex="50">
                     {{
-                      transaction?.projects[0]?.property.address?.description
+                      transaction?.mandate.project.property.address?.description
                     }}
-                    {{ transaction?.projects[0]?.property.address?.city?.name }}
                     {{
-                      transaction?.projects[0]?.property.address?.country?.name
+                      transaction?.mandate.project.property.address?.city?.name
+                    }}
+                    {{
+                      transaction?.mandate.project.property.address?.country
+                        ?.name
                     }}
                   </div>
                 </div>
-                <br />
-
                 <div
                   fxLayoutAlign="center center"
                   style="
@@ -125,112 +123,74 @@
                     font-family: monospace;
                   "
                 >
-                  {{ 'Property.contact' | translate }}
+                  {{ 'Mandat.title' | translate }}
                 </div>
-
+                <div fxLayout="row">
+                  <div fxLayout="column" fxFlex="50">
+                    {{ 'Mandat.title-data' | translate }} :
+                  </div>
+                  <div fxLayout="column" fxFlex="50">
+                    {{ transaction?.mandate.type.name }}
+                  </div>
+                </div>
+                <div
+                  fxLayoutAlign="center center"
+                  style="
+                    color: #0077b6;
+                    font-size: large;
+                    margin-top: 4%;
+                    margin-bottom: 4%;
+                    font-family: monospace;
+                  "
+                >
+                  {{ 'Mandat.mandant' | translate }}
+                </div>
                 <div fxLayout="row">
                   <div fxLayout="column" fxFlex="50">
                     {{ 'form_standard.Fullname' | translate }} :
                   </div>
                   <div fxLayout="column" fxFlex="50">
-                    {{ transaction?.projects[0].contact.firstname }}
-                    {{ transaction?.projects[0].contact.lastname | uppercase }}
+                    {{ transaction?.mandate.project.contact.firstname }}
+                    {{
+                      transaction?.mandate.project.contact.lastname | uppercase
+                    }}
                   </div>
                 </div>
-
                 <div fxLayout="row">
                   <div fxLayout="column" fxFlex="50">
                     {{ 'form_standard.mail' | translate }} :
                   </div>
                   <div fxLayout="column" fxFlex="50">
-                    {{ transaction.projects[0].contact.email }}
+                    {{ transaction.mandate.project.contact.email }}
                   </div>
                 </div>
-
                 <div fxLayout="row">
                   <div fxLayout="column" fxFlex="50">
                     {{ 'form_standard.tel' | translate }} :
                   </div>
                   <div fxLayout="column" fxFlex="50">
-                    {{ transaction.projects[0].contact.telephone }}
+                    {{ transaction.mandate.project.contact.telephone }}
                   </div>
                 </div>
-
                 <div fxLayout="row">
                   <div fxLayout="column" fxFlex="50">
                     {{ 'form_standard.address' | translate }} :
                   </div>
                   <div fxLayout="column" fxFlex="50">
-                    {{ transaction.projects[0].contact?.address?.description }}
-                    {{ transaction.projects[0].contact?.address?.city?.name }}
-                    {{ transaction?.projects[0].contact.address.country.name }}
+                    {{
+                      transaction.mandate.project.contact?.address?.description
+                    }}
+                    {{
+                      transaction.mandate.project.contact?.address?.city?.name
+                    }}
+                    {{
+                      transaction?.mandate.project.contact.address.country.name
+                    }}
                   </div>
                 </div>
               </section>
             </div>
           </mat-expansion-panel>
-          <!--agent-->
-          <mat-expansion-panel #panel2 style="width: 100%">
-            <mat-expansion-panel-header
-              class="disable_ripple"
-              [collapsedHeight]="'70px'"
-              [expandedHeight]="'70px'"
-            >
-              <div class="title-cardd">
-                {{ 'Transaction.agent2' | translate }}
-              </div>
-            </mat-expansion-panel-header>
-            <div fxLayout="row" class="font">
-              <aside fxFlex="15" style="margin: 4%">
-                <img
-                  mat-card-image
-                  src="./assets/images/profile.png"
-                  style="border-radius: 80px"
-                />
-              </aside>
-              <section fxFlex="60">
-                <div fxLayout="row">
-                  <div fxLayout="column" fxFlex="50">
-                    {{ 'form_standard.Fullname' | translate }} :
-                  </div>
-                  <div fxLayout="column" fxFlex="50">
-                    {{ transaction?.projects[0].agent.firstname
-                    }}{{ transaction?.projects[0].agent.lastname | uppercase }}
-                  </div>
-                </div>
-
-                <div fxLayout="row">
-                  <div fxLayout="column" fxFlex="50">
-                    {{ 'form_standard.mail' | translate }} :
-                  </div>
-                  <div fxLayout="column" fxFlex="50">
-                    {{ transaction?.projects[0].agent.email }}
-                  </div>
-                </div>
-
-                <div fxLayout="row">
-                  <div fxLayout="column" fxFlex="50">
-                    {{ 'form_standard.tel' | translate }} :
-                  </div>
-                  <div fxLayout="column" fxFlex="50">
-                    {{ transaction?.projects[0].agent.telephone }}
-                  </div>
-                </div>
-
-                <div fxLayout="row">
-                  <div fxLayout="column" fxFlex="50">
-                    {{ 'form_standard.address' | translate }} :
-                  </div>
-                  <div fxLayout="column" fxFlex="50">
-                    {{ transaction?.projects[0].agent.address?.description }}
-                    {{ transaction?.projects[0].agent.address?.city?.name }}
-                    {{ transaction?.projects[0].agent.address.country.name }}
-                  </div>
-                </div>
-              </section>
-            </div>
-          </mat-expansion-panel>
-
           <!--notary-->
           <mat-expansion-panel #panel3 style="width: 100%">
             <mat-expansion-panel-header
@@ -260,7 +220,6 @@
                     }}{{ transaction?.notary.lastname | uppercase }}
                   </div>
                 </div>
-
                 <div fxLayout="row">
                   <div fxLayout="column" fxFlex="50">
                     {{ 'form_standard.mail' | translate }} :
@@ -269,7 +228,6 @@
                     {{ transaction?.notary.email }}
                   </div>
                 </div>
-
                 <div fxLayout="row">
                   <div fxLayout="column" fxFlex="50">
                     {{ 'form_standard.tel' | translate }} :
@@ -278,7 +236,6 @@
                     {{ transaction?.notary.telephone }}
                   </div>
                 </div>
-
                 <div fxLayout="row">
                   <div fxLayout="column" fxFlex="50">
                     {{ 'form_standard.address' | translate }} :
@@ -316,7 +273,6 @@
                     {{ transaction?.type }}
                   </div>
                 </div>
-
                 <div fxLayout="row">
                   <div fxLayout="column" fxFlex="50">
                     {{ 'Transaction.typologie' | translate }} :
@@ -325,7 +281,6 @@
                     {{ transaction?.typologie }}
                   </div>
                 </div>
-
                 <div fxLayout="row">
                   <div fxLayout="column" fxFlex="50">
                     {{ 'Transaction.prixVente' | translate }} :
@@ -342,7 +297,6 @@
                     {{ transaction?.quote }}
                   </div>
                 </div>
-
                 <div fxLayout="row">
                   <div fxLayout="column" fxFlex="50">
                     {{ 'Transaction.lowTtc' | translate }} :
@@ -351,7 +305,6 @@
                     {{ transaction?.companyBaseFees }}
                   </div>
                 </div>
-
                 <div fxLayout="row">
                   <div fxLayout="column" fxFlex="50">
                     {{ 'Transaction.ttc' | translate }} :
@@ -360,7 +313,6 @@
                     {{ transaction?.companyFullFees }}
                   </div>
                 </div>
-
                 <div fxLayout="row">
                   <div fxLayout="column" fxFlex="50">
                     {{ 'Transaction.feesPaidBy' | translate }} :
@@ -377,7 +329,6 @@
                     {{ transaction?.compromiseDate | date: 'dd/MM/yyyy' }}
                   </div>
                 </div>
-
                 <div fxLayout="row">
                   <div fxLayout="column" fxFlex="50">
                     {{ 'Transaction.provisionalActDate' | translate }} :
@@ -386,7 +337,6 @@
                     {{ transaction?.provisionalActDate | date: 'dd/MM/yyyy' }}
                   </div>
                 </div>
-
                 <div fxLayout="row">
                   <div fxLayout="column" fxFlex="50">
                     {{ 'Transaction.officialActDate' | translate }} :

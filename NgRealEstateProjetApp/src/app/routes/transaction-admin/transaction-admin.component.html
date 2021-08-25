@@ -1,164 +1,170 @@
 <page-header></page-header>
 <mat-card>
-	<div class="card-header card-header-danger" style="margin-top: -40px">
-		<h4 class="card-title">{{ 'Transaction.title-list' | translate }}</h4>
-	</div>
-	<mat-card-content>
-		<div class="example-container">
-			<table
-				mat-table
-				[dataSource]="transactions"
-				aria-readonly="true"
-				class="mat-elevation-z8"
-			>
-				>
+  <div class="card-header card-header-danger" style="margin-top: -40px">
+    <h4 class="card-title">{{ 'Transaction.title-list' | translate }}</h4>
+  </div>
+  <mat-card-content>
+    <div class="example-container">
+      <table
+        mat-table
+        [dataSource]="transactions"
+        aria-readonly="true"
+        class="mat-elevation-z8"
+      >
+        >
 
-				<ng-container cdkColumnDef="Date De Création">
-					<mat-header-cell *cdkHeaderCellDef>{{
-						'Sponsor.form.Date_CREATION' | translate
-					}}</mat-header-cell>
-					<mat-cell *cdkCellDef="let row">{{
-						row.createdAt | date: 'dd/MM/yyyy'
-					}}</mat-cell>
-				</ng-container>
-				<ng-container cdkColumnDef="premier agent">
-					<mat-header-cell *cdkHeaderCellDef>{{
-						'Transaction.agent1' | translate
-					}}</mat-header-cell>
-					<mat-cell *cdkCellDef="let row"
-						>{{ row.projects[0].agent.firstname }}
-						{{ row.projects[0].agent.lastname }}</mat-cell
-					>
-				</ng-container>
-				<ng-container cdkColumnDef="deuxième agent">
-					<mat-header-cell *cdkHeaderCellDef>{{
-						'Transaction.agent2' | translate
-					}}</mat-header-cell>
-					<mat-cell *cdkCellDef="let row"
-						>{{ row.projects[1].agent.firstname }}
-						{{ row.projects[1].agent.lastname }}</mat-cell
-					>
-				</ng-container>
-				<ng-container cdkColumnDef="Price">
-					<mat-header-cell *cdkHeaderCellDef>{{
-						'Transaction.prixVente' | translate
-					}}</mat-header-cell>
-					<mat-cell *cdkCellDef="let row">{{ row.price }}</mat-cell>
-				</ng-container>
-				<ng-container cdkColumnDef="Typologie">
-					<mat-header-cell *cdkHeaderCellDef>{{
-						'Transaction.typologie' | translate
-					}}</mat-header-cell>
-					<mat-cell *cdkCellDef="let row">{{ row.typologie }}</mat-cell>
-				</ng-container>
-				<ng-container cdkColumnDef="Type">
-					<mat-header-cell *cdkHeaderCellDef>{{
-						'Transaction.transaction' | translate
-					}}</mat-header-cell>
-					<mat-cell *cdkCellDef="let row">{{ row.type }}</mat-cell>
-				</ng-container>
-				<ng-container cdkColumnDef="CompromiseDate">
-					<mat-header-cell *cdkHeaderCellDef>{{
-						'Transaction.compromiseDate' | translate
-					}}</mat-header-cell>
-					<mat-cell *cdkCellDef="let row">{{
-						row.compromiseDate | date: 'dd/MM/yyyy'
-					}}</mat-cell>
-				</ng-container>
-				<ng-container cdkColumnDef="ProvisionalActDate">
-					<mat-header-cell *cdkHeaderCellDef>{{
-						'Transaction.provisionalActDate' | translate
-					}}</mat-header-cell>
-					<mat-cell *cdkCellDef="let row">{{
-						row.provisionalActDate | date: 'dd/MM/yyyy'
-					}}</mat-cell>
-				</ng-container>
-				<ng-container cdkColumnDef="OfficialActDate">
-					<mat-header-cell *cdkHeaderCellDef>{{
-						'Transaction.officialActDate' | translate
-					}}</mat-header-cell>
-					<mat-cell *cdkCellDef="let row">{{
-						row.officialActDate | date: 'dd/MM/yyyy'
-					}}</mat-cell>
-				</ng-container>
-				<ng-container cdkColumnDef="Notary">
-					<mat-header-cell *cdkHeaderCellDef>{{
-						'Transaction.nameNotary' | translate
-					}}</mat-header-cell>
-					<mat-cell *cdkCellDef="let row"
-						>{{ row.notary.firstname }} {{ row.notary.lastname }}</mat-cell
-					>
-				</ng-container>
+        <ng-container cdkColumnDef="Date De Création">
+          <mat-header-cell *cdkHeaderCellDef>{{
+            'Sponsor.form.Date_CREATION' | translate
+          }}</mat-header-cell>
+          <mat-cell *cdkCellDef="let row">{{
+            row.createdAt | date: 'dd/MM/yyyy'
+          }}</mat-cell>
+        </ng-container>
+        <ng-container cdkColumnDef="id">
+          <mat-header-cell *cdkHeaderCellDef>{{
+            'Transaction.id' | translate
+          }}</mat-header-cell>
+          <mat-cell *cdkCellDef="let row">{{ row.id?.split('-')[0] }}</mat-cell>
+        </ng-container>
+        <ng-container cdkColumnDef="agent">
+          <mat-header-cell *cdkHeaderCellDef>{{
+            'Transaction.agent' | translate
+          }}</mat-header-cell>
+          <mat-cell *cdkCellDef="let row"
+            >{{ row.mandate.project.agent.firstname }}
+            {{ row.mandate.project.agent.lastname | uppercase }}</mat-cell
+          >
+        </ng-container>
+        <ng-container cdkColumnDef="mandant">
+          <mat-header-cell *cdkHeaderCellDef>{{
+            'Mandat.mandant' | translate
+          }}</mat-header-cell>
+          <mat-cell *cdkCellDef="let row"
+            >{{ row.mandate.project.contact.firstname }}
+            {{ row.mandate.project.contact.lastname | uppercase }}</mat-cell
+          >
+        </ng-container>
+        <ng-container cdkColumnDef="Price">
+          <mat-header-cell *cdkHeaderCellDef>{{
+            'Transaction.prixVente' | translate
+          }}</mat-header-cell>
+          <mat-cell *cdkCellDef="let row">{{ row.price }}</mat-cell>
+        </ng-container>
+        <ng-container cdkColumnDef="Typologie">
+          <mat-header-cell *cdkHeaderCellDef>{{
+            'Transaction.typologie' | translate
+          }}</mat-header-cell>
+          <mat-cell *cdkCellDef="let row">{{ row.typologie }}</mat-cell>
+        </ng-container>
+        <ng-container cdkColumnDef="Type">
+          <mat-header-cell *cdkHeaderCellDef>{{
+            'Transaction.transaction' | translate
+          }}</mat-header-cell>
+          <mat-cell *cdkCellDef="let row">{{ row.type }}</mat-cell>
+        </ng-container>
+        <ng-container cdkColumnDef="CompromiseDate">
+          <mat-header-cell *cdkHeaderCellDef>{{
+            'Transaction.compromiseDate' | translate
+          }}</mat-header-cell>
+          <mat-cell *cdkCellDef="let row">{{
+            row.compromiseDate | date: 'dd/MM/yyyy'
+          }}</mat-cell>
+        </ng-container>
+        <ng-container cdkColumnDef="ProvisionalActDate">
+          <mat-header-cell *cdkHeaderCellDef>{{
+            'Transaction.provisionalActDate' | translate
+          }}</mat-header-cell>
+          <mat-cell *cdkCellDef="let row">{{
+            row.provisionalActDate | date: 'dd/MM/yyyy'
+          }}</mat-cell>
+        </ng-container>
+        <ng-container cdkColumnDef="OfficialActDate">
+          <mat-header-cell *cdkHeaderCellDef>{{
+            'Transaction.officialActDate' | translate
+          }}</mat-header-cell>
+          <mat-cell *cdkCellDef="let row">{{
+            row.officialActDate | date: 'dd/MM/yyyy'
+          }}</mat-cell>
+        </ng-container>
+        <ng-container cdkColumnDef="Notary">
+          <mat-header-cell *cdkHeaderCellDef>{{
+            'Transaction.nameNotary' | translate
+          }}</mat-header-cell>
+          <mat-cell *cdkCellDef="let row"
+            >{{ row.notary.firstname }} {{ row.notary.lastname }}</mat-cell
+          >
+        </ng-container>
 
-				<ng-container cdkColumnDef="Status">
-					<mat-header-cell *cdkHeaderCellDef>Status</mat-header-cell>
-					<mat-cell *cdkCellDef="let row">
-						<div *ngIf="row.status == 'in_progress'">
-							<i
-								style="color: #fba914"
-								class="fas fa-lg fa-hourglass"
-								matTooltipClass="tooltip"
-								[matTooltipPosition]="'right'"
-								matTooltip="En attente"
-							></i>
-						</div>
-						<div *ngIf="row.status == 'accepted'">
-							<i
-								style="color: green"
-								class="fas fa-lg fa-check"
-								[matTooltipPosition]="'right'"
-								matTooltipClass="tooltip"
-								matTooltip="Accepté"
-							></i>
-						</div>
-						<div *ngIf="row.status == 'refused'">
-							<i
-								style="color: red"
-								class="fa fa-lg fa-ban"
-								[matTooltipPosition]="'right'"
-								matTooltipClass="tooltip"
-								matTooltip="Refusé"
-							></i>
-						</div>
-					</mat-cell>
-				</ng-container>
+        <ng-container cdkColumnDef="Status">
+          <mat-header-cell *cdkHeaderCellDef>Status</mat-header-cell>
+          <mat-cell *cdkCellDef="let row">
+            <div *ngIf="row.status == 'in_progress'">
+              <i
+                style="color: #fba914"
+                class="fas fa-lg fa-hourglass"
+                matTooltipClass="tooltip"
+                [matTooltipPosition]="'right'"
+                matTooltip="En attente"
+              ></i>
+            </div>
+            <div *ngIf="row.status == 'accepted'">
+              <i
+                style="color: green"
+                class="fas fa-lg fa-check"
+                [matTooltipPosition]="'right'"
+                matTooltipClass="tooltip"
+                matTooltip="Accepté"
+              ></i>
+            </div>
+            <div *ngIf="row.status == 'refused'">
+              <i
+                style="color: red"
+                class="fa fa-lg fa-ban"
+                [matTooltipPosition]="'right'"
+                matTooltipClass="tooltip"
+                matTooltip="Refusé"
+              ></i>
+            </div>
+          </mat-cell>
+        </ng-container>
 
-				<ng-container cdkColumnDef="Menu">
-					<mat-header-cell *cdkHeaderCellDef></mat-header-cell>
-					<mat-cell *cdkCellDef="let row">
-						<button mat-icon-button [matMenuTriggerFor]="menu">
-							<mat-icon>more_vert</mat-icon>
-						</button>
-						<mat-menu #menu="matMenu">
-							<button
-								mat-menu-item
-								(click)="accept(row.id)"
-								*ngIf="row.status != 'accepted'"
-							>
-								<i style="color: green" class="fa fa-check-circle"></i>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<span>{{ 'Sponsor.form.accept' | translate }}</span>
-							</button>
-							<button
-								mat-menu-item
-								(click)="refus(row.id)"
-								*ngIf="row.status != 'refused'"
-							>
-								<i style="color: red" class="fa fa-ban" aria-hidden="true"></i>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<span>{{ 'Sponsor.form.refus' | translate }}</span>
-							</button>
-							<button mat-menu-item (click)="details(row.id)">
-								<mat-icon>remove_red_eye</mat-icon>
-								<span>{{ 'form_standard.consult' | translate }}</span>
-							</button>
-						</mat-menu>
-					</mat-cell>
-				</ng-container>
+        <ng-container cdkColumnDef="Menu">
+          <mat-header-cell *cdkHeaderCellDef></mat-header-cell>
+          <mat-cell *cdkCellDef="let row">
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button
+                mat-menu-item
+                (click)="accept(row.id)"
+                *ngIf="row.status != 'accepted'"
+              >
+                <i style="color: green" class="fa fa-check-circle"></i>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span>{{ 'Sponsor.form.accept' | translate }}</span>
+              </button>
+              <button
+                mat-menu-item
+                (click)="refus(row.id)"
+                *ngIf="row.status != 'refused'"
+              >
+                <i style="color: red" class="fa fa-ban" aria-hidden="true"></i>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span>{{ 'Sponsor.form.refus' | translate }}</span>
+              </button>
+              <button mat-menu-item (click)="details(row.id)">
+                <mat-icon>remove_red_eye</mat-icon>
+                <span>{{ 'form_standard.consult' | translate }}</span>
+              </button>
+            </mat-menu>
+          </mat-cell>
+        </ng-container>
 
-				<mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
-				<mat-row *cdkRowDef="let row; columns: displayedColumns"></mat-row>
-			</table>
-		</div>
-	</mat-card-content>
+        <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *cdkRowDef="let row; columns: displayedColumns"></mat-row>
+      </table>
+    </div>
+  </mat-card-content>
 </mat-card>
