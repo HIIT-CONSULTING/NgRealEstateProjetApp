@@ -12,7 +12,9 @@
   },
   "user": {
     "profile": "Profile",
-    "logout": "Déconnecter"
+    "logout": "Déconnecter",
+    "user": "( AGENT )",
+    "admin": "( GESTIONNAIRE )"
   },
   "form_standard": {
     "firstname": "Prénom",
