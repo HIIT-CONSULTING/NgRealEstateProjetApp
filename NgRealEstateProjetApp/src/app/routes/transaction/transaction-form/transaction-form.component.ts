@@ -67,7 +67,7 @@ export class TransactionFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.mandatService
-      .getAllMandats({ status: 'accepted' })
+      .getAllMandats({ status: 'accepted', 'exists[transaction]': false })
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((res) => {
         this.mandats = res['hydra:member'];
