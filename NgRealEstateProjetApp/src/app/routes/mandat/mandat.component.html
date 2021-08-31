@@ -1,83 +1,72 @@
+<page-header></page-header>
 <mat-card>
+  <div class="card-header card-header-danger" style="margin-top: -40px">
+    <h4 class="card-title">{{ 'Mandat.title-list' | translate }}</h4>
+  </div>
+
   <mat-card-header
-    class="head"
+    class="header"
     fxLayout="row"
     fxLayoutAlign="space-between center"
   >
-    <div class="title-card1">{{"Mandat.title-list" | translate }}</div>
-
-    <a class="btnplus"
-      
-      matTooltip="Ajoute nouveau mandat"
-      (click)="onClick()"
+    <div class="title-card1"></div>
+    <a
+      class="btnplus"
+      *ngIf="id"
+      matTooltip="{{ 'Mandat.add' | translate }} "
+      (click)="addMandat(id)"
     >
       <i class="fas fa-2x fa-plus"></i>
     </a>
   </mat-card-header>
+
   <mat-card-content>
     <section>
-      <mat-table [dataSource]="paginatedDataSource" aria-readonly="true">
-
-
-
-        
-        
-
-
-        
-
-
-        
-
-
-
-        <ng-container cdkColumnDef="Prénom Du Mandant">
-          <mat-header-cell *cdkHeaderCellDef>Prénom Du Mandant</mat-header-cell>
-          <mat-cell *cdkCellDef="let row">{{ row.project.contact.firstname }}</mat-cell>
-              </ng-container>
-
-
-        
-
-
-        
-        <ng-container cdkColumnDef="Nom Du Mandant">
-          <mat-header-cell *cdkHeaderCellDef>Nom Du Mandant</mat-header-cell>
-          <mat-cell *cdkCellDef="let row">{{ row.project.contact.lastname }}</mat-cell>
+      <mat-table [dataSource]="mandat" aria-readonly="true">
+        <ng-container cdkColumnDef="Id Mandant">
+          <mat-header-cell *cdkHeaderCellDef>{{
+            'Mandat.id' | translate
+          }}</mat-header-cell>
+          <mat-cell *cdkCellDef="let row">{{ row.id?.split('-')[0] }}</mat-cell>
         </ng-container>
-        
-
+        <ng-container cdkColumnDef="Prénom Du Mandant">
+          <mat-header-cell *cdkHeaderCellDef
+            >{{ 'Mandat.lastname_mandant' | translate }}
+          </mat-header-cell>
+          <mat-cell *cdkCellDef="let row"
+            >{{ row.project.contact.firstname }}&nbsp;{{
+              row.project.contact.lastname
+            }}</mat-cell
+          >
+        </ng-container>
         <ng-container cdkColumnDef="projectState">
-                <mat-header-cell *cdkHeaderCellDef>Statut Du Bian</mat-header-cell>
-                <mat-cell *cdkCellDef="let row">{{
-                  row.project.projectState
-                }} </mat-cell>
+          <mat-header-cell *cdkHeaderCellDef>{{
+            'Mandat.statusProject' | translate
+          }}</mat-header-cell>
+          <mat-cell *cdkCellDef="let row"
+            >{{ row.project.projectState }}
+          </mat-cell>
         </ng-container>
         <ng-container cdkColumnDef="projectType">
-                      <mat-header-cell *cdkHeaderCellDef>Type Du Bian</mat-header-cell>
-                      <mat-cell *cdkCellDef="let row">{{
-                        row.project.projectType
-                      }} </mat-cell>
-          </ng-container>
+          <mat-header-cell *cdkHeaderCellDef>{{
+            'Mandat.typeProject' | translate
+          }}</mat-header-cell>
+          <mat-cell *cdkCellDef="let row"
+            >{{ row.project.projectType }}
+          </mat-cell>
+        </ng-container>
 
-
-        
-
-
-        
         <ng-container cdkColumnDef="Type">
-          <mat-header-cell *cdkHeaderCellDef>Type</mat-header-cell>
+          <mat-header-cell *cdkHeaderCellDef>{{
+            'Mandat.typeMandat' | translate
+          }}</mat-header-cell>
           <mat-cell *cdkCellDef="let row">{{ row.type.name }}</mat-cell>
-              </ng-container>
-
-
-        
-
-
-        
+        </ng-container>
 
         <ng-container cdkColumnDef="Status">
-          <mat-header-cell *cdkHeaderCellDef>Statut</mat-header-cell>
+          <mat-header-cell *cdkHeaderCellDef>{{
+            'Mandat.sttusMandat' | translate
+          }}</mat-header-cell>
           <mat-cell *cdkCellDef="let row">
             <div *ngIf="row.status == 'in_progress'">
               <i
@@ -107,12 +96,7 @@
               ></i>
             </div>
           </mat-cell>
-           </ng-container>
-
-      
-
-
-        
+        </ng-container>
 
         <ng-container cdkColumnDef="Menu">
           <mat-header-cell *cdkHeaderCellDef></mat-header-cell>
@@ -121,34 +105,25 @@
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-              <button mat-menu-item (click)="Update(row.id)">
-                <i class="fas fa-pen"></i>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <span>{{ "form_standard.update" | translate }}</span>
-              </button>
-              <button mat-menu-item (click)="Delete(row.id)">
-                <mat-icon>delete</mat-icon>
-                <span>{{ "form_standard.delete" | translate }}</span>
-              </button>
               <button mat-menu-item (click)="details(row.id)">
                 <mat-icon>remove_red_eye</mat-icon>
-                <span>{{ "form_standard.consult" | translate }}</span>
+                <span>{{ 'form_standard.consult' | translate }}</span>
               </button>
-              <button mat-menu-item (click)="download(row.id)" *ngIf="row.status == 'accepted'">
+              <button
+                mat-menu-item
+                (click)="download(row.id)"
+                *ngIf="row.status == 'accepted'"
+              >
                 <mat-icon>cloud_download</mat-icon>
-                <span>{{ "Mandat.Download" | translate }}</span>
+                <span>{{ 'Mandat.Download' | translate }}</span>
               </button>
             </mat-menu>
           </mat-cell>
-           </ng-container>
-
-
-        
+        </ng-container>
 
         <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *cdkRowDef="let row; columns: displayedColumns"></mat-row>
       </mat-table>
     </section>
   </mat-card-content>
-  
 </mat-card>

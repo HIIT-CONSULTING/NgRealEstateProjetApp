@@ -1,118 +1,169 @@
 <mat-card>
-   <mat-card-header class="header">
-      <div class="title-card">{{'Sponsor.title'|translate}}</div>
-   </mat-card-header>
-   <form [formGroup]="form" (ngSubmit)="onSubmit()" style="text-align: center;">
-      <mat-card-content>
-         <div fxLayout="column" fxLayoutAlign="space-between center">
-            <mat-form-field class="full-width" appearance="outline">
-               <mat-label>{{'form_standard.civility'|translate}} </mat-label>
-               <mat-select formControlName="gender">
-                  <mat-option *ngFor="let gender of gender$|async " [value]="gender.id">{{gender.name}} </mat-option>
-               </mat-select>
+  <mat-card-header class="header">
+    <div class="title-card">{{ 'Sponsor.title' | translate }}</div>
+  </mat-card-header>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" style="text-align: center">
+    <mat-card-content>
+      <div fxLayout="column" fxLayoutAlign="space-between center">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>{{ 'form_standard.civility' | translate }} </mat-label>
+          <mat-select formControlName="gender">
+            <mat-option
+              *ngFor="let gender of gender$ | async"
+              [value]="gender.id"
+              >{{ gender.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="column" fxLayoutAlign="space-between center">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label> {{ 'form_standard.firstname' | translate }} </mat-label>
+          <input matInput name="firstname" formControlName="firstname" />
+          <mat-error
+            *ngIf="
+              form.get('firstname').invalid || form.get('firstname').isrequired
+            "
+          >
+            {{ 'form_standard.firstname.error' | translate }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="column" fxLayoutAlign="space-between center">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label> {{ 'form_standard.lastname' | translate }} </mat-label>
+          <input matInput name="lastname" formControlName="lastname" />
+          <mat-error
+            *ngIf="
+              form.get('lastname').invalid || form.get('lastname').isrequired
+            "
+          >
+            {{ 'form_standard.lastname.error' | translate }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="column" fxLayoutAlign="space-between center">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label> {{ 'form_standard.cin' | translate }} </mat-label>
+          <input matInput name="cin" formControlName="cin" />
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="column" fxLayoutAlign="space-between center">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label> {{ 'form_standard.mail' | translate }} </mat-label>
+          <mat-icon matSuffix>email</mat-icon>
+          <input matInput name="email" formControlName="email" />
+          <mat-error *ngIf="form.get('email').invalid">
+            {{ getErrorMessage(form) }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="column" fxLayoutAlign="space-between center">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label> {{ 'form_standard.tel' | translate }} </mat-label>
+          <mat-icon matSuffix>phone</mat-icon>
+          <input matInput name="telephone" formControlName="telephone" />
+          <mat-error
+            *ngIf="
+              form.get('telephone').invalid || form.get('telephone').isrequired
+            "
+          >
+            {{ 'form_standard.tel.error' | translate }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="column" fxLayoutAlign="space-between center">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>{{ 'form_standard.Date_Birth' | translate }} </mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="birthDay" />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="form.get('birthDay').invalid">
+            {{ 'form_standard.date.error' | translate }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div formGroupName="address">
+        <div fxLayoutAlign="center">
+          <div fxLayoutAlign="space-between center" class="full-width">
+            <mat-form-field appearance="outline" fxFlex="30">
+              <mat-label> {{ 'form_standard.country' | translate }} </mat-label>
+              <mat-select formControlName="country">
+                <mat-option
+                  *ngFor="let country of country$ | async"
+                  [value]="country.id"
+                  (click)="OnCountry(country.id)"
+                >
+                  {{ country.name }}
+                </mat-option>
+              </mat-select>
             </mat-form-field>
-         </div>
-
-         <div fxLayout="column" fxLayoutAlign="space-between center">
-            <mat-form-field class="full-width" appearance="outline">
-               <mat-label> {{'form_standard.firstname'|translate}}  </mat-label>
-               <input matInput name="firstname" formControlName="firstname" />
-               <mat-error *ngIf="form.get('firstname').invalid || form.get('firstname').isrequired ">
-                  {{'form_standard.firstname.error'|translate}}
-               </mat-error>
+            <mat-form-field appearance="outline" fxFlex="30">
+              <mat-label> {{ 'form_standard.city' | translate }} </mat-label>
+              <mat-select formControlName="city">
+                <mat-option *ngFor="let city of city$ | async" [value]="city.id"
+                  >{{ city.name }}
+                </mat-option>
+              </mat-select>
             </mat-form-field>
-         </div>
 
-         <div fxLayout="column" fxLayoutAlign="space-between center">
-            <mat-form-field class="full-width" appearance="outline">
-               <mat-label> {{'form_standard.lastname'|translate}}  </mat-label>
-               <input matInput name="lastname" formControlName="lastname" />
-               <mat-error *ngIf="form.get('lastname').invalid || form.get('lastname').isrequired ">
-                  {{'form_standard.lastname.error'|translate}}
-               </mat-error>
+            <mat-form-field appearance="outline" fxFlex="30">
+              <mat-label>
+                {{ 'form_standard.zipCode' | translate }}
+              </mat-label>
+              <input matInput name="zipCode" formControlName="zipCode" />
             </mat-form-field>
-         </div>
-
-         <div fxLayout="column" fxLayoutAlign="space-between center">
-            <mat-form-field class="full-width" appearance="outline">
-               <mat-label> {{'form_standard.mail'|translate}}  </mat-label>
-               <mat-icon matSuffix>email</mat-icon>
-               <input matInput name="email" formControlName="email" />
-               <mat-error *ngIf="form.get('email').invalid">
-                  {{ getErrorMessage(form) }}
-               </mat-error>
-            </mat-form-field>
-         </div>
-
-         <div fxLayout="column" fxLayoutAlign="space-between center">
-            <mat-form-field class="full-width" appearance="outline">
-               <mat-label> {{'form_standard.tel'|translate}}  </mat-label>
-               <mat-icon matSuffix>phone</mat-icon>
-               <input matInput name="telephone" formControlName="telephone"  />
-               <mat-error *ngIf="form.get('telephone').invalid||form.get('telephone').isrequired">
-                  {{ "form_standard.tel.error" | translate }}
-               </mat-error>
-            </mat-form-field>
-         </div>
-
-         <div fxLayout="column" fxLayoutAlign="space-between center">
-            <mat-form-field class="full-width" appearance="outline">
-               <mat-label>{{'form_standard.Date_Birth'|translate}} </mat-label>
-               <input matInput [matDatepicker]="picker" formControlName="birthDay">
-               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-               <mat-datepicker #picker></mat-datepicker>
-               <mat-error *ngIf="form.get('birthDay').invalid">
-                  {{ "form_standard.date.error" | translate }}
-               </mat-error>
-            </mat-form-field>
-         </div>
-
-
-         <div formGroupName="address">
-            <div fxLayoutAlign="center">
-               <div fxLayoutAlign="space-between center" class="full-width">
-                  <mat-form-field appearance="outline" fxFlex="45">
-                     <mat-label> {{'form_standard.country'|translate}}  </mat-label>
-                     <mat-select formControlName="country">
-                        <mat-option *ngFor="let country of country$|async " [value]="country.id" (click)="OnCountry(country.id)">
-                           {{country.name}} </mat-option>
-                     </mat-select>
-                  </mat-form-field>
-                  <mat-form-field appearance="outline" fxFlex="45">
-                     <mat-label> {{'form_standard.city'|translate}}  </mat-label>
-                     <mat-select formControlName="city">
-                        <mat-option *ngFor="let city of city$|async " [value]="city.id">{{city.name}} </mat-option>
-                     </mat-select>
-                  </mat-form-field>
-
-               </div>
-            </div>
-            <div fxLayout="column" fxLayoutAlign="space-between center">
-               <mat-form-field class="full-width" appearance="outline">
-                  <mat-label> {{'form_standard.address'|translate}}  </mat-label>
-                  <i matSuffix class="fas fa-lg fa-address-card"></i>
-                  <input matInput name="address" formControlName="description" />
-               </mat-form-field>
-            </div>
-         </div>
-      </mat-card-content>
-      <mat-card-actions>
-         <div class="btns">
-            <button 
-            mat-raised-button 
-            class="btn-submit" 
-            type="submit"
-            [disabled]="form.invalid">
-            {{'form_standard.confirm'|translate}}  <mat-icon>check </mat-icon>
-            </button>
-            <button mat-raised-button class="btn-warning" type="reset">
-               {{'form_standard.reset'|translate}}  <mat-icon>refresh</mat-icon>
-            </button>
-
-         </div>
-      </mat-card-actions>
-   </form>
-   <p>
-      *Votre candidat sera pris en charge par le siège administratif de la société
-   </p>
+          </div>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="space-between center">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label> {{ 'form_standard.address' | translate }} </mat-label>
+            <i matSuffix class="fas fa-lg fa-address-card"></i>
+            <input matInput name="address" formControlName="description" />
+          </mat-form-field>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="space-between center">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>
+              {{ 'form_standard.secondAddress' | translate }}
+            </mat-label>
+            <i matSuffix class="fas fa-lg fa-address-card"></i>
+            <input
+              matInput
+              name="secondAddress"
+              formControlName="secondAddress"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="btns">
+        <button
+          mat-raised-button
+          class="btn-submit"
+          type="submit"
+          [disabled]="form.invalid"
+        >
+          {{ 'form_standard.confirm' | translate }} <mat-icon>check </mat-icon>
+        </button>
+        <button mat-raised-button class="btn-warning" type="reset">
+          {{ 'form_standard.reset' | translate }} <mat-icon>refresh</mat-icon>
+        </button>
+      </div>
+    </mat-card-actions>
+  </form>
+  <p>
+    *Votre candidat sera pris en charge par le siège administratif de la société
+  </p>
 </mat-card>

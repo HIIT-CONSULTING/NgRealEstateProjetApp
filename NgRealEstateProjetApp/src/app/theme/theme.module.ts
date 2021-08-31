@@ -10,14 +10,11 @@ import { AccordionAnchorDirective } from './sidemenu/accordionanchor.directive';
 import { AccordionDirective } from './sidemenu/accordion.directive';
 import { AccordionLinkDirective } from './sidemenu/accordionlink.directive';
 
-
 import { HeaderComponent } from './header/header.component';
 import { BrandingComponent } from './header/branding.component';
 import { NotificationComponent } from './header/notification.component';
 import { TranslateComponent } from './header/translate.component';
 import { UserComponent } from './header/user.component';
-
-
 
 @NgModule({
   declarations: [
@@ -29,13 +26,11 @@ import { UserComponent } from './header/user.component';
     AccordionDirective,
     AccordionLinkDirective,
 
-    
     HeaderComponent,
     BrandingComponent,
     NotificationComponent,
     TranslateComponent,
     UserComponent,
-   
   ],
   imports: [SharedModule],
 })

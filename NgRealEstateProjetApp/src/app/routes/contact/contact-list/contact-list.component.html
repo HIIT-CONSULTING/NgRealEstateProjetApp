@@ -1,40 +1,65 @@
-<mat-card >
-  <mat-card-header class="header"  fxLayout="row" fxLayoutAlign="space-between center">
-    <div  class="title-card1"  ></div>
-   
-      <a  style="color: #1ba0a7; "   matTooltip="{{'Contact.form.add'|translate}}" (click)="onClick()" >
-        <i class="fas fa-2x fa-user-plus"></i>
-      </a>
-    
-    
-</mat-card-header>
-      <div fxLayout="row wrap">
-        
-        
-        <div class="hiit-col" *ngFor="let contact of  (this.contacts$|async)?.items">
-            <mat-card class="list-cardCantact">
-                <img mat-card-image src="./assets/images/profile.png">
-                 <mat-card-content>
-                  <div class="name" style="font-size: large;">
-                     {{contact.firstname}}&nbsp;{{contact.lastname |uppercase}}
-                    </div>
-                    <div class="role">{{'Contact.form.buyer'|translate}}</div>
-                    <div style="    margin-top: 15%;
-                    margin-bottom: 3%;
-                    font-family: initial;
-                    color: darkblue;">{{'form_standard.address'|translate}}  :</div>
-                    <div style="font-family: initial;
-                    font-size: unset;" > {{contact.address.description}}, {{contact.address.city.name}},{{contact.address.country.name}}</div>
-                    <mat-divider class="m-y-16" inset></mat-divider>
-                </mat-card-content>
-                
-                <mat-card-actions fxLayout="row" fxLayoutAlign="space-around center"  >
-                    <a mat-button style="color: #52a0c9;"(click)="details(contact.id)">{{'form_standard.consult'|translate}}</a>
-                    <a mat-button style="color: #e7d71a;"(click)="Update(contact.id)">{{'form_standard.update'|translate}}</a>
-                </mat-card-actions>
-              </mat-card>
-        
-        
-            </div>
-      </div>
+<mat-card>
+  <mat-card-header
+    class="header"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+  >
+    <div class="title-card1"></div>
+
+    <a
+      style="color: #1ba0a7"
+      matTooltip="{{ 'Contact.form.add' | translate }}"
+      (click)="onClick()"
+    >
+      <i class="fas fa-2x fa-user-plus"></i>
+    </a>
+  </mat-card-header>
+  <div fxLayout="row wrap">
+    <div
+      class="hiit-col"
+      *ngFor="let contact of (this.contacts$ | async)?.items"
+    >
+      <mat-card class="list-cardCantact">
+        <img mat-card-image src="./assets/images/profile.png" />
+        <mat-card-content>
+          <div class="name" style="font-size: large">
+            {{ contact.firstname }}&nbsp;{{ contact.lastname | uppercase }}
+          </div>
+          <div class="role">{{ 'Contact.form.buyer' | translate }}</div>
+          <div
+            style="
+              margin-top: 15%;
+              margin-bottom: 3%;
+              font-family: initial;
+              color: darkblue;
+            "
+          >
+            {{ 'form_standard.address' | translate }} :
+          </div>
+          <div style="font-family: initial; font-size: unset">
+            {{ contact.address.description }},
+            {{ contact.address.city.name }},{{ contact.address.country.name }}
+          </div>
+          <mat-divider class="m-y-16" inset></mat-divider>
+        </mat-card-content>
+
+        <mat-card-actions fxLayoutAlign="end center">
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="Update(contact.id)">
+              <i class="fas fa-pen"></i>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <span>{{ 'form_standard.update' | translate }}</span>
+            </button>
+            <button mat-menu-item (click)="details(contact.id)">
+              <mat-icon>remove_red_eye</mat-icon>
+              <span>{{ 'form_standard.consult' | translate }}</span>
+            </button>
+          </mat-menu>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
 </mat-card>

@@ -57,8 +57,12 @@ export class ProjectFormComponent implements OnInit, OnDestroy {
   openDialog() {
     this.dialog
       .open(DialogContentProjectComponent, {
-        width: "550px",
-        disableClose: true
+        width: "600px",
+        disableClose: true,
+        data: {
+          title:this.translate.instant('Contact.title-form'),
+          type:'contact'
+        }
       })
       .afterClosed()
       .subscribe(() => {
@@ -107,7 +111,6 @@ form = this.fb.group({
   contact:  ['', Validators.required],
   property : this.properties
 });
-
 
   control_adress(control:string) {
    return  this.form.get('property').get('address').get(control) ; 

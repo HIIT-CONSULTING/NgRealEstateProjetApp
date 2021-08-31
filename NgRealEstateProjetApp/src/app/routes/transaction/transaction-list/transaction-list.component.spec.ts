@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MandatListComponent } from './mandat-list.component';
+import { TransactionListComponent } from './transaction-list.component';
 
-describe('MandatListComponent', () => {
-  let component: MandatListComponent;
-  let fixture: ComponentFixture<MandatListComponent>;
+describe('TransactionListComponent', () => {
+  let component: TransactionListComponent;
+  let fixture: ComponentFixture<TransactionListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MandatListComponent ]
+      declarations: [ TransactionListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MandatListComponent);
+    fixture = TestBed.createComponent(TransactionListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

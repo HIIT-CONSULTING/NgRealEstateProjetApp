@@ -24,8 +24,19 @@
       "name": "contact",
       "type": "link",
       "icon": "contacts"
+    },
+    {
+      "route": "mandat",
+      "name": "mandat",
+      "type": "link",
+      "icon": "description"
+    },
+    {
+      "route": "transaction",
+      "name": "transaction",
+      "type": "link",
+      "icon": "assignment"
     }
-    
     
   ]
 }

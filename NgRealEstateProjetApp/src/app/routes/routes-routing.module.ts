@@ -74,6 +74,24 @@ const routes: Routes = [
           data: { title: "mandat-admin", titleI18n: "mandat-admin",roles: [Role.Admin]},
           loadChildren: () => import("./mandat-admin/mandat-admin.module").then((m) => m.MandatAdminModule),
          },
+         {
+          path: "mandat",
+          canActivate: [RoleGuard,AuthGuard],
+          data: { title: "mandat", titleI18n: "mandat",roles: [Role.User]},
+          loadChildren: () => import("./mandat/mandat.module").then((m) => m.MandatModule),
+         },
+         {
+          path: "transaction",
+          canActivate: [RoleGuard,AuthGuard],
+          data: { title: "transaction", titleI18n: "transaction",roles: [Role.User]},
+          loadChildren: () => import("./transaction/transaction.module").then((m) => m.TransactionModule),
+         },
+         {
+          path: "transaction-admin",
+          canActivate: [RoleGuard,AuthGuard],
+          data: { title: "transaction-admin", titleI18n: "transaction-admin",roles: [Role.Admin]},
+          loadChildren: () => import("./transaction-admin/transaction-admin.module").then((m) => m.TransactionAdminModule),
+         },
         
 
     ]

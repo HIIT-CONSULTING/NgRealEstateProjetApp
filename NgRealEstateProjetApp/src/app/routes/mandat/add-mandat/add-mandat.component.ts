@@ -1,6 +1,5 @@
-import { FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Project, TypeMandat } from '@shared/models/Agent.model';
@@ -15,6 +14,7 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./add-mandat.component.scss']
 })
 export class AddMandatComponent implements OnInit {
+
 
   
   project: Project;
@@ -65,7 +65,7 @@ export class AddMandatComponent implements OnInit {
     this.mandatService.save(this.form.value).pipe(takeUntil(this.unsubscribe$)).subscribe(response=>{
       this.snackBar.open('le mandat est ajouté avec succès!', '', { duration: 1000 ,panelClass: ['blue-snackbar'] ,  verticalPosition: 'top', horizontalPosition:'end' });
       setTimeout(()=>{  
-        this.router.navigate(['/project/projectlist'])
+        this.router.navigate(['/mandat', this.id])
       }, 2000); },
     (error) => {
       this.snackBar.open("veuillez vérifier vos informations!", '', { duration: 1000, panelClass: ['red-snackbar'], verticalPosition: 'top', horizontalPosition:'end'});
@@ -76,4 +76,3 @@ export class AddMandatComponent implements OnInit {
     this.unsubscribe$.complete();
   }
 }
-

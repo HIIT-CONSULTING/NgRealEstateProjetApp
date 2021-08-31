@@ -9,23 +9,21 @@ import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-mandat-list',
-  templateUrl: './mandat-list.component.html',
-  styleUrls: ['./mandat-list.component.scss']
+  selector: 'app-mandat',
+  templateUrl: './mandat.component.html',
+  styleUrls: ['./mandat.component.scss']
 })
-export class MandatListComponent implements OnInit {
+export class MandatComponent implements OnInit {
 
-  page = 1;
-  limit = 5;
-  paginatedDataSource: any;
   id: number;
   mandat$: Observable<Mandat[]>;
   mandat: Mandat[];
   unsubscribe$: Subject<void>;
+  
 
   displayedColumns = [
+    "Id Mandant",
     "Prénom Du Mandant",
-    "Nom Du Mandant",
     "projectState",
     "projectType",
     "Type",
@@ -45,15 +43,22 @@ export class MandatListComponent implements OnInit {
   
 
   ngOnInit(): void {
-    
     this.route.params.pipe(takeUntil(this.unsubscribe$)).subscribe((params) => {
       this.id = +params["id"];
     });
-    this.mandatService.getMandats(this.id).pipe(takeUntil(this.unsubscribe$))
+    if(this.id){
+      this.mandatService.getMandats(this.id).pipe(takeUntil(this.unsubscribe$))
         .subscribe((res) => {
       this.mandat = res;
-      this.paginatedDataSource = this.mandat;
     });
+    }
+    else{
+      this.mandatService.getAllMandats({}).pipe(takeUntil(this.unsubscribe$))
+        .subscribe((res) => {
+      this.mandat = res['hydra:member'];
+    });
+    }
+    
   }
   download(id){
     this.mandatService.download(id).pipe(takeUntil(this.unsubscribe$)).subscribe(res=>{
@@ -61,28 +66,16 @@ export class MandatListComponent implements OnInit {
             var fileURL = URL.createObjectURL(file);
             window.open(fileURL);
            // this.loading = !this.loading;
-    });
-    
-    
+    }); 
   }
 
-  Onpage() {
-    
+  Onpage() { 
   }
-
-  Update(id: number) {
-   
-  }
-  
-  Delete(id: number) {
-  }
-
-  onClick() {
-    this.router.navigate(['/project',this.id,'addmandat']);
-  }
-
   details(id: number) {
-    this.router.navigate(["/project",this.id, "mandatdetails"]);
+    this.router.navigate(["/mandat", id, "details"], { relativeTo: this.route });
+  }
+  addMandat(id) {
+    this.router.navigate(["/mandat", id, "addmandat"], { relativeTo: this.route });
   }
   ngOnDestroy(): void {
     this.unsubscribe$.next();

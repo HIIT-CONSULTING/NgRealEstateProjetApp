@@ -1,5 +1,4 @@
 <page-header></page-header>
-
 <mat-card *ngIf="!showSpinner">
   <mat-card-content style="margin: auto; width: 80%; padding: 30px">
     <div class="card-header card-header-danger width-class">
@@ -45,7 +44,7 @@
         <mat-card-content>
           <div fxLayout="row">
             <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg fa-chart-area"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.area" | translate }}:
+              <i class="fas fa-lg fa-chart-area"></i> {{"Property.form.area" | translate }}:
             </div>
             <div fxLayout="column" fxFlex="50">
               {{ project?.property.area }}
@@ -54,7 +53,7 @@
 
           <div *ngIf="project?.property.estimated_surface">
             <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg fa-chart-area"></i>&nbsp;&nbsp;&nbsp;{{"Property.form.areaEsteme" | translate }} :
+              <i class="fas fa-lg fa-chart-area"></i>{{"Property.form.areaEsteme" | translate }} :
             </div>
             <div fxLayout="column" fxFlex="50">
               {{ project?.property.estimated_surface }}
@@ -63,7 +62,7 @@
 
           <div fxLayout="row" *ngIf="project?.property.state">
             <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg far fa-building"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.state" | translate }} :
+              <i class="fas fa-lg far fa-building"></i> {{"Property.form.state" | translate }} :
               
            
             </div>
@@ -74,7 +73,7 @@
 
           <div fxLayout="row" *ngIf="project?.property.construction_year">
             <div fxLayout="row" fxFlex="70">
-              <i class="fas fa-lg fa-calendar-alt"></i> &nbsp;&nbsp;&nbsp; {{"Property.form.constructionYear"|translate }} :
+              <i class="fas fa-lg fa-calendar-alt"></i>  {{"Property.form.constructionYear"|translate }} :
             </div>
             <div fxLayout="column" fxFlex="50">
               {{ project?.property.construction_year | date: "dd/MM/yyyy" }}
@@ -83,7 +82,7 @@
 
           <div fxLayout="row" *ngIf="project?.property.orientation">
             <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg fa-cloud-sun"></i>&nbsp;&nbsp;&nbsp;
+              <i class="fas fa-lg fa-cloud-sun"></i>
               {{"Property.form.orientation" | translate }} :
             </div>
             <div fxLayout="column" fxFlex="50">
@@ -93,7 +92,7 @@
 
           <div fxLayout="row" *ngIf="project?.property.has_key">
             <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg fa-key"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.keysNumber" | translate }} :
+              <i class="fas fa-lg fa-key"></i> {{"Property.form.keysNumber" | translate }} :
             </div>
             <div fxLayout="column" fxFlex="50">
               {{ project?.property.keys_number }}
@@ -102,7 +101,7 @@
 
           <div fxLayout="row" *ngIf="project?.property.is_available==true||project?.property.is_available==false">
             <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg fa-home"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.vailability" | translate }} :
+              <i class="fas fa-lg fa-home"></i> {{"Property.form.vailability" | translate }} :
             </div>
             <div
               fxLayout="column"
@@ -122,7 +121,7 @@
 
           <div fxLayout="row" *ngIf="!project?.property.is_available">
             <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg fa-calendar-alt"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.dateAvailability" | translate }} :
+              <i class="fas fa-lg fa-calendar-alt"></i> {{"Property.form.dateAvailability" | translate }} :
             </div>
             <div fxLayout="column" fxFlex="50">
               {{ project?.property.date_availability | date: "dd/MM/yyyy" }}
@@ -131,7 +130,7 @@
 
           <div fxLayout="row" *ngIf="project?.property.floors_number">
             <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg far fa-building"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.floorsNumber" | translate }} :
+              <i class="fas fa-lg far fa-building"></i> {{"Property.form.floorsNumber" | translate }} :
             </div>
             <div fxLayout="column" fxFlex="50">
               {{ project?.property.floors_number }}
@@ -140,7 +139,7 @@
 
           <div fxLayout="row" *ngIf="project?.property.has_elevator">
             <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg fa-cogs"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.hasElevator" | translate }} :
+              <i class="fas fa-lg fa-cogs"></i> {{"Property.form.hasElevator" | translate }} :
             </div>
             <div
               fxLayout="column"
@@ -153,7 +152,7 @@
 
           <div fxLayout="row" *ngIf="project?.property.has_garage">
             <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg fa-warehouse"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.hasGarage" | translate }} :
+              <i class="fas fa-lg fa-warehouse"></i> {{"Property.form.hasGarage" | translate }} :
             </div>
             <div
               fxLayout="column"
@@ -167,7 +166,7 @@
 
           <div fxLayout="row" *ngIf="project?.property.has_cellar">
             <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg fa-home"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.hasCellar" | translate }} :
+              <i class="fas fa-lg fa-home"></i> {{"Property.form.hasCellar" | translate }} :
             </div>
             <div
               fxLayout="column"
@@ -186,27 +185,30 @@
             "
           >
             <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg fa-parking"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.hasParkCar" | translate }} :
+              <i class="fas fa-lg fa-parking"></i> {{"Property.form.hasParkCar" | translate }} :
+            </div>
+            <div fxLayout="column" *ngIf="project?.property.has_basement">
+              {{ "Property.form.hasBasement" | translate }}
             </div>
             <div
-              fxLayout="column"
-              fxFlex="50"
-              *ngIf="project?.property.has_basement"
+              *ngIf="
+                project?.property.has_basement &&
+                project?.property.has_park_car_outside
+              "
             >
-            {{"Property.form.hasBasement" | translate }}
-            </div>
+              &nbsp;{{ "form_standard.and" | translate }}&nbsp;
+          </div>
             <div
               fxLayout="column"
-              fxFlex="50"
               *ngIf="project?.property.has_park_car_outside"
             >
-            {{"Property.form.hasParkCarOutside" | translate }} 
+              {{ "Property.form.hasParkCarOutside" | translate }}
             </div>
           </div>
 
           <div fxLayout="row" *ngIf="project?.property.has_guardian">
             <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg fa-user-shield"></i>&nbsp;&nbsp;&nbsp;
+              <i class="fas fa-lg fa-user-shield"></i>
               {{"Property.form.hasGuardian" | translate }} :
             </div>
             <div
@@ -220,7 +222,7 @@
 
           <div fxLayout="row" *ngIf="project?.property.has_balcony">
             <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg fa-home"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.hasBalcony" | translate }} :
+              <i class="fas fa-lg fa-home"></i> {{"Property.form.hasBalcony" | translate }} :
             </div>
             <div
               fxLayout="column"
@@ -232,7 +234,7 @@
 
           <div fxLayout="row" *ngIf="project?.property.has_terace">
             <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg fa-home"></i>&nbsp;&nbsp;&nbsp; {{"Property.form.hasTerace" | translate }} :
+              <i class="fas fa-lg fa-home"></i> {{"Property.form.hasTerace" | translate }} :
             </div>
             <div
               fxLayout="column"
@@ -244,7 +246,7 @@
 
           <div fxLayout="row" *ngIf="project?.property.has_intercom">
             <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg fa-phone-alt"></i>&nbsp;&nbsp;&nbsp;
+              <i class="fas fa-lg fa-phone-alt"></i>
               {{"Property.form.hasIntercom" | translate }} :
             </div>
             <div
@@ -258,7 +260,7 @@
           <div fxLayout="row">
             <div fxLayout="row" fxFlex="50">
               <i class="fas fa-lg fa-dollar-sign"></i
-              >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{
+              >{{
                 "Property.form.pricemin" | translate
               }}:
             </div>
@@ -270,7 +272,7 @@
           <div fxLayout="row">
             <div fxLayout="row" fxFlex="50">
               <i class="fas fa-lg fa-dollar-sign"></i
-              >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{
+              >{{
                 "Property.form.pricemax" | translate
               }}:
             </div>
@@ -281,7 +283,7 @@
 
           <div fxLayout="row">
             <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg fa-dungeon"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{
+              <i class="fas fa-lg fa-dungeon"></i>{{
                 "Property.form.nbpieces" | translate
               }}:
             </div>
@@ -293,7 +295,7 @@
           <div fxLayout="row">
             <div fxLayout="row" fxFlex="50">
               <i class="fas fa-lg fa-address-card"></i
-              >&nbsp;&nbsp;&nbsp;&nbsp;{{
+              >{{
                 "form_standard.address" | translate
               }}:
             </div>
@@ -305,7 +307,7 @@
 
           <div fxLayout="row">
             <div fxLayout="row" fxFlex="50">
-              <i class="fas fa-lg fa-flag"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{
+              <i class="fas fa-lg fa-flag"></i>{{
                 "form_standard.country" | translate
               }}:
             </div>
@@ -333,7 +335,7 @@
                 style="border-radius: 80px"
               />
             </aside>
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                 
 
             <section fxFlex="60">
               <div fxLayout="row">
@@ -341,7 +343,7 @@
                   {{ "form_standard.Fullname" | translate }} :
                 </div>
                 <div fxLayout="column" fxFlex="50">
-                  {{ project?.contact.firstname }}&nbsp;{{
+                  {{ project?.contact.firstname }}{{
                     project?.contact.lastname | uppercase
                   }}
                 </div>
@@ -392,9 +394,7 @@
                   {{ "form_standard.address" | translate }} :
                 </div>
                 <div fxLayout="column" fxFlex="50">
-                  {{ project?.contact.address.description }},{{
-                    project?.contact.address.city.name
-                  }}
+                  {{ project?.contact?.address?.description }},{{project?.contact?.address?.city?.name}}
                 </div>
               </div>
 
