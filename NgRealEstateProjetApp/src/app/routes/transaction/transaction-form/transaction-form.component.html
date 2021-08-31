@@ -60,6 +60,11 @@
                   </div>
 
                   <div class="titleProject">
+                    {{ 'Mandat.id' | translate }} :
+                  </div>
+                  <div class="text">{{ mandat?.id?.split('-')[0] }}</div>
+
+                  <div class="titleProject">
                     {{ 'Mandat.title-data' | translate }} :
                   </div>
                   <div class="text">{{ mandat?.type?.name }}</div>

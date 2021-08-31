@@ -132,6 +132,14 @@
                 >
                   {{ 'Mandat.title' | translate }}
                 </div>
+                <div fxLayout="row">
+                  <div fxLayout="column" fxFlex="50">
+                    {{ 'Mandat.id' | translate }} :
+                  </div>
+                  <div fxLayout="column" fxFlex="50">
+                    {{ transaction?.mandate?.id?.split('-')[0] }}
+                  </div>
+                </div>
 
                 <div fxLayout="row">
                   <div fxLayout="column" fxFlex="50">

@@ -2,13 +2,13 @@
   "menu": {
     "annuaire": "Annuaire",
     "sponsorship": "Parrainage",
-    "sponsorship-admin": "Parrainage",
+    "sponsorship-admin": "Gestion des parrainages",
     "project": "Projets ",
     "contact": "Contacts",
     "mandat": "Mandats",
     "mandat-admin": "Gestion des mandats",
     "transaction": "Transactions",
-    "transaction-admin": "Gestion des transaction"
+    "transaction-admin": "Gestion des transactions"
   },
   "user": {
     "profile": "Profile",
@@ -94,7 +94,7 @@
 
       "construction": "Construction",
       "areaEsteme": "Surface estimatée",
-      "state": "Etat général du bien",
+      "state": "État général du bien",
       "orientation": "Orientation général du bien ",
       "constructionYear": "Année de construction",
       "floorsNumber": "Nombre d'étages",
@@ -192,7 +192,7 @@
     "notary": "Notaire",
     "title-dialog": "CRÉER UN NOUVEAU NOTAIRE",
     "prixVente": "Prix de vente(prix public)",
-    "feesPaidBy": "Honoraires payés par :",
+    "feesPaidBy": "Honoraires payés par",
     "vendeur": "Le vendeur",
     "acquirer": "L'acquéreur",
     "quote": "% Quote-part délégation de mandat",
