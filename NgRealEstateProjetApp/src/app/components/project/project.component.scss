@@ -1,0 +1,39 @@
+button:hover {
+    background-color:#203574;
+    color:white;
+  }
+  .disable_ripple:hover{
+    background-color: #203574 !important;
+  
+    .title-cardd{
+        color:white  !important;
+    } 
+  }
+.pos{
+  margin-top: 8%;
+  margin-bottom: 5%;
+}
+
+
+/*
+
+.mat-expansion-panel-header.mat-expanded,
+.mat-expansion-panel-header.mat-expanded:hover {
+  background: #203574;
+  color:white
+}
+ng-select div, .ng-select input, .ng-select span {
+  box-sizing: border-box;
+  font-family: monospace;
+  font-size: large;
+}
+/*
+.ng-select .ng-select-container.ng-appearance-outline:hover:after {
+  border-color: #bcd1de;
+
+}*/
+
+.ng-select .ng-select-container.ng-appearance-outline .ng-value {
+  padding-left: .80em;
+}
+

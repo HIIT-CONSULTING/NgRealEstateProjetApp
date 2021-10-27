@@ -1,0 +1,276 @@
+<page-header></page-header>
+<div fxLayout="row" fxLayoutAlign="space-around ">
+  <mat-card style="width: 60%; height: 70%">
+    <div class="card-header card-header-danger" style="margin-top: -40px">
+      <h4 class="card-title">{{ 'Sponsor.title-candidat' | translate }}</h4>
+    </div>
+
+    <mat-card-content style="margin-bottom: 5%">
+      <div fxLayout="row" fxLayoutAlign="space-evenly ">
+        <aside fxFlex="20" style="margin-top: 4%">
+          <img
+            mat-card-image
+            src="./assets/images/profile.png"
+            style="border-radius: 100px"
+          />
+        </aside>
+        <section fxFlex="60">
+          <div fxLayout="row">
+            <div
+              fxLayout="column"
+              fxFlex="40"
+              fxLayoutAlign="space-around none"
+            >
+              {{ 'form_standard.civility' | translate }} :
+            </div>
+
+            <div
+              fxLayout="column"
+              fxFlex="40"
+              *ngIf="isMen"
+              style="color: blue"
+            >
+              <i class="fas fa-lg fa-male"></i>
+            </div>
+            <div fxLayout="column" fxFlex="40" *ngIf="!isMen">
+              <i class="fas fa-lg fa-female" style="color: palevioletred"></i>
+            </div>
+          </div>
+          <br />
+
+          <div fxLayout="row">
+            <div fxLayout="column" fxFlex="40">
+              {{ 'form_standard.Fullname' | translate }} :
+            </div>
+            <div
+              fxLayout="column"
+              fxFlex="40"
+              fxLayoutAlign="space-around none"
+            >
+              {{ candidate?.firstname }} {{ candidate?.lastname | uppercase }}
+            </div>
+          </div>
+          <br />
+          <div fxLayout="row">
+            <div fxLayout="column" fxFlex="40">
+              {{ 'form_standard.cin' | translate }} :
+            </div>
+            <div
+              fxLayout="column"
+              fxFlex="40"
+              fxLayoutAlign="space-around none"
+            >
+              {{ candidate?.cin }}
+            </div>
+          </div>
+          <br />
+          <div fxLayout="row">
+            <div fxLayout="column" fxFlex="40">
+              {{ 'form_standard.mail' | translate }} :
+            </div>
+            <div
+              fxLayout="column"
+              fxFlex="40"
+              fxLayoutAlign="space-around none"
+            >
+              {{ candidate?.email }}
+            </div>
+          </div>
+
+          <br />
+          <div fxLayout="row">
+            <div fxLayout="column" fxFlex="40">
+              {{ 'form_standard.tel' | translate }} :
+            </div>
+            <div
+              fxLayout="column"
+              fxFlex="40"
+              fxLayoutAlign="space-around none"
+            >
+              {{ candidate?.telephone }}
+            </div>
+          </div>
+          <br />
+          <div fxLayout="row">
+            <div fxLayout="column" fxFlex="40">
+              {{ 'form_standard.address' | translate }} :
+            </div>
+            <div
+              fxLayout="column"
+              fxFlex="40"
+              fxLayoutAlign="space-around none"
+            >
+              {{ candidate?.address.description }}
+            </div>
+          </div>
+          <br />
+          <div fxLayout="row">
+            <div fxLayout="column" fxFlex="40">
+              {{ 'form_standard.secondAddress' | translate }} :
+            </div>
+            <div
+              fxLayout="column"
+              fxFlex="40"
+              fxLayoutAlign="space-around none"
+            >
+              {{ candidate?.address.second_address }}
+            </div>
+          </div>
+          <br />
+
+          <div fxLayout="row">
+            <div fxLayout="column" fxFlex="40">
+              {{ 'form_standard.zipCode' | translate }} :
+            </div>
+            <div
+              fxLayout="column"
+              fxFlex="40"
+              fxLayoutAlign="space-around none"
+            >
+              {{ candidate?.address.zip_code }}
+            </div>
+          </div>
+          <br />
+          <div fxLayout="row">
+            <div fxLayout="column" fxFlex="40">
+              {{ 'form_standard.city' | translate }} :
+            </div>
+            <div
+              fxLayout="column"
+              fxFlex="40"
+              fxLayoutAlign="space-around none"
+            >
+              {{ candidate?.address.city.name }}
+            </div>
+          </div>
+          <br />
+
+          <div fxLayout="row">
+            <div fxLayout="column" fxFlex="40">
+              {{ 'form_standard.country' | translate }} :
+            </div>
+            <div
+              fxLayout="column"
+              fxFlex="40"
+              fxLayoutAlign="space-around none"
+            >
+              {{ candidate?.address.country.name }}
+            </div>
+          </div>
+          <br />
+
+          <div fxLayout="row">
+            <div fxLayout="column" fxFlex="40">
+              {{ 'form_standard.Date_Birth' | translate }} :
+            </div>
+            <div
+              fxLayout="column"
+              fxFlex="40"
+              fxLayoutAlign="space-around none"
+            >
+              {{ candidate?.birth_day | date: 'yy/mm/dd' }}
+            </div>
+          </div>
+          <br />
+
+          <div fxLayout="row">
+            <div fxLayout="column" fxFlex="40">
+              {{ 'Sponsor.form.status' | translate }} :
+            </div>
+
+            <div
+              *ngIf="inProgress === true"
+              fxLayout="column"
+              fxFlex="40"
+              fxLayoutAlign="space-around none"
+            >
+              En attente
+            </div>
+            <div
+              *ngIf="accepted === true"
+              fxLayout="column"
+              fxFlex="40"
+              fxLayoutAlign="space-around none"
+            >
+              Accepté
+            </div>
+            <div
+              *ngIf="refused === true"
+              fxLayout="column"
+              fxFlex="40"
+              fxLayoutAlign="space-around none"
+            >
+              Refusé
+            </div>
+          </div>
+        </section>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card style="width: 30%; height: 70%">
+    <div class="card-header card-header-danger" style="margin-top: -40px">
+      <h4 class="card-title">{{ 'Sponsor.title-sponsor' | translate }}</h4>
+    </div>
+
+    <mat-card-content style="margin-bottom: 5%">
+      <div fxLayout="row">
+        <div fxLayout="column" fxFlex="40">
+          {{ 'form_standard.Fullname' | translate }} :
+        </div>
+        <div fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none">
+          {{ candidate?.sponsor.firstname }}
+          {{ candidate?.sponsor.lastname | uppercase }}
+        </div>
+      </div>
+      <br />
+      <div fxLayout="row">
+        <div fxLayout="column" fxFlex="40">
+          {{ 'form_standard.mail' | translate }} :
+        </div>
+        <div fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none">
+          {{ candidate?.sponsor.email }}
+        </div>
+      </div>
+
+      <br />
+      <div fxLayout="row">
+        <div fxLayout="column" fxFlex="40">
+          {{ 'form_standard.tel' | translate }} :
+        </div>
+        <div fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none">
+          {{ candidate?.sponsor.telephone }}
+        </div>
+      </div>
+      <br />
+      <div fxLayout="row">
+        <div fxLayout="column" fxFlex="40">
+          {{ 'form_standard.address' | translate }} :
+        </div>
+        <div fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none">
+          {{ candidate?.sponsor.address.description }}
+        </div>
+      </div>
+      <br />
+
+      <div fxLayout="row">
+        <div fxLayout="column" fxFlex="40">
+          {{ 'form_standard.city' | translate }} :
+        </div>
+        <div fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none">
+          {{ candidate?.sponsor.address.city.name }}
+        </div>
+      </div>
+      <br />
+      <div fxLayout="row">
+        <div fxLayout="column" fxFlex="40">
+          {{ 'form_standard.country' | translate }} :
+        </div>
+        <div fxLayout="column" fxFlex="40" fxLayoutAlign="space-around none">
+          {{ candidate?.sponsor.address.country.name }}
+        </div>
+      </div>
+      <br />
+    </mat-card-content>
+  </mat-card>
+</div>

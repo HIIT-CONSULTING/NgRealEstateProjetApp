@@ -1,0 +1,42 @@
+{
+  "menu": [
+    {
+      "route": "annuaire",
+      "name": "annuaire",
+      "type": "link",
+      "icon": "book"
+    },
+    {
+      "route": "sponsorship",
+      "name": "sponsorship",
+      "type": "link",
+      "icon": "supervised_user_circle"
+    },
+
+    {
+      "route": "project",
+      "name": "project",
+      "type": "link",
+      "icon": "home"
+    },
+    {
+      "route": "contact",
+      "name": "contact",
+      "type": "link",
+      "icon": "contacts"
+    },
+    {
+      "route": "mandat",
+      "name": "mandat",
+      "type": "link",
+      "icon": "description"
+    },
+    {
+      "route": "transaction",
+      "name": "transaction",
+      "type": "link",
+      "icon": "assignment"
+    }
+    
+  ]
+}

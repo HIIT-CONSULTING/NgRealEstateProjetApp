@@ -1,0 +1,21 @@
+#container {
+  width: 100px;
+  height: 100px;
+  position: relative;
+}
+#particles,
+#over {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#over {
+  z-index: 10;
+}
+
+#particles {
+    background-color:rgb(4, 16, 37);
+    filter: blur(3px);
+  }

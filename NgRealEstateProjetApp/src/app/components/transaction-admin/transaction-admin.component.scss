@@ -1,0 +1,54 @@
+.mat-chip.mat-standard-chip {
+    background-color: #f18618;
+    color: #fafafa;
+}
+
+.tooltip{
+    background:#b71c1c;
+  
+  }
+.userIcon{
+    margin-left:80%;
+}
+
+table {
+    width: 100%;
+    max-width: 100%;
+    //text-align: center;
+  }
+  .example-container {
+    
+    max-height: 710px;
+    overflow: auto;
+  }
+  .example-table-container {
+    position: relative;
+    min-height: 200px;
+    //max-height: 800px;
+    overflow: auto;
+  }
+  
+  .mat-table-sticky {
+    background: #59abfd;
+    opacity: 1;
+  }
+  
+  .example-sticky-toggle-group {
+    margin: 8px;
+  }
+  
+  .mat-column-filler {
+    padding: 0 8px;
+    font-size: 10px;
+    //text-align: center;
+  }
+  
+  .mat-header-cell, .mat-footer-cell, .mat-cell {
+    min-width: 80px;
+    padding: 4px;
+  }
+  
+  .mat-header-row, .mat-footer-row, .mat-row {
+   min-width: 1920px; /* 24 columns, 80px each */
+  }
+  

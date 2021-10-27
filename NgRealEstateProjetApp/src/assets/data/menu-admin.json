@@ -1,0 +1,28 @@
+{
+  "menu": [
+    {
+      "route": "annuaire",
+      "name": "annuaire",
+      "type": "link",
+      "icon": "book"
+    },
+    {
+      "route": "sponsor-admin",
+      "name": "sponsorship",
+      "type": "link",
+      "icon": "verified_user"
+    },
+    {
+      "route": "mandat-admin",
+      "name": "mandat-admin",
+      "type": "link",
+      "icon": "assignment"
+    },
+    {
+      "route": "transaction-admin",
+      "name": "transaction-admin",
+      "type": "link",
+      "icon": "assignment"
+    }
+  ]
+}

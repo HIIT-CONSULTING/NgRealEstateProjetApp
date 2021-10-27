@@ -1,0 +1,50 @@
+button:hover{
+  background-color: #28458e !important;
+  color:white
+}
+
+.disable_ripple:hover{
+background-color: #203574 !important;
+.title-cardd{
+    color:white  !important;
+} 
+}
+
+.step-title {
+pointer-events: none !important; /**<-----------*/
+}
+::ng-deep .mat-horizontal-stepper-header{
+pointer-events: none !important;
+}
+
+.mat-step-header {
+pointer-events: none !important;
+}
+
+.ng-select .ng-select-container.ng-appearance-outline:hover:after {
+  border-width: 2px;
+}
+
+.mat-expansion-panel-header.mat-expanded,
+.mat-expansion-panel-header.mat-expanded:hover {
+background: #203574;
+.title-cardd{
+  color:white  !important;
+} 
+}
+
+.mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
+  color:#f44336
+}
+
+.mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
+  color:#f44336}
+mat-checkbox{
+  margin: 10px;
+}
+.example-margin {
+  margin: 14px
+} 
+mat-radio-button {
+  margin: 6px;
+}
