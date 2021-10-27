@@ -22,7 +22,7 @@ export class LoginService {
     return this.http.post<any>(`${this.hosturlname}api/login_check`,user).pipe(switchMap((response: any) => { 
 
       localStorage.setItem(this.JWT_TOKEN, response.token);
-        return this.http.get(`${this.hosturlname}api/v1/authenticateMe`).pipe((map((user: any) => {
+        return this.http.get(`${this.hosturlname}authenticate-me`).pipe((map((user: any) => {
          localStorage.setItem(this.CURRENT_USER, JSON.stringify(user));
          const role = this.getRole() === Role.Admin ? 'admin' : 'user'
          return this.http
