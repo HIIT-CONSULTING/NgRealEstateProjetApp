@@ -17,12 +17,11 @@ export class LoginService {
   private hosturlname = environment.hostURL;
   constructor(private http: HttpClient, private menuService: MenuService) {}
 
-
   login(user:any): Observable<any> {
     return this.http.post<any>(`${this.hosturlname}api/login_check`,user).pipe(switchMap((response: any) => { 
 
       localStorage.setItem(this.JWT_TOKEN, response.token);
-        return this.http.get(`${this.hosturlname}api/v1/authenticateMe`).pipe((map((user: any) => {
+        return this.http.get(`${this.hosturlname}authenticate-me`).pipe((map((user: any) => {
          localStorage.setItem(this.CURRENT_USER, JSON.stringify(user));
          const role = this.getRole() === Role.Admin ? 'admin' : 'user'
          return this.http
@@ -34,7 +33,7 @@ export class LoginService {
                this.menuService.set(res.menu);
              }
            );
-         //
+         
          return user;
        })))
      })
@@ -42,16 +41,11 @@ export class LoginService {
      catchError(this.handleError))
    }
 
-
-
-
    public handleError (error: any) {
     let errMsg = error.message || 'Server error';
     console.error(errMsg); // log to console instead
     return Observable.throw(errMsg);
   }
-
-
 
   isLoggedIn(): boolean {
     return !!localStorage.getItem(this.JWT_TOKEN);  
@@ -69,13 +63,12 @@ export class LoginService {
     return this.getCurentUser()?.roles
   }
 
- 
-    logout() {
+  logout() {
       // remove user from local storage to log user out
       localStorage.removeItem(this.CURRENT_USER);
       localStorage.removeItem(this.JWT_TOKEN);
-     // localStorage.removeItem('currentUser');
-     
+     // localStorage.removeItem('currentUser');  
   }
   
 }
+
