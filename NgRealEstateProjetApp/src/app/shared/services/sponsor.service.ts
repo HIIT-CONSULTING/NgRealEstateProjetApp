@@ -1,3 +1,4 @@
+import { Region } from './../models/region.model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import {
@@ -53,28 +54,39 @@ export class SponsorService {
    * @param id - country's number
    */
   getCitys(id: number) {
-    return this.http.get<City[]>(`${this.hosturlname}api/v1/city/${id}`);
+    return this.http.get<City[]>(`${this.hosturlname}api/city/${id}`);
   }
 
   /**
    * web service using to Get the cities
    */
   getCity(): Observable<City[]> {
-    return this.http.get<City[]>(`${this.hosturlname}api/v1/city`);
+    return this.http.get<City[]>(`${this.hosturlname}api/cities`);
   }
 
+  getRegionsByCountry(id : number){
+
+    return this.http.get<Region[]>(`${this.hosturlname}api/countries/${id}/regions`);
+
+  }
+
+  getCitiesByRegion(id :number){
+    return this.http.get<City[]>(`${this.hosturlname}api/regions/${id}/cities`);
+
+  }
   /**
    * web service using to get the countries
    */
   getCountry(): Observable<Country[]> {
-    return this.http.get<Country[]>(`${this.hosturlname}api/v1/country`);
+    return this.http.get<Country[]>(`${this.hosturlname}api/countries`);
   }
 
   /**
    * web service using to get the genders
    */
   getGender(): Observable<Gender[]> {
-    return this.http.get<Gender[]>(`${this.hosturlname}api/v1/gender`);
+
+    return this.http.get<Gender[]>(`${this.hosturlname}api/genders`);
   }
 
   /**
@@ -102,7 +114,7 @@ export class SponsorService {
    * @param id - candidat's number
    */
   deleteCandidate(id: number): Observable<any> {
-    return this.http.delete(`${this.hosturlname}api/v1/delete/${id}`);
+    return this.http.delete(`${this.hosturlname}api/${id}`);
   }
 
   /**

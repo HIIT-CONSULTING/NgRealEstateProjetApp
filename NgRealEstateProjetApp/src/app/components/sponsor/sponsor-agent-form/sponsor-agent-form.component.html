@@ -9,7 +9,7 @@
           <mat-label>{{ 'form_standard.civility' | translate }} </mat-label>
           <mat-select formControlName="gender">
             <mat-option
-              *ngFor="let gender of gender$ | async"
+              *ngFor="let gender of gender$ "
               [value]="gender.id"
               >{{ gender.name }}
             </mat-option>
@@ -100,7 +100,7 @@
               <mat-label> {{ 'form_standard.country' | translate }} </mat-label>
               <mat-select formControlName="country">
                 <mat-option
-                  *ngFor="let country of country$ | async"
+                  *ngFor="let country of country$"
                   [value]="country.id"
                   (click)="OnCountry(country.id)"
                 >
@@ -109,9 +109,21 @@
               </mat-select>
             </mat-form-field>
             <mat-form-field appearance="outline" fxFlex="30">
+              <mat-label> Région </mat-label>
+              <mat-select formControlName="region">
+                <mat-option 
+                  *ngFor="let region of regions$ " 
+                  [value]="region.id"
+                  (click)="OnRegion(region.id)"
+
+                  >{{ region.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex="30">
               <mat-label> {{ 'form_standard.city' | translate }} </mat-label>
               <mat-select formControlName="city">
-                <mat-option *ngFor="let city of city$ | async" [value]="city.id"
+                <mat-option *ngFor="let city of cities$ " [value]="city.id"
                   >{{ city.name }}
                 </mat-option>
               </mat-select>

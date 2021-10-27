@@ -8,6 +8,7 @@ import { Role } from "@shared/models/role.model";
 
 const routes: Routes = [
   {
+    
     path: "login",
     // canActivate:[LoginGuard],
     loadChildren: () =>
@@ -33,7 +34,7 @@ const routes: Routes = [
       },
       {
         path: "sponsorship",
-        canActivate: [RoleGuard, AuthGuard],
+       // canActivate: [RoleGuard, AuthGuard],
         data: {
           title: "sponsorship",
           titleI18n: "sponsorship",
@@ -47,7 +48,7 @@ const routes: Routes = [
 
       {
         path: "sponsor-admin",
-        canActivate: [RoleGuard, AuthGuard],
+       // canActivate: [RoleGuard, AuthGuard],
         data: {
           title: "sponsorship",
           titleI18n: "sponsorship-admin",
@@ -60,7 +61,7 @@ const routes: Routes = [
       },
       {
         path: "project",
-        canActivate: [RoleGuard, AuthGuard],
+     //   canActivate: [RoleGuard, AuthGuard],
         data: { title: "project", titleI18n: "project", roles: [Role.User] },
         loadChildren: () =>
           import("../components/project/project.module").then(
@@ -69,7 +70,7 @@ const routes: Routes = [
       },
       {
         path: "contact",
-        canActivate: [RoleGuard, AuthGuard],
+      //  canActivate: [RoleGuard, AuthGuard],
         data: { title: "contact", titleI18n: "contact", roles: [Role.User] },
         loadChildren: () =>
           import("../components/contact/contact.module").then(
@@ -78,7 +79,7 @@ const routes: Routes = [
       },
       {
         path: "profil",
-        canActivate: [RoleGuard, AuthGuard],
+        //canActivate: [RoleGuard, AuthGuard],
         data: {
           title: "profil",
           titleI18n: "profil",
@@ -91,7 +92,7 @@ const routes: Routes = [
       },
       {
         path: "mandat-admin",
-        canActivate: [RoleGuard, AuthGuard],
+       // canActivate: [RoleGuard, AuthGuard],
         data: {
           title: "mandat-admin",
           titleI18n: "mandat-admin",
@@ -104,7 +105,7 @@ const routes: Routes = [
       },
       {
         path: "mandat",
-        canActivate: [RoleGuard, AuthGuard],
+       // canActivate: [RoleGuard, AuthGuard],
         data: { title: "mandat", titleI18n: "mandat", roles: [Role.User] },
         loadChildren: () =>
           import("../components/mandat/mandat.module").then(
@@ -113,7 +114,7 @@ const routes: Routes = [
       },
       {
         path: "transaction",
-        canActivate: [RoleGuard, AuthGuard],
+       // canActivate: [RoleGuard, AuthGuard],
         data: {
           title: "transaction",
           titleI18n: "transaction",
@@ -126,7 +127,7 @@ const routes: Routes = [
       },
       {
         path: "transaction-admin",
-        canActivate: [RoleGuard, AuthGuard],
+       // canActivate: [RoleGuard, AuthGuard],
         data: {
           title: "transaction-admin",
           titleI18n: "transaction-admin",
@@ -143,7 +144,7 @@ const routes: Routes = [
 
 @NgModule({
   //imports: [RouterModule.forRoot(routes)],
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  imports: [RouterModule.forRoot(routes, { useHash: true, enableTracing: true  })],
   exports: [RouterModule],
 })
 export class RoutesRoutingModule {}
