@@ -3,11 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  SERVER_URL: 'http://api.realestate.hiitconsulting.com',
+  SERVER_URL: 'http://localhost:8000',
   production: false,
   hmr: false,
   //hostURL : 'https://stage.hiitconsulting.com/'
-  hostURL : 'https://api.realestate.hiitconsulting.com/'
+  hostURL : 'http://localhost:8000/',
+  apiV2 : ''
 };
 
 /*

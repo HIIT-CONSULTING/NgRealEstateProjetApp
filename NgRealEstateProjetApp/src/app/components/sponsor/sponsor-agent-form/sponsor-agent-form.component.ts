@@ -1,3 +1,4 @@
+import { Region } from './../../../shared/models/region.model';
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -18,8 +19,10 @@ export class SponsorAgentFormComponent implements OnInit {
   agents$: Observable<Agent[]>;
   agents: Agent[] = [];
   gender$: Observable<Gender[]>;
-  city$: Observable<City[]>;
+  cities$: Observable<City[]>;
   country$: Observable<Country[]>;
+  regions$ : Observable<Region[]>;
+
   unsubscribe$: Subject<void>;
 
   constructor(
@@ -69,6 +72,7 @@ export class SponsorAgentFormComponent implements OnInit {
         description: null,
         city: null,
         country: null,
+        region: null,
         zipCode: null,
         secondAddress: null,
       }),
@@ -77,7 +81,14 @@ export class SponsorAgentFormComponent implements OnInit {
   }
 
   OnCountry(id: number) {
-    this.city$ = this.sponsorService.getCitys(id);
+    this.sponsorService.getRegionsByCountry(id).subscribe((res) => {
+      this.regions$ = res['hydra:member'];
+    });
+  }
+  OnRegion(id : number){
+    this.sponsorService.getCitiesByRegion(id).subscribe((res) => {
+      this.cities$ = res['hydra:member'];
+    });
   }
 
   onSubmit() {
@@ -114,10 +125,22 @@ export class SponsorAgentFormComponent implements OnInit {
   }
   ngOnInit() {
     this.createForm();
-    this.gender$ = this.sponsorService.getGender();
-    this.country$ = this.sponsorService.getCountry();
+    this.getGenders();
+    this.getCountries();
+   // this.gender$ = this.sponsorService.getGender();
+    //this.country$ = this.sponsorService.getCountry();
   }
-
+  getCountries(){
+    this.sponsorService.getCountry().subscribe((res) => {
+      this.country$ = res['hydra:member'];
+    });
+  }
+  
+  getGenders(){
+    this.sponsorService.getGender().subscribe((res) => {
+      this.gender$ = res['hydra:member'];
+    });
+  }
   getErrorMessage(form: FormGroup) {
     return form.get("email").hasError("required")
       ? "enter an email"
